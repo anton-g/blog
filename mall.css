@@ -1,0 +1,13 @@
+#textbox{
+    width:380px;
+    height:200px;
+    position:absolute;
+    left:50%;
+    top:50%;
+    margin:-100px 0 0 -190px;
+    
+    font-family:Helvetica;
+    font-size:72px;
+
+    line-height: 45px;
+}
