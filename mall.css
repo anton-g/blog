@@ -1,17 +1,18 @@
-body {
-  background-image: url('img/bg.png');
-}
-
-#textbox{
-    width:380px;
+#wrap {
+    width:600px;
     height:200px;
     position:absolute;
     left:50%;
-    top:50%;
-    margin:-100px 0 0 -190px;
+    top:30%;
+    margin:0 0 0 -150px;
+}
 
-    font-family:Helvetica;
-    font-size:72px;
+p {
+  margin: 0;
+  font-size: 3em;
+  font-family:Helvetica;
+}
 
-    line-height: 45px;
+.green {
+  color: #8ED273;
 }
