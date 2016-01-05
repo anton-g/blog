@@ -1,18 +1,38 @@
+body {
+  background: #ecf0f1;
+}
+
 #wrap {
     width:600px;
     height:200px;
     position:absolute;
     left:50%;
-    top:30%;
+    top:15%;
     margin:0 0 0 -150px;
 }
 
 p {
-  margin: 0;
-  font-size: 3em;
-  font-family:Helvetica;
+  margin: 0.2em;
+  font-size: 1.15em;
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
 }
 
-.green {
-  color: #8ED273;
+.name {
+  padding-bottom: 0.5em;
+  font-weight: 300;
+  font-size: 1.55em;
+}
+
+a {
+  color: #27ae60;
+  text-decoration: none;
+}
+
+a:visited {
+  color: #27ae60;
+}
+
+a:hover {
+  text-decoration: underline;
 }
