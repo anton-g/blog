@@ -4,12 +4,12 @@ title: About
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](http://jekyllrb.com/)
+So this is my blog. Why a blog? Good question. Here's my reasoning:  
 
-You can find the source code for the Jekyll new theme at:
-{% include icon-github.html username="jglovier" %} /
-[jekyll-new](https://github.com/jglovier/jekyll-new)
+* I want to try [Jekyll](https://jekyllrb.com).
+* I want to write more Markdown.
+* I want a place to document the progress i'm making with my new game.
 
-You can find the source code for Jekyll at
-{% include icon-github.html username="jekyll" %} /
-[jekyll](https://github.com/jekyll/jekyll)
+And hence, this blog was born. I'm not sure how often i'll get to update it, but i'm going to try my best.
+
+Cheers
