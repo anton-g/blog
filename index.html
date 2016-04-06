@@ -1,15 +1,24 @@
-<html>
-<head>
-  <link rel="stylesheet" type="text/css" href="mall.css">
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,300,100' rel='stylesheet' type='text/css'>
-</head>
-<body>
-<div id="wrap">
-  <p class="name">Anton Gunnarsson</p>
-  <p>Uppsala, Sweden</p>
-  <p>Co-Founder at <a href="http://lyxit.se">Lyxit</a></p>
-  <p><a href="http://github.com/anton-g/">github.com/anton-g</a></p>
-  <p><a href="https://se.linkedin.com/in/antongunnarsson">linkedin.com/in/antongunnarsson</a></p>
+---
+layout: default
+---
+
+<div class="home">
+
+  <h1 class="page-heading">Posts</h1>
+
+  <ul class="post-list">
+    {% for post in site.posts %}
+      <li>
+        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+
+        <h2>
+          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+        </h2>
+        {{ post.excerpt }}
+      </li>
+    {% endfor %}
+  </ul>
+
+  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
+
 </div>
-</body>
-</html>
