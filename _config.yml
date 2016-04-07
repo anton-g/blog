@@ -3,7 +3,7 @@ description: Words and code mixed together like a bland ol' sallad
 meta_description: "Words and code mixed together like a bland ol' sallad"
 
 markdown: kramdown
-highlighter: pygments
+highlighter: rouge
 logo: false
 paginate: 15
 baseurl: /
