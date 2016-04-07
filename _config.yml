@@ -14,3 +14,13 @@ gems: [jekyll-paginate]
 url:            'http://antongunnarsson.se'
 author:         'Anton'
 authordescription: I make stuff over at [Lyxit](http://lyxit.se), study information systems in [Swedens fourth largest city](https://en.wikipedia.org/wiki/Uppsala) and writes about developer life.
+
+#post setup
+defaults:
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: post
+      permalink: /:categories/:year/:month/:day/:title/

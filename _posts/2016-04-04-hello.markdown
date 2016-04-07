@@ -1,5 +1,4 @@
 ---
-layout: post
 title:  "hello."
 date:   2016-04-04 19:56:36 +0200
 categories: meta
