@@ -1,14 +1,17 @@
 ---
 layout: page
-title: About
+title: about
 permalink: /about/
 ---
+Hi, I'm Anton.
 
-So this is my blog. Why a blog? Good question. Here's my reasoning:  
+I make stuff over at [Lyxit](http://lyxit.se), study information systems in [Swedens fourth largest city](https://en.wikipedia.org/wiki/Uppsala) and hopefully I'll be writing about stuff here.
+
+So, this is my blog. Why a blog?
 
 * I want to try [Jekyll](https://jekyllrb.com).
 * I want to write more Markdown.
-* I want a place to document the progress i'm making with my new game.
+* I want a place to document the progress I'm making on my new hobbyist game.
 
 And hence, this blog was born. I'm not sure how often i'll get to update it, but i'm going to try my best.
 

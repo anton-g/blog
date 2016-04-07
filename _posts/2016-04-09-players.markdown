@@ -5,7 +5,7 @@ date:   2016-04-09 12:36:36 +0200
 categories: gamedev
 ---
 
-Getting your characters to feel alive is a monumental task. It's not easy and especially hard when your characters are squares.  <!--more-->
+Getting your characters to feel alive is a monumental task..  <!--more-->
 So i've been thinking about this for quite some time while working on other parts of the game. But after posting a first gif over at reddit ([here](https://www.reddit.com/r/Unity2D/comments/4d1xga/a_sample_level_from_my_wip_coop_platformer/) and [here](https://www.reddit.com/r/Unity3D/comments/4d2l8c/a_sample_level_from_my_wip_coop_platformer_xpost/)) and getting some valuable feedback, i felt like it was time to stop writing game mechanics and do something else for a while. I ended up working on how the characters appear and improved three things:
 
 - Eyes blink every now and then.
