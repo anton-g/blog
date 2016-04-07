@@ -8,9 +8,9 @@ logo: false
 paginate: 15
 baseurl: /
 domain_name: 'http://antongunnarsson.se'
-google_analytics: 'UA-XXXXXXXX-X'
+google_analytics: 'UA-21600317-1'
 gems: [jekyll-paginate]
 
-# Details for the RSS feed generator
 url:            'http://antongunnarsson.se'
-author:         'Anton Gunnarsson'
+author:         'Anton'
+authordescription: I make stuff over at [Lyxit](http://lyxit.se), study information systems in [Swedens fourth largest city](https://en.wikipedia.org/wiki/Uppsala) and writes about developer life.
