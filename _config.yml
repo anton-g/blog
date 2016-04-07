@@ -1,15 +1,16 @@
-# Site settings
-title: words, literally
-email: anton@lyxit.se
-description: > # this means to ignore newlines until "baseurl:"
-  Words and code mixed together like a bland ol' sallad.
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "http://antongunnarsson.se" # the base hostname & protocol for your site
-twitter_username:
-github_username:  anton-g
+name: words, literally
+description: Words and code mixed together like a bland ol' sallad
+meta_description: "Words and code mixed together like a bland ol' sallad"
 
-# Post settings
-excerpt_separator: <!--more-->
-
-# Build settings
 markdown: kramdown
+highlighter: pygments
+logo: false
+paginate: 15
+baseurl: /
+domain_name: 'http://antongunnarsson.se'
+google_analytics: 'UA-XXXXXXXX-X'
+gems: [jekyll-paginate]
+
+# Details for the RSS feed generator
+url:            'http://antongunnarsson.se'
+author:         'Anton Gunnarsson'
