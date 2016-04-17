@@ -16,16 +16,16 @@ When creating these beams i had these goals:
 ### theory.
 *Let's begin with the boring part; the theory behind the magic.*
 
-The script works by modifying the vertices of a mesh, and later animating them by using a sine curve. Breaking this down we get that we need to:
-
-- How do make sure the vertices are where we want them?
-- How do we modify the vertices?
-- How do we animate the vertices?
-
-great post: http://catlikecoding.com/unity/tutorials/procedural-grid/
+- Short introduction to meshes, tris etc.
+- Link to http://catlikecoding.com/unity/tutorials/procedural-grid/
+- Explain sine curve
+- Explain animating with a sine curve
+- Noise
 
 {% highlight csharp %}
 void Test() {
   console.log('tjena');
 }
 {% endhighlight %}
+
+Thanks for reading.
