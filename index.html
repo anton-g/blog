@@ -1,61 +1,33 @@
----
-layout: default
-title: Home
-cover: false
-about: 'about/'
----
+<!DOCTYPE html>
+<html lang="sv">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Quiz om Anton</title>
 
-<header class="main-header {% if page.cover %}" style="background-image: url({{ page.cover }}) {%else%}no-cover{% endif %}">
-    <nav class="main-nav overlay clearfix">
-            {% if page.logo %}
-                <a class="blog-logo" href="{{ site.baseurl }}">
-                    <img src="{{ page.logo }}" alt="Blog Logo" />
-                </a>
-            {% endif %}
-        <a class="subscribe-button icon-feed" href="{{ site.baseurl }}feed.xml">Subscribe</a>
-    </nav>
-    <div class="vertical">
-        <div class="main-header-content inner">
-            <h1 class="page-title">{{ site.name }}</h1>
-            <h2 class="page-description">
-                {% if site.description %} {{ site.description }} {% endif %}
-              </br>
-                {% if page.about %} <a href='{{ site.baseurl }}{{ page.about }}'> About me </a> {% endif %}
-            </h2>
+    <link href="css/quiz.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 text-center">
+          <h1 id="titleLabel">Ett quiz om Anton</h1>
         </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12" id="questions">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <button type="button" class="btn btn-info btn-lg btn-block" id="answerBtn">Besvara</button>
+        </div>
+      </div>
     </div>
-    <a class="scroll-down icon-arrow-left" href="#content" data-offset="-45"><span class="hidden">Scroll Down</span></a>
-</header>
-
-
-<main id="content" class="content" role="main">
-
-    <div class="extra-pagination inner">
-        {% include pagination.html %}
-    </div>
-
-    {% for post in paginator.posts %}
-
-    <article class="post">
-        <header class="post-header">
-            <h2 class="post-title"><a href="{{ post.url }}">{{ post.title }}</a></h2>
-        </header>
-        <footer class="post-meta">
-            {% if site.author %}
-                <!--<img class="author-thumb" src="/assets/images/profile.png" alt="Author's profile picture" nopin="nopin" />-->
-                {{ site.author }}
-            {% endif %}
-            {% if post.categories.size > 0 %}
-                {{ post.categories | array_to_sentence_string | prepend: 'on ' }}
-            {% endif %}
-            <time class="post-date" datetime="{{ post.date | date:"%Y-%m-%d" }}">
-                {{ post.date | date_to_string }}
-            </time>
-        </footer>
-    </article>
-
-    {% endfor %}
-
-    {% include pagination.html %}
-
-</main>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/quiz.js"></script>
+  </body>
+</html>

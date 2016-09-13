@@ -1,0 +1,49 @@
+.red a {
+  background-color: red !important;
+}
+
+.green a {
+  background-color: green !important;
+}
+
+.answer-img {
+  max-height: 150px;
+  margin: 0 auto;
+}
+
+.icon {
+  z-index: 1;
+  position:absolute !important;
+  text-align: center;
+  left: 25%;
+  opacity: .5;
+}
+
+.categoryName {
+  color: grey;
+}
+
+.question-image {
+  margin: 0 auto;
+}
+
+.btn-group {
+  margin-top: 1em;
+}
+
+#answerBtn {
+  margin-bottom: 2em;
+}
+
+#changeCourseBtn {
+  margin: 2em 0 2em 0;
+}
+
+#settingsToggle {
+  margin: 1em 0 1em 0;
+}
+
+#footer {
+  text-align: center;
+  padding: 1em;
+}
