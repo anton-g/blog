@@ -1,6 +1,6 @@
 name: Anton Gunnarsson
-description: I am a software developer, podcast host and programming aficionado.
-meta_description: "Anton is a software developer, podcast host and programming aficionado."
+description: I am a software developer and podcast host.
+meta_description: "Anton is a software developer and podcast host."
 
 markdown: kramdown
 highlighter: rouge
