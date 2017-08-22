@@ -1,12 +1,12 @@
 name: Anton Gunnarsson
-description: I am a software developer and podcast host.
+description: Software developer and podcast host.
 meta_description: "Anton is a software developer and podcast host."
 
 markdown: kramdown
 highlighter: rouge
 logo: false
 paginate: 15
-baseurl: /
+baseurl: ""
 domain_name: 'http://antongunnarsson.se'
 google_analytics: 'UA-21600317-1'
 gems: [jekyll-paginate]
