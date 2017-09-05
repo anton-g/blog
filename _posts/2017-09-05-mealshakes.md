@@ -4,8 +4,8 @@ title: "Mealshakes"
 date: 2017-09-05 21:00:00 +0100
 categories: mealshakes productivity
 ---
-I commute approximately three hours in total to and from work every day.
-It's exhausting, it lowers my morale and impedes my life in general and if I didn't love my job I would not be able to stand it. One thing I've done to increase my free time is "_optimizing_" my dinners by replaceing them with mealshakes. 
+I commute approximately three hours in total per day, to and from work.
+It's exhausting, it lowers my morale, impedes my life in general and if I didn't love my job I would not be able to stand it. One thing I've done to increase my free time is "_optimizing_" my dinners by replacing them with mealshakes. 
 
 The first time I heard about mealshakes was from the podcaster [Fredrik Björeman](http://www.bjoreman.com) and just a little bit later from a couple of friends of mine.
 They had all tried some type of mealshake in one form or another. Mealshakes is basically what is sounds like; a water and powder based shake that replaces one of your daily meals.
@@ -27,7 +27,7 @@ I'm not the only one that have complained about this and I've read somewhere tha
 
 #### Breakfast
 
-In my latest order I also ordered some _Wunderbars_ from Queal which I've been eating as a breakfast replacement. I can't say that I'm as satisfied with them as I am with the shakes, but they're _okay_. The bars have an extremely compact feel to them and I don't think I've ever chewed anything as much as I do these bars. They have two tastes; vanilla and choco-hazelnut. I can't put my finger on what it is exacly but I really can't stand the vanilla taste. I'm not sure if it tastes to artificial for me or if it's something else. The choco-hazelnut on the other hand is clearly the winner of the two and the one I will order more of if i keep going.
+In my latest order I also ordered some _Wunderbars_ from Queal which I've been eating as a breakfast replacement. I can't say that I'm as satisfied with them as I am with the shakes, but they're _okay_. The bars have an extremely compact feel to them and I don't think I've ever chewed anything as much as I do these bars. They have two tastes; vanilla and choco-hazelnut. I can't put my finger on what it is exacly but I really can't stand the vanilla taste. I'm not sure if it tastes too artificial for me or if it's something else. The choco-hazelnut on the other hand is clearly the winner of the two and the one I will order more of if I keep going.
 
 #### Results?
 Since I started drinking the shakes I've felt a definitive increase in motivation and energy when I get home. It's hard to say if this is because the energy isn't spent shoping for and cooking food or because the shakes themself have actually increased my energy, but I can say that I've been more productive than in a long time. A lot of side projects that previously lived their lives on the to-do list graveyard now actually gets some love.
