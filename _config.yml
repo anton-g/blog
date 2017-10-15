@@ -9,7 +9,7 @@ paginate: 15
 baseurl: ""
 domain_name: 'http://antongunnarsson.se'
 google_analytics: 'UA-21600317-1'
-gems: [jekyll-paginate]
+gems: [jekyll-paginate, jekyll-seo-tag]
 
 url:            'http://antongunnarsson.se'
 author:         'Anton'
