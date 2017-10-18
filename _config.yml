@@ -14,6 +14,8 @@ gems: [jekyll-paginate, jekyll-seo-tag]
 url:            'http://antongunnarsson.se'
 author:         'Anton'
 authordescription: I work with programming at [Avanade](http://avanade.com), talk about life as a developer in the (swedish) podcast [Still in beta](http://stillinbeta.se) and every once in a while i try to write something here.
+twitter:
+  username: anton-g
 
 #post setup
 defaults:
