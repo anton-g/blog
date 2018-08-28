@@ -1,12 +1,32 @@
 pre[class*="language-"] {
-    margin: 0;
-    margin-bottom: 1.563rem;
-  }
-  
-  pre > code {
-    margin-bottom: 0;
-  }
-  
-  pre > code::after {
-    content: none;
-  }
+  margin: 0;
+  margin-bottom: 1.563rem;
+}
+
+pre > code {
+  margin-bottom: 0;
+}
+
+pre > code::after {
+  content: none;
+}
+
+:not(pre) > code[class*="language-"] {
+  color: white;
+  background: #1f1814;
+  text-shadow: 0px 1px black;
+  padding: 0 0.328rem;
+}
+
+.gatsby-highlight-code-line {
+  background: #e0d7d1;
+}
+
+.gatsby-highlight-code-line .token {
+  background: #e0d7d1;
+}
+
+*::selection {
+  background: #343334;
+  color: white;
+}
