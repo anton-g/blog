@@ -125,6 +125,8 @@
   
   a:hover {
     text-decoration: underline;
+    text-decoration-color: #343334;
+    -webkit-text-decoration-color: #343334;
   }
   
   small {
