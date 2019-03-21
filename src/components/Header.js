@@ -3,22 +3,40 @@ import Link from 'gatsby-link'
 
 class Project extends React.Component {
   render() {
-    const title = <Link to={'/'} style={{
-      textDecoration: 'none'
-    }}>
-      anton gunnarsson
-    </Link>
+    const title = (
+      <Link
+        to={'/'}
+        style={{
+          textDecoration: 'none',
+        }}
+      >
+        anton gunnarsson
+      </Link>
+    )
 
     return (
       <div>
         <header>
-          { this.props.small ? <h3>{ title }</h3> : <h1>{ title }</h1> }
+          {this.props.small ? <h3>{title}</h3> : <h1>{title}</h1>}
         </header>
         <nav>
-          <Link to={'/'} style={{
-            paddingRight: '.5rem'
-          }}>Posts</Link>
-          <Link to={'/projects'}>Projects</Link>
+          <Link
+            to={'/'}
+            style={{
+              paddingRight: '.5rem',
+            }}
+          >
+            Posts
+          </Link>
+          <Link
+            to={'/projects'}
+            style={{
+              paddingRight: '.5rem',
+            }}
+          >
+            Projects
+          </Link>
+          <Link to={'/about'}>About</Link>
         </nav>
       </div>
     )
