@@ -23,7 +23,7 @@ class Project extends React.Component {
           <Link
             to={'/'}
             style={{
-              paddingRight: '.5rem',
+              marginRight: '.5rem',
             }}
           >
             Posts
@@ -31,7 +31,7 @@ class Project extends React.Component {
           <Link
             to={'/projects'}
             style={{
-              paddingRight: '.5rem',
+              marginRight: '.5rem',
             }}
           >
             Projects
