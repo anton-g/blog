@@ -30,7 +30,7 @@ class AboutPage extends React.Component {
             ever in Stockholm!), it's easiest to reach me on{' '}
             <a href="">Twitter (@awnton)</a>. 🎉
           </p>
-          <p>Have a wonderful day!</p>
+          <p>Have a day full of joy!</p>
         </div>
         <hr />
       </div>
