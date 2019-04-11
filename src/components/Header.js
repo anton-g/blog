@@ -21,7 +21,7 @@ class Project extends React.Component {
         </header>
         <nav>
           <Link
-            to={'/'}
+            to={'/posts'}
             style={{
               marginRight: '.5rem',
             }}
@@ -36,7 +36,6 @@ class Project extends React.Component {
           >
             Projects
           </Link>
-          <Link to={'/about'}>About</Link>
         </nav>
       </div>
     )
