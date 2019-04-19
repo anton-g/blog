@@ -17,6 +17,10 @@ nav a::after {
   transition: top 0.2s ease-in-out;
 }
 
+.gatsby-resp-image-link::after {
+  content: none !important;
+}
+
 p a:hover,
 nav a:hover {
   text-decoration: none;

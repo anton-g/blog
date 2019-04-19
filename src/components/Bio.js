@@ -12,10 +12,9 @@ class Bio extends React.Component {
       >
         <p style={{ margin: 0, paddingLeft: '1em' }}>
           Written by me, <strong>Anton Gunnarsson</strong>. I live in Stockholm
-          and work at <a href="https://mpyadigital.com">Mpya Digital</a>.{' '}
-          <a href="https://twitter.com/awnton">
-            Reach out with any questions on twitter.
-          </a>
+          and work at <a href="https://mpyadigital.com">Mpya Digital</a>. Reach
+          out with any questions on{' '}
+          <a href="https://twitter.com/awnton">Twitter.</a>
         </p>
       </div>
     )
