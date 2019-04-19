@@ -12,10 +12,10 @@ class AboutPage extends React.Component {
         <div>
           <h3>Hello, I'm Anton! 👋</h3>
           <p>
-            I'm a full stack-developer from Stockholm, Sweden and I've been
-            passionate about programming ever since I discovered that by writing
-            words in a certain order, I could tell the computer what to do! 😱
-            It was just like magic! ✨
+            I'm a web developer from Stockholm, Sweden and I've been passionate
+            about programming ever since I discovered that by writing words in a
+            certain order, I could tell the computer what to do! 😱 It was just
+            like magic! ✨
           </p>
           <p>
             This is my personal site where I try to show off my personal
@@ -31,7 +31,6 @@ class AboutPage extends React.Component {
           </p>
           <p>Have a day full of joy!</p>
         </div>
-        <hr />
       </div>
     )
   }
