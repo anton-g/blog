@@ -15,7 +15,7 @@ You might have experienced this problem yourself with an error pointing to an ob
 
 > These examples use Chrome DevTools but you also blackbox files in [Firefox](https://developer.mozilla.org/en-US/docs/Tools/Debugger/How_to/Black_box_a_source).
 
-You can blackbox a file in two ways, either by opening the file in the source panel and right click or in the settings panel. If you right click inside the source of the file when you've opened it in the source panel you'll get the option to blackbox it.
+You can blackbox a file in two ways, either by opening and right clicking the file in the source panel or in the settings panel. If you right click inside the source of the file when you've opened it in the source panel you'll get the option to blackbox it.
 
 ![](blackbox-right-click.png)
 

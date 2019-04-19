@@ -1,8 +1,9 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 import get from 'lodash/get'
+import Link from 'gatsby-link'
 
-class AboutPage extends React.Component {
+class BlogIndex extends React.Component {
   render() {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title')
 
@@ -18,11 +19,12 @@ class AboutPage extends React.Component {
             like magic! ✨
           </p>
           <p>
-            This is my personal site where I try to show off my personal
-            projects and occasionally posts on the blog. The posts are usually
-            just a slightly edited version of my own notes from learning the
-            subjects, and therefore probably not complete neither comprehensive,
-            but hopefully, they'll serve a purpose to someone!
+            This is my personal site where I try to keep track of my personal{' '}
+            <Link to="/projects">projects</Link> and occasionally post stuff on
+            my <Link to="/posts">blog</Link>. The posts are usually just a
+            slightly edited version of my own notes from learning the subjects,
+            and therefore probably not complete neither comprehensive, but
+            hopefully, they'll serve a purpose to someone!
           </p>
           <p>
             If you have any questions or just want to talk (or meet up if you're
@@ -36,10 +38,10 @@ class AboutPage extends React.Component {
   }
 }
 
-export default AboutPage
+export default BlogIndex
 
 export const pageQuery = graphql`
-  query AboutQuery {
+  query IndexQuery {
     site {
       siteMetadata {
         title
