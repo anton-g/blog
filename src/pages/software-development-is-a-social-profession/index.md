@@ -31,4 +31,4 @@ Software development is a social profession because without the interaction betw
 
 ---
 
-[Discuss this article on dev.to](dev.to)
+[Discuss this post on dev.to](https://dev.to/awnton/software-development-is-a-social-profession-159p)
