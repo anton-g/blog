@@ -10,7 +10,7 @@ class Posts extends React.Component {
 
     return (
       <div>
-        <Helmet title={siteTitle} />
+        <Helmet title={`${siteTitle} | posts`} />
         {posts.map(({ node }) => {
           const title = get(node, 'frontmatter.title') || node.fields.slug
           return (

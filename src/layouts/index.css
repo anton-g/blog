@@ -2,6 +2,7 @@ p a,
 nav a {
   text-decoration: none;
   position: relative;
+  white-space: nowrap;
 }
 
 p a::after,

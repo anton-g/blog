@@ -9,7 +9,7 @@ class BlogIndex extends React.Component {
 
     return (
       <div>
-        <Helmet title={`${siteTitle} | about`} />
+        <Helmet title={siteTitle} />
         <div>
           <h3>Hello, I'm Anton! 👋</h3>
           <p>
