@@ -29,7 +29,7 @@ class BlogIndex extends React.Component {
           <p>
             If you have any questions or just want to talk (or meet up if you're
             ever in Stockholm!), it's easiest to reach me on{' '}
-            <a href="">Twitter (@awnton)</a>. 🎉
+            <a href="https://twitter.com/awnton">Twitter (@awnton)</a>. 🎉
           </p>
           <p>Have a day full of joy!</p>
         </div>
