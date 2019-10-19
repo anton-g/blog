@@ -11,20 +11,22 @@ class Posts extends React.Component {
     return (
       <div>
         <Helmet title={`${siteTitle} | posts`} />
-        {posts.map(({ node }) => {
-          const title = get(node, 'frontmatter.title') || node.fields.slug
-          return (
-            <div key={node.fields.slug}>
-              <h3>
-                <Link style={{ boxShadow: 'none' }} to={node.fields.slug}>
-                  {title}
-                </Link>
-              </h3>
-              <small>{node.frontmatter.date}</small>
-              <p dangerouslySetInnerHTML={{ __html: node.excerpt }} />
-            </div>
-          )
-        })}
+        {posts
+          .filter(({ node }) => !get(node, 'frontmatter.draft'))
+          .map(({ node }) => {
+            const title = get(node, 'frontmatter.title') || node.fields.slug
+            return (
+              <div key={node.fields.slug}>
+                <h3>
+                  <Link style={{ boxShadow: 'none' }} to={node.fields.slug}>
+                    {title}
+                  </Link>
+                </h3>
+                <small>{node.frontmatter.date}</small>
+                <p dangerouslySetInnerHTML={{ __html: node.excerpt }} />
+              </div>
+            )
+          })}
       </div>
     )
   }
@@ -49,6 +51,7 @@ export const pageQuery = graphql`
           frontmatter {
             date(formatString: "DD MMMM, YYYY")
             title
+            draft
           }
         }
       }

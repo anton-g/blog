@@ -2,7 +2,7 @@ import React from 'react'
 import Header from '../components/Header'
 
 require('./superstylin.css')
-require('prismjs/themes/prism.css');
+require('prismjs/themes/prism.css')
 require('./index.css')
 
 class Template extends React.Component {
@@ -15,11 +15,13 @@ class Template extends React.Component {
 
     return (
       <div>
-        <Header small={location.pathname !== rootPath}></Header>
-        <main style={{
-          maxWidth: '800px',
-          margin: '0 auto 0'
-        }}>
+        <Header small={location.pathname !== rootPath} />
+        <main
+          style={{
+            maxWidth: '800px',
+            margin: '0 auto 0',
+          }}
+        >
           {children()}
         </main>
       </div>

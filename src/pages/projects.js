@@ -19,7 +19,10 @@ class ProjectsPage extends React.Component {
         name: '❓ Quizify',
         year: '2018',
         tags: ['Vue', 'NestJS', 'SocketIO', 'Spotify'],
-        links: [{ url: 'https://github.com/anton-g/quizify', name: 'GitHub' }],
+        links: [
+          { url: 'https://play-quizify.herokuapp.com', name: 'Quizify' },
+          { url: 'https://github.com/anton-g/quizify', name: 'GitHub' },
+        ],
         description: `Quizify is a local multiplayer real time music intro quiz, with a Spotify integration for controlling the music. One player acts as the host and other players can join by using their own devices as "buzzers". It features real time communication, internationalization, automatic generation of quiz questions using players own Spotify playlists and much more. It's built with Vue, NestJS and a MongoDB database.`,
       },
       {
