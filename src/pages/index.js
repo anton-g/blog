@@ -2,13 +2,14 @@ import React from 'react'
 import Helmet from 'react-helmet'
 import get from 'lodash/get'
 import Link from 'gatsby-link'
+import Layout from '../components/Layout'
 
 class BlogIndex extends React.Component {
   render() {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title')
 
     return (
-      <div>
+      <Layout location={this.props.location}>
         <Helmet title={siteTitle} />
         <div>
           <h3>Hello, I'm Anton! 👋</h3>
@@ -33,7 +34,7 @@ class BlogIndex extends React.Component {
           </p>
           <p>Have a day full of joy!</p>
         </div>
-      </div>
+      </Layout>
     )
   }
 }

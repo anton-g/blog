@@ -1,11 +1,11 @@
 import React from 'react'
-import Header from '../components/Header'
+import Header from './Header'
 
 require('./superstylin.css')
 require('prismjs/themes/prism.css')
 require('./index.css')
 
-class Template extends React.Component {
+class Layout extends React.Component {
   render() {
     const { location, children } = this.props
     let rootPath = `/`
@@ -22,11 +22,11 @@ class Template extends React.Component {
             margin: '0 auto 0',
           }}
         >
-          {children()}
+          {children}
         </main>
       </div>
     )
   }
 }
 
-export default Template
+export default Layout

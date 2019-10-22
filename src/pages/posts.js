@@ -2,6 +2,7 @@ import React from 'react'
 import Link from 'gatsby-link'
 import get from 'lodash/get'
 import Helmet from 'react-helmet'
+import Layout from '../components/Layout'
 
 class Posts extends React.Component {
   render() {
@@ -9,7 +10,7 @@ class Posts extends React.Component {
     const posts = get(this, 'props.data.allMarkdownRemark.edges')
 
     return (
-      <div>
+      <Layout location={this.props.location}>
         <Helmet title={`${siteTitle} | posts`} />
         {posts
           .filter(({ node }) => !get(node, 'frontmatter.draft'))
@@ -27,7 +28,7 @@ class Posts extends React.Component {
               </div>
             )
           })}
-      </div>
+      </Layout>
     )
   }
 }

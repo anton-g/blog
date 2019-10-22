@@ -2,6 +2,7 @@ import React from 'react'
 import Helmet from 'react-helmet'
 import get from 'lodash/get'
 import Project from '../components/Project'
+import Layout from '../components/Layout'
 
 class ProjectsPage extends React.Component {
   render() {
@@ -41,7 +42,7 @@ class ProjectsPage extends React.Component {
     ]
 
     return (
-      <div>
+      <Layout location={this.props.location}>
         <Helmet title={`${siteTitle} | projects`} />
         <h1>Projects</h1>
         <div className="projects">
@@ -58,7 +59,7 @@ class ProjectsPage extends React.Component {
           ))}
         </div>
         <hr />
-      </div>
+      </Layout>
     )
   }
 }
