@@ -1,0 +1,41 @@
+---
+title: NordicJS 2019
+date: "2019-10-22T22:00:00.000Z"
+draft: true
+---
+
+A few weeks ago I attended the developer conference [NordicJS](https://nordicjs.com) for the first time. I've been to quite a few other conferences in Sweden since I started working as a developer, but I have to say that this was something else. There was this very welcoming and positive feeling in the air and among the attendees that I haven't experienced anywhere else.
+
+All the talks was of very high quality and I can recommend watching them all, but below are a few thoughts on the talks that resonated the most with me.
+
+## Value Driven Development
+
+###### by Isa Silveira
+
+The very first talk of the conference was Isa Silveira talking about Value Driven Development and opening the talk in a very personal, authentic and vulerable way. She talked about meeting her current partner at last years NordicJS, moving to Sweden from Brazil and using that as a segway into the core of the talk, value driven development.
+
+She talked about how we as developers have an accountability for what we do but that we also are in a position of power in todays society. How are we gonna shift our culture from being solution driven to value driven? And can we use software as a tool to reduce human suffering?
+
+The talk was a great start of the conference and really set the tone for the next two days, and I wholeheartedly recommend watching it.
+
+## Gettin’ into the (Tensor)Flow
+
+###### by Piérre Reimertz
+
+Summary
+
+## Build dumb sh\*t
+
+###### by Sara Vieira
+
+Finishing off the entire conference was this amazing talk by the **hilarious** Sara Vieira about "building dumb shit". I don't want to go into to much details about the talk because I believe it's much better if you watch it for yourself. But I'll say that you'll hear about (not) making the world a better place, why useless is not worthless, what an NPM drinking game looks like and much much more. Just watch it.
+
+It was a perfect mix of serious and silly and ended up being my favorite talk of the conference. It was extremely inspiring and motivating. Enough so that at a hackathon a week later I developed a chrome extension that screams back when you scream at your computer ¯\\\_(ツ)_/¯
+
+#### Finally
+
+The entire conference was live streamed at Twitch ([day 1](https://www.twitch.tv/videos/492603232) & [day 2](https://www.twitch.tv/videos/493016688)) so if you can't wait for the videos to be uploaded you can already watch it all. It was by far my greatest conference so far so if you get the chance to attend I highly recommend it.
+
+---
+
+[Discuss this post on dev.to]()
