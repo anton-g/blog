@@ -1,6 +1,7 @@
 ---
 title: Software development is a social profession
 date: "2019-06-02T21:05:00.000Z"
+description: ""
 ---
 
 I'm a strong believer that software development is a social profession and not a technical one. And I say that as someone who has read the books on clean code and test-driven development, watched the talks on type systems and listened to everyone who preached about all the other hot fuzz methodologies and technologies. I've enjoyed it thoroughly and learned much, but the more experience I get the more I feel like we as a community need to shift our focus from the nitty-gritty technical details to _The Real Problems™_.

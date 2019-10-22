@@ -1,16 +1,13 @@
 import React from 'react'
-import Helmet from 'react-helmet'
-import get from 'lodash/get'
 import Link from 'gatsby-link'
 import Layout from '../components/Layout'
+import SEO from '../components/Seo'
 
 class BlogIndex extends React.Component {
   render() {
-    const siteTitle = get(this, 'props.data.site.siteMetadata.title')
-
     return (
       <Layout location={this.props.location}>
-        <Helmet title={siteTitle} />
+        <SEO title={'home'} />
         <div>
           <h3>Hello, I'm Anton! 👋</h3>
           <p>
@@ -42,7 +39,7 @@ class BlogIndex extends React.Component {
 export default BlogIndex
 
 export const pageQuery = graphql`
-  query IndexQuery {
+  query {
     site {
       siteMetadata {
         title

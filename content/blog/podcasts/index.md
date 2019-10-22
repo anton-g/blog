@@ -1,6 +1,7 @@
 ---
 title: Podcasts
 date: "2017-11-02T11:00:00.000Z"
+description: ""
 ---
 
 Before moving closer to my job I sat on the commute for almost three hours each day. Some of that time I slept, read books and, when motivated enough, programmed. For most of the time though, I listened to podcasts.
