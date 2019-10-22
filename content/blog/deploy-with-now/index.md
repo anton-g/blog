@@ -1,7 +1,7 @@
 ---
 title: Deploying web applications with Now
 date: "2018-10-29T21:05:00.000Z"
-description: ""
+description: "A short intro to deploying web applications with Now"
 ---
 
 Like many others I started learning web development by editing HTML files and then manually uploading them to a web host via FTP. Looking back at this process now it may look too simplistic, too bare-bones or too manual but recently I found myself in a situation where I wanted to host a relatively simple nodejs web application and didn't have the time or need to set up a CI/CD flow. After scouring the internet for candidates I eventually decided to try [Now](https://zeit.co/now).
