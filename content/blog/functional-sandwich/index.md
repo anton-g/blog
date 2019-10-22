@@ -1,6 +1,7 @@
 ---
 title: Making a sandwich with functional javascript
 date: "2018-09-17T21:05:00.000Z"
+description: ""
 ---
 
 A while ago I held a lightning talk about functional programming in javascript, and demonstrated it by using the array functions `map`, `filter` and `reduce` to create a _tasty sandwich_. This post is the written version of that talk, but with a little more background about functional programming. But what is functional programming more exactly? My first hit on Google for _"what is functional programming"_ is [this post](https://medium.com/javascript-scene/master-the-javascript-interview-what-is-functional-programming-7f218c68b3a0) by Eric Elliot. In it he says this:

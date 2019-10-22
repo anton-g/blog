@@ -1,12 +1,11 @@
 import React from 'react'
-import Helmet from 'react-helmet'
 import get from 'lodash/get'
 import Project from '../components/Project'
+import Layout from '../components/Layout'
+import SEO from '../components/Seo'
 
 class ProjectsPage extends React.Component {
   render() {
-    const siteTitle = get(this, 'props.data.site.siteMetadata.title')
-
     const projects = [
       {
         name: '🎭 Charadgeneratorn',
@@ -41,8 +40,8 @@ class ProjectsPage extends React.Component {
     ]
 
     return (
-      <div>
-        <Helmet title={`${siteTitle} | projects`} />
+      <Layout location={this.props.location}>
+        <SEO title={`projects`} />
         <h1>Projects</h1>
         <div className="projects">
           {projects.map(p => (
@@ -58,7 +57,7 @@ class ProjectsPage extends React.Component {
           ))}
         </div>
         <hr />
-      </div>
+      </Layout>
     )
   }
 }
@@ -66,7 +65,7 @@ class ProjectsPage extends React.Component {
 export default ProjectsPage
 
 export const pageQuery = graphql`
-  query ProjectsQuery {
+  query {
     site {
       siteMetadata {
         title

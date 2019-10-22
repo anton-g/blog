@@ -1,10 +1,11 @@
 import React from 'react'
-import Helmet from 'react-helmet'
 import Link from 'gatsby-link'
 import get from 'lodash/get'
 
 import Bio from '../components/Bio'
 import Draft from '../components/Draft'
+import SEO from '../components/Seo'
+import Layout from '../components/Layout'
 
 class BlogPostTemplate extends React.Component {
   render() {
@@ -14,9 +15,12 @@ class BlogPostTemplate extends React.Component {
     const { previous, next } = this.props.pathContext
 
     return (
-      <div>
+      <Layout location={this.props.location}>
         {isDraft && <Draft />}
-        <Helmet title={`${post.frontmatter.title} | ${siteTitle}`} />
+        <SEO
+          title={post.frontmatter.title}
+          description={post.frontmatter.description}
+        />
         <h1>{post.frontmatter.title}</h1>
         <p>{post.frontmatter.date}</p>
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
@@ -55,7 +59,7 @@ class BlogPostTemplate extends React.Component {
             )}
           </li>
         </ul>
-      </div>
+      </Layout>
     )
   }
 }
@@ -72,11 +76,12 @@ export const pageQuery = graphql`
     }
     markdownRemark(fields: { slug: { eq: $slug } }) {
       id
+      excerpt(pruneLength: 160)
       html
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")
-        draft
+        description
       }
     }
   }

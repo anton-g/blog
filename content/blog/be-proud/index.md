@@ -1,6 +1,7 @@
 ---
 title: Be proud
 date: "2017-11-26T19:12:03.284Z"
+description: ""
 ---
 
 I truly belive that you should be proud of what you accomplish in life. No matter if it's a small programming project you've done in your free time, taking a leap of faith and changing career path or improving the life of millions.

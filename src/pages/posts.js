@@ -1,16 +1,16 @@
 import React from 'react'
 import Link from 'gatsby-link'
 import get from 'lodash/get'
-import Helmet from 'react-helmet'
+import Layout from '../components/Layout'
+import SEO from '../components/Seo'
 
 class Posts extends React.Component {
   render() {
-    const siteTitle = get(this, 'props.data.site.siteMetadata.title')
     const posts = get(this, 'props.data.allMarkdownRemark.edges')
 
     return (
-      <div>
-        <Helmet title={`${siteTitle} | posts`} />
+      <Layout location={this.props.location}>
+        <SEO title={`posts`} />
         {posts
           .filter(({ node }) => !get(node, 'frontmatter.draft'))
           .map(({ node }) => {
@@ -27,7 +27,7 @@ class Posts extends React.Component {
               </div>
             )
           })}
-      </div>
+      </Layout>
     )
   }
 }
@@ -35,7 +35,7 @@ class Posts extends React.Component {
 export default Posts
 
 export const pageQuery = graphql`
-  query PostsQuery {
+  query {
     site {
       siteMetadata {
         title

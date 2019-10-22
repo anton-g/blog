@@ -1,17 +1,14 @@
 import React from 'react'
-import Header from '../components/Header'
+import Header from './Header'
 
 require('./superstylin.css')
 require('prismjs/themes/prism.css')
 require('./index.css')
 
-class Template extends React.Component {
+class Layout extends React.Component {
   render() {
     const { location, children } = this.props
-    let rootPath = `/`
-    if (typeof __PREFIX_PATHS__ !== `undefined` && __PREFIX_PATHS__) {
-      rootPath = __PATH_PREFIX__ + `/`
-    }
+    const rootPath = `${__PATH_PREFIX__}/`
 
     return (
       <div>
@@ -22,11 +19,11 @@ class Template extends React.Component {
             margin: '0 auto 0',
           }}
         >
-          {children()}
+          {children}
         </main>
       </div>
     )
   }
 }
 
-export default Template
+export default Layout
