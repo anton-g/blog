@@ -3,9 +3,9 @@ title: NordicJS 2019
 date: "2019-10-23T20:30:00.000Z"
 ---
 
-A few weeks ago I attended the developer conference [NordicJS](https://nordicjs.com) for the first time. I've been to quite a few other conferences in Sweden since I started working as a developer, but I have to say that this was something else. There was this very welcoming and positive feeling in the air and among the attendees that I haven't experienced anywhere else.
+A few weeks ago I attended the developer conference [NordicJS](https://nordicjs.com) for the first time. I've been to quite a few other conferences in Sweden since I started working as a developer, but I have to say that this was something else. There was this very welcoming and positive feeling in the air and among the attendees that I haven't experienced anywhere before.
 
-All the talks was of very high quality and I can recommend watching them all, but below are a few thoughts on the talks that resonated the most with me.
+All the talks was of very high quality and I can recommend watching them all, but below are a few thoughts on the talks that resonated with me the most.
 
 ## Value Driven Development
 
@@ -13,7 +13,7 @@ All the talks was of very high quality and I can recommend watching them all, bu
 
 The very first talk of the conference was Isa Silveira talking about Value Driven Development and opening the talk in a very personal, authentic and vulerable way. She talked about meeting her current partner at last years NordicJS, moving to Sweden from Brazil and using that as a segway into the core of the talk, value driven development.
 
-She talked about how we as developers have an accountability for what we do but that we also are in a position of power in todays society. How are we gonna shift our culture from being solution driven to value driven? And can we use software as a tool to reduce human suffering?
+She talked about how we as developers have an accountability for what we do but that we're also in a position of power in todays society. How are we gonna shift our culture from being solution driven to value driven? And can we use software as a tool to reduce human suffering?
 
 The talk was a great start of the conference and really set the tone for the next two days, and I wholeheartedly recommend watching it.
 
@@ -25,7 +25,7 @@ I've tried to learn TensorFlow way to many times, and failed way to many times. 
 
 By combining a fun, practical introduction to real life examples of machine learning with an introduction to the internals of TensorFlow(.js) we get an excellent talk using machine learning as a web developer.
 
-I can't say that I know TensorFlow after watching this talk, but I feel that I have better foundation and I'm definately  more inspired to try to learn TensorFlow.js again.
+I can't say that I know TensorFlow after watching this talk, but I feel that I have better foundation and I'm definately  more inspired to try and learn TensorFlow.js again.
 
 ## Build dumb sh\*t
 
@@ -37,7 +37,7 @@ It was a perfect mix of serious and silly and ended up being my favorite talk of
 
 #### Finally
 
-The entire conference was live streamed at Twitch ([day 1](https://www.twitch.tv/videos/492603232) & [day 2](https://www.twitch.tv/videos/493016688)) so if you can't wait for the videos to be uploaded you can already watch it all (I'll update this post with link to the videos when they're uploaded). It was by far my greatest conference so far so if you get the chance to attend I highly recommend it.
+The entire conference was live streamed at Twitch ([day 1](https://www.twitch.tv/videos/492603232) & [day 2](https://www.twitch.tv/videos/493016688)) so if you can't wait for the videos to be uploaded you can already watch it all (I'll update this post with link to the videos when they're uploaded). It was by far the greatest conference I've attended so if you get the chance to attend I highly recommend it.
 
 ---
 
