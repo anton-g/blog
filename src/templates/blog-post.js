@@ -1,6 +1,5 @@
 import React from 'react'
 import Link from 'gatsby-link'
-import get from 'lodash/get'
 import { graphql } from 'gatsby'
 import Bio from '../components/Bio'
 import Draft from '../components/Draft'
@@ -11,7 +10,6 @@ class BlogPostTemplate extends React.Component {
   render() {
     const post = this.props.data.markdownRemark
     const isDraft = post.frontmatter.draft
-    const siteTitle = get(this.props, 'data.site.siteMetadata.title')
     const { previous, next } = this.props.pathContext
 
     return (
@@ -24,6 +22,12 @@ class BlogPostTemplate extends React.Component {
         <h1>{post.frontmatter.title}</h1>
         <p>{post.frontmatter.date}</p>
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
+        {post.frontmatter.dev && (
+          <>
+            <hr />
+            <a href={post.frontmatter.dev}>Discuss this post on dev.to</a>
+          </>
+        )}
         <hr />
         <Bio />
 
@@ -82,6 +86,7 @@ export const pageQuery = graphql`
         title
         date(formatString: "MMMM DD, YYYY")
         description
+        dev
       }
     }
   }

@@ -1,6 +1,7 @@
 ---
 title: NordicJS 2019
 date: "2019-10-23T20:30:00.000Z"
+dev: 'https://dev.to/awnton/looking-back-at-nordicjs-2019-2hdd'
 ---
 
 A few weeks ago I attended the developer conference [NordicJS](https://nordicjs.com) for the first time. I've been to quite a few other conferences in Sweden since I started working as a developer, but I have to say that this was something else. There was this very welcoming and positive feeling in the air and among the attendees that I haven't experienced anywhere before.
@@ -38,7 +39,3 @@ It was a perfect mix of serious and silly and ended up being my favorite talk of
 #### Finally
 
 The entire conference was live streamed at Twitch ([day 1](https://www.twitch.tv/videos/492603232) & [day 2](https://www.twitch.tv/videos/493016688)) so if you can't wait for the videos to be uploaded you can already watch it all (I'll update this post with link to the videos when they're uploaded). It was by far the greatest conference I've attended so if you get the chance to attend I highly recommend it.
-
----
-
-[Discuss this post on dev.to]()

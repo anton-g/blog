@@ -18,7 +18,3 @@ No absolutes.
 
 I'll leave you with this:
 Quote on pragmatism
-
----
-
-[Discuss this post on dev.to]()
