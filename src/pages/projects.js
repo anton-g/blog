@@ -1,5 +1,5 @@
 import React from 'react'
-import get from 'lodash/get'
+import { graphql } from 'gatsby'
 import Project from '../components/Project'
 import Layout from '../components/Layout'
 import SEO from '../components/Seo'
