@@ -1,7 +1,6 @@
 ---
 title: NordicJS 2019
-date: "2019-10-22T22:00:00.000Z"
-draft: true
+date: "2019-10-23T20:30:00.000Z"
 ---
 
 A few weeks ago I attended the developer conference [NordicJS](https://nordicjs.com) for the first time. I've been to quite a few other conferences in Sweden since I started working as a developer, but I have to say that this was something else. There was this very welcoming and positive feeling in the air and among the attendees that I haven't experienced anywhere else.
