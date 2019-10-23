@@ -22,7 +22,11 @@ The talk was a great start of the conference and really set the tone for the nex
 
 ###### by Piérre Reimertz
 
-Summary
+I've tried to learn TensorFlow way to many times, and failed way to many times. I've never found a tutorial or introduction that was light hearted enough to keep me inspired but still compact enough to actually teach me something. But along came Piérres talk at NordicJS.
+
+By combining a fun, practical introduction to real life examples of machine learning with an introduction to the internals of TensorFlow(.js) we get an excellent talk using machine learning as a web developer.
+
+I can't say that I know TensorFlow after watching this talk, but I feel that I have better foundation and I'm definately  more inspired to try to learn TensorFlow.js again.
 
 ## Build dumb sh\*t
 
@@ -30,11 +34,11 @@ Summary
 
 Finishing off the entire conference was this amazing talk by the **hilarious** Sara Vieira about "building dumb shit". I don't want to go into to much details about the talk because I believe it's much better if you watch it for yourself. But I'll say that you'll hear about (not) making the world a better place, why useless is not worthless, what an NPM drinking game looks like and much much more. Just watch it.
 
-It was a perfect mix of serious and silly and ended up being my favorite talk of the conference. It was extremely inspiring and motivating. Enough so that at a hackathon a week later I developed a chrome extension that screams back when you scream at your computer ¯\\\_(ツ)_/¯
+It was a perfect mix of serious and silly and ended up being my favorite talk of the conference. So inspiring and motivating that at a hackathon a week later I developed a chrome extension that screams back when you scream at your computer ¯\\\_(ツ)_/¯
 
 #### Finally
 
-The entire conference was live streamed at Twitch ([day 1](https://www.twitch.tv/videos/492603232) & [day 2](https://www.twitch.tv/videos/493016688)) so if you can't wait for the videos to be uploaded you can already watch it all. It was by far my greatest conference so far so if you get the chance to attend I highly recommend it.
+The entire conference was live streamed at Twitch ([day 1](https://www.twitch.tv/videos/492603232) & [day 2](https://www.twitch.tv/videos/493016688)) so if you can't wait for the videos to be uploaded you can already watch it all (I'll update this post with link to the videos when they're uploaded). It was by far my greatest conference so far so if you get the chance to attend I highly recommend it.
 
 ---
 
