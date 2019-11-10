@@ -20,14 +20,9 @@ class BlogIndex extends React.Component {
           <p>
             This is my personal site where I try to keep track of my personal{' '}
             <Link to="/projects">projects</Link> and occasionally post stuff on
-            my <Link to="/posts">blog</Link>. The posts are usually just a
-            slightly edited version of my own notes from learning the subjects,
-            and therefore probably not complete neither comprehensive, but
-            hopefully, they'll serve a purpose to someone!
-          </p>
-          <p>
-            If you have any questions or just want to talk (or meet up if you're
-            ever in Stockholm!), it's easiest to reach me on{' '}
+            my <Link to="/posts">blog</Link>. If you have any questions or just
+            want to talk (or meet up if you're ever in Stockholm!), it's easiest
+            to reach me on{' '}
             <a href="https://twitter.com/awnton">Twitter (@awnton)</a>. 🎉
           </p>
           <p>Have a day full of joy!</p>
