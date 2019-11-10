@@ -18,6 +18,8 @@ She talked about how we as developers have an accountability for what we do but 
 
 The talk was a great start of the conference and really set the tone for the next two days, and I wholeheartedly recommend watching it.
 
+[Watch on YouTube.](https://www.youtube.com/watch?v=8BIcQLlsGl0)
+
 ## Gettin’ into the (Tensor)Flow
 
 ###### by Piérre Reimertz
@@ -28,6 +30,8 @@ By combining a fun, practical introduction to real life examples of machine lear
 
 I can't say that I know TensorFlow after watching this talk, but I feel that I have better foundation and I'm definately more inspired to try and learn TensorFlow.js again.
 
+[Watch on YouTube.](https://www.youtube.com/watch?v=9dFirBNYK1E)
+
 ## Build dumb sh\*t
 
 ###### by Sara Vieira
@@ -35,6 +39,8 @@ I can't say that I know TensorFlow after watching this talk, but I feel that I h
 Finishing off the entire conference was this amazing talk by the **hilarious** Sara Vieira about "building dumb shit". I don't want to go into to much details about the talk because I believe it's much better if you watch it for yourself. But I'll say that you'll hear about (not) making the world a better place, why useless is not worthless, what an NPM drinking game looks like and much much more. Just watch it.
 
 It was a perfect mix of serious and silly and ended up being my favorite talk of the conference. So inspiring and motivating that at a hackathon a week later I developed a chrome extension that screams back when you scream at your computer ¯\\\_(ツ)\_/¯
+
+[Watch on YouTube.](https://www.youtube.com/watch?v=zVsV01k1xUU)
 
 #### Finally
 
