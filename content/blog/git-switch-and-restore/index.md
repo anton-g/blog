@@ -1,0 +1,62 @@
+---
+title: git switch and restore
+date: '2019-11-10T21:00:00.000Z'
+draft: true
+description: 'Git is getting easier with two new commands, "switch" and "restore".'
+---
+
+Git is getting easier with two new experimental commands, `git switch` and `git restore`, that were introduced in Git 2.23. They are basically `git checkout` split up into two, one for changing branches and another for changing files. Let's start by taking a look at how we work with branches today and how it changes with switch.
+
+### git switch
+
+To change to an existing branch today we use `git checkout [branch-name]` or if we pass the `--branch` flag we can create the branch at the same time (`git checkout --branch [branch-name]`).
+
+With `git switch` the process is very similar, to change branch we just pass it the branch name:
+
+```shell
+➜ git switch another-branch
+
+Switched to branch 'another-branch'
+```
+
+And if we want to create a new branch and change to it, we can pass the `--create` flag (or just `-c`):
+
+```shell
+➜ git switch -c new-feature
+
+Switched to a new branch 'new-feature'
+```
+
+You can find more examples and things like creating a new branch from a specific commit in the [documentation](https://git-scm.com/docs/git-switch).
+
+### git restore
+
+The other thing we often use `git checkout` for is restoring files to it's "unchanged" state (resetting the working copy to how it looks in the repository).
+
+> The **working copy** refers to a local copy of the repository, that is the files on your hard drive.
+
+I've never completely grasped the intricities of checkout for restoring files, but with `git restore` it becomes much easier. To restore a file that you have changed but not yet `git add`ed you do this:
+
+```shell
+➜ git restore file.js
+```
+
+If you have already run `git add` and the file is in the _index_ you can restore it by passing the `--staged` flag:
+
+```shell
+git restore --staged file.js
+```
+
+> The **index** (or staging area) contains the changes that have been `git add`ed, i.e. the files that would with committed by `git commit`.
+
+Finally, we can also specify where we want to restore _from_. By default this is the _index_ but by passing the `--source` flag we can adjust it. For example we can restore the index to a revision a couple of commits back:
+
+```shell
+git restore --source HEAD~2 --staged file.js
+```
+
+Just like switch there are a lot more examples in the [documentation](https://git-scm.com/docs/git-restore).
+
+### Summary
+
+`switch` and `restore` are two new experimental commands that hopefully will make it easier to work with git from the command line. Switch for changing branches and restore to change files.
