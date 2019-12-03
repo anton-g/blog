@@ -19,6 +19,7 @@ exports.createPages = async ({ graphql, actions }) => {
               }
               frontmatter {
                 title
+                draft
               }
             }
           }
@@ -32,7 +33,20 @@ exports.createPages = async ({ graphql, actions }) => {
   }
 
   // Create blog posts pages.
-  const posts = result.data.allMarkdownRemark.edges
+  const allPosts = result.data.allMarkdownRemark.edges
+
+  const drafts = allPosts.filter(p => p.node.frontmatter.draft)
+  const posts = allPosts.filter(p => !p.node.frontmatter.draft)
+
+  drafts.forEach(draft => {
+    createPage({
+      path: draft.node.fields.slug,
+      component: blogPost,
+      context: {
+        slug: draft.node.fields.slug,
+      },
+    })
+  })
 
   posts.forEach((post, index) => {
     const previous = index === posts.length - 1 ? null : posts[index + 1].node
