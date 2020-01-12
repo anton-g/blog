@@ -7,7 +7,7 @@ import SEO from '../components/Seo'
 
 class Posts extends React.Component {
   render() {
-    const posts = get(this, 'props.data.allMarkdownRemark.edges')
+    const posts = get(this, 'props.data.allMdx.edges')
 
     return (
       <Layout location={this.props.location}>
@@ -42,7 +42,7 @@ export const pageQuery = graphql`
         title
       }
     }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+    allMdx(sort: { fields: [frontmatter___date], order: DESC }) {
       edges {
         node {
           excerpt

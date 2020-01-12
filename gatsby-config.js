@@ -24,9 +24,10 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-transformer-remark`,
+      resolve: `gatsby-plugin-mdx`,
       options: {
-        plugins: [
+        extensions: [`.mdx`, `.md`],
+        gatsbyRemarkPlugins: [
           {
             resolve: `gatsby-remark-images`,
             options: {
@@ -57,8 +58,12 @@ module.exports = {
               aliases: {},
             },
           },
-          `gatsby-remark-copy-linked-files`,
-          `gatsby-remark-smartypants`,
+          {
+            resolve: `gatsby-remark-copy-linked-files`,
+          },
+          {
+            resolve: `gatsby-remark-smartypants`,
+          },
         ],
       },
     },
@@ -70,7 +75,7 @@ module.exports = {
         trackingId: 'UA-21600317-1',
       },
     },
-    `gatsby-plugin-feed`,
+    `gatsby-plugin-feed-mdx`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -85,5 +90,12 @@ module.exports = {
     },
     `gatsby-plugin-offline`,
     `gatsby-plugin-react-helmet`,
+    // Workaround https://github.com/gatsbyjs/gatsby/issues/19785#issuecomment-558495415
+    {
+      resolve: `gatsby-remark-images`,
+      options: {
+        maxWidth: 590,
+      },
+    },
   ],
 }

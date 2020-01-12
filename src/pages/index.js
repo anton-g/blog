@@ -10,7 +10,7 @@ class BlogIndex extends React.Component {
       <Layout location={this.props.location}>
         <SEO title={'home'} />
         <div>
-          <h3>Hello, I'm Anton! 👋</h3>
+          <h3>Hi, I'm Anton! 👋</h3>
           <p>
             I'm a web developer from Stockholm, Sweden and I've been passionate
             about programming ever since I discovered that by writing words in a
