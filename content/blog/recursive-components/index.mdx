@@ -1,0 +1,21 @@
+---
+title: Recursive components
+date: '2020-01-13T21:00:00.000Z'
+description: 'An introduction to recursive components in React'
+# dev: ''
+draft: true
+---
+
+import Folders from './components/Folders'
+
+I always had a hard time understanding recursive _functions_ when I stumbled upon them while learning to code. While I've got a better understanding today I don't use them much since they most often makes the code harder to read and reason about.
+
+A recursive function is a function that invokes itself so a recursive component is in it's essence a component that renders itself. One place where recursive components comes in handy is when implementing features that deal with tree-like data, for example a nested menu, comments with hierarchy or as we'll implement in this post; a component that displays a folder structure like this:
+
+<Folders />
+
+> While we will use React to implement this component it's possible to build recursive components in all other modern JS frameworks too.
+
+Before we get started, let's talk just a little bit about recursion and the data we'll use in this example.
+
+![A visualisation of a tree structure](./tree.png)
