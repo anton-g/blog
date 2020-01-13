@@ -6,7 +6,7 @@ export default function Folder({ folder }) {
   const hasChildren = !!folder.children
 
   return (
-    <li className="mdx">
+    <li style={{ marginTop: '4px' }}>
       {hasChildren && (
         <FolderButton
           open={open}
@@ -15,14 +15,22 @@ export default function Folder({ folder }) {
       )}
       <span
         className="mdx"
-        style={{ paddingLeft: !hasChildren ? '26px' : '4px' }}
+        style={{ paddingLeft: !hasChildren ? '0px' : '6px' }}
       >
         {folder.name}
       </span>
       {open && hasChildren ? (
-        <ul className="mdx">
+        <ul
+          style={{
+            margin: '4px 10px',
+            boxSizing: 'border-box',
+            listStyle: 'none',
+            paddingLeft: '20px',
+            borderLeft: '1px dashed lightgray',
+          }}
+        >
           {folder.children.map(x => (
-            <Folder folder={x}></Folder>
+            <Folder key={x.name} folder={x}></Folder>
           ))}
         </ul>
       ) : null}
@@ -32,7 +40,19 @@ export default function Folder({ folder }) {
 
 const FolderButton = ({ open, onClick }) => {
   return (
-    <button className="mdx" onClick={onClick}>
+    <button
+      style={{
+        width: '22px',
+        padding: '2px',
+        borderRadius: '5px',
+        border: '1px solid lightgray',
+        color: 'black',
+        margin: 0,
+        backgroundColor: 'transparent',
+        lineHeight: 1,
+      }}
+      onClick={onClick}
+    >
       {open ? '-' : '+'}
     </button>
   )

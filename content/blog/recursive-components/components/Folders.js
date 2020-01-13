@@ -1,10 +1,18 @@
 import React from 'react'
-import './Folders.css'
 import Folder from './Folder'
 
 function Folders() {
   return (
-    <ul className="mdx" style={{ border: 'none', marginBottom: '2rem' }}>
+    <ul
+      style={{
+        margin: '4px 10px',
+        boxSizing: 'border-box',
+        listStyle: 'none',
+        paddingLeft: '20px',
+        border: 'none',
+        marginBottom: '2rem',
+      }}
+    >
       <Folder folder={data}></Folder>
     </ul>
   )
@@ -13,13 +21,13 @@ function Folders() {
 export default Folders
 
 const data = {
-  name: 'A folder with stuff',
+  name: 'Desktop folder',
   children: [
     {
-      name: 'Important stuff',
+      name: 'Pics',
       children: [
         {
-          name: 'Memes',
+          name: 'Cats',
         },
       ],
     },

@@ -353,34 +353,37 @@ td:not(.mdx) {
 
 /* Code
   ––––––––––––––––––––––––––––––––– */
-code:not(.mdx) {
+code[class*='language-']:not(.mdx) {
   font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier,
     monospace;
-  font-size: 0.8rem;
-  white-space: nowrap;
-  background: #f6f6f6;
-  padding: 0 0.328rem;
-  display: inline-block;
-  vertical-align: middle;
+  font-size: 0.64rem;
+  line-height: 1;
+  /* white-space: nowrap; */
+  /* background: #f6f6f6; */
+  /* padding: 0 0.328rem; */
+  /* display: inline-block; */
+  /* vertical-align: middle; */
 }
 
-p > code:not(.mdx) {
+p > code[class*='language-']:not(.mdx) {
   white-space: normal;
+  line-height: 1.563em;
+  font-size: 0.8rem;
 }
 
-pre > code:not(.mdx) {
-  line-height: 1.563em;
-  display: block;
-  padding: 1rem;
-  white-space: pre;
-  margin-bottom: 1.563rem;
-  overflow: scroll;
+pre[class*='language-']:not(.mdx) {
+  line-height: 1;
+  /* display: block; */
+  /* padding: 1rem; */
+  /* white-space: pre; */
+  /* margin-bottom: 1.563rem; */
+  /* overflow: scroll; */
 }
 
 /* Forces a new-line at the end of a code block for layout purposes. */
-pre > code::after:not(.mdx) {
+/* pre > code[class*='language-']::after:not(.mdx) {
   content: ' ';
-}
+} */
 
 /* Blockquote
   ––––––––––––––––––––––––––––––––– */
