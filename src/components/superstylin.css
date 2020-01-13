@@ -20,7 +20,7 @@
 
 /* Root
 ––––––––––––––––––––––––––––––––– */
-*:not(.mdx) {
+* {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -29,7 +29,7 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-html:not(.mdx) {
+html {
   font-size: calc(1rem + 2px + ((100vw - 600px) / 250));
   font-family: -apple-system, BlinkMacSystemFont, 'avenir next', avenir,
     'helvetica neue', helvetica, ubuntu, roboto, noto, 'segoe ui', arial,
@@ -39,7 +39,7 @@ html:not(.mdx) {
   text-decoration-skip-ink: 'auto';
 }
 
-body:not(.mdx) {
+body {
   padding: 0;
   margin: calc((100vh / 25) * 1.563) calc((100vw / 25) * 1.563);
   background-color: white;
@@ -442,7 +442,7 @@ abbr:hover:not(.mdx) {
 
 /* Spinner
   ----------- */
-.ss-spinner:not(.mdx) {
+.ss-spinner {
   width: 2rem;
   height: 2rem;
   border-top: 2px solid black;
@@ -454,34 +454,34 @@ abbr:hover:not(.mdx) {
   animation: ss-spin 1s infinite linear;
 }
 
-@keyframes ss-spin:not(.mdx) {
-  from:not(.mdx) {
+@keyframes ss-spin {
+  from {
     transform: rotate(0deg);
   }
 
-  to:not(.mdx) {
+  to {
     transform: rotate(360deg);
   }
 }
 
 /* Util
   ––––––––––––––––––––––––––––––––– */
-.u-readable:not(.mdx) {
+.u-readable {
   max-width: 60ch;
   width: 100%;
 }
 
-.u-full-width:not(.mdx) {
+.u-full-width {
   width: 100%;
 }
 
-.u-separator:not(.mdx) {
+.u-separator {
   border-top: 2px solid #343334;
   padding-top: 0.5rem;
   margin-bottom: 2rem;
   width: 100%;
 }
 
-.u-horizontal-center:not(.mdx) {
+.u-horizontal-center {
   margin: 0 auto;
 }
