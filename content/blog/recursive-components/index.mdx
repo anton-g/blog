@@ -18,15 +18,15 @@ In this post we'll touch on what recursion is, why recursive components is prett
 
 Before we get started, let's talk just a little bit about recursion. Feel free to skip ahead if you got a good grasp on it already.
 
-So what is recursion really? [Wikipedia](<https://en.wikipedia.org/wiki/Recursion_(computer_science)>) defines it as _"a method of solving a problem where the solution depends on solutions to smaller instances of the same problem."_. In reality this often translates to problems where hierarchical structures like trees are involved.
+But what is recursion really? [Wikipedia](<https://en.wikipedia.org/wiki/Recursion_(computer_science)>) defines it as _"a method of solving a problem where the solution depends on solutions to smaller instances of the same problem."_. In reality this often translates to problems where hierarchical structures like trees are involved.
 
 ![A visualisation of a tree structure](./tree.png)
 
-So a recursive function is a function that invokes itself. In the case of traversing the above tree we would have a function `traverse(node)` that we'd invoke for the root of the tree, and then it invoke itself for every child. So first `traverse(A)`, then `traverse(B)` and then those would invoke the function on their children and so on.
+So a recursive function is a function that invokes itself. In the case of traversing the above tree we would have a function `traverse(node)` that we'd invoke for the root of the tree, and then it would invoke itself for every child. So first `traverse(A)`, then `traverse(B)` and then those would invoke the function on their children and so on.
 
 A recursive component on the other hand is a component that renders itself. One place where this comes in handy is when implementing features that deal with tree-like data, for example a nested menu, comments with hierarchy or as we'll implement in this post; a component that displays a folder structure.
 
-The only important part of recursion we need to keep track of in our implementation of a recursive component is **the base case**. This is the case when we need to break out of the recursion and stop rendering ourself, otherwise we'd be stuck in an infinite loop.
+The only important part of recursion we need to keep track of in our implementation of a recursive component is **the base case**. This is the case when we need to break out of the recursion and stop rendering ourself, otherwise we'd be stuck in an infinite loop. We'll get back to this is just a second.
 
 Let's get to building the component. The data for the folder structure looks like this:
 
@@ -77,7 +77,7 @@ export default function Folder({ folder }) {
 }
 ```
 
-The one thing missing from this is that we need to identity our base case so that we can break out of the recursion. In our case this will be when the folder has no children, or in other words, when it's a _leaf_ in our tree. So let's add a conditional that checks just this.
+The one thing missing from this is that we need to identity our base case so that we can break out of the recursion. In our case this will be when the folder has no children, or in other words, when it's a _leaf_ in our tree. Let's add a conditional that checks just this.
 
 ```jsx
 import React from 'react'
