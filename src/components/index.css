@@ -1,35 +1,24 @@
-p a,
-nav a {
-  text-decoration: none;
-  position: relative;
-  white-space: nowrap;
+*:not(.token) {
+  font-family: Inter;
 }
 
-p a::after,
-nav a::after {
-  content: '';
-  position: absolute;
-  z-index: -1;
-  top: 70%;
-  left: -1px;
-  right: -1px;
-  bottom: 0;
-  background-color: hsl(230, 28%, 88%);
-  transition: top 0.2s ease-in-out;
+a,
+a:visited {
+  color: black;
+}
+
+a:hover {
+  color: #32afa9;
 }
 
 .gatsby-resp-image-link::after {
   content: none !important;
 }
 
-p a:hover,
-nav a:hover {
-  text-decoration: none;
-}
-
-p a:hover::after,
-nav a:hover::after {
-  top: 0;
+blockquote {
+  background-color: #ffffc5;
+  margin: 0;
+  padding: 0.3rem 1rem;
 }
 
 pre[class*='language-'] {
@@ -58,13 +47,4 @@ pre > code::after {
 
 .gatsby-highlight-code-line .token {
   background: #e0d7d1;
-}
-
-*::selection {
-  background: #343334;
-  color: white;
-}
-
-h2 + h6 {
-  margin-top: -20px;
 }
