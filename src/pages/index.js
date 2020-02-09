@@ -1,35 +1,39 @@
 import React from 'react'
-import Link from 'gatsby-link'
 import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
 import SEO from '../components/Seo'
+import styled from 'styled-components'
+import About from '../components/About'
 
 class BlogIndex extends React.Component {
   render() {
     return (
       <Layout location={this.props.location}>
         <SEO title={'home'} />
-        <div>
-          <h3>Hi, I'm Anton! 👋</h3>
-          <p>
-            I'm a web developer from Stockholm, Sweden and I've been passionate
-            about programming ever since I discovered that by writing words in a
-            certain order, I could tell the computer what to do! 😱 It was just
-            like magic! ✨
-          </p>
-          <p>
-            This is my personal site where I try to keep track of my personal{' '}
-            <Link to="/projects">projects</Link> and occasionally post stuff on
-            my <Link to="/posts">blog</Link>. If you have any questions or just
-            want to talk (or meet up if you're ever in Stockholm!), it's easiest
-            to reach me on{' '}
-            <a href="https://twitter.com/awnton">Twitter (@awnton)</a>. 🎉
-          </p>
-          <p>Have a day full of joy!</p>
-        </div>
+        <Content>
+          <About></About>
+        </Content>
       </Layout>
     )
   }
+}
+
+const Content = styled.div`
+  display: grid;
+  grid-template-columns: repeat(8, 100px);
+  grid-auto-rows: 100px;
+`
+
+function Foo() {
+  return (
+    <div
+      style={{
+        border: '2px dashed red',
+        gridColumnStart: 'span 2',
+        gridRowStart: 'span 2',
+      }}
+    ></div>
+  )
 }
 
 export default BlogIndex

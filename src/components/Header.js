@@ -2,23 +2,31 @@ import React from 'react'
 import Link from 'gatsby-link'
 import { useSpring, animated, config } from 'react-spring'
 import { useHover } from 'react-use-gesture'
+import styled from 'styled-components'
 
 export default function Header({ small }) {
-  const title = (
-    <Link
-      to={'/'}
-      style={{
-        textDecoration: 'none',
-      }}
-    >
-      {'anton gunnarsson'.split('').map((l, i) => (
-        <Letter key={i}>{l}</Letter>
-      ))}
-    </Link>
+  return (
+    <Heading small={small}>
+      <Link
+        to={'/'}
+        style={{
+          textDecoration: 'none',
+        }}
+      >
+        <h1>
+          {'anton gunnarsson'.split('').map((l, i) => (
+            <Letter key={i}>{l}</Letter>
+          ))}
+        </h1>
+      </Link>
+    </Heading>
   )
-
-  return <header>{small ? <h3>{title}</h3> : <h1>{title}</h1>}</header>
 }
+
+const Heading = styled.header`
+  font-size: ${props => (props.small ? '1rem' : '1.5rem')};
+  text-align: ${props => (props.small ? 'left' : 'center')};
+`
 
 const Letter = ({ children }) => {
   const c = {
@@ -30,10 +38,10 @@ const Letter = ({ children }) => {
   const bind = useHover(({ hovering }) => set({ y: hovering ? -20 : 0 }))
 
   return (
-    <div {...bind()} style={{ display: 'inline-block' }}>
-      <animated.div style={{ y, display: 'inline-block', whiteSpace: 'pre' }}>
+    <span {...bind()} style={{ display: 'inline-block' }}>
+      <animated.span style={{ y, display: 'inline-block', whiteSpace: 'pre' }}>
         {children}
-      </animated.div>
-    </div>
+      </animated.span>
+    </span>
   )
 }
