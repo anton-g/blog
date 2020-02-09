@@ -14,9 +14,9 @@ class BlogIndex extends React.Component {
         <SEO title={'home'} />
         <div style={{ display: 'flex', justifyContent: 'center' }}>
           <Content>
-            <About></About>
-            <Blog></Blog>
-            <Stripes></Stripes>
+            <About width="2" height="2"></About>
+            <Blog width="4" height="1"></Blog>
+            <Stripes width="2" height="4"></Stripes>
           </Content>
         </div>
       </Layout>

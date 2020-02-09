@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { useGesture } from 'react-use-gesture'
 import { useSpring, animated } from 'react-spring'
 
-export default function Stripes() {
+export default function Stripes({ width, height }) {
   const ref = useRef(null)
   const center = useRef({})
 
@@ -32,7 +32,15 @@ export default function Stripes() {
     },
   })
 
-  return <StyledStripes ref={ref} {...bind()} style={props}></StyledStripes>
+  return (
+    <StyledStripes
+      ref={ref}
+      {...bind()}
+      style={props}
+      width={width}
+      height={height}
+    ></StyledStripes>
+  )
 }
 
 const getBackgroundStyle = deg => `
@@ -48,8 +56,8 @@ const getCenterPoint = rect => ({
 })
 
 const StyledStripes = styled(animated.div)`
-  grid-column-start: span 2;
-  grid-row-start: span 4;
+  grid-column-start: span ${props => props.width};
+  grid-row-start: span ${props => props.height};
 
   background: linear-gradient(63deg, #ffdcdc 23%, transparent 23%) 7px 0,
     linear-gradient(63deg, transparent 74%, #ffdcdc 78%),

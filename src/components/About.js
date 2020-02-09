@@ -4,11 +4,11 @@ import styled from 'styled-components'
 import { Btn, Modal } from './95'
 import { Link } from 'gatsby'
 
-export default function About() {
+export default function About({ width, height }) {
   const [open, setOpen] = useState(false)
 
   return (
-    <AboutWrapper>
+    <AboutWrapper width={width} height={height}>
       <Btn onClick={() => setOpen(!open)}>Hi Anton! 👋</Btn>
       <Modal
         width="400px"
@@ -38,8 +38,8 @@ export default function About() {
 }
 
 const AboutWrapper = styled.div`
-  grid-column-start: span 2;
-  grid-row-start: span 2;
+  grid-column-start: span ${props => props.width};
+  grid-row-start: span ${props => props.height};
   display: flex;
   align-items: center;
   justify-content: center;
