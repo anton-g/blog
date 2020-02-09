@@ -4,6 +4,7 @@ import Layout from '../components/Layout'
 import SEO from '../components/Seo'
 import styled from 'styled-components'
 import About from '../components/About'
+import Blog from '../components/Blog'
 
 class BlogIndex extends React.Component {
   render() {
@@ -12,6 +13,7 @@ class BlogIndex extends React.Component {
         <SEO title={'home'} />
         <Content>
           <About></About>
+          <Blog></Blog>
         </Content>
       </Layout>
     )
@@ -29,8 +31,8 @@ function Foo() {
     <div
       style={{
         border: '2px dashed red',
-        gridColumnStart: 'span 2',
-        gridRowStart: 'span 2',
+        gridColumnStart: 'span 4',
+        gridRowStart: 'span 1',
       }}
     ></div>
   )

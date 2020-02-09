@@ -23,7 +23,7 @@ export default function About() {
           like magic! ✨
         </p>
         <p>
-          This is my personal site where I try to keep track of my personal{' '}
+          This is my personal site where I try to keep track of my side{' '}
           <Link to="/projects">projects</Link> and occasionally post stuff on my{' '}
           <Link to="/posts">blog</Link>. If you have any questions or just want
           to talk (or meet up if you're ever in Stockholm!), it's easiest to
