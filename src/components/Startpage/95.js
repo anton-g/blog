@@ -111,6 +111,7 @@ const Background = styled(animated.div)`
   bottom: 0;
   left: 0;
   background-color: rgba(255, 255, 255, 0.4);
+  z-index: 1;
 `
 
 const Modal = ({
