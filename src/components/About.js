@@ -13,9 +13,10 @@ export default function About() {
       <Modal
         width="400px"
         closeModal={() => setOpen(!open)}
-        title="Hi, I'm Anton! 👋"
+        title="Hey you!"
         open={open}
       >
+        <p>I'm Anton! 👋</p>
         <p>
           I'm a web developer from Stockholm, Sweden and I've been passionate
           about programming ever since I discovered that by writing words in a
@@ -45,4 +46,12 @@ const AboutWrapper = styled.div`
   background-color: #5aa;
   font-family: 'MS Sans Serif';
   font-size: 13px;
+
+  p {
+    margin-bottom: 0;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
 `

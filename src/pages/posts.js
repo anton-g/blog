@@ -10,7 +10,7 @@ class Posts extends React.Component {
     const posts = get(this, 'props.data.allMdx.edges')
 
     return (
-      <Layout location={this.props.location}>
+      <Layout location={this.props.location} maxWidth="600px">
         <SEO title={`posts`} />
         {posts
           .filter(({ node }) => !get(node, 'frontmatter.draft'))

@@ -25,7 +25,7 @@ export default function Header({ small }) {
 
 const Heading = styled.header`
   font-size: ${props => (props.small ? '1rem' : '1.5rem')};
-  text-align: ${props => (props.small ? 'left' : 'center')};
+  text-align: center;
 `
 
 const Letter = ({ children }) => {
