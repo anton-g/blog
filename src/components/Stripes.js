@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import styled from 'styled-components'
 import { useGesture } from 'react-use-gesture'
-import { useSpring, animated } from 'react-spring'
+import { useSpring, animated, config } from 'react-spring'
 
 export default function Stripes({ width, height }) {
   const ref = useRef(null)
@@ -10,6 +10,7 @@ export default function Stripes({ width, height }) {
   const [props, set] = useSpring(() => ({
     background: getBackgroundStyle(63),
     backgroundSize: '20px 60px',
+    config: config.molasses,
   }))
 
   const degrees = (px, py) => {
