@@ -5,16 +5,20 @@ import SEO from '../components/Seo'
 import styled from 'styled-components'
 import About from '../components/About'
 import Blog from '../components/Blog'
+import Stripes from '../components/Stripes'
 
 class BlogIndex extends React.Component {
   render() {
     return (
       <Layout location={this.props.location}>
         <SEO title={'home'} />
-        <Content>
-          <About></About>
-          <Blog></Blog>
-        </Content>
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <Content>
+            <About></About>
+            <Blog></Blog>
+            <Stripes></Stripes>
+          </Content>
+        </div>
       </Layout>
     )
   }
@@ -24,19 +28,15 @@ const Content = styled.div`
   display: grid;
   grid-template-columns: repeat(8, 100px);
   grid-auto-rows: 100px;
-`
 
-function Foo() {
-  return (
-    <div
-      style={{
-        border: '2px dashed red',
-        gridColumnStart: 'span 4',
-        gridRowStart: 'span 1',
-      }}
-    ></div>
-  )
-}
+  @media screen and (max-width: 799px) {
+    grid-template-columns: repeat(6, 100px);
+  }
+
+  @media screen and (max-width: 599px) {
+    grid-template-columns: repeat(4, 100px);
+  }
+`
 
 export default BlogIndex
 
