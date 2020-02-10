@@ -7,6 +7,7 @@ import About from '../components/Startpage/About'
 import Blog from '../components/Startpage/Blog'
 import Stripes from '../components/Startpage/Stripes'
 import Dragger from '../components/Startpage/Dragger'
+import Morphism from '../components/Startpage/Morphism'
 
 class BlogIndex extends React.Component {
   render() {
@@ -18,6 +19,7 @@ class BlogIndex extends React.Component {
             <About width="2" height="2"></About>
             <Blog width="4" height="1"></Blog>
             <Stripes width="2" height="4"></Stripes>
+            <Morphism></Morphism>
             <Dragger></Dragger>
           </Content>
         </div>
