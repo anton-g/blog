@@ -26,6 +26,10 @@ export default function Header({ small }) {
 const Heading = styled.header`
   font-size: ${props => (props.small ? '1rem' : '1.5rem')};
   text-align: center;
+
+  @media screen and (max-width: 500px) {
+    font-size: ${props => (props.small ? '1rem' : '1.2rem')};
+  }
 `
 
 const Letter = ({ children }) => {

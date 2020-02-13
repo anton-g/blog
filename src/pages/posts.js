@@ -4,6 +4,7 @@ import { graphql } from 'gatsby'
 import get from 'lodash/get'
 import Layout from '../components/Layout'
 import SEO from '../components/Seo'
+import styled from 'styled-components'
 
 class Posts extends React.Component {
   render() {
@@ -12,22 +13,22 @@ class Posts extends React.Component {
     return (
       <Layout location={this.props.location} maxWidth="600px">
         <SEO title={`posts`} />
-        {posts
-          .filter(({ node }) => !get(node, 'frontmatter.draft'))
-          .map(({ node }) => {
-            const title = get(node, 'frontmatter.title') || node.fields.slug
-            return (
-              <div key={node.fields.slug}>
-                <h3>
-                  <Link style={{ boxShadow: 'none' }} to={node.fields.slug}>
-                    {title}
-                  </Link>
-                </h3>
-                <small>{node.frontmatter.date}</small>
-                <p dangerouslySetInnerHTML={{ __html: node.excerpt }} />
-              </div>
-            )
-          })}
+        <PostsWrapper>
+          {posts
+            .filter(({ node }) => !get(node, 'frontmatter.draft'))
+            .map(({ node }) => {
+              const title = get(node, 'frontmatter.title') || node.fields.slug
+              return (
+                <div key={node.fields.slug}>
+                  <h3>
+                    <Link to={node.fields.slug}>{title}</Link>
+                  </h3>
+                  <small>{node.frontmatter.date}</small>
+                  <p dangerouslySetInnerHTML={{ __html: node.excerpt }} />
+                </div>
+              )
+            })}
+        </PostsWrapper>
       </Layout>
     )
   }
@@ -58,4 +59,8 @@ export const pageQuery = graphql`
       }
     }
   }
+`
+
+const PostsWrapper = styled.div`
+  padding: 0px 12px;
 `

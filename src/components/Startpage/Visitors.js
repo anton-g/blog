@@ -5,7 +5,7 @@ export default function Visitors() {
   return (
     <StyledVisitors>
       <img
-        width="81px"
+        width="80%"
         src="https://antongunnarsson-counter.glitch.me/counter.svg"
       />
     </StyledVisitors>
@@ -21,4 +21,7 @@ const StyledVisitors = styled.div`
   align-items: center;
 
   background-color: #ffd5e5;
+
+  width: 100%;
+  height: 100%;
 `

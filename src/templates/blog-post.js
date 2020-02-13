@@ -6,6 +6,7 @@ import Bio from '../components/Bio'
 import Draft from '../components/Draft'
 import SEO from '../components/Seo'
 import Layout from '../components/Layout'
+import styled from 'styled-components'
 
 class BlogPostTemplate extends React.Component {
   render() {
@@ -20,50 +21,35 @@ class BlogPostTemplate extends React.Component {
           title={post.frontmatter.title}
           description={post.frontmatter.description}
         />
-        <h1>{post.frontmatter.title}</h1>
-        <p>{post.frontmatter.date}</p>
-        <MDXRenderer>{post.body}</MDXRenderer>
-        {post.frontmatter.dev && (
-          <>
-            <hr />
-            <a href={post.frontmatter.dev}>Discuss this post on dev.to</a>
-          </>
-        )}
-        <hr />
-        <Bio />
-
-        <ul
-          style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            justifyContent: 'space-between',
-            listStyle: 'none',
-            padding: 0,
-          }}
-        >
-          <li style={{ margin: 0 }}>
-            {previous && (
-              <Link
-                className="button button-primary"
-                to={previous.fields.slug}
-                rel="prev"
-              >
-                ← {previous.frontmatter.title}
-              </Link>
-            )}
-          </li>
-          <li>
-            {next && (
-              <Link
-                className="button button-primary"
-                to={next.fields.slug}
-                rel="next"
-              >
-                {next.frontmatter.title} →
-              </Link>
-            )}
-          </li>
-        </ul>
+        <Post>
+          <h1>{post.frontmatter.title}</h1>
+          <p>{post.frontmatter.date}</p>
+          <MDXRenderer>{post.body}</MDXRenderer>
+          {post.frontmatter.dev && (
+            <>
+              <hr />
+              <a href={post.frontmatter.dev}>Discuss this post on dev.to</a>
+            </>
+          )}
+          <hr />
+          <Bio />
+          <Paging>
+            <PagingLink>
+              {previous && (
+                <Link to={previous.fields.slug} rel="prev">
+                  ← {previous.frontmatter.title}
+                </Link>
+              )}
+            </PagingLink>
+            <PagingLink>
+              {next && (
+                <Link to={next.fields.slug} rel="next">
+                  {next.frontmatter.title} →
+                </Link>
+              )}
+            </PagingLink>
+          </Paging>
+        </Post>
       </Layout>
     )
   }
@@ -92,4 +78,20 @@ export const pageQuery = graphql`
       }
     }
   }
+`
+
+const Post = styled.div`
+  padding: 0px 12px;
+`
+
+const Paging = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  list-style: none;
+  padding: 0;
+`
+
+const PagingLink = styled.li`
+  margin: 0;
 `
