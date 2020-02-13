@@ -38,10 +38,10 @@ export default function Morphism() {
       }
     >
       <Box foo={0.8} style={{ transform: props.xy.interpolate(trans1) }}>
-        <Box foo={0.6} style={{ transform: props.xy.interpolate(trans2) }}>
-          <Box foo={0.4} style={{ transform: props.xy.interpolate(trans3) }}>
+        <Box foo={0.7} style={{ transform: props.xy.interpolate(trans2) }}>
+          <Box foo={0.6} style={{ transform: props.xy.interpolate(trans3) }}>
             <Box
-              foo={0.2}
+              foo={0.5}
               style={{ transform: props.xy.interpolate(trans4) }}
             ></Box>
           </Box>
@@ -70,28 +70,8 @@ const Box = styled(animated.div)`
   justify-content: center;
   will-change: transform;
 
-  width: ${p => `${200 * p.foo}px`};
-  height: ${p => `${200 * p.foo}px`};
+  width: ${p => `${100 * p.foo}%`};
+  height: ${p => `${100 * p.foo}%`};
   border-radius: ${p => `${30 * p.foo}px`};
   box-shadow: 20px 20px 60px #c796b8, -20px -20px 60px #ffcafa;
-`
-
-const Bar = styled.div`
-  border-radius: 20px;
-  width: 60%;
-  height: 60%;
-  background: #eab0d9;
-  box-shadow: 15px 15px 40px #c796b8, -15px -15px 40px #ffcafa;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`
-
-const FooBar = styled.div`
-  border-radius: 15px;
-  width: 40%;
-  height: 40%;
-  background: #eab0d9;
-  box-shadow: 10px 10px 30px #c796b8, -10px -10px 30px #ffcafa;
 `

@@ -28,25 +28,11 @@ class BlogIndex extends React.Component {
   }
 }
 
-const Foo = styled.div`
-  grid-row-start: 2 span;
-  grid-column-start: 4 span;
-
-  border: 2px dotted red;
-`
-
 const Content = styled.div`
   display: grid;
-  grid-template-columns: repeat(8, 100px);
+  width: 100%;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   grid-auto-rows: 100px;
-
-  @media screen and (max-width: 799px) {
-    grid-template-columns: repeat(6, 100px);
-  }
-
-  @media screen and (max-width: 599px) {
-    grid-template-columns: repeat(4, 100px);
-  }
 `
 
 export default BlogIndex

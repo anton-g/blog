@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { useDrag } from 'react-use-gesture'
 import { useSpring, to, animated } from 'react-spring'
 import { scale } from 'vec-la'
-import bear from './bear.webp'
+import bear from './bear.gif'
 
 export default function Dragger() {
   const [{ pos }, set] = useSpring(() => ({ pos: [0, 0] }))
@@ -39,7 +39,7 @@ const StyledDragger = styled.div`
   grid-column-start: span 1;
   grid-row-start: span 1;
 
-  background-image: url('${bear}');
+  background-image: url('${bear /* TODO load on hover? */}');
   background-position: center;
   background-size: cover;
 `
