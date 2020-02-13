@@ -7,6 +7,7 @@ export default function Visitors() {
       <img
         width="80%"
         src="https://antongunnarsson-counter.glitch.me/counter.svg"
+        alt="number of visitors"
       />
     </StyledVisitors>
   )
@@ -20,7 +21,7 @@ const StyledVisitors = styled.div`
   justify-content: center;
   align-items: center;
 
-  background-color: #ffd5e5;
+  background-color: #f4efd3;
 
   width: 100%;
   height: 100%;

@@ -9,19 +9,35 @@ export default function About({ width, height }) {
 
   return (
     <AboutWrapper width={width} height={height}>
-      <Btn onClick={() => setOpen(!open)}>Hi Anton! 👋</Btn>
+      <Btn onClick={() => setOpen(!open)}>
+        Hi Anton!
+        <span role="img" aria-label="waving hand">
+          👋
+        </span>
+      </Btn>
       <Modal
         width="400px"
         closeModal={() => setOpen(!open)}
         title="Hey you!"
         open={open}
       >
-        <p>I'm Anton! 👋</p>
+        <p>
+          I'm Anton!{' '}
+          <span role="img" aria-label="waving hand">
+            👋
+          </span>
+        </p>
         <p>
           I'm a web developer from Stockholm, Sweden and I've been passionate
           about programming ever since I discovered that by writing words in a
-          certain order, I could tell the computer what to do! 😱 It was just
-          like magic! ✨
+          certain order, I could tell the computer what to do!{' '}
+          <span role="img" aria-label="surprised face">
+            😱
+          </span>{' '}
+          It was just like magic!{' '}
+          <span role="img" aria-label="glitter">
+            ✨
+          </span>
         </p>
         <p>
           This is my personal site where I try to keep track of my side{' '}
@@ -29,7 +45,10 @@ export default function About({ width, height }) {
           <Link to="/posts">blog</Link>. If you have any questions or just want
           to talk (or meet up if you're ever in Stockholm!), it's easiest to
           reach me on <a href="https://twitter.com/awnton">Twitter (@awnton)</a>
-          . 🎉
+          .{' '}
+          <span role="img" aria-label="party hat">
+            🎉
+          </span>
         </p>
         <p>Have a day full of joy!</p>
       </Modal>

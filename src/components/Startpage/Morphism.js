@@ -1,11 +1,8 @@
 import React, { useRef } from 'react'
 import styled from 'styled-components'
-import { useSpring, animated } from 'react-spring'
+import { useSpring, animated, config } from 'react-spring'
 
-const trans1 = (x, y) => `translate3d(${x / 5}px, ${y / 5}px, 0)`
-const trans2 = (x, y) => `translate3d(${x / 8}px, ${y / 8}px, 0)`
-const trans3 = (x, y) => `translate3d(${x / 12}px, ${y / 12}px, 0)`
-const trans4 = (x, y) => `translate3d(${x / 15}px, ${y / 15}px, 0)`
+const trans = (x, y) => `translate3d(${x / 5}px, ${y / 5}px, 0)`
 
 export default function Morphism() {
   const ref = useRef(null)
@@ -13,7 +10,7 @@ export default function Morphism() {
 
   const [props, set] = useSpring(() => ({
     xy: [0, 0],
-    config: { mass: 10, tension: 550, friction: 140 },
+    config: config.wobbly,
   }))
 
   const calc = (x, y) => {
@@ -37,13 +34,10 @@ export default function Morphism() {
         })
       }
     >
-      <Box foo={0.8} style={{ transform: props.xy.interpolate(trans1) }}>
-        <Box foo={0.7} style={{ transform: props.xy.interpolate(trans2) }}>
-          <Box foo={0.6} style={{ transform: props.xy.interpolate(trans3) }}>
-            <Box
-              foo={0.5}
-              style={{ transform: props.xy.interpolate(trans4) }}
-            ></Box>
+      <Box scale={0.8} style={{ transform: props.xy.to(trans) }}>
+        <Box scale={0.7} style={{ transform: props.xy.to(trans) }}>
+          <Box scale={0.6} style={{ transform: props.xy.to(trans) }}>
+            <Box scale={0.5} style={{ transform: props.xy.to(trans) }}></Box>
           </Box>
         </Box>
       </Box>
@@ -70,8 +64,8 @@ const Box = styled(animated.div)`
   justify-content: center;
   will-change: transform;
 
-  width: ${p => `${100 * p.foo}%`};
-  height: ${p => `${100 * p.foo}%`};
-  border-radius: ${p => `${30 * p.foo}px`};
+  width: ${p => `${100 * p.scale}%`};
+  height: ${p => `${100 * p.scale}%`};
+  border-radius: ${p => `${30 * p.scale}px`};
   box-shadow: 20px 20px 60px #c796b8, -20px -20px 60px #ffcafa;
 `

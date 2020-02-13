@@ -9,6 +9,7 @@ import Stripes from '../components/Startpage/Stripes'
 import Dragger from '../components/Startpage/Dragger'
 import Morphism from '../components/Startpage/Morphism'
 import Visitors from '../components/Startpage/Visitors'
+import Inspiration from '../components/Startpage/Inspiration'
 
 class BlogIndex extends React.Component {
   render() {
@@ -23,6 +24,7 @@ class BlogIndex extends React.Component {
             <Morphism></Morphism>
             <Dragger></Dragger>
             <Visitors></Visitors>
+            <Inspiration></Inspiration>
           </Content>
         </div>
       </Layout>
