@@ -67,7 +67,7 @@ const randomRadius = () => {
 const Content = styled(animated.div)`
   position: absolute;
   background: linear-gradient(#f0f696, #96f7d2);
-  z-index: 999;
+  z-index: 2;
   border-radius: 38% 62% 42% 58% / 61% 49% 51% 39%;
   top: 0;
   left: 0;
