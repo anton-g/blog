@@ -1,35 +1,27 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useDrag } from 'react-use-gesture'
-import { useSpring, to, animated } from 'react-spring'
-import { scale } from 'vec-la'
+import { useSpring, animated } from 'react-spring'
 import bear from './bear.gif'
 
 export default function Dragger() {
-  const [{ pos }, set] = useSpring(() => ({ pos: [0, 0] }))
-
-  const bind = useDrag(
-    ({ down, movement: pos, velocity, direction }) => {
-      set({
-        pos,
-        immediate: down,
-        config: {
-          velocity: scale(direction, velocity),
-          decay: true,
-        },
-      })
-    },
-    { initial: () => pos.get() }
-  )
+  const [props, set] = useSpring(() => ({
+    x: 0,
+    y: 0,
+    zIndex: 1,
+  }))
+  const bind = useDrag(({ down, movement: [x, y] }) => {
+    set({
+      x: down ? x : 0,
+      y: down ? y : 0,
+      zIndex: down ? 1000 : 1,
+      immediate: down,
+    })
+  })
 
   return (
     <StyledDragger>
-      <Cover
-        {...bind()}
-        style={{
-          transform: to([pos], ([x, y]) => `translate3d(${x}px,${y}px,0)`),
-        }}
-      ></Cover>
+      <Cover {...bind()} style={props}></Cover>
     </StyledDragger>
   )
 }
