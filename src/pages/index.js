@@ -36,7 +36,7 @@ class BlogIndex extends React.Component {
 const Content = styled.div`
   display: grid;
   width: 100%;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  grid-template-columns: repeat(auto-fit, 100px);
   grid-auto-rows: 100px;
   grid-auto-flow: row dense;
 `
