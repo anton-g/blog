@@ -87,6 +87,7 @@ const Wrapper = styled.a`
   align-items: center;
   background-color: #142d4c;
   text-decoration: none;
+  overflow: hidden;
 `
 
 const StyledHeading = styled.h1`
@@ -109,9 +110,11 @@ const StyledHeading = styled.h1`
 const StyledHeadingTop = styled(animated.span)`
   margin-left: -25px;
   transform: rotate(-8deg);
+  will-change: opacity, transform;
 `
 
 const StyledHeadingBottom = styled(animated.span)`
   margin-left: 25px;
   transform: rotate(-8deg);
+  will-change: opacity, transform;
 `
