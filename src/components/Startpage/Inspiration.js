@@ -1,11 +1,12 @@
-import React, { useEffect, useState, useCallback } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { useSpring, animated } from 'react-spring'
 import useMeasure from 'react-use-measure'
+import { ResizeObserver } from '@juggle/resize-observer'
 
 export default function Inspiration() {
   const [open, setOpen] = useState(false)
-  const [ref, bounds] = useMeasure()
+  const [ref, bounds] = useMeasure({ polyfill: ResizeObserver })
 
   const [animation, set] = useSpring(() => ({
     transform: `translate(0px, 0px)`,
@@ -66,6 +67,7 @@ const randomRadius = () => {
 const Content = styled(animated.div)`
   position: absolute;
   background: linear-gradient(#f0f696, #96f7d2);
+  z-index: 999;
   border-radius: 38% 62% 42% 58% / 61% 49% 51% 39%;
   top: 0;
   left: 0;
@@ -79,4 +81,6 @@ const InspirationWrapper = styled.div`
   width: 100%;
   height: 100%;
   cursor: pointer;
+
+  background: linear-gradient(#f3f8ff, #eeeeee);
 `
