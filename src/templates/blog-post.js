@@ -15,7 +15,7 @@ class BlogPostTemplate extends React.Component {
     const { previous, next } = this.props.pathContext
 
     return (
-      <Layout location={this.props.location}>
+      <Layout maxWidth="650px" location={this.props.location}>
         {isDraft && <Draft />}
         <SEO
           title={post.frontmatter.title}

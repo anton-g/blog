@@ -10,6 +10,7 @@ import Dragger from '../components/Startpage/Dragger'
 import Morphism from '../components/Startpage/Morphism'
 import Visitors from '../components/Startpage/Visitors'
 import Inspiration from '../components/Startpage/Inspiration'
+import Kampgeneratorn from '../components/Startpage/Kampgeneratorn'
 
 class BlogIndex extends React.Component {
   render() {
@@ -20,11 +21,11 @@ class BlogIndex extends React.Component {
           <Content>
             <About width="2" height="2"></About>
             <Blog width="4" height="1"></Blog>
-            <Stripes width="2" height="4"></Stripes>
             <Morphism></Morphism>
             <Dragger></Dragger>
             <Visitors></Visitors>
             <Inspiration></Inspiration>
+            <Kampgeneratorn></Kampgeneratorn>
           </Content>
         </div>
       </Layout>
@@ -37,6 +38,7 @@ const Content = styled.div`
   width: 100%;
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   grid-auto-rows: 100px;
+  grid-auto-flow: row dense;
 `
 
 export default BlogIndex
