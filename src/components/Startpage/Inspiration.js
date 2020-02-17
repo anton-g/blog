@@ -25,7 +25,9 @@ export default function Inspiration() {
 
   useEffect(() => {
     set({
-      transform: `translate(${bounds.left + 10}px, ${bounds.top + 10}px)`,
+      transform: `translate(${bounds.left + 10}px, ${bounds.top +
+        10 +
+        window.scrollY}px)`,
       width: `${bounds.width - 20}px`,
       height: `${bounds.height - 20}px`,
       borderRadius: randomRadius(),

@@ -2,7 +2,7 @@ module.exports = {
   siteMetadata: {
     title: 'anton gunnarsson',
     author: 'Anton Gunnarsson',
-    description: 'Personal blog of Anton Gunnarsson',
+    description: 'Anton Gunnarssons internet home',
     siteUrl: 'https://antongunnarsson.se/',
     social: {
       twitter: `awnton`,
@@ -31,7 +31,7 @@ module.exports = {
           {
             resolve: `gatsby-remark-images`,
             options: {
-              maxWidth: 590,
+              maxWidth: 600,
             },
           },
           {
@@ -94,7 +94,7 @@ module.exports = {
     {
       resolve: `gatsby-remark-images`,
       options: {
-        maxWidth: 590,
+        maxWidth: 600,
       },
     },
   ],
