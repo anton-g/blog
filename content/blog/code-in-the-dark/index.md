@@ -26,11 +26,11 @@ If the participants are expected to use their own computer, make sure you have a
 
 ### How to win
 
-The recommended way to determine a winner is by audience vote. You could, of course, get a jury or similar but in my (relatively short) experience voting is what works best. It makes sure the audience is engaged and removes some prestige from the competition. We used the service [Mentimeter](https://www.mentimeter.com/) which has a good free tier and support for live voting. One thing we didn't do but that I will do next time is 1) show the reference image while the audience votes and 2) don't show the votes live, but rather reveal the winner when the votes are in.
+The recommended way to determine a winner is by audience vote. You could, of course, get a jury or similar but in my (relatively short) experience voting is what works best. It makes sure the audience is engaged and removes some prestige from the competition. We used the service [Mentimeter](https://www.mentimeter.com/) which has a good free tier and support for live voting. One thing we didn't do but that I will do next time is 1) show the reference image while the audience vote and 2) don't show the votes live, but rather reveal the winner when the votes are in.
 
 #### Prize
 
-Talking about winning, you should also decide if you want the winner to receive a prize of just win the honor. Personally, I'm not interested in dealing out cash prizes or similar because for me that would remove the _silliness_ of the competition. On the other hand, I'm really positive about having some sort of prize, so we ended up with a gift basket with _"retro"_ stuff. It had a single-use camera, some old CDs, a vinyl and some other stuff. I think it worked really well, and it was cheap to get everything second-hand :)
+Talking about winning, you should also decide if you want the winner to receive a prize or just win the honor. Personally, I'm not interested in dealing out cash prizes or similar because for me that would remove the _silliness_ of the competition. On the other hand, I'm really positive about having some sort of prize, so we ended up with a gift basket with _"retro"_ stuff. It had a single-use camera, some old CDs, a vinyl and some other stuff. I think it worked really well, and it was cheap to get everything second-hand :)
 
 ### Presentation
 
