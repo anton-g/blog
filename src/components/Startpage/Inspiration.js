@@ -99,6 +99,7 @@ const People = styled.div`
   grid-template-columns: repeat(auto-fit, 200px);
   grid-auto-rows: 100px;
   width: 100%;
+  max-width: 800px;
 `
 
 const PeopleLink = styled(animated.div)`
