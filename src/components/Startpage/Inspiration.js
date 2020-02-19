@@ -3,10 +3,12 @@ import styled from 'styled-components'
 import { useSpring, animated, useTransition } from 'react-spring'
 import useMeasure from 'react-use-measure'
 import { ResizeObserver } from '@juggle/resize-observer'
+import useScrollLock from '../useScrollLock'
 
 export default function Inspiration() {
   const [open, setOpen] = useState(false)
   const [ref, bounds] = useMeasure({ polyfill: ResizeObserver })
+  useScrollLock(open)
 
   const [animation, set] = useSpring(() => ({
     transform: `translate(0px, 0px)`,
@@ -46,9 +48,9 @@ export default function Inspiration() {
       })
     } else {
       set({
-        transform: `translate(0px, 0px)`,
+        transform: `translate(0px, ${window.scrollY}px)`,
         width: `${window.innerWidth}px`,
-        height: `${document.documentElement.scrollHeight}px`,
+        height: `${window.innerHeight}px`,
         borderRadius: '0% 0% 0% 0% / 0% 0% 0% 0%',
       })
     }
