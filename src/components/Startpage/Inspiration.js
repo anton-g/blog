@@ -21,7 +21,11 @@ export default function Inspiration() {
     unique: true,
     trail: 400 / peopleData.length,
     from: { opacity: 0, transform: 'scale(0)' },
-    enter: { opacity: 1, transform: 'scale(1)', delay: 250 },
+    enter: (item, index) => ({
+      opacity: 1,
+      transform: 'scale(1)',
+      delay: 50 * index,
+    }),
     leave: { opacity: 0, transform: 'scale(0)' },
     config: config.wobbly,
   })
