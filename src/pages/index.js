@@ -11,6 +11,7 @@ import Morphism from '../components/Startpage/Morphism'
 import Visitors from '../components/Startpage/Visitors'
 import Inspiration from '../components/Startpage/Inspiration'
 import Kampgeneratorn from '../components/Startpage/Kampgeneratorn'
+import TvQuiz from '../components/Startpage/TvQuiz'
 
 class BlogIndex extends React.Component {
   render() {
@@ -26,6 +27,7 @@ class BlogIndex extends React.Component {
             <Visitors></Visitors>
             <Inspiration></Inspiration>
             <Kampgeneratorn></Kampgeneratorn>
+            <TvQuiz></TvQuiz>
           </Content>
         </div>
       </Layout>
