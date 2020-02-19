@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { useSpring, animated, useTransition } from 'react-spring'
+import { useSpring, animated, useTransition, config } from 'react-spring'
 import useMeasure from 'react-use-measure'
 import { ResizeObserver } from '@juggle/resize-observer'
 import useScrollLock from '../useScrollLock'
@@ -23,6 +23,7 @@ export default function Inspiration() {
     from: { opacity: 0, transform: 'scale(0)' },
     enter: { opacity: 1, transform: 'scale(1)', delay: 250 },
     leave: { opacity: 0, transform: 'scale(0)' },
+    config: config.wobbly,
   })
 
   useEffect(() => {
@@ -64,7 +65,11 @@ export default function Inspiration() {
         <Title>inspirational people</Title>
         <People>
           {transition((props, item) => (
-            <PeopleLink style={{ ...props }}>{item.name}</PeopleLink>
+            <PeopleLink
+              style={{ ...props }}
+              image={item.image}
+              href={item.url}
+            ></PeopleLink>
           ))}
         </People>
       </Content>
@@ -98,18 +103,29 @@ const People = styled.div`
   display: grid;
   justify-content: center;
   align-content: center;
-  grid-template-columns: repeat(auto-fit, 200px);
-  grid-auto-rows: 100px;
+  justify-items: center;
+  align-items: center;
+  grid-template-columns: repeat(auto-fit, 150px);
+  grid-auto-rows: 150px;
   width: 100%;
   max-width: 800px;
 `
 
-const PeopleLink = styled(animated.div)`
+const PeopleLink = styled(animated.a)`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-weight: bold;
-  font-size: 1.2rem;
+  background-image: url(${p => p.image});
+  background-size: cover;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  transition: filter 0.1s ease-in-out;
+  filter: grayscale(50%);
+
+  &:hover {
+    filter: grayscale(0%);
+  }
 `
 
 const InspirationWrapper = styled.div`
@@ -138,42 +154,68 @@ const randomRadius = () => {
 const peopleData = [
   {
     name: 'Sara Viera',
-  },
-  {
-    name: 'Max Stoiber',
+    image:
+      'https://pbs.twimg.com/profile_images/1229167683633131521/BAEBTa8v_400x400.jpg',
+    url: 'https://twitter.com/NikkitaFTW',
   },
   {
     name: 'Amelia Wattenberger',
+    url: 'https://twitter.com/wattenberger',
+    image:
+      'https://pbs.twimg.com/profile_images/1221632617767997440/1TEt3jfj_400x400.png',
   },
   {
     name: 'Paul Henschel',
+    url: 'https://twitter.com/0xca0a',
+    image:
+      'https://pbs.twimg.com/profile_images/1051050638195482624/Q3dOn3o9_400x400.jpg',
   },
   {
     name: 'Josh Comeau',
+    url: 'https://twitter.com/joshwcomeau',
+    image:
+      'https://pbs.twimg.com/profile_images/461190672117035010/0kJ4pynr_400x400.jpeg',
   },
   {
     name: 'Emma Bostian',
+    url: 'https://twitter.com/emmabostian',
+    image:
+      'https://pbs.twimg.com/profile_images/1228620966693154816/AuiCdXC5_400x400.jpg',
   },
   {
     name: 'Dan Abramov',
-  },
-  {
-    name: 'Steve Schoger',
+    url: 'https://twitter.com/dan_abramov',
+    image:
+      'https://pbs.twimg.com/profile_images/1166344766210150401/amRnWzl-_400x400.jpg',
   },
   {
     name: 'Kent C. Dodds',
+    url: 'https://twitter.com/kentcdodds',
+    image:
+      'https://pbs.twimg.com/profile_images/759557613445001216/6M2E1l4q_400x400.jpg',
   },
   {
     name: 'Veni Kunche',
+    url: 'https://twitter.com/venikunche',
+    image:
+      'https://pbs.twimg.com/profile_images/1192278417934303232/WH8LwUm3_400x400.jpg',
   },
-
   {
     name: 'Cassidy Williams',
+    url: 'https://twitter.com/cassidoo',
+    image:
+      'https://pbs.twimg.com/profile_images/718548236580098048/OgV0pPQY_400x400.jpg',
   },
   {
     name: 'Brené Brown',
+    url: 'https://twitter.com/brenebrown',
+    image:
+      'https://pbs.twimg.com/profile_images/1212148385978953729/4rIadTSL_400x400.jpg',
   },
   {
     name: 'Sara Soueidan',
+    url: 'https://twitter.com/sarasoueidan',
+    image:
+      'https://pbs.twimg.com/profile_images/1010126354078208001/MpkO7-qK_400x400.jpg',
   },
 ]
