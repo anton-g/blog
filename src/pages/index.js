@@ -12,6 +12,7 @@ import Visitors from '../components/Startpage/Visitors'
 import Inspiration from '../components/Startpage/Inspiration'
 import Kampgeneratorn from '../components/Startpage/Kampgeneratorn'
 import TvQuiz from '../components/Startpage/TvQuiz'
+import ColorTweaker from '../components/Startpage/ColorTweaker'
 
 class BlogIndex extends React.Component {
   render() {
@@ -28,6 +29,7 @@ class BlogIndex extends React.Component {
             <Inspiration></Inspiration>
             <Kampgeneratorn></Kampgeneratorn>
             <TvQuiz></TvQuiz>
+            <ColorTweaker></ColorTweaker>
           </Content>
         </div>
       </Layout>

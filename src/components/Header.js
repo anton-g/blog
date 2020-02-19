@@ -13,15 +13,20 @@ export default function Header({ small }) {
           textDecoration: 'none',
         }}
       >
-        <h1>
+        <StyledH1>
           {'anton gunnarsson'.split('').map((l, i) => (
             <Letter key={i}>{l}</Letter>
           ))}
-        </h1>
+        </StyledH1>
       </Link>
     </Heading>
   )
 }
+
+const StyledH1 = styled.h1`
+  margin: 0;
+  padding: 0.67em 0;
+`
 
 const Heading = styled.header`
   font-size: ${props => (props.small ? '1rem' : '1.5rem')};
