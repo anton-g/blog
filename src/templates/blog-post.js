@@ -27,11 +27,27 @@ class BlogPostTemplate extends React.Component {
           <MDXRenderer>{post.body}</MDXRenderer>
           {post.frontmatter.dev && (
             <>
-              <hr />
-              <a href={post.frontmatter.dev}>Discuss this post on dev.to</a>
+              <hr style={{ marginTop: '36px' }} />
+              <a
+                href={post.frontmatter.dev}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  margin: '16px 0px',
+                }}
+              >
+                <img
+                  src="https://d2fltix0v2e0sb.cloudfront.net/dev-badge.svg"
+                  alt="DEV.to badge"
+                  height="25"
+                  width="25"
+                  style={{ marginRight: '5px' }}
+                />
+                Discuss this post
+              </a>
             </>
           )}
-          <hr />
+          <hr style={{ marginBottom: '36px' }} />
           <Bio />
           <Paging>
             <PagingLink>
