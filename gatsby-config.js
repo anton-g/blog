@@ -2,7 +2,7 @@ module.exports = {
   siteMetadata: {
     title: 'anton gunnarsson',
     author: 'Anton Gunnarsson',
-    description: 'Anton Gunnarssons internet home',
+    description: 'Antons home on the world wide web',
     siteUrl: 'https://antongunnarsson.se/',
     social: {
       twitter: `awnton`,
