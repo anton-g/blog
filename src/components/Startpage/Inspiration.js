@@ -69,11 +69,9 @@ export default function Inspiration() {
         <Title>inspirational people</Title>
         <People>
           {transition((props, item) => (
-            <PeopleLink
-              style={{ ...props }}
-              image={item.image}
-              href={item.url}
-            ></PeopleLink>
+            <PeopleLink style={{ ...props }} href={item.url}>
+              <img src={item.image} crossorigin="anonymous"></img>
+            </PeopleLink>
           ))}
         </People>
       </Content>
@@ -119,16 +117,20 @@ const PeopleLink = styled(animated.a)`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url(${p => p.image});
-  background-size: cover;
   width: 100px;
   height: 100px;
   border-radius: 50%;
   transition: filter 0.1s ease-in-out;
   filter: grayscale(50%);
+  overflow: hidden;
 
   &:hover {
     filter: grayscale(0%);
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
   }
 `
 
@@ -184,7 +186,7 @@ const peopleData = [
     name: 'Emma Bostian',
     url: 'https://twitter.com/emmabostian',
     image:
-      'https://pbs.twimg.com/profile_images/1228620966693154816/AuiCdXC5_400x400.jpg',
+      'https://pbs.twimg.com/profile_images/1232689720230121472/VOQyrXIu_400x400.jpg',
   },
   {
     name: 'Dan Abramov',
