@@ -77,7 +77,6 @@ export default function Kampgeneratorn() {
 }
 
 const Wrapper = styled.a`
-  @import url('https://fonts.googleapis.com/css?family=Patua+One&display=swap');
   width: 100%;
   height: 100%;
   grid-row-start: 2 span;
