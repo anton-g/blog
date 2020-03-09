@@ -8,7 +8,6 @@ export default function Visitors() {
         width="80%"
         src="https://antongunnarsson-counter.glitch.me/counter.svg"
         alt="number of visitors"
-        crossOrigin="anonymous"
       />
     </StyledVisitors>
   )
