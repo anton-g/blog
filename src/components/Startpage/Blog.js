@@ -5,15 +5,15 @@ import { Link } from 'gatsby'
 export default function Blog({ width, height }) {
   return (
     <Wrapper to="/posts" height={height} width={width}>
-      <Text first={true}>blog blog blog{'     '}</Text>
-      <Text>blog blog blog{'     '}</Text>
+      <Text first={true}>blog blog blog </Text>
+      <Text>blog blog blog </Text>
     </Wrapper>
   )
 }
 
 const marquee = keyframes`
   0% {
-    transform: translate(0, 0);
+    transform: translate(100%, 0);
   }
   100% {
     transform: translate(-100%, 0);
@@ -23,9 +23,8 @@ const marquee = keyframes`
 const Text = styled.h2`
   position: absolute;
   animation: ${marquee} 12s linear infinite;
-  ${props => (props.first ? 'animation-delay: -6s' : '')};
-  padding-left: 100%;
-  font-family: 'Inter';
+  ${props => (props.first ? 'animation-delay: -6s;' : '')};
+  font-family: 'Inter', sans-serif;
   font-size: 4rem;
   margin: 0;
   white-space: pre;
