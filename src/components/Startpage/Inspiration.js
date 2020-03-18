@@ -70,7 +70,7 @@ export default function Inspiration() {
         <People>
           {transition((props, item) => (
             <PeopleLink style={{ ...props }} href={item.url}>
-              <img src={item.image} crossOrigin="anonymous"></img>
+              <img src={item.image} alt="profile" crossOrigin="anonymous"></img>
             </PeopleLink>
           ))}
         </People>

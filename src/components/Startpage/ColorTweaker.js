@@ -1,6 +1,7 @@
 import React, { useLayoutEffect } from 'react'
 import styled from 'styled-components'
 import { useState } from 'react'
+import BlockWrapper from './BlockWrapper'
 
 export default function ColorTweaker() {
   const [rotation, setRotation] = useState(0)
@@ -10,7 +11,7 @@ export default function ColorTweaker() {
   }, [rotation])
 
   return (
-    <Wrapper>
+    <Wrapper width="2" height="1">
       <Text>
         TWEAK IT TWEAK IT TWEAK IT TWEAK IT TWEAK IT TWEAK IT TWEAK IT TWEAK IT
         TWEAK IT TWEAK IT TWEAK IT
@@ -26,7 +27,7 @@ export default function ColorTweaker() {
   )
 }
 
-const Wrapper = styled.div`
+const Wrapper = styled(BlockWrapper)`
   grid-column-start: 2 span;
   grid-row-start: 1 span;
   width: 100%;

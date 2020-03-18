@@ -3,12 +3,13 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Btn, Modal } from './95'
 import { Link } from 'gatsby'
+import BlockWrapper from './BlockWrapper'
 
-export default function About({ width, height }) {
+export default function About() {
   const [open, setOpen] = useState(false)
 
   return (
-    <AboutWrapper width={width} height={height}>
+    <AboutWrapper>
       <Btn onClick={() => setOpen(!open)}>
         Hi Anton!
         <span role="img" aria-label="waving hand">
@@ -56,9 +57,9 @@ export default function About({ width, height }) {
   )
 }
 
-const AboutWrapper = styled.div`
-  grid-column-start: span ${props => props.width};
-  grid-row-start: span ${props => props.height};
+const AboutWrapper = styled(BlockWrapper)`
+  grid-column-start: span 2;
+  grid-row-start: span 2;
   display: flex;
   align-items: center;
   justify-content: center;

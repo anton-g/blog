@@ -5,7 +5,6 @@ import SEO from '../components/Seo'
 import styled from 'styled-components'
 import About from '../components/Startpage/About'
 import Blog from '../components/Startpage/Blog'
-import Stripes from '../components/Startpage/Stripes'
 import Dragger from '../components/Startpage/Dragger'
 import Morphism from '../components/Startpage/Morphism'
 import Visitors from '../components/Startpage/Visitors'
@@ -22,8 +21,8 @@ class BlogIndex extends React.Component {
         <SEO title={'home'} />
         <div style={{ display: 'flex', justifyContent: 'center' }}>
           <Content>
-            <About width="2" height="2"></About>
-            <Blog width="4" height="1"></Blog>
+            <About></About>
+            <Blog></Blog>
             <Morphism></Morphism>
             <Dragger></Dragger>
             <Visitors></Visitors>

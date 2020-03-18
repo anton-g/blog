@@ -6,7 +6,7 @@ export default function TvQuiz() {
   return (
     <Wrapper>
       <Link href="https://tv-show-quiz.netlify.com">
-        <img src={tv} width="60%" height="80%"></img>
+        <img alt="tv" src={tv} width="60%" height="80%"></img>
       </Link>
     </Wrapper>
   )

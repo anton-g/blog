@@ -2,9 +2,9 @@ import React from 'react'
 import styled, { keyframes } from 'styled-components'
 import { Link } from 'gatsby'
 
-export default function Blog({ width, height }) {
+export default function Blog() {
   return (
-    <Wrapper to="/posts" height={height} width={width}>
+    <Wrapper to="/posts">
       <Text first={true}>blog blog blog </Text>
       <Text>blog blog blog </Text>
     </Wrapper>
@@ -32,8 +32,8 @@ const Text = styled.h2`
 
 const Wrapper = styled(Link)`
   position: relative;
-  grid-column-start: span ${p => p.width};
-  grid-row-start: span ${p => p.height};
+  grid-column-start: span 4;
+  grid-row-start: span 1;
   overflow: hidden;
   white-space: nowrap;
   display: flex;

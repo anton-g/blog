@@ -12,9 +12,10 @@ export default function Spotify() {
         src="https://open.spotify.com/embed/track/0sf12qNH5qcw8qpgymFOqD"
         width={bounds.width}
         height="80"
-        frameborder="0"
+        frameBorder="0"
         allowtransparency="true"
         allow="encrypted-media"
+        title="spotify"
       ></iframe>
     </Wrapper>
   )
