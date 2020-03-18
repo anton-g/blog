@@ -13,6 +13,7 @@ import Inspiration from '../components/Startpage/Inspiration'
 import Kampgeneratorn from '../components/Startpage/Kampgeneratorn'
 import TvQuiz from '../components/Startpage/TvQuiz'
 import ColorTweaker from '../components/Startpage/ColorTweaker'
+import Spotify from '../components/Startpage/Spotify'
 
 class BlogIndex extends React.Component {
   render() {
@@ -30,6 +31,7 @@ class BlogIndex extends React.Component {
             <Kampgeneratorn></Kampgeneratorn>
             <TvQuiz></TvQuiz>
             <ColorTweaker></ColorTweaker>
+            <Spotify></Spotify>
           </Content>
         </div>
       </Layout>
@@ -43,6 +45,7 @@ const Content = styled.div`
   grid-template-columns: repeat(auto-fit, 100px);
   grid-auto-rows: 100px;
   grid-auto-flow: row dense;
+  justify-content: center;
 `
 
 export default BlogIndex
