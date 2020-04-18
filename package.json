@@ -44,6 +44,7 @@
     "typeface-montserrat": "0.0.75",
     "typography": "^0.16.19",
     "typography-theme-wordpress-2016": "^0.16.19",
+    "use-sound": "^1.0.1",
     "vec-la": "^1.5.0"
   },
   "devDependencies": {
