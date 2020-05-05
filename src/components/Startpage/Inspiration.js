@@ -17,6 +17,11 @@ export default function Inspiration() {
     borderRadius: '0%',
   }))
 
+  const subtitleAnim = useSpring({
+    opacity: open ? 0.75 : 0,
+    scale: open ? 1 : 0,
+  })
+
   const transition = useTransition(open ? peopleData : [], {
     unique: true,
     trail: 400 / peopleData.length,
@@ -67,13 +72,18 @@ export default function Inspiration() {
     <InspirationWrapper ref={ref} onClick={handleClick}>
       <Content style={animation} open={open}>
         <Title>inspirational people</Title>
+        <Subtitle style={subtitleAnim}>
+          a few people whose content I enjoy, and who deserve all the attention
+          they get
+        </Subtitle>
         <People>
           {transition((props, item) => (
             <PeopleLink style={{ ...props }} href={item.url}>
-              <img src={item.image} alt="profile" crossOrigin="anonymous"></img>
+              {item.name}
             </PeopleLink>
           ))}
         </People>
+        <CloseButton style={subtitleAnim}>Close</CloseButton>
       </Content>
     </InspirationWrapper>
   )
@@ -81,6 +91,10 @@ export default function Inspiration() {
 
 const Title = styled.h2`
   max-width: 200px;
+`
+
+const Subtitle = styled(animated.p)`
+  margin: 0;
 `
 
 const Content = styled(animated.div)`
@@ -107,30 +121,38 @@ const People = styled.div`
   align-content: center;
   justify-items: center;
   align-items: center;
-  grid-template-columns: repeat(auto-fit, 150px);
-  grid-auto-rows: 150px;
+  grid-template-columns: repeat(auto-fit, 250px);
+  grid-auto-rows: 100px;
   width: 100%;
-  max-width: 800px;
+  max-width: 1000px;
+`
+
+const CloseButton = styled(animated.button)`
+  background: 0;
+  border: 0;
+  border-radius: 0;
+  font-size: 2rem;
+  margin-top: 1rem;
+  font-weight: bold;
+  cursor: pointer;
 `
 
 const PeopleLink = styled(animated.a)`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
+  max-width: 250px;
   transition: filter 0.1s ease-in-out;
-  filter: grayscale(50%);
-  overflow: hidden;
+  font-size: 2rem;
+  font-weight: bold;
+  text-decoration: none;
+  text-align: center;
 
   &:hover {
-    filter: grayscale(0%);
-  }
-
-  img {
-    width: 100%;
-    height: 100%;
+    background: linear-gradient(to right, #c02425, #f0cb35);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 `
 
@@ -160,68 +182,62 @@ const randomRadius = () => {
 const peopleData = [
   {
     name: 'Sara Viera',
-    image:
-      'https://pbs.twimg.com/profile_images/1229167683633131521/BAEBTa8v_400x400.jpg',
     url: 'https://twitter.com/NikkitaFTW',
   },
   {
     name: 'Amelia Wattenberger',
     url: 'https://twitter.com/wattenberger',
-    image:
-      'https://pbs.twimg.com/profile_images/1221632617767997440/1TEt3jfj_400x400.png',
   },
   {
     name: 'Paul Henschel',
     url: 'https://twitter.com/0xca0a',
-    image:
-      'https://pbs.twimg.com/profile_images/1051050638195482624/Q3dOn3o9_400x400.jpg',
   },
   {
     name: 'Josh Comeau',
     url: 'https://twitter.com/joshwcomeau',
-    image:
-      'https://pbs.twimg.com/profile_images/461190672117035010/0kJ4pynr_400x400.jpeg',
   },
   {
     name: 'Emma Bostian',
     url: 'https://twitter.com/emmabostian',
-    image:
-      'https://pbs.twimg.com/profile_images/1232689720230121472/VOQyrXIu_400x400.jpg',
   },
   {
     name: 'Dan Abramov',
     url: 'https://twitter.com/dan_abramov',
-    image:
-      'https://pbs.twimg.com/profile_images/1166344766210150401/amRnWzl-_400x400.jpg',
+  },
+  {
+    name: 'Kitze',
+    url: 'https://twitter.com/thekitze',
   },
   {
     name: 'Kent C. Dodds',
     url: 'https://twitter.com/kentcdodds',
-    image:
-      'https://pbs.twimg.com/profile_images/759557613445001216/6M2E1l4q_400x400.jpg',
   },
   {
     name: 'Veni Kunche',
     url: 'https://twitter.com/venikunche',
-    image:
-      'https://pbs.twimg.com/profile_images/1192278417934303232/WH8LwUm3_400x400.jpg',
   },
   {
     name: 'Cassidy Williams',
     url: 'https://twitter.com/cassidoo',
-    image:
-      'https://pbs.twimg.com/profile_images/718548236580098048/OgV0pPQY_400x400.jpg',
   },
   {
     name: 'Brené Brown',
     url: 'https://twitter.com/brenebrown',
-    image:
-      'https://pbs.twimg.com/profile_images/1212148385978953729/4rIadTSL_400x400.jpg',
   },
   {
     name: 'Sara Soueidan',
     url: 'https://twitter.com/sarasoueidan',
-    image:
-      'https://pbs.twimg.com/profile_images/1010126354078208001/MpkO7-qK_400x400.jpg',
+  },
+  {
+    name: 'Kurt Kemple',
+    url: 'https://twitter.com/kurtkemple',
+  },
+  {
+    name: 'Maggie Appleton',
+    url: 'https://twitter.com/Mappletons',
+  },
+  {
+    name: 'Max Stoiber',
+    url: 'https://twitter.com/mxstbr',
   },
 ]

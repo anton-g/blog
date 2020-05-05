@@ -12,7 +12,7 @@ import Inspiration from '../components/Startpage/Inspiration'
 import Kampgeneratorn from '../components/Startpage/Kampgeneratorn'
 import TvQuiz from '../components/Startpage/TvQuiz'
 import ColorTweaker from '../components/Startpage/ColorTweaker'
-import Spotify from '../components/Startpage/Spotify'
+// import Spotify from '../components/Startpage/Spotify'
 import AaaaAaahh from '../components/Startpage/AaaaAaahh'
 
 class BlogIndex extends React.Component {
@@ -31,7 +31,7 @@ class BlogIndex extends React.Component {
             <Kampgeneratorn></Kampgeneratorn>
             <TvQuiz></TvQuiz>
             <ColorTweaker></ColorTweaker>
-            <Spotify></Spotify>
+            {/* <Spotify></Spotify> */}
             <AaaaAaahh></AaaaAaahh>
           </Content>
         </div>
