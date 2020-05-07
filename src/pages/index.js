@@ -19,7 +19,7 @@ class BlogIndex extends React.Component {
   render() {
     return (
       <Layout location={this.props.location}>
-        <SEO title={'home'} />
+        <SEO title={'home'} meta={[{ name: 'og:type', content: 'website' }]} />
         <div style={{ display: 'flex', justifyContent: 'center' }}>
           <Content>
             <About></About>

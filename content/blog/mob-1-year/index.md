@@ -1,6 +1,6 @@
 ---
 title: Mob programming for a year
-description: My key takeaways after mob programming full time for a year
+description: Key takeaways after mob programming full time for a year
 date: '2020-03-02T21:30:00.000Z'
 dev: 'https://dev.to/awnton/mob-programming-for-a-year-26pf'
 ---

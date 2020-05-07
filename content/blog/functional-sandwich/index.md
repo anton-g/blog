@@ -1,7 +1,7 @@
 ---
-title: Making a sandwich with functional javascript
-date: "2018-09-17T21:05:00.000Z"
-description: "Learn functional javascript by making a sandwich"
+title: A functional javascript sandwich
+date: '2018-09-17T21:05:00.000Z'
+description: 'Learn functional javascript by making a yummy sandwich'
 ---
 
 A while ago I held a lightning talk about functional programming in javascript, and demonstrated it by using the array functions `map`, `filter` and `reduce` to create a _tasty sandwich_. This post is the written version of that talk, but with a little more background about functional programming. But what is functional programming more exactly? My first hit on Google for _"what is functional programming"_ is [this post](https://medium.com/javascript-scene/master-the-javascript-interview-what-is-functional-programming-7f218c68b3a0) by Eric Elliot. In it he says this:
@@ -54,7 +54,7 @@ It's important to remember that, in javascript, variables declared with `const` 
 
 ```javascript
 const person = {
-  name: 'Anton'
+  name: 'Anton',
 }
 person.name = 'Alfredo'
 ```
@@ -91,7 +91,7 @@ The first step in making our sandwich is to slice our ingredients, which in othe
 ```javascript
 const ingredients = ['cucumber', 'tomato', 'sallad']
 
-const slice = (ingredient) => {
+const slice = ingredient => {
   return `sliced ${ingredient}`
 }
 
@@ -106,7 +106,7 @@ In this case we only use the arrays element in the callback function passed to `
 ### Assembling the sandwich
 
 Let's continue by assembling the sandwich with `reduce`.  
-It is arguably the most powerful of the sandwich making functions. It can be used to accomplish anything from [summing some values](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce#Examples#Sum_all_the_values_of_an_array) to [running promises in sequence](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce#Examples#Running_Promises_in_Sequence). 
+It is arguably the most powerful of the sandwich making functions. It can be used to accomplish anything from [summing some values](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce#Examples#Sum_all_the_values_of_an_array) to [running promises in sequence](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce#Examples#Running_Promises_in_Sequence).
 
 The function has two parameters: A _callback_ function (called _reducer_) and an _initial value_. When calling `reduce` it will enumerate (_"loop"_) through the elements in the array and apply the callback function to each of the elements, finally resulting in a single return value. Let's walk through the _callback_ function arguments:
 
@@ -122,7 +122,7 @@ Alright, now that we know about `reduce` we can assemble our sandwich and since 
 ```javascript{7-9,13}
 const ingredients = ['cucumber', 'tomato', 'sallad']
 
-const slice = (ingredient) => {
+const slice = ingredient => {
   return `sliced ${ingredient}`
 }
 
@@ -130,9 +130,7 @@ const reducer = (total, current) => {
   return `${total}, ${current}`
 }
 
-const result = ingredients
-                    .map(slice)
-                    .reduce(reducer, 'A tasty sandwich with')
+const result = ingredients.map(slice).reduce(reducer, 'A tasty sandwich with')
 
 console.log(result)
 // output: 'A tasty sandwich with, sliced cucumber, sliced tomato, sliced sallad

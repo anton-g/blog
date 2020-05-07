@@ -38,7 +38,10 @@ class ProjectsPage extends React.Component {
 
     return (
       <Layout location={this.props.location}>
-        <SEO title={`projects`} />
+        <SEO
+          title={`projects`}
+          meta={[{ name: 'og:type', content: 'website' }]}
+        />
         <h1>Projects</h1>
         <div className="projects">
           {projects.map(p => (

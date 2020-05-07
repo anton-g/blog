@@ -19,7 +19,7 @@ class TalksPage extends React.Component {
 
     return (
       <Layout location={this.props.location}>
-        <SEO title={`talks`} />
+        <SEO title={`talks`} meta={[{ name: 'og:type', content: 'website' }]} />
         <h1>Talks</h1>
         {talks.map(t => (
           <div key={t.date}>

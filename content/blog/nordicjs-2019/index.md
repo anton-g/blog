@@ -1,5 +1,6 @@
 ---
 title: NordicJS 2019
+description: Takeaways from a fantastic conference
 date: '2019-10-23T20:30:00.000Z'
 dev: 'https://dev.to/awnton/looking-back-at-nordicjs-2019-2hdd'
 ---

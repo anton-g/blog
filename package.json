@@ -8,6 +8,7 @@
     "url": "https://github.com/gatsbyjs/gatsby/issues"
   },
   "dependencies": {
+    "@jlengstorf/get-share-image": "^0.7.0",
     "@juggle/resize-observer": "^3.0.2",
     "@mdx-js/mdx": "^1.5.3",
     "@mdx-js/react": "^1.5.3",

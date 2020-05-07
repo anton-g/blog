@@ -2,6 +2,7 @@ import React from 'react'
 import Link from 'gatsby-link'
 import { graphql } from 'gatsby'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
+import getShareImage from '@jlengstorf/get-share-image'
 import Bio from '../components/Bio'
 import Draft from '../components/Draft'
 import SEO from '../components/Seo'
@@ -14,12 +15,28 @@ class BlogPostTemplate extends React.Component {
     const isDraft = post.frontmatter.draft
     const { previous, next } = this.props.pathContext
 
+    const socialImage = getShareImage({
+      title: post.frontmatter.title,
+      tagline: post.frontmatter.description,
+      titleFont: 'roboto',
+      titleFontSize: 72,
+      titleExtraConfig: 'bold',
+      taglineFont: 'roboto',
+      taglineFontSize: 48,
+      cloudName: 'anton-g',
+      imagePublicID: 'social-card-template_jphyku',
+    })
+
     return (
       <Layout maxWidth="650px" location={this.props.location}>
         {isDraft && <Draft />}
         <SEO
           title={post.frontmatter.title}
           description={post.frontmatter.description}
+          meta={[
+            { name: 'og:image', content: socialImage },
+            { name: 'og:type', content: 'article' },
+          ]}
         />
         <Post>
           <h1>{post.frontmatter.title}</h1>
