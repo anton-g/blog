@@ -23,7 +23,6 @@ class Posts extends React.Component {
                   <h3>
                     <Link to={node.fields.slug}>{title}</Link>
                   </h3>
-                  <small>{node.frontmatter.date}</small>
                   <p dangerouslySetInnerHTML={{ __html: node.excerpt }} />
                 </div>
               )
@@ -63,4 +62,8 @@ export const pageQuery = graphql`
 
 const PostsWrapper = styled.div`
   padding: 0px 12px;
+
+  > * {
+    margin-bottom: 36px;
+  }
 `

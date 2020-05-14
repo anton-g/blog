@@ -15,7 +15,7 @@ a:visited {
 }
 
 a:hover {
-  color: #feb377;
+  color: hsl(157, 49%, 46%);
 }
 
 .gatsby-resp-image-link::after {
@@ -23,35 +23,17 @@ a:hover {
 }
 
 blockquote {
-  background-color: #ffffc5;
+  background-color: hsl(157, 49%, 46%);
   margin: 0;
   padding: 0.3rem 1rem;
-}
-
-pre[class*='language-'] {
-  margin: 0;
-  margin-bottom: 1.563rem;
-}
-
-pre > code {
-  margin-bottom: 0;
-}
-
-pre > code::after {
-  content: none;
+  border-radius: 8px 24px;
+  color: white;
 }
 
 :not(pre) > code[class*='language-'] {
-  color: white;
-  background-color: hsl(212, 56%, 16%);
-  text-shadow: 0px 1px black;
-  padding: 0 0.328rem;
-}
-
-.gatsby-highlight-code-line {
-  background: #e0d7d1;
-}
-
-.gatsby-highlight-code-line .token {
-  background: #e0d7d1;
+  background-color: hsl(0, 0%, 90%) !important;
+  padding: 0.2rem 0.5rem;
+  text-shadow: none;
+  font-size: 18px;
+  color: black !important;
 }

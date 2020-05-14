@@ -3,8 +3,8 @@ import Header from './Header'
 
 require('../fonts/inter/inter.css')
 require('../fonts/ms-sans-serif/ms-sans-serif.css')
-require('prismjs/themes/prism.css')
 require('./index.css')
+require('./prism-theme.css')
 
 export default function Layout({ location, children, maxWidth }) {
   const rootPath = `${__PATH_PREFIX__}/`

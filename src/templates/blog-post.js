@@ -28,7 +28,7 @@ class BlogPostTemplate extends React.Component {
     })
 
     return (
-      <Layout maxWidth="650px" location={this.props.location}>
+      <Layout maxWidth="750px" location={this.props.location}>
         {isDraft && <Draft />}
         <SEO
           title={post.frontmatter.title}
@@ -40,32 +40,28 @@ class BlogPostTemplate extends React.Component {
         />
         <Post>
           <h1>{post.frontmatter.title}</h1>
-          <p>{post.frontmatter.date}</p>
+          <Timestamp>Last update: {post.frontmatter.date}</Timestamp>
           <MDXRenderer>{post.body}</MDXRenderer>
           {post.frontmatter.dev && (
-            <>
-              <hr style={{ marginTop: '36px' }} />
-              <a
-                href={post.frontmatter.dev}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  margin: '16px 0px',
-                }}
-              >
-                <img
-                  src="https://d2fltix0v2e0sb.cloudfront.net/dev-badge.svg"
-                  alt="DEV.to badge"
-                  height="25"
-                  width="25"
-                  style={{ marginRight: '5px' }}
-                />
-                Discuss this post
-              </a>
-            </>
+            <a
+              href={post.frontmatter.dev}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                margin: '16px 0px',
+              }}
+            >
+              <img
+                src="https://d2fltix0v2e0sb.cloudfront.net/dev-badge.svg"
+                alt="DEV.to badge"
+                height="25"
+                width="25"
+                style={{ marginRight: '5px' }}
+              />
+              Discuss on DEV
+            </a>
           )}
           <hr style={{ marginBottom: '36px' }} />
-          <Bio />
           <Paging>
             <PagingLink>
               {previous && (
@@ -115,6 +111,20 @@ export const pageQuery = graphql`
 
 const Post = styled.div`
   padding: 0px 12px;
+  line-height: 1.5;
+  font-size: 18px;
+  text-rendering: optimizelegibility;
+
+  h1 {
+    margin-bottom: 0;
+    color: hsl(157, 15%, 15%);
+  }
+`
+
+const Timestamp = styled.p`
+  margin-top: 0;
+  font-size: 12px;
+  color: hsl(157, 5%, 36%);
 `
 
 const Paging = styled.ul`

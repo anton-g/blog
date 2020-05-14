@@ -5,8 +5,8 @@ import { Link } from 'gatsby'
 export default function Blog() {
   return (
     <Wrapper to="/posts">
-      <Text first={true}>blog blog blog </Text>
-      <Text>blog blog blog </Text>
+      <Text first={true}>posts posts posts </Text>
+      <Text>posts posts posts </Text>
     </Wrapper>
   )
 }
