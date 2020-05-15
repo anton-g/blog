@@ -15,6 +15,7 @@ import ColorTweaker from '../components/Startpage/ColorTweaker'
 // import Spotify from '../components/Startpage/Spotify'
 import Asdf from '../components/Startpage/Asdf'
 import AaaaAaahh from '../components/Startpage/AaaaAaahh'
+import Text from '../components/Startpage/Text'
 
 class BlogIndex extends React.Component {
   render() {
@@ -34,6 +35,7 @@ class BlogIndex extends React.Component {
             <ColorTweaker></ColorTweaker>
             {/* <Spotify></Spotify> */}
             <AaaaAaahh></AaaaAaahh>
+            <Text></Text>
             <Asdf></Asdf>
           </Content>
         </div>
