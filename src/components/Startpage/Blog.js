@@ -22,8 +22,8 @@ const marquee = keyframes`
 
 const Text = styled.h2`
   position: absolute;
-  animation: ${marquee} 12s linear infinite;
-  ${props => (props.first ? 'animation-delay: -6s;' : '')};
+  animation: ${marquee} 16s linear infinite;
+  ${props => (props.first ? 'animation-delay: -8s;' : '')};
   font-family: 'Inter', sans-serif;
   font-size: 4rem;
   margin: 0;

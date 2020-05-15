@@ -10,6 +10,8 @@ export default function Todo() {
         <li>Add toggle for sounds</li>
         <li>Dark mode</li>
         <li>Fix horrible perf :)</li>
+        <li>Differentiate quotes and "tips" in posts</li>
+        <li>Add web mentions</li>
       </ul>
     </StyledTodo>
   )
@@ -18,14 +20,13 @@ export default function Todo() {
 const StyledTodo = styled.div`
   grid-column-start: 2 span;
   grid-row-start: 1 span;
-
-  background-color: white;
-
   width: 100%;
   height: 100%;
-
   overflow-y: scroll;
+  box-sizing: border-box;
 
+  border: 2px dotted black;
+  background-color: white;
   font-size: 12px;
 
   h2 {

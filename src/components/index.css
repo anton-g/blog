@@ -23,11 +23,11 @@ a:hover {
 }
 
 blockquote {
-  background-color: hsl(157, 49%, 46%);
+  background-color: hsl(157, 49%, 76%);
   margin: 0;
   padding: 0.3rem 1rem;
   border-radius: 8px 24px;
-  color: white;
+  color: black;
 }
 
 :not(pre) > code[class*='language-'] {
