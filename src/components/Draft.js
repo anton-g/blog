@@ -10,7 +10,7 @@ export default function Draft() {
         right: 0,
         zIndex: 10,
         background:
-          'repeating-linear-gradient(45deg,yellow,yellow 10px,black 10px,black 20px)',
+          'repeating-linear-gradient(45deg,#fff8a6,#fff8a6 10px,black 10px,black 20px)',
         color: 'white',
         fontWeight: 'bold',
         textShadow:

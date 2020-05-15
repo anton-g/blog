@@ -56,6 +56,7 @@ module.exports = {
               // the language "sh" which will highlight using the
               // bash highlighter.
               aliases: {},
+              showLineNumbers: true,
             },
           },
           {

@@ -1,0 +1,165 @@
+---
+title: Render props in the Age of Hooks
+date: '2020-05-15T20:17:00.000Z'
+description: 'What is render props and do we even need them now that we have hooks?'
+dev: ''
+draft: true
+---
+
+import Counter from './components/Counter'
+
+Through the years many different patterns have emerged to solve different problems we encounter writing React components. One of the most popular patterns ever is `render props`. A render prop is a way to solve a problem where you want to share common functionality.
+
+In this post, I'll talk about what render props are, how to implement it, and how they fit into the React landscape now that we live in the Golden Age of Hooks. Let's get started!
+
+## So what is a render prop?
+
+The render prop pattern follows a principle called ["Inversion of Control"](https://kentcdodds.com/blog/inversion-of-control) which is a way to move control from the abstraction to the user of said abstraction.
+
+Wait.. what?
+
+Yeah, I know. Let's take a look at a _very_ simplified example instead of talking theory.
+
+This is a simple component that has a button and when you click that button you increase the count by one.
+
+<Counter renderCount={count => count} />
+
+The implementation looks like this:
+
+```jsx
+export default function Counter() {
+  const [count, setCount] = useState(0)
+
+  return (
+    <div>
+      <h1>Click it, I'm interactive!</h1>
+      <button onClick={() => setCount(c => c + 1)}>Increase count</button>
+      <p>{count}</p>
+    </div>
+  )
+}
+```
+
+> In reality, it's more likely you'll encounter components that use render props to handle tracking mouse movement, scrolling or similar things.
+
+Now, for the sake of the example let's say we want to give the user more control of how the number is displayed. The first thought might be to add a prop to the component to add some styling. That would definitely work if we just wanna change the styling, but what if we run into a situation where we also want to wrap the count in some text? While we could add another prop for this it's also a perfect time to try using a render prop.
+
+Imagining we want to add some styling and then display the count like "`The count is X!`" we can move this control to the consumer of the component by refactoring our component to this:
+
+```jsx{1,8}
+export default function Counter({ renderCount }) {
+  const [count, setCount] = useState(0)
+
+  return (
+    <div>
+      <h1>Click it, I'm interactive!</h1>
+      <button onClick={() => setCount(c => c + 1)}>Increase count</button>
+      <p>{renderCount(count)}</p>
+    </div>
+  )
+}
+```
+
+Now our component receives a prop called `renderCount` which we expect to be a function. We then invoke this function on line 8 passing it the current count.
+
+And here is how we now use this component:
+
+```jsx
+<Counter renderCount={count => <span>The count is {count}!</span>} />
+```
+
+We pass in the `renderCount` prop as an arrow function that receives the count and returns a span with our desired text.
+
+> Note that the prop `renderCount` could be called anything.
+
+And now our component looks like this:
+
+<Counter renderCount={count => <span>The count is {count}!</span>} />
+
+By doing this we've _inverted_ the control of rendering the count from the component to the user.
+
+### Function as children
+
+Before moving on to why render props aren't as widely used anymore and in which cases they might still be relevant, I just want to mention the concept of `function as children`. While React doesn't support passing a function as a child of a component and rendering it, you can use it together with render props since children is just a prop.
+
+Refactoring our component once again we end up with this:
+
+```jsx{1,8}
+export default function Counter({ children }) {
+  const [count, setCount] = useState(0)
+
+  return (
+    <div>
+      <h1>Click it, I'm interactive!</h1>
+      <button onClick={() => setCount(c => c + 1)}>Increase count</button>
+      <p>{children(count)}</p>
+    </div>
+  )
+}
+```
+
+This looks very similar to before, we've just removed our custom prop and now uses the reserved `children` prop instead and hence we pass the function down as the child:
+
+```jsx
+<Counter>{count => <span>The count is {count}!</span>}</Counter>
+```
+
+I had a really hard time wrapping my head around this syntax when I first learned about render props, but it's also been the most popular way of using them so it's likely you'll encounter it too.
+
+## The issues
+
+While render props might sound great there are a couple of issues that I want to talk about.
+
+One issue is that when you get to a point where you need to use multiple components with a render prop api you could end up in what you might recognize as _"the pyramid of death"_ or _"callback hell"_. Below is an example where we have a component that needs access to it's measured size, the scroll position, mouse position and some styling for animation purposes:
+
+```jsx
+<Mouse>
+  {mouse => (
+    <Scroll>
+      {scroll => (
+        <Motion>
+          {style => (
+            <Measure>
+              {size => (
+                <ConsumingComponent
+                  mouse={mouse}
+                  scroll={scroll}
+                  style={style}
+                  size={size}
+                ></ConsumingComponent>
+              )}
+            </Measure>
+          )}
+        </Motion>
+      )}
+    </Scroll>
+  )}
+</Mouse>
+```
+
+Comparing this to a pseudo code version using Hooks you can see why a lot of people prefer Hooks:
+
+```jsx
+const mouse = useMouse()
+const scroll = useScroll()
+const style = useMotion()
+const size = useMeasure()
+
+return (
+  <ConsumingComponent mouse={mouse} scroll={scroll} style={style} size={size} />
+)
+```
+
+Another thing that this example illustrates is that we get a much clearer separation between our `render` and preparing to render. In the render prop-example we don't actually care about the `<Mouse>` component, we just care about the value we get in the render prop function. This separation is so much clearer when we use hooks which I think is very good.
+
+## In the Age of Hooks
+
+When Hooks were introduced back in 2018 I can't say that the community screamed of joy. The reaction were mostly complaining about this completely new thing that we'll also have to learn. Yet here we are two years later and most of the hate has died down and modern React is very much defined by Hooks. This has also meant that the render prop pattern isn't as popular as it was just a couple of years ago. But while hooks are superior to render props in most cases there are still a couple of situations where you might want to reach for a good ol' render prop.
+
+Performance reasons
+Using Hooks in class components
+Multiple render props (Grid with rowRenderer, cellRenderer)
+
+## Summary
+
+Thanks for reading! 🙌

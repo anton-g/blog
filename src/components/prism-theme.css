@@ -215,3 +215,28 @@ pre[class*='language-'] > code[class*='language-'] {
   line-height: inherit;
   white-space: pre;
 }
+
+.gatsby-highlight-code-line {
+  background-color: hsl(0, 0%, 20%);
+  display: block;
+  margin-right: -1em;
+  margin-left: -0.75em;
+  padding-right: 1em;
+  padding-left: 0.5em;
+  border-left: 0.25em solid hsl(157, 49%, 50%);
+}
+
+/* Adjust the position of the line numbers */
+.gatsby-highlight pre[class*='language-'].line-numbers {
+  padding-left: 2.8em;
+}
+
+.line-numbers .line-numbers-rows {
+  padding-top: 1em;
+  padding-bottom: 1em;
+  border-right: 0;
+}
+
+.line-numbers-rows > span:before {
+  padding-left: 0.4em;
+}
