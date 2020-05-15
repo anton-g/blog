@@ -32,11 +32,11 @@ class BlogIndex extends React.Component {
             <Inspiration></Inspiration>
             <Kampgeneratorn></Kampgeneratorn>
             <TvQuiz></TvQuiz>
+            <Asdf></Asdf>
             <ColorTweaker></ColorTweaker>
             {/* <Spotify></Spotify> */}
             <AaaaAaahh></AaaaAaahh>
             <Text></Text>
-            <Asdf></Asdf>
           </Content>
         </div>
       </Layout>

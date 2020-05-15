@@ -13,8 +13,8 @@ export default function Text() {
 }
 
 const StyledText = styled.div`
-  grid-column-start: 2 span;
-  grid-row-start: 1 span;
+  grid-column-start: 1 span;
+  grid-row-start: 2 span;
 
   background-color: #e4508f;
 
@@ -40,6 +40,8 @@ const StyledText = styled.div`
     width: 100%;
     white-space: pre-wrap;
     transition: filter 0.3s;
+    writing-mode: vertical-lr;
+    text-orientation: mixed;
   }
 
   &:hover a {
