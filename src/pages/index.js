@@ -53,6 +53,7 @@ const Content = styled.div`
   grid-auto-rows: 100px;
   grid-auto-flow: row dense;
   justify-content: center;
+  margin-bottom: 2rem;
 `
 
 export default BlogIndex
