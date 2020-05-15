@@ -40,7 +40,7 @@ const StyledText = styled.div`
     width: 100%;
     white-space: pre-wrap;
     transition: filter 0.3s;
-    writing-mode: vertical-lr;
+    writing-mode: vertical-rl;
     text-orientation: mixed;
   }
 

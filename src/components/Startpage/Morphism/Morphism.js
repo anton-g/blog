@@ -1,10 +1,14 @@
 import React, { useRef } from 'react'
 import styled from 'styled-components'
 import { useSpring, animated, config } from 'react-spring'
+import boing from './boing.mp3'
+import useSound from 'use-sound'
 
 const trans = (x, y) => `translate3d(${x / 5}px, ${y / 5}px, 0)`
 
 export default function Morphism() {
+  const [play] = useSound(boing, { volume: 0.5 })
+
   const ref = useRef(null)
   const rect = useRef(null)
 
@@ -25,14 +29,15 @@ export default function Morphism() {
     <Background
       ref={ref}
       onMouseMove={({ clientX: x, clientY: y }) => set({ xy: calc(x, y) })}
-      onMouseOut={() =>
+      onMouseLeave={e => {
         set({
           xy: calc(
             rect.current.x + rect.current.width / 2,
             rect.current.y + rect.current.height / 2
           ),
         })
-      }
+        play()
+      }}
     >
       <Box scale={0.8} style={{ transform: props.xy.to(trans) }}>
         <Box scale={0.7} style={{ transform: props.xy.to(trans) }}>

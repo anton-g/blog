@@ -5,17 +5,18 @@ import SEO from '../components/Seo'
 import styled from 'styled-components'
 import About from '../components/Startpage/About'
 import Blog from '../components/Startpage/Blog'
-import Dragger from '../components/Startpage/Dragger'
-import Morphism from '../components/Startpage/Morphism'
+import Dragger from '../components/Startpage/Dragger/Dragger'
+import Morphism from '../components/Startpage/Morphism/Morphism'
 import Visitors from '../components/Startpage/Visitors'
 import Inspiration from '../components/Startpage/Inspiration'
 import Kampgeneratorn from '../components/Startpage/Kampgeneratorn'
-import TvQuiz from '../components/Startpage/TvQuiz'
+import TvQuiz from '../components/Startpage/TvQuiz/TvQuiz'
 import ColorTweaker from '../components/Startpage/ColorTweaker'
 // import Spotify from '../components/Startpage/Spotify'
-import Asdf from '../components/Startpage/Asdf'
-import AaaaAaahh from '../components/Startpage/AaaaAaahh'
+import Asdf from '../components/Startpage/Asdf/Asdf'
+import AaaaAaahh from '../components/Startpage/AaaaAaahh/AaaaAaahh'
 import Text from '../components/Startpage/Text'
+import Todo from '../components/Startpage/Todo'
 
 class BlogIndex extends React.Component {
   render() {
@@ -37,6 +38,7 @@ class BlogIndex extends React.Component {
             {/* <Spotify></Spotify> */}
             <AaaaAaahh></AaaaAaahh>
             <Text></Text>
+            <Todo></Todo>
           </Content>
         </div>
       </Layout>

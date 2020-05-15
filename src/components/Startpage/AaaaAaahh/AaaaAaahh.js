@@ -1,6 +1,6 @@
 import React from 'react'
 import styled, { keyframes } from 'styled-components'
-import BlockWrapper from './BlockWrapper'
+import BlockWrapper from '../BlockWrapper'
 import mouth from './mouth.svg'
 import scream from './scream.wav'
 import useSound from 'use-sound'

@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { useDrag } from 'react-use-gesture'
 import { useSpring, animated } from 'react-spring'
 import bear from './bear.gif'
-import BlockWrapper from './BlockWrapper'
+import BlockWrapper from '../BlockWrapper'
 
 export default function Dragger() {
   const [props, set] = useSpring(() => ({
