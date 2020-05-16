@@ -1,7 +1,7 @@
 ---
 title: Render props in the Age of Hooks
 date: '2020-05-16T14:17:00.000Z'
-description: "Let's take a look at what render props is, and what use case they have now that we have hooks."
+description: 'What is render props, and what use case do they have now that we have hooks?'
 dev: ''
 draft: true
 ---
@@ -44,7 +44,7 @@ export default function Counter() {
 
 > In reality, it's more likely you'll encounter components that use render props to handle tracking mouse movement, scrolling or similar things.
 
-Now, for the sake of the example let's say we want to give the user more control of how the number is displayed. The first thought might be to add a prop to the component to add some styling. That would definitely work if we just wanna change the styling, but what if we run into a situation where we also want to wrap the count in some text? While we could add another prop for this it's also a perfect time to try using a render prop.
+Now, for the sake of the example let's say we want to give the user more control of how the number is displayed. The first thought might be to add a prop to the component to add some styling. That would work if we just wanna change the styling, but what if we run into a situation where we also want to wrap the count in some text? While we could add another prop for this it's also a perfect time to try using a render prop.
 
 Imagining we want to add some styling and then display the count like "`The count is X!`" we can move this control to the consumer of the component by refactoring our component to this:
 
@@ -82,7 +82,7 @@ By doing this we've _inverted_ the control of rendering the count from the compo
 
 ### Function as children
 
-Before moving on to why render props aren't as widely used anymore and in which cases they might still be relevant, I just want to mention the concept of `function as children`. While React doesn't support passing a function as a child of a component and rendering it, you can use it together with render props since children is just a prop.
+Before moving on to why render props aren't as widely used anymore and in which cases they might still be relevant, I just want to mention the concept of `function as children`. While React doesn't support passing a function as a child of a component and rendering it, you can use it together with render props since children are just a prop.
 
 Refactoring our component once again we end up with this:
 
@@ -112,7 +112,7 @@ I had a really hard time wrapping my head around this syntax when I first learne
 
 While render props might sound great there are a couple of issues that I want to talk about.
 
-One issue is that when you get to a point where you need to use multiple components with a render prop api you could end up in what you might recognize as _"the pyramid of death"_ or _"callback hell"_. Below is an example where we have a component that needs access to it's measured size, the scroll position, mouse position and some styling for animation purposes:
+One issue is that when you get to a point where you need to use multiple components with a render prop api you could end up in what you might recognize as _"the pyramid of death"_ or _"callback hell"_. Below is an example where we have a component that needs access to its measured size, the scroll position, mouse position, and some styling for animation purposes:
 
 ```jsx
 <Mouse>
@@ -139,7 +139,7 @@ One issue is that when you get to a point where you need to use multiple compone
 </Mouse>
 ```
 
-Comparing this to a pseudo code version using Hooks you can see why a lot of people prefer Hooks:
+Comparing this to a pseudo-code version using Hooks you can see why a lot of people prefer Hooks:
 
 ```jsx
 const mouse = useMouse()
@@ -152,11 +152,11 @@ return (
 )
 ```
 
-Another thing that this example illustrates is that we get a much clearer separation between our `render` and preparing to render. In the render prop-example we don't actually care about the `<Mouse>` component, we just care about the value we get in the render prop function. This separation is so much clearer when we use hooks which I think is very good.
+Another thing that this example illustrates is that we get a much clearer separation between our `render` and preparing to render. In the render prop-example we don't care about the `<Mouse>` component, we just care about the value we get in the render prop function. This separation is so much clearer when we use hooks which I think is very good.
 
 ## <a name="in-the-age-of-hooks"></a> In the Age of Hooks
 
-When Hooks were introduced back in 2018 I can't say that the community screamed with joy. The reaction were mostly complaining about this completely new thing that we'll also have to learn. Yet here we are two years later and most of the hate has died down and modern React is now mostly defined by Hooks. This has also meant that the render prop pattern isn't as popular as it was just a couple of years ago. But while hooks are superior to render props in most cases there are still a couple of situations where you might want to reach for a good ol' render prop.
+When Hooks were introduced back in 2018 I can't say that the community screamed with joy. The reaction was mostly complaining about this completely new thing that we'll also have to learn. Yet here we are two years later and most of the hate has died down and modern React is now mostly defined by Hooks. This has also meant that the render prop pattern isn't as popular as it was just a couple of years ago. But while hooks are superior to render props in most cases there are still a couple of situations where you might want to reach for a good ol' render prop.
 
 ### Wrapping hooks
 
@@ -213,7 +213,7 @@ This could be implemented with a hook that takes the renderers as arguments, but
 
 ### Performance
 
-Finally, I recently watched a talk by [@erikras](https://twitter.com/erikras) and learned about a third use case when you might want to use render props. Below is a component that uses the previously mentioned `useHover` hook, but it also renders a component called `VerySlowToRender` which is, well.. very slow to render. It's probably from a third party package that you have no control over but for some reason you still have to use it.
+Finally, I recently watched a talk by [@erikras](https://twitter.com/erikras) and learned about a third use case when you might want to use render props. Below is a component that uses the previously mentioned `useHover` hook, but it also renders a component called `VerySlowToRender` which is, well.. very slow to render. It's probably from a third-party package that you have no control over but for some reason you still have to use it.
 
 ```jsx{5,7}
 function MyComponent() {
@@ -245,7 +245,7 @@ function MyComponent() {
 }
 ```
 
-Now when we hover the only thing that's gonna rerender is the `div`! I do think this is maybe the most opinionated use of the render prop pattern, and personally I can't really decide wether I prefer this over breaking it out to another component. Choice is always good though!
+Now when we hover the only thing that's gonna rerender is the `div`! I do think this is maybe the most opinionated use of the render prop pattern, and I can't decide whether I prefer this over breaking it out to another component. Choice is always good though!
 
 ## Summary
 
