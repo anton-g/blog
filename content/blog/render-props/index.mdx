@@ -8,7 +8,7 @@ draft: true
 
 import Counter from './components/Counter'
 
-Through the years many different patterns have emerged to solve problems we encounter writing React components. One of the most popular patterns ever is the `render prop`-pattern. A render prop is a way to solve a problem where you want to share common functionality.
+Through the years many different patterns have emerged to solve problems we encounter writing React components. One of the most popular patterns ever is the `render prop`-pattern.
 
 In this post, we'll walk through what render props are, what the implementation looks like, and how they fit into the React landscape now that we live in _the Golden Age of Hooks_. Let's get started!
 
@@ -16,13 +16,13 @@ In this post, we'll walk through what render props are, what the implementation 
 
 ## So what is a render prop?
 
-The render prop pattern follows a principle called ["Inversion of Control"](https://kentcdodds.com/blog/inversion-of-control) which is a way to move control from the abstraction to the user of said abstraction.
+In theory, a render prop is a way to share common functionality. It follows a principle called ["Inversion of Control"](https://kentcdodds.com/blog/inversion-of-control) which is a way to move control from the abstraction to the user of said abstraction.
 
 Wait.. what?
 
 Yeah, I know. Let's take a look at a _very_ simplified example instead of talking theory.
 
-This is a simple component that has a button and when you click that button you increase the count by one.
+This is a small component that renders a button and when you click that button you increase the count by one.
 
 <Counter renderCount={count => count} />
 
@@ -156,14 +156,16 @@ Another thing that this example illustrates is that we get a much clearer separa
 
 ## <a name="in-the-age-of-hooks"></a> In the Age of Hooks
 
-When Hooks were introduced back in 2018 I can't say that the community screamed of joy. The reaction were mostly complaining about this completely new thing that we'll also have to learn. Yet here we are two years later and most of the hate has died down and modern React is very much defined by Hooks. This has also meant that the render prop pattern isn't as popular as it was just a couple of years ago. But while hooks are superior to render props in most cases there are still a couple of situations where you might want to reach for a good ol' render prop.
+When Hooks were introduced back in 2018 I can't say that the community screamed with joy. The reaction were mostly complaining about this completely new thing that we'll also have to learn. Yet here we are two years later and most of the hate has died down and modern React is now mostly defined by Hooks. This has also meant that the render prop pattern isn't as popular as it was just a couple of years ago. But while hooks are superior to render props in most cases there are still a couple of situations where you might want to reach for a good ol' render prop.
 
 ### Wrapping hooks
 
-One of the most straight forward use cases I've found for render props nowadays is to wrap hooks to use them in class components. Let's say we've previously used a render prop to track whether the mouse is hovering an element and now we refactor this to a [`useHover`](https://usehooks.com/useHover/) hook instead. To use this in a class component we can wrap it in a render prop:
+One of the most straight forward use cases for render props is to wrap hooks so you can use them in class components. Let's say we've previously used a render prop to track whether the mouse is hovering an element and now we refactor this to a [`useHover`](https://usehooks.com/useHover/) hook instead. To use this in a class component we can wrap it in a render prop:
 
 ```jsx
-const Hover = ({ children }) => children(useHover())
+function Hover({ children }) {
+  return children(useHover())
+}
 ```
 
 And then we can use it just like we would if `Hover` took care of the implementation itself:
@@ -175,6 +177,8 @@ And then we can use it just like we would if `Hover` took care of the implementa
   }}
 </Hover>
 ```
+
+Pretty neat, right?
 
 ### Enable custom rendering
 
@@ -245,6 +249,6 @@ Now when we hover the only thing that's gonna rerender is the `div`! I do think 
 
 ## Summary
 
-While Hooks have taken over a lot of the responsibility of render props they should still have a seat among the patterns we use when solving problems with React, just as long as we use them for the right reasons.
+While Hooks have taken over a lot of the responsibility of render props, render props should still have a seat at the table of patterns we use when solving problems with React, as long as we use them for the right reasons.
 
 Thanks for reading! 🙌
