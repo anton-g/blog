@@ -42,8 +42,6 @@ export default function Counter() {
 }
 ```
 
-> In reality, it's more likely you'll encounter components that use render props to handle tracking mouse movement, scrolling or similar things.
-
 Now, for the sake of the example let's say we want to give the user more control of how the number is displayed. The first thought might be to add a prop to the component to add some styling. That would work if we just wanna change the styling, but what if we run into a situation where we also want to wrap the count in some text? While we could add another prop for this it's also a perfect time to try using a render prop.
 
 Imagining we want to add some styling and then display the count like "`The count is X!`" we can move this control to the consumer of the component by refactoring our component to this:
@@ -78,7 +76,7 @@ And now our component looks like this:
 
 <Counter renderCount={count => <span>The count is {count}!</span>} />
 
-By doing this we've _inverted_ the control of rendering the count from the component to the user.
+By doing this we've _inverted_ the control of rendering the count from the component itself to the consumer of the component.
 
 ### Function as children
 
@@ -108,11 +106,13 @@ This looks very similar to before, we've just removed our custom prop and now us
 
 I had a really hard time wrapping my head around this syntax when I first learned about render props, but it's also the most popular way of using them so it's likely you'll encounter it too.
 
-## The issues
+> In reality, it's more likely you'll encounter components that use render props to handle tracking mouse movement, scrolling or similar things.
+
+## Drawbacks
 
 While render props might sound great there are a couple of issues that I want to talk about.
 
-One issue is that when you get to a point where you need to use multiple components with a render prop api you could end up in what you might recognize as _"the pyramid of death"_ or _"callback hell"_. Below is an example where we have a component that needs access to its measured size, the scroll position, mouse position, and some styling for animation purposes:
+One problem is that when you get to a point where you need to use multiple components with a render prop api you could end up in what you might recognize as _"the pyramid of death"_. Below is an example where we have a component that needs access to its measured size, the scroll position, mouse position, and some styling for animation purposes:
 
 ```jsx
 <Mouse>
