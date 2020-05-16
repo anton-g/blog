@@ -8,9 +8,11 @@ draft: true
 
 import Counter from './components/Counter'
 
-Through the years many different patterns have emerged to solve different problems we encounter writing React components. One of the most popular patterns ever is `render props`. A render prop is a way to solve a problem where you want to share common functionality.
+Through the years many different patterns have emerged to solve problems we encounter writing React components. One of the most popular patterns ever is the `render prop`-pattern. A render prop is a way to solve a problem where you want to share common functionality.
 
-In this post, I'll talk about what render props are, how to implement it, and how they fit into the React landscape now that we live in the Golden Age of Hooks. Let's get started!
+In this post, we'll walk through what render props are, what the implementation looks like, and how they fit into the React landscape now that we live in _the Golden Age of Hooks_. Let's get started!
+
+> If you know what render props are but are curious about its current use cases, feel free to [skip ahead!](#in-the-age-of-hooks)
 
 ## So what is a render prop?
 
@@ -104,7 +106,7 @@ This looks very similar to before, we've just removed our custom prop and now us
 <Counter>{count => <span>The count is {count}!</span>}</Counter>
 ```
 
-I had a really hard time wrapping my head around this syntax when I first learned about render props, but it's also been the most popular way of using them so it's likely you'll encounter it too.
+I had a really hard time wrapping my head around this syntax when I first learned about render props, but it's also the most popular way of using them so it's likely you'll encounter it too.
 
 ## The issues
 
@@ -152,14 +154,97 @@ return (
 
 Another thing that this example illustrates is that we get a much clearer separation between our `render` and preparing to render. In the render prop-example we don't actually care about the `<Mouse>` component, we just care about the value we get in the render prop function. This separation is so much clearer when we use hooks which I think is very good.
 
-## In the Age of Hooks
+## <a name="in-the-age-of-hooks"></a> In the Age of Hooks
 
 When Hooks were introduced back in 2018 I can't say that the community screamed of joy. The reaction were mostly complaining about this completely new thing that we'll also have to learn. Yet here we are two years later and most of the hate has died down and modern React is very much defined by Hooks. This has also meant that the render prop pattern isn't as popular as it was just a couple of years ago. But while hooks are superior to render props in most cases there are still a couple of situations where you might want to reach for a good ol' render prop.
 
-Performance reasons
-Using Hooks in class components
-Multiple render props (Grid with rowRenderer, cellRenderer)
+### Wrapping hooks
+
+One of the most straight forward use cases I've found for render props nowadays is to wrap hooks to use them in class components. Let's say we've previously used a render prop to track whether the mouse is hovering an element and now we refactor this to a [`useHover`](https://usehooks.com/useHover/) hook instead. To use this in a class component we can wrap it in a render prop:
+
+```jsx
+const Hover = ({ children }) => children(useHover())
+```
+
+And then we can use it just like we would if `Hover` took care of the implementation itself:
+
+```jsx
+<Hover>
+  {([hoverRef, isHovered]) => {
+    return <div ref={hoverRef}>{isHovered ? '😃' : '😞'}</div>
+  }}
+</Hover>
+```
+
+### Enable custom rendering
+
+In the below example we have a component called `Grid` that takes a prop called data. It renders a table with two rows and two columns, and handles the logic for sorting, filtering, rearranging columns and so on.
+
+```jsx
+const data = [
+  {
+    name: 'Anton',
+    age: 28,
+  },
+  {
+    name: 'Nisse',
+    age: 32,
+  },
+]
+
+return <Grid data={data} />
+```
+
+Now imagine that we need to change how a row or cell is displayed. Here we could implement two render props in the component that defers this rendering to the user:
+
+```jsx
+<Grid
+  data={data}
+  rowRenderer={(row, idx) => <div>...</div>}
+  cellRenderer={(cell, row, idx) => <div>...</div>}
+/>
+```
+
+This could be implemented with a hook that takes the renderers as arguments, but in this case I believe the render prop api is much more pleasant to work with.
+
+### Performance
+
+Finally, I recently watched a talk by [@erikras](https://twitter.com/erikras) and learned about a third use case when you might want to use render props. Below is a component that uses the previously mentioned `useHover` hook, but it also renders a component called `VerySlowToRender` which is, well.. very slow to render. It's probably from a third party package that you have no control over but for some reason you still have to use it.
+
+```jsx{5,7}
+function MyComponent() {
+  const [hoverRef, isHovered] = useHover()
+
+  return (
+    <VerySlowToRender>
+      <div ref={hoverRef}>{isHovered ? '😃' : '😞'}</div>
+    </VerySlowToRender>
+  )
+}
+```
+
+So in this case the problem is that when you hover the `div` the entire component will rerender, including the slow part. One way to solve this might be to try wrapping the slow component in some memoization or breaking out the `div` that is being hovered into its own component, but sometime that might feel like overkill.
+
+What we could do instead is to use our previously defined `Hover` component with a render prop!
+
+```jsx{4-8}
+function MyComponent() {
+  return (
+    <VerySlowToRender>
+      <Hover>
+        {([hoverRef, isHovered]) => {
+          return <div ref={hoverRef}>{isHovered ? '😃' : '😞'}</div>
+        }}
+      </Hover>
+    </VerySlowToRender>
+  )
+}
+```
+
+Now when we hover the only thing that's gonna rerender is the `div`! I do think this is maybe the most opinionated use of the render prop pattern, and personally I can't really decide wether I prefer this over breaking it out to another component. Choice is always good though!
 
 ## Summary
+
+While Hooks have taken over a lot of the responsibility of render props they should still have a seat among the patterns we use when solving problems with React, just as long as we use them for the right reasons.
 
 Thanks for reading! 🙌
