@@ -19,6 +19,7 @@ import Text from '../components/Startpage/Text'
 import Todo from '../components/Startpage/Todo'
 import { SoundContext } from '../components/common/SoundContext'
 import SoundToggle from '../components/Startpage/SoundToggle/SoundToggle'
+import Retro from '../components/Startpage/Retro/Retro'
 
 const BlogIndex = props => {
   const [soundEnabled, setSoundEnabled] = useState(true)
@@ -44,6 +45,7 @@ const BlogIndex = props => {
             <Text></Text>
             <Todo></Todo>
             <SoundToggle></SoundToggle>
+            <Retro></Retro>
           </Content>
         </div>
       </Layout>
