@@ -40,7 +40,6 @@ class BlogPostTemplate extends React.Component {
         />
         <Post>
           <h1>{post.frontmatter.title}</h1>
-          <Timestamp>Last update: {post.frontmatter.date}</Timestamp>
           <MDXRenderer>{post.body}</MDXRenderer>
           {post.frontmatter.dev && (
             <a
@@ -61,7 +60,8 @@ class BlogPostTemplate extends React.Component {
               Discuss on DEV
             </a>
           )}
-          <hr style={{ marginBottom: '36px' }} />
+          <hr style={{ marginBottom: '8px' }} />
+          <Timestamp>Last update: {post.frontmatter.date}</Timestamp>
           <Paging>
             <PagingLink>
               {previous && (

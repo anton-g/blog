@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
 import SEO from '../components/Seo'
@@ -17,11 +17,15 @@ import Asdf from '../components/Startpage/Asdf/Asdf'
 import AaaaAaahh from '../components/Startpage/AaaaAaahh/AaaaAaahh'
 import Text from '../components/Startpage/Text'
 import Todo from '../components/Startpage/Todo'
+import { SoundContext } from '../components/common/SoundContext'
+import SoundToggle from '../components/Startpage/SoundToggle/SoundToggle'
 
-class BlogIndex extends React.Component {
-  render() {
-    return (
-      <Layout location={this.props.location}>
+const BlogIndex = props => {
+  const [soundEnabled, setSoundEnabled] = useState(true)
+
+  return (
+    <SoundContext.Provider value={[soundEnabled, setSoundEnabled]}>
+      <Layout location={props.location}>
         <SEO title={'home'} meta={[{ name: 'og:type', content: 'website' }]} />
         <div style={{ display: 'flex', justifyContent: 'center' }}>
           <Content>
@@ -39,11 +43,12 @@ class BlogIndex extends React.Component {
             <AaaaAaahh></AaaaAaahh>
             <Text></Text>
             <Todo></Todo>
+            <SoundToggle></SoundToggle>
           </Content>
         </div>
       </Layout>
-    )
-  }
+    </SoundContext.Provider>
+  )
 }
 
 const Content = styled.div`

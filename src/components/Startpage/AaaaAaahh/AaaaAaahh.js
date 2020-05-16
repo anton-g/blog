@@ -1,18 +1,22 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styled, { keyframes } from 'styled-components'
 import BlockWrapper from '../BlockWrapper'
 import mouth from './mouth.svg'
 import scream from './scream.wav'
 import useSound from 'use-sound'
+import { SoundContext } from '../../common/SoundContext'
 
 const AaaaAaahh = () => {
+  const [soundEnabled] = useContext(SoundContext)
   const [play, { isPlaying }] = useSound(scream, { volume: 0.5 })
 
   return (
     <AaaaAaahhWrapper>
       <Link
         href="https://chrome.google.com/webstore/detail/aaaaaaaahhhhh/kmngmhbkbpdgbhbcnhpknekaplldhdln"
-        onMouseEnter={play}
+        onMouseEnter={() => {
+          soundEnabled && play()
+        }}
         animate={isPlaying}
       >
         <img alt="mouth" src={mouth} width="60%" height="80%"></img>

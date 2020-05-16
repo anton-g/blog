@@ -1,12 +1,14 @@
-import React, { useRef } from 'react'
+import React, { useRef, useContext } from 'react'
 import styled from 'styled-components'
 import { useSpring, animated, config } from 'react-spring'
 import boing from './boing.mp3'
 import useSound from 'use-sound'
+import { SoundContext } from '../../common/SoundContext'
 
 const trans = (x, y) => `translate3d(${x / 5}px, ${y / 5}px, 0)`
 
 export default function Morphism() {
+  const [soundEnabled] = useContext(SoundContext)
   const [play] = useSound(boing, { volume: 0.5 })
 
   const ref = useRef(null)
@@ -36,7 +38,7 @@ export default function Morphism() {
             rect.current.y + rect.current.height / 2
           ),
         })
-        play()
+        if (soundEnabled) play()
       }}
     >
       <Box scale={0.8} style={{ transform: props.xy.to(trans) }}>
