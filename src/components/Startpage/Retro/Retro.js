@@ -79,6 +79,7 @@ const Gif = styled.img`
   position: absolute;
   top: ${p => p.y}px;
   left: ${p => p.x}px;
+  z-index: 999999;
 `
 
 const Button = styled.button`

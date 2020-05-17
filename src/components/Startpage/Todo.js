@@ -7,11 +7,11 @@ export default function Todo() {
       <h2>todo</h2>
       <ul>
         <li>Respect prefers-reduced-motion</li>
-        <li>Add toggle for sounds</li>
         <li>Dark mode</li>
         <li>Fix horrible perf :)</li>
         <li>Differentiate quotes and "tips" in posts</li>
         <li>Add web mentions</li>
+        <li>Remake posts page</li>
       </ul>
     </StyledTodo>
   )
