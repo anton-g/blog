@@ -1,6 +1,6 @@
 ---
 title: Render props in the Age of Hooks
-date: '2020-05-16T14:17:00.000Z'
+date: '2020-05-18T09:30:00.000Z'
 description: 'What is render props, and what use case do they have now that we have hooks?'
 dev: ''
 draft: true
@@ -152,7 +152,9 @@ return (
 )
 ```
 
-Another thing that this example illustrates is that we get a much clearer separation between our `render` and preparing to render. In the render prop-example we don't care about the `<Mouse>` component, we just care about the value we get in the render prop function. This separation is so much clearer when we use hooks which I think is very good.
+Another thing that this example illustrates is that we get a much clearer separation between rendering and preparing to render. In the render prop-example we don't care about the `<Mouse>` component, we just care about the value we get in the render prop function.
+
+This also means that if need to use or process the values returned by our hooks we don't need to have this logic mixed with what we return. This separation is so much clearer in comparison to render props which I think is very good.
 
 ## <a name="in-the-age-of-hooks"></a> In the Age of Hooks
 
@@ -168,14 +170,20 @@ function Hover({ children }) {
 }
 ```
 
-And then we can use it just like we would if `Hover` took care of the implementation itself:
+And then we can use it in a class component just like we would if `Hover` took care of the implementation itself:
 
 ```jsx
-<Hover>
-  {([hoverRef, isHovered]) => {
-    return <div ref={hoverRef}>{isHovered ? '😃' : '😞'}</div>
-  }}
-</Hover>
+class MyComponent extends React.Component {
+  render() {
+    return (
+      <Hover>
+        {([hoverRef, isHovered]) => {
+          return <div ref={hoverRef}>{isHovered ? '😃' : '😞'}</div>
+        }}
+      </Hover>
+    )
+  }
+}
 ```
 
 Pretty neat, right?
@@ -199,7 +207,7 @@ const data = [
 return <Grid data={data} />
 ```
 
-Now imagine that we need to change how a row or cell is displayed. Here we could implement two render props in the component that defers this rendering to the user:
+Now imagine that we need to change how a row or cell is displayed. This is a perfect opportunity to implement two render props in the component that defers this rendering to the user:
 
 ```jsx
 <Grid
