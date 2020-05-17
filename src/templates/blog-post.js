@@ -19,7 +19,7 @@ class BlogPostTemplate extends React.Component {
       title: post.frontmatter.title,
       tagline: post.frontmatter.description,
       titleFont: 'roboto',
-      titleFontSize: 72,
+      titleFontSize: 94,
       titleExtraConfig: 'bold',
       taglineFont: 'roboto',
       taglineFontSize: 48,
