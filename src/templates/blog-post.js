@@ -8,7 +8,7 @@ import Draft from '../components/Draft'
 import SEO from '../components/Seo'
 import Layout from '../components/Layout'
 import styled from 'styled-components'
-import ConfettiCanon from '../components/common/ConfettiCanon'
+import ConfettiCanon from '../components/common/ConfettiCanon/ConfettiCanon'
 
 class BlogPostTemplate extends React.Component {
   render() {

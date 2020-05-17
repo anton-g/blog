@@ -2,8 +2,14 @@ import React, { useState } from 'react'
 import { useSpring, animated } from 'react-spring'
 import Confetti from 'react-dom-confetti'
 import styled from 'styled-components'
+import useSound from 'use-sound'
+import pop from './pop.mp3'
+import charge from './charge.mp3'
 
 export default function ConfettiCanon() {
+  const [playPop] = useSound(pop, { volume: 0.5 })
+  const [playCharge, { stop }] = useSound(charge, { volume: 0.4 })
+
   const [loading, setLoading] = useState(false)
   const [confetti, setConfetti] = useState(false)
   const [confettiConfig, setConfettiConfig] = useState({
@@ -32,7 +38,7 @@ export default function ConfettiCanon() {
   const [{ x }, set] = useSpring(() => ({
     x: 0,
     config: {
-      duration: 1000,
+      duration: 2000,
     },
   }))
 
@@ -43,9 +49,12 @@ export default function ConfettiCanon() {
     })
     setLoading(true)
     setConfetti(false)
+    playCharge()
   }
 
   const handleMouseUp = () => {
+    if (!loading) return
+
     const percentage = x.get() / 80
 
     setConfettiConfig(c => ({
@@ -65,6 +74,8 @@ export default function ConfettiCanon() {
     })
     setLoading(false)
     setConfetti(true)
+    stop()
+    playPop()
   }
 
   return (
