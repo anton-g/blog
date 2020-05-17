@@ -87,24 +87,26 @@ class BlogPostTemplate extends React.Component {
                 Celebrate with <b>confetti</b>! 🎉
               </p>
             </ConfettiWrapper>
-            <TwitterWrapper>
-              <p>Share this post on Twitter!</p>
-              <Arrow>
-                <svg
-                  fill="none"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                </svg>
-              </Arrow>
-              <a href={shareLink} target="_blank" rel="noopener noreferrer">
-                <img src={twitter} alt="twitter logo"></img>
-              </a>
-            </TwitterWrapper>
+            {!isDraft && (
+              <TwitterWrapper>
+                <p>Share this post on Twitter!</p>
+                <Arrow>
+                  <svg
+                    fill="none"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                  </svg>
+                </Arrow>
+                <a href={shareLink} target="_blank" rel="noopener noreferrer">
+                  <img src={twitter} alt="twitter logo"></img>
+                </a>
+              </TwitterWrapper>
+            )}
           </Footer>
           <Paging>
             <PagingLink>
