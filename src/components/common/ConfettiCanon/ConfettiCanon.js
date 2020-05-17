@@ -89,7 +89,6 @@ export default function ConfettiCanon() {
     >
       <StyledConfetti active={confetti} config={confettiConfig} />
       <svg
-        style={{ transform: 'rotateZ(210deg) scale(0.5)' }}
         width="90"
         height="120"
         viewBox="0 0 90 120"
@@ -125,6 +124,15 @@ const CannonWrapper = styled.div`
   width: min-content;
   height: min-content;
   cursor: pointer;
+
+  svg {
+    transform: rotateZ(210deg) scale(0.5);
+    transition: transform 0.2s;
+  }
+
+  &:hover svg {
+    transform: rotateZ(210deg) scale(0.55);
+  }
 `
 
 const lerp = (x, y, a) => x * (1 - a) + y * a

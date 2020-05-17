@@ -3,12 +3,13 @@ import Link from 'gatsby-link'
 import { graphql } from 'gatsby'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 import getShareImage from '@jlengstorf/get-share-image'
-import Bio from '../components/Bio'
 import Draft from '../components/Draft'
 import SEO from '../components/Seo'
 import Layout from '../components/Layout'
 import styled from 'styled-components'
 import ConfettiCanon from '../components/common/ConfettiCanon/ConfettiCanon'
+
+import twitter from './twitter.png'
 
 class BlogPostTemplate extends React.Component {
   render() {
@@ -27,6 +28,9 @@ class BlogPostTemplate extends React.Component {
       cloudName: 'anton-g',
       imagePublicID: 'social-card-template_jphyku',
     })
+
+    const encodedTitle = encodeURI('"' + post.frontmatter.title + '"')
+    const shareLink = `https://twitter.com/share?url=${this.props.location.href}&text=${encodedTitle}%20by%20Anton%20Gunnarsson.&via=Awnton`
 
     return (
       <Layout maxWidth="750px" location={this.props.location}>
@@ -63,25 +67,45 @@ class BlogPostTemplate extends React.Component {
           )}
           <hr style={{ marginBottom: '8px' }} />
           <Timestamp>Last update: {post.frontmatter.date}</Timestamp>
-          <ConfettiWrapper>
-            <ConfettiCanon></ConfettiCanon>
-            <Arrow>
-              <svg
-                fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
-              </svg>
-            </Arrow>
-            <p>
-              Enjoyed the post? <br />
-              Celebrate with the <b>confetti canon</b>! 🎉
-            </p>
-          </ConfettiWrapper>
+          <Footer>
+            <ConfettiWrapper>
+              <ConfettiCanon></ConfettiCanon>
+              <Arrow>
+                <svg
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                </svg>
+              </Arrow>
+              <p>
+                Enjoyed the post? <br />
+                Celebrate with <b>confetti</b>! 🎉
+              </p>
+            </ConfettiWrapper>
+            <TwitterWrapper>
+              <p>Share this post on Twitter!</p>
+              <Arrow>
+                <svg
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                </svg>
+              </Arrow>
+              <a href={shareLink} target="_blank" rel="noopener noreferrer">
+                <img src={twitter} alt="twitter logo"></img>
+              </a>
+            </TwitterWrapper>
+          </Footer>
           <Paging>
             <PagingLink>
               {previous && (
@@ -147,6 +171,43 @@ const Timestamp = styled.p`
   color: hsl(157, 5%, 36%);
 `
 
+const Arrow = styled.div`
+  width: 20px;
+  height: 20px;
+`
+
+const Footer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+`
+
+const TwitterWrapper = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-left: auto;
+
+  img {
+    height: 100px;
+    width: 100px;
+    transition: transform 0.3s;
+  }
+
+  a:hover img {
+    transform: scale(1.2) rotateZ(-10deg);
+  }
+
+  p {
+    max-width: 150px;
+    text-align: right;
+  }
+
+  ${Arrow} {
+    margin-left: 20px;
+  }
+`
+
 const ConfettiWrapper = styled.div`
   display: flex;
   align-items: center;
@@ -154,12 +215,10 @@ const ConfettiWrapper = styled.div`
   p {
     font-size: 16px;
   }
-`
 
-const Arrow = styled.div`
-  width: 20px;
-  height: 20px;
-  margin-right: 20px;
+  ${Arrow} {
+    margin-right: 20px;
+  }
 `
 
 const Paging = styled.ul`
