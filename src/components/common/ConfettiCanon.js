@@ -1,8 +1,21 @@
 import React, { useState } from 'react'
 import { useSpring, animated } from 'react-spring'
+import Confetti from 'react-dom-confetti'
+import styled from 'styled-components'
 
-export default function Test() {
+export default function ConfettiCanon() {
   const [loading, setLoading] = useState(false)
+  const [confetti, setConfetti] = useState(false)
+  const [confettiConfig, setConfettiConfig] = useState({
+    angle: 60,
+    spread: 25,
+    startVelocity: 10,
+    elementCount: 20,
+    dragFriction: 0.1,
+    duration: 1000,
+    stagger: 0,
+    colors: ['#a864fd', '#29cdff', '#78ff44', '#ff718d', '#fdff6a'],
+  })
   const height = 120
 
   const { path } = useSpring({
@@ -29,27 +42,48 @@ export default function Test() {
       immediate: false,
     })
     setLoading(true)
+    setConfetti(false)
   }
 
   const handleMouseUp = () => {
+    const percentage = x.get() / 80
+
+    setConfettiConfig(c => ({
+      ...c,
+      ...{
+        spread: lerp(25, 60, percentage),
+        startVelocity: lerp(10, 45, percentage),
+        elementCount: lerp(20, 120, percentage),
+        // dragFriction: 0.1,
+        duration: lerp(1000, 2000, percentage),
+      },
+    }))
+
     set({
       x: 0,
       immediate: true,
     })
     setLoading(false)
+    setConfetti(true)
   }
 
   return (
-    <div>
+    <CannonWrapper
+      onMouseDown={handleMouseDown}
+      onMouseUp={handleMouseUp}
+      onMouseLeave={handleMouseUp}
+      onTouchStart={handleMouseDown}
+      onTouchEnd={handleMouseUp}
+      onTouchCancel={handleMouseUp}
+    >
+      <StyledConfetti active={confetti} config={confettiConfig} />
       <svg
-        style={{ transform: 'rotateZ(120deg) scale(0.4)' }}
+        style={{ transform: 'rotateZ(210deg) scale(0.4)' }}
         width="90"
         height="120"
         viewBox="0 0 90 120"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        onMouseDown={handleMouseDown}
-        onMouseUp={handleMouseUp}
       >
         <mask id="myMask">
           <animated.path d={path} fill="#C4C4C4" stroke="black" />
@@ -62,6 +96,24 @@ export default function Test() {
           mask="url(#myMask)"
         />
       </svg>
-    </div>
+    </CannonWrapper>
   )
 }
+
+const StyledConfetti = styled(Confetti)`
+  z-index: 999999;
+  position: absolute !important;
+  top: 25%;
+`
+
+const CannonWrapper = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: min-content;
+  height: min-content;
+  cursor: pointer;
+`
+
+const lerp = (x, y, a) => x * (1 - a) + y * a

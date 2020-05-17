@@ -40,7 +40,6 @@ const BlogIndex = props => {
             <TvQuiz></TvQuiz>
             <Asdf></Asdf>
             <ColorTweaker></ColorTweaker>
-            {/* <Spotify></Spotify> */}
             <AaaaAaahh></AaaaAaahh>
             <Text></Text>
             <Todo></Todo>

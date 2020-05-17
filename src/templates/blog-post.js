@@ -8,6 +8,7 @@ import Draft from '../components/Draft'
 import SEO from '../components/Seo'
 import Layout from '../components/Layout'
 import styled from 'styled-components'
+import ConfettiCanon from '../components/common/ConfettiCanon'
 
 class BlogPostTemplate extends React.Component {
   render() {
@@ -62,6 +63,25 @@ class BlogPostTemplate extends React.Component {
           )}
           <hr style={{ marginBottom: '8px' }} />
           <Timestamp>Last update: {post.frontmatter.date}</Timestamp>
+          <ConfettiWrapper>
+            <ConfettiCanon></ConfettiCanon>
+            <Arrow>
+              <svg
+                fill="none"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+              </svg>
+            </Arrow>
+            <p>
+              Enjoyed the post? <br />
+              Celebrate with the <b>confetti canon</b>! 🎉
+            </p>
+          </ConfettiWrapper>
           <Paging>
             <PagingLink>
               {previous && (
@@ -125,6 +145,21 @@ const Timestamp = styled.p`
   margin-top: 0;
   font-size: 12px;
   color: hsl(157, 5%, 36%);
+`
+
+const ConfettiWrapper = styled.div`
+  display: flex;
+  align-items: center;
+
+  p {
+    font-size: 16px;
+  }
+`
+
+const Arrow = styled.div`
+  width: 20px;
+  height: 20px;
+  margin-right: 20px;
 `
 
 const Paging = styled.ul`
