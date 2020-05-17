@@ -26,9 +26,9 @@ export default function ConfettiCanon() {
 
   const { path } = useSpring({
     path: loading
-      ? `M21 0 H68 Q${100} ${80 / 2} 68 ${80} H21 Q${-10} ${80 / 2} 21 0 Z`
-      : `M21 0 H68 Q${68} ${height / 2} 68 ${height} H21 Q${20} ${height /
-          2} 21 0 Z`,
+      ? `M40 0 H50 Q${100} ${80 / 2} 68 ${80} H21 Q${-10} ${80 / 2} 40 0 Z`
+      : `M40 0 H50 Q${68} ${height / 2} 68 ${height} H21 Q${20} ${height /
+          2} 40 0 Z`,
     config: {
       friction: 12,
       tension: 350,
@@ -89,7 +89,7 @@ export default function ConfettiCanon() {
     >
       <StyledConfetti active={confetti} config={confettiConfig} />
       <svg
-        style={{ transform: 'rotateZ(210deg) scale(0.4)' }}
+        style={{ transform: 'rotateZ(210deg) scale(0.5)' }}
         width="90"
         height="120"
         viewBox="0 0 90 120"
