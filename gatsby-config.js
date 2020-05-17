@@ -99,5 +99,11 @@ module.exports = {
         maxWidth: 600,
       },
     },
+    {
+      resolve: `gatsby-plugin-canonical-urls`,
+      options: {
+        siteUrl: `https://www.antongunnarsson.se`,
+      },
+    },
   ],
 }
