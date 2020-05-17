@@ -124,6 +124,7 @@ const CannonWrapper = styled.div`
   width: min-content;
   height: min-content;
   cursor: pointer;
+  user-select: none;
 
   svg {
     transform: rotateZ(210deg) scale(0.5);
