@@ -8,7 +8,7 @@ import charge from './charge.mp3'
 
 export default function ConfettiCanon() {
   const [playPop] = useSound(pop, { volume: 0.5 })
-  const [playCharge, { stop }] = useSound(charge, { volume: 0.4 })
+  const [playCharge, { stop }] = useSound(charge, { volume: 0.2 })
 
   const [loading, setLoading] = useState(false)
   const [confetti, setConfetti] = useState(false)
