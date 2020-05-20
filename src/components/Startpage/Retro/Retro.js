@@ -6,12 +6,10 @@ import leftHand from './Retroceder.gif'
 
 const gifs = [
   'dancingbaby',
-  '3demail',
-  'earth',
-  'home',
-  'ie',
-  'internet',
-  'loading',
+  'dance5',
+  'dance_a',
+  'megadance',
+  'tamndance',
   'skeleton',
 ]
 
@@ -37,7 +35,7 @@ export default function Retro() {
           ></img>
           <img style={{ transform: 'rotateZ(-45deg)' }} src={rightHand}></img>
         </HandRow>
-        retro!
+        useDance()
         <HandRow>
           <img
             style={{ transform: 'scaleX(-1) rotateZ(45deg)' }}
@@ -89,7 +87,7 @@ const Button = styled.button`
   justify-content: center;
   border: none;
   background: none;
-  font-size: 1em;
+  font-size: 1rem;
   width: 100%;
   height: 100%;
   padding: 0;
