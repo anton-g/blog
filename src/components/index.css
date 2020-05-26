@@ -24,10 +24,12 @@ a:hover {
 }
 
 blockquote {
-  background-color: hsl(157, 49%, 76%);
+  border-left: 5px solid hsl(157, 49%, 76%);
+  background-color: hsl(157, 49%, 96%);
   margin: 0;
-  padding: 0.3rem 1rem;
-  border-radius: 8px 24px;
+  padding: 0.1rem 1rem;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
   color: black;
 }
 
