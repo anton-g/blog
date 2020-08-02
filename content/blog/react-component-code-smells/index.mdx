@@ -1,0 +1,86 @@
+---
+title: 10 code smells in React components
+date: '2020-05-24T20:17:00.000Z'
+description: '10 code smells to avoid in your React components'
+dev: ''
+draft: true
+---
+
+## Intro
+
+We'll look at examples of ten different code smells in react components. Opinionated bla bla
+
+## Table of contents
+
+- 1
+- 2
+- 3
+
+## 1 Too many props
+
+a sign that the component might need to be split.
+
+Solutions:
+
+- Pass down an `options` object
+- break the component up into multiple components
+- use composition
+
+## 2 Props that doesn't work with each other
+
+`autoCapitalize` + `type:tel`
+Solutions:
+
+- Break up into multiple components
+
+## 3 Shared state
+
+ie duplicating the component and it shares state it shouldn't
+Navbar never duplicated? Think again, animations
+Solutions:
+
+- Remove the shared state, make sure you can use multiple instances of the component
+
+## 4 copying props into state
+
+Don't stop the data flow: For example copying props into state, meaning that when props change the state isn't updated. (Constructor: state.x = prop.x)
+
+naming initialColor or defaultColor
+
+read more https://overreacted.io/writing-resilient-components/
+
+## 5 Large "data" props
+
+Passing data instead of composing (See Composable components → tabs)
+
+## 6 (Not) prop drilling
+
+Deep prop drilling (Passing down blabla, pass down the component instead, profilepicture ie)
+Advanced patterns when prop drilling is just fine
+
+## 7 JSX in methods
+
+JSX rendered from methods (Move to separate component, or even functions outside component)
+Components doesn't have to be moved to separate file, if tightly coupled
+
+## 8 Booleans for state
+
+Avoid booleans for state
+Solutions:
+
+- state string
+
+## 9 useState jungle
+
+Many many useState ⇒ useReducer
+Solutions:
+
+- useReducer
+
+## 10 Large useEffects
+
+Large useEffects, makes it hard to reason about the code. With smaller useEffects it's more natural:
+"When [dependencies] change do -this-"
+Solutions:
+
+- Break up into smaller useEffects
