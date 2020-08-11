@@ -6,12 +6,10 @@ require('../fonts/ms-sans-serif/ms-sans-serif.css')
 require('./index.css')
 require('./prism-theme.css')
 
-export default function Layout({ location, children, maxWidth }) {
-  const rootPath = `${__PATH_PREFIX__}/`
-
+export default function Layout({ children, maxWidth }) {
   return (
     <div>
-      <Header small={location.pathname !== rootPath} />
+      <Header />
       <main
         style={{
           maxWidth: maxWidth ? maxWidth : '800px',

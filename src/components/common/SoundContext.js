@@ -1,3 +1,3 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 export const SoundContext = React.createContext(true)

@@ -3,7 +3,7 @@
 
 body {
   font-family: Inter;
-  background-color: snow;
+  background-color: whitesmoke;
   margin: 0;
   overflow-x: hidden;
   filter: hue-rotate(0deg);
@@ -13,10 +13,6 @@ body {
 a,
 a:visited {
   color: black;
-}
-
-a:hover {
-  color: hsl(157, 49%, 46%);
 }
 
 .gatsby-resp-image-link::after {
