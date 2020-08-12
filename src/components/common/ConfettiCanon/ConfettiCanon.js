@@ -49,7 +49,7 @@ export default function ConfettiCanon() {
     })
     setLoading(true)
     setConfetti(false)
-    playCharge()
+    // playCharge()
   }
 
   const handleMouseUp = () => {

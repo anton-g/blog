@@ -30,7 +30,7 @@ const BlogIndex = props => {
             <Link to="software-development-is-a-social-profession">
               our profession is social at it's core
             </Link>{' '}
-            or a thing about{' '}
+            or about{' '}
             <Link to="render-props">render props and hooks in React</Link>.
           </p>
           <p>

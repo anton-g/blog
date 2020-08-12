@@ -5,7 +5,7 @@ draft: false
 description: 'A short retrospective of the past decade'
 ---
 
-I'm usually not one for doing huge retrospectives but I got caught up in a conversation with a friend about what we've done this past decade realized I easily forget what I've accomplished. So to much of my own benefit, here's a short run through of the past 10 years of my life.
+I'm usually not one for doing huge retrospectives but I got caught up in a conversation with a friend about what we've done this past decade and realized I easily forget what I've accomplished. So to much of my own benefit, here's a short run through of the past 10 years of my life.
 
 ## 2010
 
