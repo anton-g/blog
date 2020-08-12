@@ -1,8 +1,9 @@
 ---
 title: Digital Garden
 date: '2020-08-12T21:05:00.000Z'
-unlisted: false
 description: 'Rebuilding my blog into a Digital Garden'
+unlisted: false
+state: 'budding'
 ---
 
 I really like writing things here, but I usually put to much pressure on myself about the quality, length and how interesting the content has to be. This have led to me writing much less than I'd like, so the last couple of months I've been thinking about how to fix that and I've settled on using the idea of a _digital garden_.

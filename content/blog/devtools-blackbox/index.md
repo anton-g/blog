@@ -1,7 +1,8 @@
 ---
 title: Blackboxing in DevTools
-date: "2019-04-19T13:00:00.000Z"
-description: "How to simplify debugging with blackboxing"
+date: '2019-04-19T13:00:00.000Z'
+description: 'How to simplify debugging with blackboxing'
+state: 'bloomed'
 ---
 
 Most developer tools in modern browsers today support a feature called blackboxing. It's a tool used to denote certain source files for the debugger so they can route around it. You could for example use it to improve the stack traces of your errors or avoid stepping into framework source code.

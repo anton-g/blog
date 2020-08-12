@@ -1,7 +1,8 @@
 ---
 title: Podcasts
-date: "2017-11-02T11:00:00.000Z"
-description: "Programming podcast tips"
+date: '2017-11-02T11:00:00.000Z'
+description: 'Programming podcast tips'
+state: 'bloomed'
 ---
 
 Before moving closer to my job I sat on the commute for almost three hours each day. Some of that time I slept, read books and, when motivated enough, programmed. For most of the time though, I listened to podcasts.
@@ -38,7 +39,7 @@ As the name suggests the shows main focus is on the .NET platform and all that c
 
 **Number of episodes:** 232  
 **Episode length:** 30-60 min  
-Kodsnack is a swedish podcast by three developers where they talk about *anything* related to being a developer. They've had episodes ranging from ergonomics of chairs, mice and the like to talking about how compilers work. It is not as code heavy as some of the ones mentioned above, but it is still probably the one I've followed the longest.
+Kodsnack is a swedish podcast by three developers where they talk about _anything_ related to being a developer. They've had episodes ranging from ergonomics of chairs, mice and the like to talking about how compilers work. It is not as code heavy as some of the ones mentioned above, but it is still probably the one I've followed the longest.
 
 Even though they are a podcast in swedish they occasionally do episodes in english as well, so be sure to [don't miss out](http://kodsnack.se/international/).
 
@@ -46,4 +47,4 @@ Even though they are a podcast in swedish they occasionally do episodes in engli
 
 So that's it! Some of my favorite podcasts about programming. What's your favorite show? Hit me up on twitter and let me know. I'm always on the look out for new stuff!
 
-<small>*Oh, and if you happen to be from Sweden (or just understand swedish), don't miss my podcast [Still in beta](http://stillinbeta.se) about life as a rookie developer ;)*</small>
+<small>_Oh, and if you happen to be from Sweden (or just understand swedish), don't miss my podcast [Still in beta](http://stillinbeta.se) about life as a rookie developer ;)_</small>

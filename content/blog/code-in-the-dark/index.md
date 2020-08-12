@@ -2,6 +2,7 @@
 title: Code in the Dark
 date: '2020-02-17T21:45:00.000Z'
 description: 'Experience from hosting a Code in the Dark event'
+state: 'growing'
 ---
 
 Code in the Dark is a _programming_ competition where participants try to recreate a design with just HTML & CSS, **without previewing it**. Created by Tictail (now Shopify) back in 2013 there have now been similar events all over the world. I got to experience the excitement of just being in the audience at last year's NordicJS which inspired me to host my own Code in the Dark-evening at work. These are some notes to my future self and anyone else who'd like to host a similar event.

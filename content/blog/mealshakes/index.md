@@ -1,11 +1,12 @@
 ---
 title: Mealshakes
-date: "2017-09-05T21:00:00.000Z"
-description: "Optimize your dinners with mealshakes"
+date: '2017-09-05T21:00:00.000Z'
+description: 'Optimize your dinners with mealshakes'
+state: 'bloomed'
 ---
 
 I commute approximately three hours in total per day, to and from work.
-It's exhausting, it lowers my morale, impedes my life in general and if I didn't love my job I would not be able to stand it. One thing I've done to increase my free time is "_optimizing_" my dinners by replacing them with mealshakes. 
+It's exhausting, it lowers my morale, impedes my life in general and if I didn't love my job I would not be able to stand it. One thing I've done to increase my free time is "_optimizing_" my dinners by replacing them with mealshakes.
 
 The first time I heard about mealshakes was from the podcaster [Fredrik Björeman](http://www.bjoreman.com) and just a little bit later from a couple of friends of mine.
 They had all tried some type of mealshake in one form or another. Mealshakes is basically what is sounds like; a water and powder based shake that replaces one of your daily meals.

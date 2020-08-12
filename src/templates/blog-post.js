@@ -10,6 +10,22 @@ import ConfettiCanon from '../components/common/ConfettiCanon/ConfettiCanon'
 
 import twitter from './twitter.png'
 
+const PostState = ({ state }) => {
+  let text = ''
+  switch (state) {
+    case 'budding':
+      text = '🌱 This post is just budding and will be updated.'
+      break
+    case 'growing':
+      text = '🌿 This post is still growing and will likely be updated.'
+      break
+    case 'bloomed':
+      text = '🌸 This post has bloomed and is unlikely to change.'
+      break
+  }
+  return <StateText>{text}</StateText>
+}
+
 class BlogPostTemplate extends React.Component {
   render() {
     const post = this.props.data.mdx
@@ -43,6 +59,7 @@ class BlogPostTemplate extends React.Component {
         />
         <Post>
           <h1>{post.frontmatter.title}</h1>
+          <PostState state={post.frontmatter.state} />
           <MDXRenderer>{post.body}</MDXRenderer>
           {post.frontmatter.dev && (
             <a
@@ -63,7 +80,6 @@ class BlogPostTemplate extends React.Component {
               Discuss on DEV
             </a>
           )}
-          <hr style={{ marginBottom: '8px' }} />
           <Timestamp>Last update: {post.frontmatter.date}</Timestamp>
           <Footer>
             <ConfettiWrapper>
@@ -106,22 +122,6 @@ class BlogPostTemplate extends React.Component {
               </TwitterWrapper>
             )}
           </Footer>
-          <Paging>
-            <PagingLink>
-              {previous && (
-                <Link to={previous.fields.slug} rel="prev">
-                  ← {previous.frontmatter.title}
-                </Link>
-              )}
-            </PagingLink>
-            <PagingLink>
-              {next && (
-                <Link to={next.fields.slug} rel="next">
-                  {next.frontmatter.title} →
-                </Link>
-              )}
-            </PagingLink>
-          </Paging>
         </Post>
       </Layout>
     )
@@ -148,6 +148,7 @@ export const pageQuery = graphql`
         description
         dev
         unlisted
+        state
       }
     }
   }
@@ -165,10 +166,17 @@ const Post = styled.div`
   }
 `
 
+const StateText = styled.span`
+  font-size: 14px;
+  font-style: italic;
+`
+
 const Timestamp = styled.p`
-  margin-top: 0;
+  margin-top: 32px;
+  margin-bottom: 48px;
   font-size: 12px;
   color: hsl(157, 5%, 36%);
+  text-align: right;
 `
 
 const Arrow = styled.div`
@@ -180,6 +188,7 @@ const Footer = styled.div`
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  margin-bottom: 64px;
 `
 
 const TwitterWrapper = styled.div`
@@ -219,16 +228,4 @@ const ConfettiWrapper = styled.div`
   ${Arrow} {
     margin-right: 20px;
   }
-`
-
-const Paging = styled.ul`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  list-style: none;
-  padding: 0;
-`
-
-const PagingLink = styled.li`
-  margin: 0;
 `

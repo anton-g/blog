@@ -3,6 +3,7 @@ title: NordicJS 2019
 description: Takeaways from a fantastic conference
 date: '2019-10-23T20:30:00.000Z'
 dev: 'https://dev.to/awnton/looking-back-at-nordicjs-2019-2hdd'
+state: 'bloomed'
 ---
 
 A few weeks ago I attended the developer conference [NordicJS](https://nordicjs.com) for the first time. I've been to quite a few other conferences in Sweden since I started working as a developer, but I have to say that this was something else. There was this very welcoming and positive feeling in the air and among the attendees that I haven't experienced anywhere before.

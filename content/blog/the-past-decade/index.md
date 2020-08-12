@@ -3,6 +3,7 @@ title: The past decade
 date: '2020-01-11T21:05:00.000Z'
 unlisted: false
 description: 'A short retrospective of the past decade'
+state: 'bloomed'
 ---
 
 I'm usually not one for doing huge retrospectives but I got caught up in a conversation with a friend about what we've done this past decade and realized I easily forget what I've accomplished. So to much of my own benefit, here's a short run through of the past 10 years of my life.

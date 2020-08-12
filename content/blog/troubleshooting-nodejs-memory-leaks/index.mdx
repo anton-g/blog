@@ -3,6 +3,7 @@ title: Troubleshooting NodeJS memory leaks with node-memwatch
 date: '2020-05-26T20:17:00.000Z'
 description: 'A story of memory, tensors and menacing graphs'
 dev: ''
+state: 'bloomed'
 ---
 
 I recently released my social drawing game [draw.wtf](https://draw.wtf) where you compete against each other by drawing things and getting judged by a machine learning model. While I've gotten a lot of positive feedback since I released it, I also quickly discovered that _something_ was wrong. The backend for the game is written in [Nest](https://nestjs.com/) (node) and hosted on [Heroku](https://heroku.com) (which I can really recommend, their free tier is great for passion projects). But looking at the memory usage in the metrics overview I could clearly see that things we're not alright:

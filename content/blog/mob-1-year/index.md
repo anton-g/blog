@@ -3,6 +3,7 @@ title: Mob programming for a year
 description: Key takeaways after mob programming full time for a year
 date: '2020-03-02T21:30:00.000Z'
 dev: 'https://dev.to/awnton/mob-programming-for-a-year-26pf'
+state: 'bloomed'
 ---
 
 Last week marked the day when I've been mob programming full time for a whole year. In case you don't know what mob programming is, _Woody Zuill_, who is credited for discovering the method describes it like this:

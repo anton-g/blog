@@ -3,6 +3,7 @@ title: git switch and restore
 date: '2019-11-10T21:00:00.000Z'
 unlisted: true
 description: 'Git is getting easier with two new commands, "switch" and "restore".'
+state: 'bloomed'
 ---
 
 Git is getting easier with two new experimental commands, `git switch` and `git restore`, that were introduced in Git 2.23. They are basically `git checkout` split up into two, one for changing branches and another for changing files. Let's start by taking a look at how we work with branches today and how it changes with switch.

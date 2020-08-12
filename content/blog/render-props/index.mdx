@@ -3,6 +3,7 @@ title: Render props in the Age of Hooks
 date: '2020-05-18T09:30:00.000Z'
 description: 'What is render props, and what use case do they have now that we have hooks?'
 dev: 'https://dev.to/awnton/render-props-in-the-age-of-hooks-464k'
+state: 'bloomed'
 ---
 
 import Counter from './components/Counter'
@@ -71,9 +72,7 @@ We pass in the `renderCount` prop as an arrow function that receives the count a
 
 > Note that the prop `renderCount` could be called anything.
 
-And now our component looks like this:
-
-<Counter renderCount={count => <span>The count is {count}!</span>} />
+And now our component looks like this: <Counter renderCount={count => <span>The count is {count}!</span>} />
 
 By doing this we've _inverted_ the control of rendering the count from the component itself to the consumer of the component.
 
