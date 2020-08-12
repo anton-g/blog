@@ -1,7 +1,7 @@
 ---
 title: The past decade
 date: '2020-01-11T21:05:00.000Z'
-draft: false
+unlisted: false
 description: 'A short retrospective of the past decade'
 ---
 

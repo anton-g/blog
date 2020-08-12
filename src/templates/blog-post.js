@@ -3,7 +3,6 @@ import Link from 'gatsby-link'
 import { graphql } from 'gatsby'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 import getShareImage from '@jlengstorf/get-share-image'
-import Draft from '../components/Draft'
 import SEO from '../components/Seo'
 import Layout from '../components/Layout'
 import styled from 'styled-components'
@@ -14,7 +13,7 @@ import twitter from './twitter.png'
 class BlogPostTemplate extends React.Component {
   render() {
     const post = this.props.data.mdx
-    const isDraft = post.frontmatter.draft
+    const isUnlisted = post.frontmatter.unlisted
     const { previous, next } = this.props.pathContext
 
     const socialImage = getShareImage({
@@ -34,7 +33,6 @@ class BlogPostTemplate extends React.Component {
 
     return (
       <Layout maxWidth="750px" location={this.props.location}>
-        {isDraft && <Draft />}
         <SEO
           title={post.frontmatter.title}
           description={post.frontmatter.description}
@@ -87,7 +85,7 @@ class BlogPostTemplate extends React.Component {
                 Celebrate with <b>confetti</b>! 🎉
               </p>
             </ConfettiWrapper>
-            {!isDraft && (
+            {!isUnlisted && (
               <TwitterWrapper>
                 <p>Share this post on Twitter!</p>
                 <Arrow>
@@ -149,7 +147,7 @@ export const pageQuery = graphql`
         date(formatString: "MMMM DD, YYYY")
         description
         dev
-        draft
+        unlisted
       }
     }
   }

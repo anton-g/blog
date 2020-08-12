@@ -15,7 +15,7 @@ class Posts extends React.Component {
         <SEO title={`posts`} />
         <PostsWrapper>
           {posts
-            .filter(({ node }) => !get(node, 'frontmatter.draft'))
+            .filter(({ node }) => !get(node, 'frontmatter.unlisted'))
             .map(({ node }) => {
               const title = get(node, 'frontmatter.title') || node.fields.slug
               return (
@@ -52,7 +52,7 @@ export const pageQuery = graphql`
           frontmatter {
             date(formatString: "DD MMMM, YYYY")
             title
-            draft
+            unlisted
           }
         }
       }

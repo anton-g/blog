@@ -1,7 +1,7 @@
 ---
 title: Digital Garden
 date: '2020-08-12T21:05:00.000Z'
-draft: false
+unlisted: false
 description: 'Rebuilding my blog into a Digital Garden'
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: git switch and restore
 date: '2019-11-10T21:00:00.000Z'
-draft: true
+unlisted: true
 description: 'Git is getting easier with two new commands, "switch" and "restore".'
 ---
 

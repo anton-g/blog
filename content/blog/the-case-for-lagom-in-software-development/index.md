@@ -1,8 +1,8 @@
 ---
 title: The case for Lagom in software development
-date: "2019-06-02T21:05:00.000Z"
-draft: true
-description: ""
+date: '2019-06-02T21:05:00.000Z'
+unlisted: true
+description: ''
 ---
 
 A brief explanation of Lagom

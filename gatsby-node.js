@@ -19,7 +19,7 @@ exports.createPages = async ({ graphql, actions }) => {
               }
               frontmatter {
                 title
-                draft
+                unlisted
               }
             }
           }
@@ -35,15 +35,15 @@ exports.createPages = async ({ graphql, actions }) => {
   // Create blog posts pages.
   const allPosts = result.data.allMdx.edges
 
-  const drafts = allPosts.filter(p => p.node.frontmatter.draft)
-  const posts = allPosts.filter(p => !p.node.frontmatter.draft)
+  const unlisteds = allPosts.filter(p => p.node.frontmatter.unlisted)
+  const posts = allPosts.filter(p => !p.node.frontmatter.unlisted)
 
-  drafts.forEach(draft => {
+  unlisteds.forEach(unlisted => {
     createPage({
-      path: draft.node.fields.slug,
+      path: unlisted.node.fields.slug,
       component: blogPost,
       context: {
-        slug: draft.node.fields.slug,
+        slug: unlisted.node.fields.slug,
       },
     })
   })
