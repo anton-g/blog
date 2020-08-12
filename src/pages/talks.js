@@ -15,6 +15,15 @@ class TalksPage extends React.Component {
         },
         link: null,
       },
+      {
+        name: 'Mob Programming: Everything is better when shared',
+        date: '2020-06-03',
+        event: {
+          name: 'sthlm.js #66',
+          url: 'https://www.meetup.com/sthlm-js/events/270870269/',
+        },
+        link: 'https://youtu.be/q7bAYxZMJho?t=3629',
+      },
     ]
 
     return (

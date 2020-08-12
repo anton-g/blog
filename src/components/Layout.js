@@ -8,7 +8,7 @@ require('./prism-theme.css')
 
 export default function Layout({ children, maxWidth }) {
   return (
-    <div>
+    <div style={{ paddingTop: '3rem' }}>
       <Header />
       <main
         style={{
