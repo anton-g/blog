@@ -8,7 +8,7 @@ import charge from './charge.mp3'
 
 export default function ConfettiCanon() {
   const [playPop] = useSound(pop, { volume: 0.5 })
-  const [playCharge, { stop }] = useSound(charge, { volume: 0.1 })
+  const [, { stop }] = useSound(charge, { volume: 0.1 })
 
   const [loading, setLoading] = useState(false)
   const [confetti, setConfetti] = useState(false)
@@ -60,9 +60,9 @@ export default function ConfettiCanon() {
     setConfettiConfig(c => ({
       ...c,
       ...{
-        spread: lerp(25, 60, percentage),
-        startVelocity: lerp(10, 45, percentage),
-        elementCount: lerp(20, 120, percentage),
+        spread: lerp(25, 70, percentage),
+        startVelocity: lerp(10, 55, percentage),
+        elementCount: lerp(20, 200, percentage),
         // dragFriction: 0.1,
         duration: lerp(1000, 2000, percentage),
       },

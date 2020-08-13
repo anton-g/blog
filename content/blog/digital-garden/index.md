@@ -16,7 +16,6 @@ So this post is the first where I try this. Publishing without considering it do
 
 A very incomplete list of things that I'd like to implement or try out while doing this rebuild:
 
-- Show post "state" (Seedling? Budding? Sprouting? Growing? Bloomed?)
 - Tag posts
 - Post search
 - RSS

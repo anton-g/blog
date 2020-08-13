@@ -1,5 +1,4 @@
 import React from 'react'
-import Link from 'gatsby-link'
 import { graphql } from 'gatsby'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 import getShareImage from '@jlengstorf/get-share-image'
@@ -22,6 +21,8 @@ const PostState = ({ state }) => {
     case 'bloomed':
       text = '🌸 This post has bloomed and is unlikely to change.'
       break
+    default:
+      text = ''
   }
   return <StateText>{text}</StateText>
 }
@@ -30,7 +31,6 @@ class BlogPostTemplate extends React.Component {
   render() {
     const post = this.props.data.mdx
     const isUnlisted = post.frontmatter.unlisted
-    const { previous, next } = this.props.pathContext
 
     const socialImage = getShareImage({
       title: post.frontmatter.title,

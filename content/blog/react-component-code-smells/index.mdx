@@ -1,87 +1,86 @@
 ---
-title: 10 code smells in React components
-date: '2020-05-24T20:17:00.000Z'
-description: '10 code smells to avoid in your React components'
+title: React component code smells
+date: '2020-08-13T20:17:00.000Z'
+description: 'Code smells to avoid in your React components'
 dev: ''
-unlisted: true
 state: 'budding'
 ---
 
-## Intro
+A collection of things I consider code smells in react components. All opinionated, but would love to hear if you (dis)agree or have other suggestions.
 
-We'll look at examples of ten different code smells in react components. Opinionated bla bla
+## Too many props
 
-## Table of contents
+Passing too many props into a single component may be a sign that the component should be split up.
 
-- 1
-- 2
-- 3
-
-## 1 Too many props
-
-a sign that the component might need to be split.
-
-Solutions:
+Fixes:
 
 - Pass down an `options` object
-- break the component up into multiple components
-- use composition
+- Break the component up into multiple components
+- Use composition
 
-## 2 Props that doesn't work with each other
+## Incompatible props
 
-`autoCapitalize` + `type:tel`
-Solutions:
+Props that don't work together, for example `autoCapitalize=true` and `type=tel`
+
+Fixes:
 
 - Break up into multiple components
 
-## 3 Shared state
+## Shared state
 
 ie duplicating the component and it shares state it shouldn't
-Navbar never duplicated? Think again, animations
-Solutions:
+Navbar never duplicated? Think again, animations! 💫
+
+Fixes:
 
 - Remove the shared state, make sure you can use multiple instances of the component
 
-## 4 copying props into state
+## Copying props into state
 
 Don't stop the data flow: For example copying props into state, meaning that when props change the state isn't updated. (Constructor: state.x = prop.x)
 
-naming initialColor or defaultColor
+When intentional, use standard naming like initialColor or defaultColor.
 
-read more https://overreacted.io/writing-resilient-components/
+Reading: [Writing resilient components by Dan Abramov](https://overreacted.io/writing-resilient-components/).
 
-## 5 Large "data" props
+## Large "data" props
 
 Passing data instead of composing (See Composable components → tabs)
 
-## 6 (Not) prop drilling
+## (Not) prop drilling
 
-Deep prop drilling (Passing down blabla, pass down the component instead, profilepicture ie)
-Advanced patterns when prop drilling is just fine
+Prop drilling is usually just fine but sometimes there's better alternatives.
 
-## 7 JSX in methods
+- Use composition (pass down component as prop)
+- Use context api (when state is shared "horizontally")
 
-JSX rendered from methods (Move to separate component, or even functions outside component)
-Components doesn't have to be moved to separate file, if tightly coupled
+## Returning JSX from functions
 
-## 8 Booleans for state
+Splitting up a compoents JSX into multiple functions makes it hard to reason about the code, and is a clear example of a time where we probably want to create a new component instead.
 
-Avoid booleans for state
-Solutions:
+Components doesn't have to be moved to separate file, if tightly coupled?
 
-- state string
+## Multiple booleans for state
 
-## 9 useState jungle
+Avoid using multiple booleans to represent a components state. Most of the time it's easier to replace them with a single enum/string.
 
-Many many useState ⇒ useReducer
-Solutions:
+Fixes:
+
+- `useState('loading')`
+
+## Too many useState in a component
+
+Many many useState
+
+Fixes:
 
 - useReducer
 
-## 10 Large useEffects
+## Large useEffect
 
 Large useEffects, makes it hard to reason about the code. With smaller useEffects it's more natural:
 "When [dependencies] change do -this-"
-Solutions:
 
-- Break up into smaller useEffects
+Fixes:
+
+- Break up into multiple smaller useEffects
