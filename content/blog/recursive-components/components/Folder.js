@@ -46,7 +46,7 @@ const FolderButton = ({ open, onClick }) => {
         padding: '2px',
         borderRadius: '5px',
         border: '1px solid lightgray',
-        color: 'black',
+        color: 'var(--color-text)',
         margin: 0,
         backgroundColor: 'transparent',
         lineHeight: 1,

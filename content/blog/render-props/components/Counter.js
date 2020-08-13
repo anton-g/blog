@@ -17,7 +17,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 3px solid hsl(157, 49%, 90%);
+  border: 3px solid var(--color-quote);
   border-radius: 8px;
 
   h1 {

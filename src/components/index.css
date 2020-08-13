@@ -3,16 +3,21 @@
 
 body {
   font-family: Inter;
-  background-color: whitesmoke;
+  background-color: var(--color-background);
   margin: 0;
   overflow-x: hidden;
   filter: hue-rotate(0deg);
   will-change: filter;
+  color: var(--color-text);
+
+  transition: background-color 0.2s ease-in-out;
+  transition-property: color, background-color;
 }
 
 a,
 a:visited {
-  color: black;
+  color: var(--color-text);
+  transition: color 0.2s ease-in-out;
 }
 
 .gatsby-resp-image-link::after {
@@ -21,18 +26,22 @@ a:visited {
 
 blockquote {
   border-left: 5px solid hsl(157, 49%, 76%);
-  background-color: hsl(157, 49%, 96%);
+  background-color: var(--color-quote);
   margin: 0;
   padding: 0.1rem 1rem;
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
-  color: black;
+  color: var(--color-text);
+
+  transition: color 0.2s ease-in-out;
+  transition-property: color, background-color;
 }
 
-:not(pre) > code[class*='language-'] {
-  background-color: hsl(0, 0%, 90%) !important;
+:not(pre) > code[class*='language-text'] {
+  background: var(--color-code) !important;
   padding: 0.2rem 0.5rem;
-  text-shadow: none;
-  font-size: 18px;
-  color: black !important;
+  border-radius: 2px !important;
+  /* text-shadow: none; */
+  font-size: 16px;
+  color: var(--color-text) !important;
 }

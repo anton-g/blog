@@ -72,7 +72,11 @@ We pass in the `renderCount` prop as an arrow function that receives the count a
 
 > Note that the prop `renderCount` could be called anything.
 
-And now our component looks like this: <Counter renderCount={count => <span>The count is {count}!</span>} />
+And now our component looks like this: 
+
+<>
+  <Counter renderCount={count => <span>The count is {count}!</span>} />
+</>
 
 By doing this we've _inverted_ the control of rendering the count from the component itself to the consumer of the component.
 

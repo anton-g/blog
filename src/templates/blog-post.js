@@ -162,7 +162,9 @@ const Post = styled.div`
 
   h1 {
     margin-bottom: 0;
-    color: hsl(157, 15%, 15%);
+    color: var(--color-heading);
+    line-height: 1.2;
+    transition: color 0.2s ease-in-out;
   }
 `
 
