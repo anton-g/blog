@@ -11,7 +11,7 @@ class Posts extends React.Component {
     const posts = get(this, 'props.data.allMdx.edges')
 
     return (
-      <Layout location={this.props.location} maxWidth="600px">
+      <Layout location={this.props.location} maxWidth="1000px">
         <SEO title={`posts`} />
         <PostsWrapper>
           {posts
@@ -19,12 +19,9 @@ class Posts extends React.Component {
             .map(({ node }) => {
               const title = get(node, 'frontmatter.title') || node.fields.slug
               return (
-                <div key={node.fields.slug}>
-                  <h3>
-                    <Link to={node.fields.slug}>{title}</Link>
-                  </h3>
-                  <p dangerouslySetInnerHTML={{ __html: node.excerpt }} />
-                </div>
+                <PostLink key={node.fields.slug} to={node.fields.slug}>
+                  {title}
+                </PostLink>
               )
             })}
         </PostsWrapper>
@@ -61,10 +58,47 @@ export const pageQuery = graphql`
 `
 
 const PostsWrapper = styled.div`
+  margin-top: 4rem;
+  margin-bottom: 4rem;
   padding: 0px 12px;
-  overflow: auto;
 
-  > * {
-    margin-bottom: 36px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 4rem;
+  grid-row-gap: 3rem;
+
+  @media only screen and (max-width: 900px) {
+    grid-template-columns: 1fr;
+  }
+`
+
+const PostLink = styled(Link)`
+  font-size: 1.8rem;
+  font-family: Inter;
+  font-weight: bold;
+  text-decoration: none;
+  text-decoration-style: none;
+  text-decoration-thickness: 3px;
+  padding-bottom: 0.3rem;
+
+  &:hover {
+    text-decoration: underline var(--color-primary) wavy;
+    -webkit-text-decoration: underline var(--color-primary) wavy;
+    outline: 1px solid rgba(255, 255, 255, 0.01);
+  }
+
+  &:nth-child(2n + 1) {
+    text-align: right;
+  }
+
+  @media only screen and (max-width: 900px) {
+    grid-template-columns: 1fr;
+    max-width: 550px;
+    text-align: center;
+    margin: 0 auto;
+
+    &:nth-child(2n + 1) {
+      text-align: center;
+    }
   }
 `

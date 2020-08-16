@@ -1,3 +1,7 @@
+const tinycolor = require('tinycolor2')
+
+const primaryColor = tinycolor('hsl(173, 70%, 53%)')
+
 export const COLORS = {
   background: {
     light: 'hsl(0, 100%, 99%)',
@@ -12,12 +16,18 @@ export const COLORS = {
     dark: 'hsl(157, 5%, 90%)',
   },
   primary: {
-    light: 'hsl(157, 49%, 76%)',
-    dark: 'hsl(157, 49%, 76%)',
+    light: primaryColor.toHslString(),
+    dark: primaryColor.toHslString(),
   },
   quote: {
-    light: 'hsl(157, 49%, 96%)',
-    dark: 'hsl(157, 25%, 15%)',
+    light: primaryColor
+      .clone()
+      .lighten(40)
+      .toHslString(),
+    dark: primaryColor
+      .clone()
+      .darken(40)
+      .toHslString(),
   },
   code: {
     light: 'hsl(0, 10%, 90%)',

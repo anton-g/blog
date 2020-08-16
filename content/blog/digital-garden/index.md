@@ -19,7 +19,6 @@ A very incomplete list of things that I'd like to implement or try out while doi
 - Tag posts
 - Post search
 - RSS
-- Dark mode
 - Webmentions
 - Web monetization
 

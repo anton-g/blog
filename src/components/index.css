@@ -25,7 +25,7 @@ a:visited {
 }
 
 blockquote {
-  border-left: 5px solid hsl(157, 49%, 76%);
+  border-left: 5px solid var(--color-primary);
   background-color: var(--color-quote);
   margin: 0;
   padding: 0.1rem 1rem;
