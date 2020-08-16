@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { graphql } from 'gatsby'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 import getShareImage from '@jlengstorf/get-share-image'
@@ -8,6 +8,7 @@ import styled from 'styled-components'
 import ConfettiCanon from '../components/common/ConfettiCanon/ConfettiCanon'
 
 import twitter from './twitter.png'
+import { ThemeContext } from '../ThemeContext'
 
 const PostState = ({ state }) => {
   let text = ''
@@ -25,6 +26,34 @@ const PostState = ({ state }) => {
       text = ''
   }
   return <StateText>{text}</StateText>
+}
+
+const DevButton = ({ link }) => {
+  const { colorMode } = useContext(ThemeContext)
+
+  return (
+    <a
+      href={link}
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        margin: '16px 0px',
+      }}
+    >
+      <img
+        src={
+          colorMode === 'light'
+            ? 'https://d2fltix0v2e0sb.cloudfront.net/dev-badge.svg'
+            : 'https://d2fltix0v2e0sb.cloudfront.net/dev-rainbow.svg'
+        }
+        alt="DEV.to badge"
+        height="25"
+        width="25"
+        style={{ marginRight: '5px', borderRadius: '4px' }}
+      />
+      Discuss on DEV
+    </a>
+  )
 }
 
 class BlogPostTemplate extends React.Component {
@@ -62,23 +91,7 @@ class BlogPostTemplate extends React.Component {
           <PostState state={post.frontmatter.state} />
           <MDXRenderer>{post.body}</MDXRenderer>
           {post.frontmatter.dev && (
-            <a
-              href={post.frontmatter.dev}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                margin: '16px 0px',
-              }}
-            >
-              <img
-                src="https://d2fltix0v2e0sb.cloudfront.net/dev-badge.svg"
-                alt="DEV.to badge"
-                height="25"
-                width="25"
-                style={{ marginRight: '5px' }}
-              />
-              Discuss on DEV
-            </a>
+            <DevButton link={post.frontmatter.dev}></DevButton>
           )}
           <Timestamp>Last update: {post.frontmatter.date}</Timestamp>
           <Footer>
