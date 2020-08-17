@@ -52,6 +52,7 @@ const Button = styled.button`
   display: flex;
   align-items: center;
   color: var(--color-text);
+  outline: none;
 
   svg {
     height: 20px;
