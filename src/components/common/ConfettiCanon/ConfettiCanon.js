@@ -4,13 +4,13 @@ import Confetti from 'react-dom-confetti'
 import styled from 'styled-components'
 import useSound from 'use-sound'
 import pop from './pop.mp3'
-import charge from './charge.mp3'
+import charge from './fuse.mp3'
 import { SoundContext } from '../../../SoundContext'
 
 export default function ConfettiCanon() {
   const { soundMode } = useContext(SoundContext)
   const [playPop] = useSound(pop, { volume: 0.5 })
-  const [, { stop }] = useSound(charge, { volume: 0.1 })
+  const [playCharge, { stop }] = useSound(charge, { volume: 0.15 })
 
   const [loading, setLoading] = useState(false)
   const [confetti, setConfetti] = useState(false)
@@ -51,7 +51,7 @@ export default function ConfettiCanon() {
     })
     setLoading(true)
     setConfetti(false)
-    // playCharge()
+    playCharge()
   }
 
   const handleMouseUp = () => {
