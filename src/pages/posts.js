@@ -69,6 +69,7 @@ const PostsWrapper = styled.div`
 
   @media only screen and (max-width: 900px) {
     grid-template-columns: 1fr;
+    grid-row-gap: 1.8rem;
   }
 `
 

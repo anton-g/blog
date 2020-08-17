@@ -1,7 +1,8 @@
 import React from 'react'
 import Link from 'gatsby-link'
 import styled from 'styled-components'
-import { DarkToggle } from './common/DarkToggle'
+import { DarkToggle } from './common/DarkToggle/DarkToggle'
+import { SoundToggle } from './common/SoundToggle/SoundToggle'
 
 export default function Header() {
   return (
@@ -10,6 +11,7 @@ export default function Header() {
       <Nav>
         <NavLink to="/posts">posts</NavLink>
         <RightSide>
+          <SoundToggle></SoundToggle>
           <DarkToggle></DarkToggle>
         </RightSide>
       </Nav>
@@ -49,4 +51,9 @@ const NavLink = styled(Link)`
 
 const RightSide = styled.div`
   margin-left: auto;
+  display: flex;
+
+  > *:not(:last-child) {
+    margin-right: 1rem;
+  }
 `

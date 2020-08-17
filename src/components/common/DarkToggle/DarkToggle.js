@@ -1,9 +1,25 @@
-import React from 'react'
-import { ThemeContext } from '../../ThemeContext'
+import React, { useContext, useCallback } from 'react'
 import styled from 'styled-components'
+import useSound from 'use-sound'
+import { ThemeContext } from '../../../ThemeContext'
+import { SoundContext } from '../../../SoundContext'
+import lightSound from './light.wav'
+import darkSound from './dark.wav'
 
 export const DarkToggle = () => {
-  const { colorMode, setColorMode } = React.useContext(ThemeContext)
+  const { colorMode, setColorMode } = useContext(ThemeContext)
+  const { soundMode } = useContext(SoundContext)
+  const [playLightSound] = useSound(lightSound, { volume: 0.5 })
+  const [playDarkSound] = useSound(darkSound, { volume: 0.5 })
+
+  const isDark = colorMode === 'dark'
+
+  const onClick = useCallback(() => {
+    if (soundMode) {
+      isDark ? playLightSound() : playDarkSound()
+    }
+    setColorMode(isDark ? 'light' : 'dark')
+  }, [playDarkSound, playLightSound, soundMode, setColorMode, isDark])
 
   if (!colorMode) {
     return null
@@ -25,13 +41,7 @@ export const DarkToggle = () => {
     </svg>
   )
 
-  const isDark = colorMode === 'dark'
-
-  return (
-    <Button onClick={() => setColorMode(isDark ? 'light' : 'dark')}>
-      {isDark ? moon : sun}
-    </Button>
-  )
+  return <Button onClick={onClick}>{isDark ? moon : sun}</Button>
 }
 
 const Button = styled.button`
