@@ -102,7 +102,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-canonical-urls`,
       options: {
-        siteUrl: `https://www.antongunnarsson.se`,
+        siteUrl: `https://antongunnarsson.com`,
       },
     },
   ],
