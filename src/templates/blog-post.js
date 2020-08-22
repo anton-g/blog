@@ -94,7 +94,9 @@ class BlogPostTemplate extends React.Component {
           {post.frontmatter.dev && (
             <DevButton link={post.frontmatter.dev}></DevButton>
           )}
-          <Timestamp>Last update: {post.frontmatter.date}</Timestamp>
+          <Timestamp>
+            Last update: {post.frontmatter.updated || post.frontmatter.date}
+          </Timestamp>
           <Footer>
             <ConfettiWrapper>
               <ConfettiCanon></ConfettiCanon>
@@ -159,6 +161,7 @@ export const pageQuery = graphql`
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")
+        updated(formatString: "MMMM DD, YYYY")
         description
         dev
         unlisted

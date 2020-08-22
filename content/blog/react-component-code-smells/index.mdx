@@ -1,12 +1,13 @@
 ---
 title: React component code smells
 date: '2020-08-13T20:17:00.000Z'
+updated: '2020-08-22T22:00:00.000Z'
 description: 'Code smells to avoid in your React components'
 dev: ''
 state: 'budding'
 ---
 
-A collection of things I consider code smells in react components. All opinionated, but would love to hear if you (dis)agree or have other suggestions.
+A collection of things I consider code smells in react components. All opinionated of course, so would love to hear if you (dis)agree or have other suggestions.
 
 ## Too many props
 
@@ -20,11 +21,38 @@ Fixes:
 
 ## Incompatible props
 
-Props that don't work together, for example `autoCapitalize=true` and `type=tel`
+Avoid passing props that are incompatible with each other.
 
-Fixes:
+For example we might start by creating a common `<Input />` component that is intended to just handle text, but after a while we also add the possibility to use it for phone numbers as well. The implementation could look something like this:
 
-- Break up into multiple components
+```jsx
+function Input({ value, isPhoneNumberInput, autoCapitalize }) {
+  if (autoCapitalize) capitalize(value)
+
+  return <input value={value} type={isPhoneNumberInput ? 'tel' : 'text'} />
+}
+```
+
+The problem with this is that the props `isPhoneNumberInput` and `autoCapitalize` doesn't make sense together. We can't really capitalize phone numbers.
+
+One solution to this is to break the component up into multiple smaller components. If we still have some logic we want to share between them, we can move it to a [custom hook](https://reactjs.org/docs/hooks-custom.html):
+
+```jsx
+function TextInput({ value, autoCapitalize }) {
+  if (autoCapitalize) capitalize(value)
+  useSharedInputLogic()
+
+  return <input value={value} type="text" />
+}
+
+function PhoneNumberInput({ value }) {
+  useSharedInputLogic()
+
+  return <input value={value} type="tel" />
+}
+```
+
+While this example is a bit contrived, finding props that are incompatible with each other are usually a good indication that you should check if the component needs to be broken apart.
 
 ## Shared state
 
