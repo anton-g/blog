@@ -9,6 +9,7 @@ import ConfettiCanon from '../components/common/ConfettiCanon/ConfettiCanon'
 
 import twitter from './twitter.png'
 import { ThemeContext } from '../ThemeContext'
+import Confettis from '../components/common/Confettis/Confettis'
 
 const PostState = ({ state }) => {
   let text = ''
@@ -111,7 +112,7 @@ class BlogPostTemplate extends React.Component {
               </Arrow>
               <p>
                 Enjoyed the post? <br />
-                Celebrate with <b>confetti</b>! 🎉
+                Celebrate with <Confettis>confetti</Confettis>!
               </p>
             </ConfettiWrapper>
             {!isUnlisted && (
