@@ -65,7 +65,7 @@ Fixes:
 
 ## Copying props into state
 
-Don't stop the data flow: For example copying props into state, meaning that when props change the state isn't updated. (Constructor: state.x = prop.x)
+Don't stop the data flow: For example copying props into state, meaning that when props change the state isn't updated. (Constructor: state.x = prop.x, useState(prop))
 
 When intentional, use standard naming like initialColor or defaultColor.
 
@@ -106,9 +106,42 @@ Fixes:
 
 ## Large useEffect
 
-Large useEffects, makes it hard to reason about the code. With smaller useEffects it's more natural:
-"When [dependencies] change do -this-"
+Avoid large `useEffect`s that do multiple things. They make your code error prone and harder to reason about.
 
-Fixes:
+A mistake that I made a lot when hooks was released was putting to many things into a single `useEffect`. For example:
 
-- Break up into multiple smaller useEffects
+```jsx
+function Post({ id, unlisted }) {
+  ...
+
+  useEffect(() => {
+    fetch(`/posts/${id}`).then(/* do something */)
+
+    setVisibility(unlisted)
+  }, [id, unlisted])
+
+  ...
+}
+```
+
+While this effect isn't that large it still do multiple things. When the `unlisted` prop changes we will fetch the post even if `id` hasn't changed.
+
+To catch errors like this I try to describe the effects I write by saying "when `[dependencies]` change do _this_" to myself. Applying that to the effect above we get "when `id` **or** `unlisted` changes, fetch the post **and** update visibility". If this sentence contains the words "**or**" or "**and**" it usually points to a problem.
+
+Breaking this effect up into two effects instead:
+
+```jsx
+function Post({ id, unlisted }) {
+  ...
+
+  useEffect(() => { // when id changes fetch the post
+    fetch(`/posts/${id}`).then(/* do something */)
+  }, [id])
+
+  useEffect(() => { // when unlisted changes update visibility
+    setVisibility(unlisted)
+  }, [unlisted])
+
+  ...
+}
+```
