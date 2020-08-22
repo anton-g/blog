@@ -16,7 +16,7 @@ export const SoundToggle = () => {
   }, [playOff, playOn, soundMode, setSoundMode])
 
   return (
-    <Button onClick={onClick}>
+    <Button onClick={onClick} name="sound toggle">
       <svg
         viewBox="0 0 20 20"
         fill="currentColor"

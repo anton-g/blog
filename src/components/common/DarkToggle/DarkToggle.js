@@ -41,7 +41,11 @@ export const DarkToggle = () => {
     </svg>
   )
 
-  return <Button onClick={onClick}>{isDark ? moon : sun}</Button>
+  return (
+    <Button onClick={onClick} name="theme toggle">
+      {isDark ? moon : sun}
+    </Button>
+  )
 }
 
 const Button = styled.button`
