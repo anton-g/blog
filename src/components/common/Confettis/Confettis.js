@@ -49,6 +49,8 @@ const generateConfetti = () => {
 }
 
 const Confettis = ({ children, ...delegated }) => {
+  // TODO add sound for toggle
+  const [disabled, setDisabled] = React.useState(false)
   const [confettis, setConfettis] = React.useState([])
   const prefersReducedMotion = usePrefersReducedMotion()
   useRandomInterval(
@@ -62,11 +64,11 @@ const Confettis = ({ children, ...delegated }) => {
       nextConfettis.push(confetti)
       setConfettis(nextConfettis)
     },
-    prefersReducedMotion ? null : 50,
-    prefersReducedMotion ? null : 250
+    prefersReducedMotion || disabled ? null : 50,
+    prefersReducedMotion || disabled ? null : 250
   )
   return (
-    <Wrapper {...delegated}>
+    <Wrapper {...delegated} onClick={() => setDisabled(d => !d)}>
       {confettis.map(confetti => (
         <Confetti
           key={confetti.id}
@@ -134,6 +136,7 @@ const fall = p => keyframes`
 const Wrapper = styled.span`
   display: inline-block;
   position: relative;
+  cursor: pointer;
 `
 
 const ConfettiWrapper = styled.span.attrs(props => ({
