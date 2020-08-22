@@ -135,26 +135,42 @@ const Wrapper = styled.span`
   display: inline-block;
   position: relative;
 `
-const ConfettiWrapper = styled.span`
+
+const ConfettiWrapper = styled.span.attrs(props => ({
+  style: {
+    animationDuration: `${props.speed}ms`,
+  },
+}))`
   position: absolute;
   display: block;
   z-index: 2;
   @media (prefers-reduced-motion: no-preference) {
-    animation: ${comeInOut} ${p => p.speed}ms forwards;
+    animation: ${comeInOut} forwards;
   }
 `
-const FallWrapper = styled.span`
+
+const FallWrapper = styled.span.attrs(props => ({
+  style: {
+    animationDuration: `${props.speed}ms`,
+  },
+}))`
   display: block;
   @media (prefers-reduced-motion: no-preference) {
-    animation: ${fall} ${p => p.speed}ms linear forwards;
+    animation: ${fall} linear forwards;
   }
 `
-const ConfettiSvg = styled.svg`
+
+const ConfettiSvg = styled.svg.attrs(props => ({
+  style: {
+    animationDuration: `${props.speed}ms`,
+  },
+}))`
   display: block;
   @media (prefers-reduced-motion: no-preference) {
-    animation: ${spin} ${p => p.speed}ms linear;
+    animation: ${spin} linear;
   }
 `
+
 const ChildWrapper = styled.strong`
   position: relative;
   z-index: 1;
