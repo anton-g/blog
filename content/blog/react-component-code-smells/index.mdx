@@ -9,17 +9,28 @@ state: 'budding'
 
 A collection of things I consider code smells in react components. All opinionated of course, so would love to hear if you (dis)agree or have other suggestions.
 
-## Too many props
+- [Too many props](#too-many-props)
+- [Incompatible props](#incompatible-props)
+- [Shared state](#shared-state)
+- [Copying props into state](#props-in-state)
+- [Large "data" props](#large-props)
+- [(Not) prop drilling](#prop-drilling)
+- [Returning JSX from functions](#jsx-returns)
+- [Multiple booleans for state](#multiple-booleans)
+- [Too many useState in a component](#many-usestate)
+- [Large useEffect](#large-useeffect)
+
+## <a id="too-many-props"></a> Too many props
 
 Passing too many props into a single component may be a sign that the component should be split up.
 
 Fixes:
 
 - Pass down an `options` object
-- Break the component up into multiple components
+- Break the component up into multiple components. Components should do _one thing_ so check for [Incompatible props](#incompatible-props).
 - Use composition
 
-## Incompatible props
+## <a id="incompatible-props"></a> Incompatible props
 
 Avoid passing props that are incompatible with each other.
 
@@ -33,7 +44,7 @@ function Input({ value, isPhoneNumberInput, autoCapitalize }) {
 }
 ```
 
-The problem with this is that the props `isPhoneNumberInput` and `autoCapitalize` doesn't make sense together. We can't really capitalize phone numbers.
+The problem with this is that the props `isPhoneNumberInput` and `autoCapitalize` don't make sense together. We can't really capitalize phone numbers.
 
 One solution to this is to break the component up into multiple smaller components. If we still have some logic we want to share between them, we can move it to a [custom hook](https://reactjs.org/docs/hooks-custom.html):
 
@@ -52,9 +63,9 @@ function PhoneNumberInput({ value }) {
 }
 ```
 
-While this example is a bit contrived, finding props that are incompatible with each other are usually a good indication that you should check if the component needs to be broken apart.
+While this example is a bit contrived, finding props that are incompatible with each other is usually a good indication that you should check if the component needs to be broken apart.
 
-## Shared state
+## <a id="shared-state"></a> Shared state
 
 ie duplicating the component and it shares state it shouldn't
 Navbar never duplicated? Think again, animations! 💫
@@ -63,7 +74,7 @@ Fixes:
 
 - Remove the shared state, make sure you can use multiple instances of the component
 
-## Copying props into state
+## <a id="props-in-state"></a> Copying props into state
 
 Don't stop the data flow: For example copying props into state, meaning that when props change the state isn't updated. (Constructor: state.x = prop.x, useState(prop))
 
@@ -71,24 +82,24 @@ When intentional, use standard naming like initialColor or defaultColor.
 
 Reading: [Writing resilient components by Dan Abramov](https://overreacted.io/writing-resilient-components/).
 
-## Large "data" props
+## <a id="large-props"></a> Large "data" props
 
 Passing data instead of composing (See Composable components → tabs)
 
-## (Not) prop drilling
+## <a id="prop-drilling"></a> (Not) prop drilling
 
 Prop drilling is usually just fine but sometimes there's better alternatives.
 
 - Use composition (pass down component as prop)
 - Use context api (when state is shared "horizontally")
 
-## Returning JSX from functions
+## <a id="jsx-returns"></a> Returning JSX from functions
 
-Splitting up a compoents JSX into multiple functions makes it hard to reason about the code, and is a clear example of a time where we probably want to create a new component instead.
+Splitting up a components JSX into multiple functions makes it hard to reason about the code, and is a clear example of a time where we probably want to create a new component instead.
 
 Components doesn't have to be moved to separate file, if tightly coupled?
 
-## Multiple booleans for state
+## <a id="multiple-booleans"></a> Multiple booleans for state
 
 Avoid using multiple booleans to represent a components state. Most of the time it's easier to replace them with a single enum/string.
 
@@ -96,7 +107,7 @@ Fixes:
 
 - `useState('loading')`
 
-## Too many useState in a component
+## <a id="many-usestate"></a> Too many useState in a component
 
 Many many useState
 
@@ -104,7 +115,7 @@ Fixes:
 
 - useReducer
 
-## Large useEffect
+## <a id="large-useeffect"></a> Large useEffect
 
 Avoid large `useEffect`s that do multiple things. They make your code error prone and harder to reason about.
 
