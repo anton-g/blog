@@ -1,7 +1,7 @@
 ---
 title: React component code smells
 date: '2020-08-13T20:17:00.000Z'
-updated: '2020-08-22T22:00:00.000Z'
+updated: '2020-09-08T19:00:00.000Z'
 description: 'Code smells to avoid in your React components'
 dev: ''
 state: 'budding'
@@ -24,11 +24,78 @@ A collection of things I consider code smells in react components. All opinionat
 
 Passing too many props into a single component may be a sign that the component should be split up.
 
-Fixes:
+How many is too many you may ask? Well, _too many_ is very arbitrary so "it depends". You might find yourself in a situation where a component should have 20 props or more, and still be satisfied that it only does one thing. But when you do stumble upon a component that have many props or you get the urge to add _just one more_ to the already long list of props. There's a couple of things to consider:
 
-- Pass down an `options` object
-- Break the component up into multiple components. Components should do _one thing_ so check for [Incompatible props](#incompatible-props).
-- Use composition
+#### Is this component doing multiple things?
+
+Like functions, components should do _one thing well_ so it's always good to check if the it's possible to split the component into multiple smaller components. For example if the component is doing too much or if it has [incompatible props](#incompatible-props).
+
+#### Could I use composition?
+
+A pattern that is very good but often overlooked is to compose components together instead of handling all logic inside just one. Let's say we have a component that handles a user application to some organisation:
+
+```jsx
+<ApplicationForm
+  user={userData}
+  organisation={organisationData}
+  categories={categoriesData}
+  locations={locationsData}
+  onSubmit={handleSubmit}
+  onCancel={handleCancel}
+  ...
+/>
+```
+
+Looking at the props of this component we can see that all of them are related to what the component does, but there's still room to improve this by moving some of the components responsibility to it's children instead:
+
+```jsx
+<ApplicationForm onSubmit={handleSubmit} onCancel={handleCancel}>
+  <ApplicationUserForm user={userData} />
+  <ApplicationOrganisationForm organisation={organisationData} />
+  <ApplicationCategoryForm categories={categoriesData} />
+  <ApplicationLocationsForm locations={locationsData} />
+</ApplicationForm>
+```
+
+Now we've made sure that the `ApplicationForm` only handles it's most narrow responsibility, submitting and cancelling the form. The child components can handle everything related to their part of the bigger picture. This is also a great opportunity to use [React Context](https://reactjs.org/docs/context.html) for the communication between the children and their parent.
+
+#### Am I passing down many 'configuration'-props?
+
+In some cases it's a good idea to group together props into an options object, for example to make it easier to swap this configuration. If we have a component that displays some sort of grid or table:
+
+```jsx
+<Grid
+  data={gridData}
+  pagination={false}
+  autoSize={true}
+  enableSort={true}
+  sortOrder="desc"
+  disableSelection={true}
+  infiniteScroll={true}
+  ...
+/>
+```
+
+All of these props except `data` could be considered _configuration_. If we wanted to make all of these dynamic we would either have to manage a lot of lonely variables or put them in an object and then pass them down like `pagination={options.pagination}`. While this works I think it's a bit cleaner to change the `Grid` so that it accepts an `options` prop instead.
+
+```jsx
+const options = {
+  pagination: false,
+  autoSize: true,
+  enableSort: true,
+  sortOrder: 'desc',
+  disableSelection: true,
+  infiniteScroll: true,
+  ...
+}
+
+<Grid
+  data={gridData}
+  options={options}
+/>
+```
+
+This also means that it's easier to exclude configuration options we don't want to use when swapping between different `options`, we can just exclude `pagination` from one options-object and include in another.
 
 ## <a id="incompatible-props"></a> Incompatible props
 
