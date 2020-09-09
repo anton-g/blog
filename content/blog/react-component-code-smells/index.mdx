@@ -1,7 +1,7 @@
 ---
 title: React component code smells
 date: '2020-08-13T20:17:00.000Z'
-updated: '2020-09-08T19:00:00.000Z'
+updated: '2020-09-09T20:00:00.000Z'
 description: 'Code smells to avoid in your React components'
 dev: ''
 state: 'budding'
@@ -95,7 +95,7 @@ const options = {
 />
 ```
 
-This also means that it's easier to exclude configuration options we don't want to use when swapping between different `options`, we can just exclude `pagination` from one options-object and include in another.
+This also means that it's easier to exclude configuration options we don't want to use when swapping between different `options`, we can just exclude `pagination` from some options and include in other.
 
 ## <a id="incompatible-props"></a> Incompatible props
 
@@ -168,11 +168,72 @@ Components doesn't have to be moved to separate file, if tightly coupled?
 
 ## <a id="multiple-booleans"></a> Multiple booleans for state
 
-Avoid using multiple booleans to represent a components state. Most of the time it's easier to replace them with a single enum/string.
+Avoid using multiple booleans to represent a components state.
 
-Fixes:
+When writing a component and subsequently extending the components functionality it's easy to end up in a situation where you have multiple booleans to indicate which state the component is in. For a small component that does a web request when you click a button you might have something like this:
 
-- `useState('loading')`
+```jsx
+function Component() {
+  const [isLoading, setIsLoading] = useState(false)
+  const [isFinished, setIsFinished] = useState(false)
+  const [hasError, setHasError] = useState(false)
+
+  const fetchSomething = () => {
+    setIsLoading(true)
+
+    fetch(url)
+      .then(() => {
+        setIsLoading(false)
+        setIsFinished(true)
+      })
+      .catch(() => {
+        setHasError(true)
+      })
+  }
+
+  if (isLoading) return <Loader />
+  if (hasError) return <Error />
+  if (isFinished) return <Success />
+
+  return <button onClick={fetchSomething} />
+}
+```
+
+So when a user clicks the button `fetchSomething` is called, which in turn sets `isLoading` to true and then does a web request with fetch. When the request returns we either set `isLoading` to false and `isFinished` to true if the request was successful or set `hasError` to true if there was an error.
+
+While this technically works fine it's hard to reason about what state the component is in and it's more error prone than alternatives. Another thing to point out before moving on is that it's also possible we could end up in an "impossible state", for example if we accidentally set both `isLoading` and `isFinished` to true at the same time.
+
+The solution is to manage the state with an `enum` instead. In other languages enums are a way to define a variable that is only allowed to point at a predefined set of constant values, and while enums doesn't technically exist in Javascript we can use a string instead:
+
+```jsx
+function Component() {
+  const [state, setState] = useState('idle')
+
+  const fetchSomething = () => {
+    setState('loading')
+
+    fetch(url)
+      .then(() => {
+        setState('finished')
+      })
+      .catch(() => {
+        setState('error')
+      })
+  }
+
+  if (state === 'loading') return <Loader />
+  if (state === 'error') return <Error />
+  if (state === 'finished') return <Success />
+
+  return <button onClick={fetchSomething} />
+}
+```
+
+By doing it this way we've removed the possibility for impossible states and made it **much** easier to reason about this component. Finally, if you're using some sort of type system like TypeScript it's even better since you can specify the possible states:
+
+```ts
+const [state, setState] = useState<'idle' | 'loading' | 'error' | 'finished'>('idle')
+```
 
 ## <a id="many-usestate"></a> Too many useState in a component
 
