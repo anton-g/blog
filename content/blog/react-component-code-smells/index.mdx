@@ -1,7 +1,7 @@
 ---
 title: React component code smells
 date: '2020-08-13T20:17:00.000Z'
-updated: '2020-09-09T20:00:00.000Z'
+updated: '2020-10-24T20:00:00.000Z'
 description: 'Code smells to avoid in your React components'
 dev: ''
 state: 'growing'
@@ -24,7 +24,7 @@ A collection of things I consider code smells in react components. All opinionat
 
 Passing too many props into a single component may be a sign that the component should be split up.
 
-How many is too many you may ask? Well, _too many_ is very arbitrary so "it depends". You might find yourself in a situation where a component should have 20 props or more, and still be satisfied that it only does one thing. But when you do stumble upon a component that have many props or you get the urge to add _just one more_ to the already long list of props. There's a couple of things to consider:
+How many is too many you may ask? Well, _too many_ is very arbitrary so "it depends". You might find yourself in a situation where a component should have 20 props or more, and still be satisfied that it only does one thing. But when you do stumble upon a component that have many props or you get the urge to add _just one more_ to the already long list of props there's a couple of things to consider:
 
 #### Is this component doing multiple things?
 
@@ -32,7 +32,7 @@ Like functions, components should do _one thing well_ so it's always good to che
 
 #### Could I use composition?
 
-A pattern that is very good but often overlooked is to compose components together instead of handling all logic inside just one. Let's say we have a component that handles a user application to some organisation:
+A pattern that is very good but often overlooked is to compose components instead of handling all logic inside just one. Let's say we have a component that handles a user application to some organisation:
 
 ```jsx
 <ApplicationForm
@@ -95,7 +95,7 @@ const options = {
 />
 ```
 
-This also means that it's easier to exclude configuration options we don't want to use when swapping between different `options`, we can just exclude `pagination` from some options and include in other.
+This also means that it's easier to exclude configuration options we don't want to use when swapping between different `options`, for example excluding `pagination` from some options and include it in others.
 
 ## <a id="incompatible-props"></a> Incompatible props
 
@@ -143,11 +143,45 @@ Fixes:
 
 ## <a id="props-in-state"></a> Copying props into state
 
-Don't stop the data flow: For example copying props into state, meaning that when props change the state isn't updated. (Constructor: state.x = prop.x, useState(prop))
+Don't stop the data flow by copying props into state.
 
-When intentional, use standard naming like initialColor or defaultColor.
+Consider this component:
 
-Reading: [Writing resilient components by Dan Abramov](https://overreacted.io/writing-resilient-components/).
+```jsx
+function Button({ text }) {
+  const [buttonText] = useState(text)
+
+  return <button>{buttonText}</button>
+}
+```
+
+By passing the `text` prop as the it's initial value of useState the component now practically _ignores_ all updated values of `text`. If the `text` prop was updated the component would still render its first value. WHY IS THIS A BAD THING
+
+A concrete example of this happening is when we want to derive some new value from a prop and especially if this requires some slow calculation. In the example below we run the `formatTextSlowly` function to format our `text`-prop, which takes a lot of time to execute.
+
+```jsx
+function Button({ text }) {
+  const [formattedText] = useState(formatTextSlowly(text))
+
+  return <button>{formattedText}</button>
+}
+```
+
+By putting it into state we've solved the issue that it will rerun unneccesarily but like above we've also stopped the component from updating. A better way to solving this issue is using the [useMemo hook](https://reactjs.org/docs/hooks-reference.html#usememo) to _memoize_ the result:
+
+```jsx
+function Button({ text }) {
+  const formattedText = useMemo(() => formatTextSlowly(text), [text])
+
+  return <button>{formattedText}</button>
+}
+```
+
+Now `formatTextSlowly` only runs when `text` changes and we haven't stopped the component from updating.
+
+> Sometimes we do need a prop where all updates to it are ignored, for example a color picker where we need the option to set a initially picked color but when the user have picked a color we don't want an update to override the users choice. In this case it's totally fine to copy the prop into state, but to indicate this behaviour to the user most developers prefix the prop with either initial or default (`initialColor`/`defaultColor`).
+
+Further reading: [Writing resilient components by Dan Abramov](https://overreacted.io/writing-resilient-components/).
 
 ## <a id="large-props"></a> Large "data" props
 
@@ -164,7 +198,7 @@ Prop drilling is usually just fine but sometimes there's better alternatives.
 
 Splitting up a components JSX into multiple functions makes it hard to reason about the code, and is a clear example of a time where we probably want to create a new component instead.
 
-Components doesn't have to be moved to separate file, if tightly coupled?
+> Remember that just because you create a new component you don't have to move it to a new file as well. Sometimes it makes sense to keep multiple components in the same file if they are tightly coupled.
 
 ## <a id="multiple-booleans"></a> Multiple booleans for state
 
@@ -199,11 +233,11 @@ function Component() {
 }
 ```
 
-So when a user clicks the button `fetchSomething` is called, which in turn sets `isLoading` to true and then does a web request with fetch. When the request returns we either set `isLoading` to false and `isFinished` to true if the request was successful or set `hasError` to true if there was an error.
+When the button is we set `isLoading` to true and do a web request with fetch. When the request returns we either set `isLoading` to false and `isFinished` to true if the request was successful or set `hasError` to true if there was an error.
 
-While this technically works fine it's hard to reason about what state the component is in and it's more error prone than alternatives. Another thing to point out before moving on is that it's also possible we could end up in an "impossible state", for example if we accidentally set both `isLoading` and `isFinished` to true at the same time.
+While this technically works fine it's hard to reason about what state the component is in and it's more error prone than alternatives. We could also end up in an "impossible state", for example if we accidentally set both `isLoading` and `isFinished` to true at the same time.
 
-The solution is to manage the state with an `enum` instead. In other languages enums are a way to define a variable that is only allowed to point at a predefined set of constant values, and while enums doesn't technically exist in Javascript we can use a string instead:
+The solution is to manage the state with an `enum` instead. In other languages enums are a way to define a variable that is only allowed to be set to a predefined set of constant values, and while enums doesn't technically exist in Javascript we can use a string and still get a lot of benefit:
 
 ```jsx
 function Component() {
@@ -235,7 +269,7 @@ By doing it this way we've removed the possibility for impossible states and mad
 const [state, setState] = useState<'idle' | 'loading' | 'error' | 'finished'>('idle')
 ```
 
-## <a id="many-usestate"></a> Too many useState in a component
+## <a id="many-usestate"></a> Too many useState
 
 Many many useState
 
@@ -274,7 +308,7 @@ function Post({ id, unlisted }) {
   ...
 
   useEffect(() => { // when id changes fetch the post
-    fetch(`/posts/${id}`).then(/* do something */)
+    fetch(`/posts/${id}`).then(/* ... */)
   }, [id])
 
   useEffect(() => { // when unlisted changes update visibility
@@ -284,3 +318,9 @@ function Post({ id, unlisted }) {
   ...
 }
 ```
+
+By doing this we've reduced the complexity of our component, made it easier to reason about and lowered the risk of creating bugs.
+
+## Wrapping up
+
+...
