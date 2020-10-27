@@ -1,20 +1,17 @@
 ---
 title: React component code smells
 date: '2020-08-13T20:17:00.000Z'
-updated: '2020-10-24T20:00:00.000Z'
-description: 'Code smells to avoid in your React components'
+updated: '2020-10-27T20:00:00.000Z'
+description: 'My collection of React component code smells'
 dev: ''
 state: 'growing'
 ---
 
-A collection of things I consider code smells in react components. All opinionated of course, so would love to hear if you (dis)agree or have other suggestions.
+A growing collection of things I consider code smells in React components. All opinionated of course so would love to hear if you (dis)agree or have other suggestions.
 
 - [Too many props](#too-many-props)
 - [Incompatible props](#incompatible-props)
-- [Shared state](#shared-state)
 - [Copying props into state](#props-in-state)
-- [Large "data" props](#large-props)
-- [(Not) prop drilling](#prop-drilling)
 - [Returning JSX from functions](#jsx-returns)
 - [Multiple booleans for state](#multiple-booleans)
 - [Too many useState in a component](#many-usestate)
@@ -24,15 +21,15 @@ A collection of things I consider code smells in react components. All opinionat
 
 Passing too many props into a single component may be a sign that the component should be split up.
 
-How many is too many you may ask? Well, _too many_ is very arbitrary so "it depends". You might find yourself in a situation where a component should have 20 props or more, and still be satisfied that it only does one thing. But when you do stumble upon a component that have many props or you get the urge to add _just one more_ to the already long list of props there's a couple of things to consider:
+How many are too many you may ask? Well, _too many_ are very arbitrary so "it depends". You might find yourself in a situation where a component should have 20 props or more, and still be satisfied that it only does one thing. But when you do stumble upon a component that has many props or you get the urge to add _just one more_ to the already long list of props there's a couple of things to consider:
 
 #### Is this component doing multiple things?
 
-Like functions, components should do _one thing well_ so it's always good to check if the it's possible to split the component into multiple smaller components. For example if the component is doing too much or if it has [incompatible props](#incompatible-props).
+Like functions, components should do _one thing well_ so it's always good to check if it's possible to split the component into multiple smaller components. For example, if the component is doing too much or if it has [incompatible props](#incompatible-props).
 
 #### Could I use composition?
 
-A pattern that is very good but often overlooked is to compose components instead of handling all logic inside just one. Let's say we have a component that handles a user application to some organisation:
+A pattern that is very good but often overlooked is to compose components instead of handling all logic inside just one. Let's say we have a component that handles a user application to some organization:
 
 ```jsx
 <ApplicationForm
@@ -46,7 +43,7 @@ A pattern that is very good but often overlooked is to compose components instea
 />
 ```
 
-Looking at the props of this component we can see that all of them are related to what the component does, but there's still room to improve this by moving some of the components responsibility to it's children instead:
+Looking at the props of this component we can see that all of them are related to what the component does, but there's still room to improve this by moving some of the components responsibility to its children instead:
 
 ```jsx
 <ApplicationForm onSubmit={handleSubmit} onCancel={handleCancel}>
@@ -57,11 +54,11 @@ Looking at the props of this component we can see that all of them are related t
 </ApplicationForm>
 ```
 
-Now we've made sure that the `ApplicationForm` only handles it's most narrow responsibility, submitting and cancelling the form. The child components can handle everything related to their part of the bigger picture. This is also a great opportunity to use [React Context](https://reactjs.org/docs/context.html) for the communication between the children and their parent.
+Now we've made sure that the `ApplicationForm` only handles its most narrow responsibility, submitting and canceling the form. The child components can handle everything related to their part of the bigger picture. This is also a great opportunity to use [React Context](https://reactjs.org/docs/context.html) for the communication between the children and their parent.
 
 #### Am I passing down many 'configuration'-props?
 
-In some cases it's a good idea to group together props into an options object, for example to make it easier to swap this configuration. If we have a component that displays some sort of grid or table:
+In some cases, it's a good idea to group together props into an options object, for example to make it easier to swap this configuration. If we have a component that displays some sort of grid or table:
 
 ```jsx
 <Grid
@@ -101,7 +98,7 @@ This also means that it's easier to exclude configuration options we don't want 
 
 Avoid passing props that are incompatible with each other.
 
-For example we might start by creating a common `<Input />` component that is intended to just handle text, but after a while we also add the possibility to use it for phone numbers as well. The implementation could look something like this:
+For instance, we might start by creating a common `<Input />` component that is intended to just handle text, but after a while we also add the possibility to use it for phone numbers as well. The implementation could look something like this:
 
 ```jsx
 function Input({ value, isPhoneNumberInput, autoCapitalize }) {
@@ -132,15 +129,6 @@ function PhoneNumberInput({ value }) {
 
 While this example is a bit contrived, finding props that are incompatible with each other is usually a good indication that you should check if the component needs to be broken apart.
 
-## <a id="shared-state"></a> Shared state
-
-ie duplicating the component and it shares state it shouldn't
-Navbar never duplicated? Think again, animations! 💫
-
-Fixes:
-
-- Remove the shared state, make sure you can use multiple instances of the component
-
 ## <a id="props-in-state"></a> Copying props into state
 
 Don't stop the data flow by copying props into state.
@@ -155,9 +143,9 @@ function Button({ text }) {
 }
 ```
 
-By passing the `text` prop as the it's initial value of useState the component now practically _ignores_ all updated values of `text`. If the `text` prop was updated the component would still render its first value. WHY IS THIS A BAD THING
+By passing the `text` prop as the initial value of useState the component now practically _ignores_ all updated values of `text`. If the `text` prop was updated the component would still render its first value. WHY IS THIS A BAD THING
 
-A concrete example of this happening is when we want to derive some new value from a prop and especially if this requires some slow calculation. In the example below we run the `formatTextSlowly` function to format our `text`-prop, which takes a lot of time to execute.
+A concrete example of this happening is when we want to derive some new value from a prop and especially if this requires some slow calculation. In the example below, we run the `formatTextSlowly` function to format our `text`-prop, which takes a lot of time to execute.
 
 ```jsx
 function Button({ text }) {
@@ -167,7 +155,7 @@ function Button({ text }) {
 }
 ```
 
-By putting it into state we've solved the issue that it will rerun unneccesarily but like above we've also stopped the component from updating. A better way to solving this issue is using the [useMemo hook](https://reactjs.org/docs/hooks-reference.html#usememo) to _memoize_ the result:
+By putting it into state we've solved the issue that it will rerun unnecessarily but like above we've also stopped the component from updating. A better way to solving this issue is using the [useMemo hook](https://reactjs.org/docs/hooks-reference.html#usememo) to _memoize_ the result:
 
 ```jsx
 function Button({ text }) {
@@ -179,24 +167,53 @@ function Button({ text }) {
 
 Now `formatTextSlowly` only runs when `text` changes and we haven't stopped the component from updating.
 
-> Sometimes we do need a prop where all updates to it are ignored, for example a color picker where we need the option to set a initially picked color but when the user have picked a color we don't want an update to override the users choice. In this case it's totally fine to copy the prop into state, but to indicate this behaviour to the user most developers prefix the prop with either initial or default (`initialColor`/`defaultColor`).
+> Sometimes we do need a prop where all updates to it are ignored, e.g. a color picker where we need the option to set an initially picked color but when the user has picked a color we don't want an update to override the users choice. In this case it's totally fine to copy the prop into state, but to indicate this behavior to the user most developers prefix the prop with either initial or default (`initialColor`/`defaultColor`).
 
 Further reading: [Writing resilient components by Dan Abramov](https://overreacted.io/writing-resilient-components/).
 
-## <a id="large-props"></a> Large "data" props
-
-Passing data instead of composing (See Composable components → tabs)
-
-## <a id="prop-drilling"></a> (Not) prop drilling
-
-Prop drilling is usually just fine but sometimes there's better alternatives.
-
-- Use composition (pass down component as prop)
-- Use context api (when state is shared "horizontally")
-
 ## <a id="jsx-returns"></a> Returning JSX from functions
 
-Splitting up a components JSX into multiple functions makes it hard to reason about the code, and is a clear example of a time where we probably want to create a new component instead.
+Don't return JSX from functions inside a component.
+
+This is a pattern that has largely disappeared when function components became more popular, but I still run into it from time to time. Just to give an example of what I mean:
+
+```jsx
+function Component() {
+  const topSection = () => {
+    return (
+      <header>
+        <h1>Component header</h1>
+      </header>
+    )
+  }
+
+  const middleSection = () => {
+    return (
+      <main>
+        <p>Some text</p>
+      </main>
+    )
+  }
+
+  const bottomSection = () => {
+    return (
+      <footer>
+        <p>Some footer text</p>
+      </footer>
+    )
+  }
+
+  return (
+    <div>
+      {topSection()}
+      {middleSection()}
+      {bottomSection()}
+    </div>
+  )
+}
+```
+
+While this might feel okay at first it makes it hard to reason about the code, discourages good patterns, and should be avoided. To solve it I either inline the JSX because a large return isn't _that big_ of a problem, but more often this is a reason to break these sections into separate components instead.
 
 > Remember that just because you create a new component you don't have to move it to a new file as well. Sometimes it makes sense to keep multiple components in the same file if they are tightly coupled.
 
@@ -204,7 +221,7 @@ Splitting up a components JSX into multiple functions makes it hard to reason ab
 
 Avoid using multiple booleans to represent a components state.
 
-When writing a component and subsequently extending the components functionality it's easy to end up in a situation where you have multiple booleans to indicate which state the component is in. For a small component that does a web request when you click a button you might have something like this:
+When writing a component and subsequently extending the functionality of the component it's easy to end up in a situation where you have multiple booleans to indicate which state the component is in. For a small component that does a web request when you click a button you might have something like this:
 
 ```jsx
 function Component() {
@@ -233,11 +250,11 @@ function Component() {
 }
 ```
 
-When the button is we set `isLoading` to true and do a web request with fetch. When the request returns we either set `isLoading` to false and `isFinished` to true if the request was successful or set `hasError` to true if there was an error.
+When the button is clicked we set `isLoading` to true and do a web request with fetch. When the request returns we either set `isLoading` to false and `isFinished` to true if the request was successful or set `hasError` to true if there was an error.
 
-While this technically works fine it's hard to reason about what state the component is in and it's more error prone than alternatives. We could also end up in an "impossible state", for example if we accidentally set both `isLoading` and `isFinished` to true at the same time.
+While this technically works fine it's hard to reason about what state the component is in and it's more error-prone than alternatives. We could also end up in an "impossible state", such as if we accidentally set both `isLoading` and `isFinished` to true at the same time.
 
-The solution is to manage the state with an `enum` instead. In other languages enums are a way to define a variable that is only allowed to be set to a predefined set of constant values, and while enums doesn't technically exist in Javascript we can use a string and still get a lot of benefit:
+The solution is to manage the state with an `enum` instead. In other languages enums are a way to define a variable that is only allowed to be set to a predefined set of constant values, and while enums don't technically exist in Javascript we can use a string and still get a lot of benefits:
 
 ```jsx
 function Component() {
@@ -271,17 +288,47 @@ const [state, setState] = useState<'idle' | 'loading' | 'error' | 'finished'>('i
 
 ## <a id="many-usestate"></a> Too many useState
 
-Many many useState
+Avoid using too many `useState` hooks in the same component.
 
-Fixes:
+A component with many `useState` hooks is likely to be doing Too Many Things™️ and be a good candidate for breaking into multiple components, but there are also some complex cases where we need to manage some complex state in a single component.
 
-- useReducer
+Here's an example of how some state and a couple of functions in an autocomplete input component could look like:
+
+```jsx
+function AutocompleteInput() {
+  const [isOpen, setIsOpen] = useState(false)
+  const [inputValue, setInputValue] = useState('')
+  const [items, setItems] = useState([])
+  const [selectedItem, setSelectedItem] = useState(null)
+  const [activeIndex, setActiveIndex] = useState(-1)
+
+  const reset = () => {
+    setIsOpen(false)
+    setInputValue('')
+    setItems([])
+    setSelectedItem(null)
+    setActiveIndex(-1)
+  }
+
+  const selectItem = (item) => {
+    setIsOpen(false)
+    setInputValue(item.name)
+    setSelectedItem(item)
+  }
+
+  ...
+}
+```
+
+In these cases it can be beneficial to manage the state with a `useReducer` hook instead:
+
+> Both `useState` and `useReducer` come with their [pros, cons](https://kentcdodds.com/blog/should-i-usestate-or-usereducer) and different use cases (pun intended). One of my favorites with reducers is the [state reducer pattern by Kent C. Dodds](https://kentcdodds.com/blog/the-state-reducer-pattern-with-react-hooks).
 
 ## <a id="large-useeffect"></a> Large useEffect
 
-Avoid large `useEffect`s that do multiple things. They make your code error prone and harder to reason about.
+Avoid large `useEffect`s that do multiple things. They make your code error-prone and harder to reason about.
 
-A mistake that I made a lot when hooks was released was putting to many things into a single `useEffect`. For example:
+A mistake that I made a lot when hooks were released was putting too many things into a single `useEffect`. To illustrate, here's a component with a single `useEffect`:
 
 ```jsx
 function Post({ id, unlisted }) {
@@ -323,4 +370,6 @@ By doing this we've reduced the complexity of our component, made it easier to r
 
 ## Wrapping up
 
-...
+All right, that's all for now! Remember that these by any means aren't rules but rather signs that something _might_ be "wrong". You'll definitely run into situations where you want to do some of the things above for good reason.
+
+Got any feedback on why I'm _very wrong_ about this? Suggestions for other code smells that you've stumbled upon in your components? Hit me up on [Twitter](https://twitter.com/awnton)!
