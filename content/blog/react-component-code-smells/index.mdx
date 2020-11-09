@@ -7,7 +7,7 @@ dev: ''
 state: 'growing'
 ---
 
-A growing collection of things I consider code smells in React components. All opinionated of course so would love to hear if you (dis)agree or have other suggestions.
+A growing collection of things I consider code smells in React components.
 
 - [Too many props](#too-many-props)
 - [Incompatible props](#incompatible-props)
@@ -21,11 +21,11 @@ A growing collection of things I consider code smells in React components. All o
 
 Passing too many props into a single component may be a sign that the component should be split up.
 
-How many are too many you may ask? Well, _too many_ are very arbitrary so "it depends". You might find yourself in a situation where a component should have 20 props or more, and still be satisfied that it only does one thing. But when you do stumble upon a component that has many props or you get the urge to add _just one more_ to the already long list of props there's a couple of things to consider:
+How many are too many you ask? Well.. "it depends". You might find yourself in a situation where a component have 20 props or more, and still be satisfied that it only does one thing. But when you do stumble upon a component that has many props or you get the urge to add _just one more_ to the already long list of props there's a couple of things to consider:
 
 #### Is this component doing multiple things?
 
-Like functions, components should do _one thing well_ so it's always good to check if it's possible to split the component into multiple smaller components. For example, if the component is doing too much or if it has [incompatible props](#incompatible-props).
+Like functions, components should do _one thing well_ so it's always good to check if it's possible to split the component into multiple smaller components. For example if the component has [incompatible props](#incompatible-props) or [returns JSX from functions](#jsx-returns).
 
 #### Could I use composition?
 
@@ -34,7 +34,7 @@ A pattern that is very good but often overlooked is to compose components instea
 ```jsx
 <ApplicationForm
   user={userData}
-  organisation={organisationData}
+  organization={organizationData}
   categories={categoriesData}
   locations={locationsData}
   onSubmit={handleSubmit}
@@ -48,7 +48,7 @@ Looking at the props of this component we can see that all of them are related t
 ```jsx
 <ApplicationForm onSubmit={handleSubmit} onCancel={handleCancel}>
   <ApplicationUserForm user={userData} />
-  <ApplicationOrganisationForm organisation={organisationData} />
+  <ApplicationOrganizationForm organization={organizationData} />
   <ApplicationCategoryForm categories={categoriesData} />
   <ApplicationLocationsForm locations={locationsData} />
 </ApplicationForm>
@@ -73,7 +73,7 @@ In some cases, it's a good idea to group together props into an options object, 
 />
 ```
 
-All of these props except `data` could be considered _configuration_. If we wanted to make all of these dynamic we would either have to manage a lot of lonely variables or put them in an object and then pass them down like `pagination={options.pagination}`. While this works I think it's a bit cleaner to change the `Grid` so that it accepts an `options` prop instead.
+All of these props except `data` could be considered _configuration_. In cases like this it's sometimes a good idea to change the `Grid` so that it accepts an `options` prop instead.
 
 ```jsx
 const options = {
@@ -92,7 +92,7 @@ const options = {
 />
 ```
 
-This also means that it's easier to exclude configuration options we don't want to use when swapping between different `options`, for example excluding `pagination` from some options and include it in others.
+This also means that it's easier to exclude configuration options we don't want to use if we're swapping between different `options`.
 
 ## <a id="incompatible-props"></a> Incompatible props
 
@@ -110,7 +110,7 @@ function Input({ value, isPhoneNumberInput, autoCapitalize }) {
 
 The problem with this is that the props `isPhoneNumberInput` and `autoCapitalize` don't make sense together. We can't really capitalize phone numbers.
 
-One solution to this is to break the component up into multiple smaller components. If we still have some logic we want to share between them, we can move it to a [custom hook](https://reactjs.org/docs/hooks-custom.html):
+In this case the solution is probably to break the component up into multiple smaller components. If we still have some logic we want to share between them, we can move it to a [custom hook](https://reactjs.org/docs/hooks-custom.html):
 
 ```jsx
 function TextInput({ value, autoCapitalize }) {
@@ -143,13 +143,13 @@ function Button({ text }) {
 }
 ```
 
-By passing the `text` prop as the initial value of useState the component now practically _ignores_ all updated values of `text`. If the `text` prop was updated the component would still render its first value. WHY IS THIS A BAD THING
+By passing the `text` prop as the initial value of useState the component now practically _ignores_ all updated values of `text`. If the `text` prop was updated the component would still render its first value. For most props this is unexpected behavior which in turn makes the component more bug-prone.
 
-A concrete example of this happening is when we want to derive some new value from a prop and especially if this requires some slow calculation. In the example below, we run the `formatTextSlowly` function to format our `text`-prop, which takes a lot of time to execute.
+A more practical example of this happening is when we want to derive some new value from a prop and especially if this requires some slow calculation. In the example below, we run the `slowlyFormatText` function to format our `text`-prop, which takes a lot of time to execute.
 
 ```jsx
 function Button({ text }) {
-  const [formattedText] = useState(formatTextSlowly(text))
+  const [formattedText] = useState(() => slowlyFormatText(text))
 
   return <button>{formattedText}</button>
 }
@@ -159,13 +159,13 @@ By putting it into state we've solved the issue that it will rerun unnecessarily
 
 ```jsx
 function Button({ text }) {
-  const formattedText = useMemo(() => formatTextSlowly(text), [text])
+  const formattedText = useMemo(() => slowlyFormatText(text), [text])
 
   return <button>{formattedText}</button>
 }
 ```
 
-Now `formatTextSlowly` only runs when `text` changes and we haven't stopped the component from updating.
+Now `slowlyFormatText` only runs when `text` changes and we haven't stopped the component from updating.
 
 > Sometimes we do need a prop where all updates to it are ignored, e.g. a color picker where we need the option to set an initially picked color but when the user has picked a color we don't want an update to override the users choice. In this case it's totally fine to copy the prop into state, but to indicate this behavior to the user most developers prefix the prop with either initial or default (`initialColor`/`defaultColor`).
 
@@ -250,11 +250,11 @@ function Component() {
 }
 ```
 
-When the button is clicked we set `isLoading` to true and do a web request with fetch. When the request returns we either set `isLoading` to false and `isFinished` to true if the request was successful or set `hasError` to true if there was an error.
+When the button is clicked we set `isLoading` to true and do a web request with fetch. If the request is successful we set `isLoading` to false and `isFinished` to true and otherwise set `hasError` to true if there was an error.
 
 While this technically works fine it's hard to reason about what state the component is in and it's more error-prone than alternatives. We could also end up in an "impossible state", such as if we accidentally set both `isLoading` and `isFinished` to true at the same time.
 
-The solution is to manage the state with an `enum` instead. In other languages enums are a way to define a variable that is only allowed to be set to a predefined set of constant values, and while enums don't technically exist in Javascript we can use a string and still get a lot of benefits:
+A better way to handle this is to manage the state with an "enum" instead. In other languages enums are a way to define a variable that is only allowed to be set to a predefined collection of constant values, and while enums don't technically exist in Javascript we can use a string as an enum and still get a lot of benefits:
 
 ```jsx
 function Component() {
@@ -290,7 +290,7 @@ const [state, setState] = useState<'idle' | 'loading' | 'error' | 'finished'>('i
 
 Avoid using too many `useState` hooks in the same component.
 
-A component with many `useState` hooks is likely to be doing Too Many Things™️ and be a good candidate for breaking into multiple components, but there are also some complex cases where we need to manage some complex state in a single component.
+A component with many `useState` hooks is likely doing Too Many Things™️ and probably a good candidate for breaking into multiple components, but there are also some complex cases where we need to manage some complex state in a single component.
 
 Here's an example of how some state and a couple of functions in an autocomplete input component could look like:
 
@@ -320,7 +320,48 @@ function AutocompleteInput() {
 }
 ```
 
-In these cases it can be beneficial to manage the state with a `useReducer` hook instead:
+We have a `reset` function that resets all of the state and a `selectItem` function that updates some of our state. These functions both have to use quite a few state setters from all of our `useState`s to do their intended task. Now imagine that we have a lot of more actions that have to update the state and it's easy to see that this becomes hard to keep bug free in the long run. In these cases it can be beneficial to manage our state with a `useReducer` hook instead:
+
+```jsx
+const initialState = {
+  isOpen: false,
+  inputValue: "",
+  items: [],
+  selectedItem: null,
+  activeIndex: -1
+}
+function reducer(state, action) {
+  switch (action.type) {
+    case "reset":
+      return {
+        ...initialState
+      }
+    case "selectItem":
+      return {
+        ...state,
+        selectedItem: action.payload
+      }
+    default:
+      throw Error()
+  }
+}
+
+function AutocompleteInput() {
+  const [state, dispatch] = useReducer(reducer, initialState)
+
+  const reset = () => {
+    dispatch({ type: 'reset' })
+  }
+
+  const selectItem = (item) => {
+    dispatch({ type: 'reset', payload: item })
+  }
+
+  ...
+}
+```
+
+By using a reducer we've encapsulated the logic for managing our state and moved the complexity out of our component. This makes it much easier to understand what is going on now that we can think about our state and our component separately.
 
 > Both `useState` and `useReducer` come with their [pros, cons](https://kentcdodds.com/blog/should-i-usestate-or-usereducer) and different use cases (pun intended). One of my favorites with reducers is the [state reducer pattern by Kent C. Dodds](https://kentcdodds.com/blog/the-state-reducer-pattern-with-react-hooks).
 
