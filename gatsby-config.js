@@ -5,23 +5,23 @@ module.exports = {
     description: 'Antons home on the world wide web',
     siteUrl: 'https://antongunnarsson.se/',
     social: {
-      twitter: `awnton`,
-    },
+      twitter: `awnton`
+    }
   },
   plugins: [
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `${__dirname}/content/blog`,
-        name: `blog`,
-      },
+        name: `blog`
+      }
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `${__dirname}/content/assets`,
-        name: `assets`,
-      },
+        name: `assets`
+      }
     },
     {
       resolve: `gatsby-plugin-mdx`,
@@ -31,14 +31,14 @@ module.exports = {
           {
             resolve: `gatsby-remark-images`,
             options: {
-              maxWidth: 600,
-            },
+              maxWidth: 600
+            }
           },
           {
             resolve: `gatsby-remark-responsive-iframe`,
             options: {
-              wrapperStyle: `margin-bottom: 1.0725rem`,
-            },
+              wrapperStyle: `margin-bottom: 1.0725rem`
+            }
           },
           {
             resolve: `gatsby-remark-prismjs`,
@@ -56,27 +56,21 @@ module.exports = {
               // the language "sh" which will highlight using the
               // bash highlighter.
               aliases: {},
-              showLineNumbers: true,
-            },
+              showLineNumbers: true
+            }
           },
           {
-            resolve: `gatsby-remark-copy-linked-files`,
+            resolve: `gatsby-remark-copy-linked-files`
           },
           {
-            resolve: `gatsby-remark-smartypants`,
-          },
-        ],
-      },
+            resolve: `gatsby-remark-smartypants`
+          }
+        ]
+      }
     },
     `gatsby-plugin-styled-components`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
-    {
-      resolve: `gatsby-plugin-google-analytics`,
-      options: {
-        trackingId: 'UA-21600317-1',
-      },
-    },
     `gatsby-plugin-feed-mdx`,
     {
       resolve: `gatsby-plugin-manifest`,
@@ -87,8 +81,8 @@ module.exports = {
         background_color: `#ffffff`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `content/assets/icon.png`,
-      },
+        icon: `content/assets/icon.png`
+      }
     },
     `gatsby-plugin-offline`,
     `gatsby-plugin-react-helmet`,
@@ -96,14 +90,14 @@ module.exports = {
     {
       resolve: `gatsby-remark-images`,
       options: {
-        maxWidth: 600,
-      },
+        maxWidth: 600
+      }
     },
     {
       resolve: `gatsby-plugin-canonical-urls`,
       options: {
-        siteUrl: `https://antongunnarsson.com`,
-      },
-    },
-  ],
+        siteUrl: `https://antongunnarsson.com`
+      }
+    }
+  ]
 }
