@@ -35,7 +35,6 @@ const Heading = styled.header`
 const Nav = styled.nav`
   margin-left: 16px;
   display: flex;
-  align-items: center;
   box-sizing: border-box;
   width: 100%;
 `
