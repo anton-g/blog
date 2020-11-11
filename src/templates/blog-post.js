@@ -38,7 +38,7 @@ const DevButton = ({ link }) => {
       style={{
         display: 'flex',
         alignItems: 'center',
-        margin: '16px 0px',
+        margin: '16px 0px'
       }}
     >
       <img
@@ -71,11 +71,12 @@ class BlogPostTemplate extends React.Component {
       taglineFont: 'roboto',
       taglineFontSize: 48,
       cloudName: 'anton-g',
-      imagePublicID: 'social-card-template_jphyku',
+      imagePublicID: 'social-card-template_jphyku'
     })
 
     const encodedTitle = encodeURI('"' + post.frontmatter.title + '"')
-    const shareLink = `https://twitter.com/share?url=${this.props.location.href}&text=${encodedTitle}%20by%20Anton%20Gunnarsson.&via=Awnton`
+    const url = `${this.props.data.site.siteMetadata.siteUrl}${this.props.location.pathname}`
+    const shareLink = `https://twitter.com/share?url=${url}&text=${encodedTitle}%20by%20Anton%20Gunnarsson.&via=Awnton`
 
     return (
       <Layout maxWidth="750px" location={this.props.location}>
@@ -84,19 +85,15 @@ class BlogPostTemplate extends React.Component {
           description={post.frontmatter.description}
           meta={[
             { name: 'og:image', content: socialImage },
-            { name: 'og:type', content: 'article' },
+            { name: 'og:type', content: 'article' }
           ]}
         />
         <Post>
           <h1>{post.frontmatter.title}</h1>
           <PostState state={post.frontmatter.state} />
           <MDXRenderer>{post.body}</MDXRenderer>
-          {post.frontmatter.dev && (
-            <DevButton link={post.frontmatter.dev}></DevButton>
-          )}
-          <Timestamp>
-            Last update: {post.frontmatter.updated || post.frontmatter.date}
-          </Timestamp>
+          {post.frontmatter.dev && <DevButton link={post.frontmatter.dev}></DevButton>}
+          <Timestamp>Last update: {post.frontmatter.updated || post.frontmatter.date}</Timestamp>
           <Footer>
             <ConfettiWrapper>
               <ConfettiCanon></ConfettiCanon>
@@ -152,6 +149,7 @@ export const pageQuery = graphql`
       siteMetadata {
         title
         author
+        siteUrl
       }
     }
     mdx(fields: { slug: { eq: $slug } }) {

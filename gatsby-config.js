@@ -3,7 +3,7 @@ module.exports = {
     title: 'anton gunnarsson',
     author: 'Anton Gunnarsson',
     description: 'Antons home on the world wide web',
-    siteUrl: 'https://antongunnarsson.se/',
+    siteUrl: 'https://antongunnarsson.com',
     social: {
       twitter: `awnton`
     }
