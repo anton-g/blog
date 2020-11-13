@@ -343,6 +343,8 @@ function reducer(state, action) {
     case "selectItem":
       return {
         ...state,
+        isOpen: false,
+        inputValue: action.payload.name,
         selectedItem: action.payload
       }
     default:
@@ -358,7 +360,7 @@ function AutocompleteInput() {
   }
 
   const selectItem = (item) => {
-    dispatch({ type: 'reset', payload: item })
+    dispatch({ type: 'selectItem', payload: item })
   }
 
   ...
