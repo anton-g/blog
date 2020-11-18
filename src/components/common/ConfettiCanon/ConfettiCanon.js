@@ -22,36 +22,35 @@ export default function ConfettiCanon() {
     dragFriction: 0.1,
     duration: 1000,
     stagger: 0,
-    colors: ['#a864fd', '#29cdff', '#78ff44', '#ff718d', '#fdff6a'],
+    colors: ['#a864fd', '#29cdff', '#78ff44', '#ff718d', '#fdff6a']
   })
   const height = 120
 
   const { path } = useSpring({
     path: loading
       ? `M40 0 H50 Q${100} ${80 / 2} 68 ${80} H21 Q${-10} ${80 / 2} 40 0 Z`
-      : `M40 0 H50 Q${68} ${height / 2} 68 ${height} H21 Q${20} ${height /
-          2} 40 0 Z`,
+      : `M40 0 H50 Q${68} ${height / 2} 68 ${height} H21 Q${20} ${height / 2} 40 0 Z`,
     config: {
       friction: 12,
-      tension: 350,
-    },
+      tension: 350
+    }
   })
 
   const [{ x }, set] = useSpring(() => ({
     x: 0,
     config: {
-      duration: 2000,
-    },
+      duration: 2000
+    }
   }))
 
   const handleMouseDown = () => {
     set({
       x: 80,
-      immediate: false,
+      immediate: false
     })
     setLoading(true)
     setConfetti(false)
-    playCharge()
+    if (soundMode === true) playCharge()
   }
 
   const handleMouseUp = () => {
@@ -66,13 +65,13 @@ export default function ConfettiCanon() {
         startVelocity: lerp(10, 55, percentage),
         elementCount: lerp(20, 200, percentage),
         // dragFriction: 0.1,
-        duration: lerp(1000, 2000, percentage),
-      },
+        duration: lerp(1000, 2000, percentage)
+      }
     }))
 
     set({
       x: 0,
-      immediate: true,
+      immediate: true
     })
     setLoading(false)
     setConfetti(true)
@@ -90,23 +89,12 @@ export default function ConfettiCanon() {
       onTouchCancel={handleMouseUp}
     >
       <StyledConfetti active={confetti} config={confettiConfig} />
-      <svg
-        width="90"
-        height="120"
-        viewBox="0 0 90 120"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
+      <svg width="90" height="120" viewBox="0 0 90 120" fill="none" xmlns="http://www.w3.org/2000/svg">
         <mask id="myMask">
           <animated.path d={path} fill="#C4C4C4" stroke="black" />
         </mask>
         <animated.path d={path} fill="#C4C4C4" stroke="black" />
-        <animated.path
-          d={x.to(x => `M0 0 H100 V${x} H0 V0`)}
-          fill="red"
-          stroke="red"
-          mask="url(#myMask)"
-        />
+        <animated.path d={x.to(x => `M0 0 H100 V${x} H0 V0`)} fill="red" stroke="red" mask="url(#myMask)" />
       </svg>
     </CannonWrapper>
   )
