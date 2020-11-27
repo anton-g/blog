@@ -1,7 +1,7 @@
 ---
 title: A functional javascript sandwich
 date: '2018-09-17T21:05:00.000Z'
-description: 'Learn functional javascript by making a yummy sandwich'
+description: 'Learn functional javascript by making a yummy sandwich with map and reduce!'
 state: 'bloomed'
 ---
 
@@ -55,7 +55,7 @@ It's important to remember that, in javascript, variables declared with `const` 
 
 ```javascript
 const person = {
-  name: 'Anton',
+  name: 'Anton'
 }
 person.name = 'Alfredo'
 ```
