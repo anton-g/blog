@@ -1,7 +1,6 @@
 ---
 title: git switch and restore
 date: '2019-11-10T21:00:00.000Z'
-unlisted: true
 description: 'Git is getting easier with two new commands, "switch" and "restore".'
 state: 'bloomed'
 ---
@@ -12,7 +11,7 @@ Git is getting easier with two new experimental commands, `git switch` and `git 
 
 To change to an existing branch today we use `git checkout [branch-name]` or if we pass the `--branch` flag we can create the branch at the same time (`git checkout --branch [branch-name]`).
 
-With `git switch` the process is very similar, to change branch we just pass it the branch name:
+With `git switch` the process is very similar, to change branch we pass it the branch name:
 
 ```shell
 ➜ git switch another-branch
@@ -20,7 +19,7 @@ With `git switch` the process is very similar, to change branch we just pass it 
 Switched to branch 'another-branch'
 ```
 
-And if we want to create a new branch and change to it, we can pass the `--create` flag (or just `-c`):
+And if we want to create a new branch and change to it, we can pass the `--create` flag (or `-c`):
 
 ```shell
 ➜ git switch -c new-feature
@@ -56,8 +55,8 @@ Finally, we can also specify where we want to restore _from_. By default this is
 git restore --source HEAD~2 --staged file.js
 ```
 
-Just like switch there are a lot more examples in the [documentation](https://git-scm.com/docs/git-restore).
+Like `switch` there are a lot more examples in the [documentation](https://git-scm.com/docs/git-restore).
 
 ### Summary
 
-`switch` and `restore` are two new experimental commands that hopefully will make it easier to work with git from the command line. Switch for changing branches and restore to change files.
+`switch` and `restore` are two new experimental commands that hopefully will make it easier to work with git from the command line. `switch` for changing branches and `restore` to change files.
