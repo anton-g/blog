@@ -135,3 +135,4 @@ A very unsorted and incomplete list of terminology, phrases and products you mig
   - Prettier
   - ESLint
 - Static site generators (SSG)
+- Media query

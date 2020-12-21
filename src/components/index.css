@@ -45,3 +45,13 @@ blockquote {
   font-size: 16px;
   color: var(--color-text) !important;
 }
+
+.gatsby-highlight {
+  margin: 0 -2.5rem 0 -2.5rem;
+}
+
+@media screen and (max-width: 849px) {
+  .gatsby-highlight {
+    margin: 0;
+  }
+}
