@@ -18,9 +18,7 @@ A very incomplete list of things that I'd like to implement or try out while doi
 
 - Tag posts
 - Post search
-- RSS
 - Webmentions
-- Web monetization
 
 And some reading and inspiration while we're at it:
 

@@ -36,7 +36,9 @@ const BlogIndex = props => {
             <Title>talks</Title>
             <List>
               <li>
-                👥{' '}
+                <span role="img" aria-label="silloutes of two people">
+                  👥
+                </span>{' '}
                 <a href="https://www.youtube.com/watch?v=q7bAYxZMJho">
                   It's always better when we're together (Mob Programming)
                 </a>
