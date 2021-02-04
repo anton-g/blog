@@ -1,10 +1,12 @@
 import React, { useRef, useContext, useState, useEffect } from 'react'
 import * as THREE from 'three'
-import { Canvas, useFrame } from 'react-three-fiber'
+import { Canvas, useFrame, useLoader } from 'react-three-fiber'
+import { Physics, useBox, usePlane } from '@react-three/cannon'
 import { PerspectiveCamera, useContextBridge, OrbitControls, softShadows } from '@react-three/drei'
 import Header from './Header'
 import { ThemeContext } from '../ThemeContext'
 import { COLORS } from '../constants'
+import { Suspense } from 'react'
 const typeface = require('./helvetiker_bold.typeface.json')
 
 require('../fonts/inter/inter.css')
@@ -46,7 +48,7 @@ export default function Layout({ children, maxWidth }) {
           <pointLight position={[0, 3, 0]} />
           <directionalLight
             castShadow
-            position={[5, 10, 5]}
+            position={[2, 5, 5]}
             intensity={1}
             args={['#c2e8ff', 1, 20]}
             shadow-mapSize-width={4096}
@@ -59,38 +61,70 @@ export default function Layout({ children, maxWidth }) {
           />
           <ContextBridge>
             <Fog></Fog>
-            <Text></Text>
-            <Floor></Floor>
+            <Physics>
+              <Suspense fallback={null}>
+                <Text text="4" position={[0, 4.2, 0]} />
+                <Text text="0" position={[1.6, 5.2, 0]} />
+                <Text text="4" position={[3.2, 4.7, 0]} />
+              </Suspense>
+              <Floor></Floor>
+              {/* <Box /> */}
+            </Physics>
           </ContextBridge>
-          <OrbitControls />
-          <PerspectiveCamera makeDefault position={[0, 3, 10]} />
+          <OrbitControls
+            target={[3, 0, 0]}
+            enablePan={false}
+            minDistance={13}
+            maxDistance={22}
+            enableDamping={true}
+            minAzimuthAngle={-1.2}
+            maxAzimuthAngle={-0.1}
+            minPolarAngle={0.9}
+            maxPolarAngle={1.5}
+          />
+          <PerspectiveCamera makeDefault position={[-10, 6, 12]} />
         </Canvas>
       </div>
     </>
   )
 }
 
-function Text() {
-  const [font, setFont] = useState(null)
+function useTextBox(config) {
+  const textRef = useRef()
+  const [_, api] = useBox(() => {
+    const bbox = new THREE.Box3().setFromObject(textRef.current)
+    const size = bbox.getSize(new THREE.Vector3())
+    return {
+      ...config,
+      args: [size.x, size.y, size.z]
+    }
+  }, textRef)
+
+  return [textRef, api]
+}
+
+function Text({ text, position }) {
+  const [textRef, api] = useTextBox({
+    mass: 1,
+    position
+  })
   const { colorMode } = useContext(ThemeContext)
 
-  useEffect(() => {
-    const loader = new THREE.FontLoader()
-    const r = loader.parse(typeface)
-    setFont(r)
-  }, [])
+  const font = useLoader(THREE.FontLoader, '/helvetiker_bold.typeface.json')
 
-  if (!font) return null
+  useEffect(() => {
+    textRef.current.geometry.center()
+  }, [textRef.current])
 
   return (
-    <mesh position={[0, -0.9, 0]} receiveShadow castShadow>
+    <mesh ref={textRef} onClick={() => api.applyImpulse([0, 0, -0.5], [0, 0, 0])} receiveShadow castShadow>
       <textGeometry
         attach="geometry"
         args={[
-          '404',
+          text,
           {
             font: font,
-            size: 1,
+            size: 2,
             height: 0.5,
             curveSegments: 14,
             bevelEnabled: true,
@@ -112,27 +146,23 @@ function Text() {
 }
 
 function Box(props) {
+  // const [ref, api] = useBox(() => ({ mass: 1, position: [0, 0, 0] }))
   const { colorMode } = useContext(ThemeContext)
-  const mesh = useRef()
-
-  // Rotate mesh every frame, this is outside of React without overhead
-  useFrame(() => {
-    mesh.current.rotation.x = mesh.current.rotation.y += 0.01
-  })
 
   return (
-    <mesh {...props} ref={mesh} scale={[1, 1, 1]} position={[0, 0, 0]} receiveShadow castShadow>
-      <boxBufferGeometry args={[1, 1, 1]} />
+    <mesh {...props} position={[0, 0, 0]} scale={[1, 1, 1]} receiveShadow castShadow>
+      <boxBufferGeometry args={[2.4779999465681612, 1.110055036842823, 0.5399999804794788]} />
       <meshStandardMaterial color={colorMode === 'dark' ? 'hsl(0, 0%, 15%)' : 'hsl(0, 0%, 40%)'} />
     </mesh>
   )
 }
 
 function Floor(props) {
+  const [ref, api] = usePlane(() => ({ rotation: [-Math.PI / 2, 0, 0], position: [0, -1, 0] }))
   const { colorMode } = useContext(ThemeContext)
 
   return (
-    <mesh receiveShadow rotation={[-Math.PI / 2, 0, 0]} position={[0, -1, 0]}>
+    <mesh ref={ref} receiveShadow>
       <meshStandardMaterial color={colorMode === 'dark' ? 'hsl(0, 0%, 3%)' : 'hsl(0, 0%, 50%)'} />
       <planeBufferGeometry args={[100, 100]} />
     </mesh>
