@@ -12,7 +12,6 @@
     "@juggle/resize-observer": "^3.2.0",
     "@mdx-js/mdx": "^1.6.16",
     "@mdx-js/react": "^1.6.16",
-    "@react-three/cannon": "^0.5.4",
     "@react-three/drei": "^3.2.2",
     "babel-plugin-styled-components": "^1.11.1",
     "gatsby": "^2.24.23",

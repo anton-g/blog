@@ -1,8 +1,8 @@
 import React, { useRef, useContext, useState, useEffect } from 'react'
 import * as THREE from 'three'
-import Header from './Header'
 import { Canvas, useFrame } from 'react-three-fiber'
-import { PerspectiveCamera, useContextBridge, OrbitControls, Plane, softShadows } from '@react-three/drei'
+import { PerspectiveCamera, useContextBridge, OrbitControls, softShadows } from '@react-three/drei'
+import Header from './Header'
 import { ThemeContext } from '../ThemeContext'
 import { COLORS } from '../constants'
 const typeface = require('./helvetiker_bold.typeface.json')
@@ -59,7 +59,6 @@ export default function Layout({ children, maxWidth }) {
           />
           <ContextBridge>
             <Fog></Fog>
-            {/* <Box></Box> */}
             <Text></Text>
             <Floor></Floor>
           </ContextBridge>
@@ -84,7 +83,7 @@ function Text() {
   if (!font) return null
 
   return (
-    <mesh position={[0, 0, 0]} receiveShadow castShadow>
+    <mesh position={[0, -0.9, 0]} receiveShadow castShadow>
       <textGeometry
         attach="geometry"
         args={[
@@ -133,9 +132,10 @@ function Floor(props) {
   const { colorMode } = useContext(ThemeContext)
 
   return (
-    <Plane args={[100, 100]} rotation={[-Math.PI / 2, 0, 0]} position={[0, -1, 0]} receiveShadow>
-      <meshStandardMaterial attach="material" color={colorMode === 'dark' ? 'hsl(0, 0%, 3%)' : 'hsl(0, 0%, 50%)'} />
-    </Plane>
+    <mesh receiveShadow rotation={[-Math.PI / 2, 0, 0]} position={[0, -1, 0]}>
+      <meshStandardMaterial color={colorMode === 'dark' ? 'hsl(0, 0%, 3%)' : 'hsl(0, 0%, 50%)'} />
+      <planeBufferGeometry args={[100, 100]} />
+    </mesh>
   )
 }
 
