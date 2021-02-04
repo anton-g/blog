@@ -34,7 +34,6 @@ export default function Layout({ children, maxWidth }) {
         style={{
           width: '100%',
           height: '100%',
-          border: '2px solid red',
           position: 'absolute',
           top: 0,
           left: 0,
@@ -42,7 +41,7 @@ export default function Layout({ children, maxWidth }) {
           boxSizing: 'border-box'
         }}
       >
-        <Canvas colorManagement shadowMap pixelRatio={window.devicePixelRatio}>
+        <Canvas colorManagement shadowMap>
           <ambientLight />
           <pointLight position={[0, 3, 0]} />
           <directionalLight
@@ -69,21 +68,34 @@ export default function Layout({ children, maxWidth }) {
               <Floor></Floor>
             </Physics>
           </ContextBridge>
-          <OrbitControls
-            target={[3, 0, 0]}
-            enablePan={false}
-            minDistance={13}
-            maxDistance={22}
-            enableDamping={true}
-            minAzimuthAngle={-1.2}
-            maxAzimuthAngle={-0.1}
-            minPolarAngle={0.9}
-            maxPolarAngle={1.5}
-          />
+          <Controls />
           <PerspectiveCamera makeDefault position={[-10, 6, 12]} />
         </Canvas>
       </div>
     </>
+  )
+}
+
+function Controls() {
+  const controlsRef = useRef()
+  useFrame(() => controlsRef.current.update())
+
+  return (
+    <OrbitControls
+      ref={controlsRef}
+      target={[3, 0, 0]}
+      enablePan={false}
+      minDistance={13}
+      maxDistance={22}
+      enableDamping={true}
+      minAzimuthAngle={-1.2}
+      maxAzimuthAngle={-0.1}
+      minPolarAngle={0.9}
+      maxPolarAngle={1.5}
+      enableDamping={true}
+      dampingFactor={0.005}
+      zoomSpeed={0.1}
+    />
   )
 }
 
@@ -135,7 +147,7 @@ function Text({ text, position }) {
       />
       <meshStandardMaterial
         attach="material"
-        color={colorMode === 'dark' ? 'hsl(0, 0%, 15%)' : 'hsl(0, 0%, 40%)'}
+        color={colorMode === 'dark' ? 'hsl(0, 0%, 15%)' : 'hsl(0, 0%, 50%)'}
         roughness="0.67"
         flatShading={true}
       />
