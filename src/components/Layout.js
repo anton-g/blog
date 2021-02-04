@@ -1,4 +1,4 @@
-import React, { useRef, useContext, useState, useEffect } from 'react'
+import React, { useRef, useContext, useEffect } from 'react'
 import * as THREE from 'three'
 import { Canvas, useFrame, useLoader } from 'react-three-fiber'
 import { Physics, useBox, usePlane } from '@react-three/cannon'
@@ -7,7 +7,6 @@ import Header from './Header'
 import { ThemeContext } from '../ThemeContext'
 import { COLORS } from '../constants'
 import { Suspense } from 'react'
-const typeface = require('./helvetiker_bold.typeface.json')
 
 require('../fonts/inter/inter.css')
 require('../fonts/ms-sans-serif/ms-sans-serif.css')
@@ -68,7 +67,6 @@ export default function Layout({ children, maxWidth }) {
                 <Text text="4" position={[3.2, 4.7, 0]} />
               </Suspense>
               <Floor></Floor>
-              {/* <Box /> */}
             </Physics>
           </ContextBridge>
           <OrbitControls
@@ -117,7 +115,7 @@ function Text({ text, position }) {
   }, [textRef.current])
 
   return (
-    <mesh ref={textRef} onClick={() => api.applyImpulse([0, 0, -0.5], [0, 0, 0])} receiveShadow castShadow>
+    <mesh ref={textRef} onPointerDown={() => api.applyImpulse([0, 0, -0.5], [0, 0, 0])} receiveShadow castShadow>
       <textGeometry
         attach="geometry"
         args={[
@@ -145,20 +143,8 @@ function Text({ text, position }) {
   )
 }
 
-function Box(props) {
-  // const [ref, api] = useBox(() => ({ mass: 1, position: [0, 0, 0] }))
-  const { colorMode } = useContext(ThemeContext)
-
-  return (
-    <mesh {...props} position={[0, 0, 0]} scale={[1, 1, 1]} receiveShadow castShadow>
-      <boxBufferGeometry args={[2.4779999465681612, 1.110055036842823, 0.5399999804794788]} />
-      <meshStandardMaterial color={colorMode === 'dark' ? 'hsl(0, 0%, 15%)' : 'hsl(0, 0%, 40%)'} />
-    </mesh>
-  )
-}
-
-function Floor(props) {
-  const [ref, api] = usePlane(() => ({ rotation: [-Math.PI / 2, 0, 0], position: [0, -1, 0] }))
+function Floor() {
+  const [ref] = usePlane(() => ({ rotation: [-Math.PI / 2, 0, 0], position: [0, -1, 0] }))
   const { colorMode } = useContext(ThemeContext)
 
   return (
@@ -169,7 +155,7 @@ function Floor(props) {
   )
 }
 
-function Fog(props) {
+function Fog() {
   const { colorMode } = useContext(ThemeContext)
   return <fog attach="fog" args={[COLORS.background[colorMode], 10, 50]} />
 }
