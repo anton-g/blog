@@ -49,7 +49,19 @@ function NotFoundPage({ data, location }) {
         >
           <ambientLight />
           <pointLight position={[0, 3, 0]} />
-          <directionalLight castShadow position={[2, 5, 5]} intensity={1} args={['#c2e8ff', 1, 20]} />
+          <directionalLight
+            castShadow
+            position={[2, 5, 5]}
+            intensity={1}
+            args={['#c2e8ff', 1, 20]}
+            shadow-mapSize-width={4096}
+            shadow-mapSize-height={4096}
+            shadow-camera-far={20}
+            shadow-camera-left={-5}
+            shadow-camera-right={5}
+            shadow-camera-top={5}
+            shadow-camera-bottom={-5}
+          />
           <ContextBridge>
             <Fog></Fog>
             <Physics>
