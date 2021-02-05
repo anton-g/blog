@@ -1,4 +1,4 @@
-import React, { useRef, useContext, useEffect } from 'react'
+import React, { useRef, useContext, useEffect, Suspense } from 'react'
 import { graphql } from 'gatsby'
 import * as THREE from 'three'
 import { Canvas, useFrame, useLoader } from 'react-three-fiber'
@@ -6,16 +6,19 @@ import { Physics, useBox, usePlane } from '@react-three/cannon'
 import { PerspectiveCamera, useContextBridge, OrbitControls, softShadows } from '@react-three/drei'
 import { ThemeContext } from '../ThemeContext'
 import { COLORS } from '../constants'
-import { Suspense } from 'react'
 
 import Layout from '../components/Layout'
 import SEO from '../components/Seo'
 
 softShadows()
 
+const darkColor = new THREE.Color(COLORS.background.dark)
+const lightColor = new THREE.Color(COLORS.background.light)
+
 function NotFoundPage({ data, location }) {
   const ContextBridge = useContextBridge(ThemeContext)
   const siteTitle = data.site.siteMetadata.title
+  const { colorMode } = useContext(ThemeContext)
 
   return (
     <>
@@ -37,22 +40,16 @@ function NotFoundPage({ data, location }) {
           boxSizing: 'border-box'
         }}
       >
-        <Canvas colorManagement shadowMap>
+        <Canvas
+          colorManagement
+          shadowMap
+          onCreated={({ scene }) => {
+            scene.background = colorMode === 'dark' ? darkColor.clone() : lightColor.clone()
+          }}
+        >
           <ambientLight />
           <pointLight position={[0, 3, 0]} />
-          <directionalLight
-            castShadow
-            position={[2, 5, 5]}
-            intensity={1}
-            args={['#c2e8ff', 1, 20]}
-            shadow-mapSize-width={4096}
-            shadow-mapSize-height={4096}
-            shadow-camera-far={20}
-            shadow-camera-left={-5}
-            shadow-camera-right={5}
-            shadow-camera-top={5}
-            shadow-camera-bottom={-5}
-          />
+          <directionalLight castShadow position={[2, 5, 5]} intensity={1} args={['#c2e8ff', 1, 20]} />
           <ContextBridge>
             <Fog></Fog>
             <Physics>
@@ -135,8 +132,7 @@ function Text({ text, position }) {
 
   return (
     <mesh ref={textRef} onPointerDown={() => api.applyImpulse([0, 0, -0.5], [0, 0, 0])} receiveShadow castShadow>
-      <textGeometry
-        attach="geometry"
+      <textBufferGeometry
         args={[
           text,
           {
@@ -153,7 +149,6 @@ function Text({ text, position }) {
         ]}
       />
       <meshStandardMaterial
-        attach="material"
         color={colorMode === 'dark' ? 'hsl(0, 0%, 15%)' : 'hsl(0, 0%, 50%)'}
         roughness="0.67"
         flatShading={true}
@@ -176,5 +171,23 @@ function Floor() {
 
 function Fog() {
   const { colorMode } = useContext(ThemeContext)
-  return <fog attach="fog" args={[COLORS.background[colorMode], 10, 50]} />
+  const ref = useRef()
+  const alpha = useRef(0)
+  const initialColor = useRef(colorMode === 'dark' ? darkColor.clone() : lightColor.clone())
+
+  useFrame(({ scene }) => {
+    if (colorMode === 'dark' && alpha.current > 0) {
+      alpha.current -= 0.08
+      ref.current.color.lerpColors(darkColor, initialColor.current, alpha.current)
+      scene.background.lerpColors(darkColor, initialColor.current, alpha.current)
+    }
+
+    if (colorMode === 'light' && alpha.current < 1) {
+      alpha.current += 0.08
+      ref.current.color.lerpColors(initialColor.current, lightColor, alpha.current)
+      scene.background.lerpColors(initialColor.current, lightColor, alpha.current)
+    }
+  })
+
+  return <fog attach="fog" ref={ref} args={[COLORS.background[colorMode], 10, 50]} />
 }
