@@ -7,15 +7,11 @@ state: 'growing'
 
 Code in the Dark is a _programming_ competition where participants try to recreate a design with just HTML & CSS, **without previewing it**. Created by Tictail (now Shopify) back in 2013 there have now been similar events all over the world. I got to experience the excitement of just being in the audience at last year's NordicJS which inspired me to host my own Code in the Dark-evening at work. These are some notes to my future self and anyone else who'd like to host a similar event.
 
-![four people coding behind monitors](./codeinthedark.png)
-
 ## Preparations
 
 Before starting to prepare you need to set a goal for how many people do you want to participate. We ran four heats with four participants in each and a final with the winners from each heat. That was a total of 16 people, which also meant we had to prepare five different reference images that they were to recreate.
 
 Talking of the reference images, I recommend keeping it simple and straight forward. One thing I found worked well was taking some well-known site, finding a component I liked and modding that with the DevTools to my liking. Here's one I made of the GitHub pull request page:
-
-![GitHub PR image](./page.png)
 
 ### Editor
 
@@ -38,8 +34,6 @@ Talking about winning, you should also decide if you want the winner to receive 
 To simplify administration during the event I prepared a presentation that included some placeholder text for between the heats, a timer that counted down from 15 minutes and instructions for how to vote when the heat was over. I built the presentation with [mdx-deck](https://github.com/jxnblk/mdx-deck) which is a way to build presentations with Markdown and React. Doing that enabled me to have an interactive presentation that I never had to leave in between the heats.
 
 Here's how some of the slides looked, but like said before I recommend having a slide for the reference image and not showing the voting live.
-
-![slides from presentation](./presentation.png)
 
 ### Physical setup
 
