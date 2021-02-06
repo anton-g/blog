@@ -10,6 +10,8 @@ export default function HTML(props) {
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="monetization" content="$ilp.uphold.com/zwax7UDJ3FLD" />
         <link href="https://github.com/anton-g" rel="me" />
+        <link rel="webmention" href="https://webmention.io/antongunnarsson.com/webmention" />
+        <link rel="pingback" href="https://webmention.io/antongunnarsson.com/xmlrpc" />
         {props.headComponents}
         <script src="https://cdn.usefathom.com/script.js" data-spa="auto" data-site="TZJQFTNI" defer></script>
       </head>
