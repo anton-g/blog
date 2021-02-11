@@ -7,6 +7,10 @@ export const COLORS = {
     light: 'hsl(0, 100%, 99%)',
     dark: 'hsl(0, 0%, 5%)'
   },
+  'background-contrast': {
+    light: 'hsl(0, 0%, 95%)',
+    dark: 'hsl(0, 0%, 10%)'
+  },
   text: {
     light: 'hsl(0, 0%, 5%)',
     dark: 'hsl(0, 100%, 99%)'

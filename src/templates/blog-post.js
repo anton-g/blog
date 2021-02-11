@@ -1,15 +1,15 @@
 import React, { useContext } from 'react'
 import { graphql } from 'gatsby'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
+import styled from 'styled-components'
 import getShareImage from '@jlengstorf/get-share-image'
 import SEO from '../components/Seo'
 import Layout from '../components/Layout'
-import styled from 'styled-components'
 import ConfettiCanon from '../components/common/ConfettiCanon/ConfettiCanon'
-
-import twitter from './twitter.png'
-import { ThemeContext } from '../ThemeContext'
 import Confettis from '../components/common/Confettis/Confettis'
+import WebMentions from '../components/common/WebMentions/WebMentions'
+import { ThemeContext } from '../ThemeContext'
+import twitter from './twitter.png'
 
 const PostState = ({ state }) => {
   let text = ''
@@ -135,6 +135,7 @@ class BlogPostTemplate extends React.Component {
               </TwitterWrapper>
             )}
           </Footer>
+          <WebMentions target={url} shareLink={shareLink} />
         </Post>
       </Layout>
     )
@@ -174,6 +175,7 @@ const Post = styled.div`
   line-height: 1.5;
   font-size: 18px;
   text-rendering: optimizelegibility;
+  padding-bottom: 64px;
 
   h1 {
     margin-bottom: 0;
