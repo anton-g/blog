@@ -13,7 +13,7 @@ function WebMentions({ target, shareLink }) {
     )
       .then(x => x.json())
       .then(x => setMentions(x.links))
-  }, [])
+  }, [target])
 
   const rx = /^<a href=".*">.*<\/a>$/
   const likes = mentions?.filter(x => x.activity.type === 'like')

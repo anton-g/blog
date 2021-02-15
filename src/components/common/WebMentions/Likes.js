@@ -35,6 +35,7 @@ const LikeAvatar = styled.img`
   border-radius: 50%;
   border: 2px solid var(--color-background);
   z-index: 1;
+  transition: border-color 0.2s, filter 0.2s;
 
   &:hover {
     border-color: var(--color-primary);
