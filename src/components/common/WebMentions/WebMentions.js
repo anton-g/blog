@@ -8,9 +8,10 @@ function WebMentions({ target, shareLink }) {
 
   useEffect(() => {
     const page = 0
-    fetch(
-      `https://webmention.io/api/mentions?page=${page}&per-page=50&target=${target}` // trailing slash impt
-    )
+
+    const t = target?.slice(-1) === '/' ? target : target + '/'
+
+    fetch(`https://webmention.io/api/mentions?page=${page}&per-page=50&target=${t}`)
       .then(x => x.json())
       .then(x => setMentions(x.links))
   }, [target])
