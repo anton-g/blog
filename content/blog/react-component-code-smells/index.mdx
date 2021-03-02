@@ -1,7 +1,7 @@
 ---
 title: React component code smells
 date: '2020-08-13T20:17:00.000Z'
-updated: '2020-11-09T20:00:00.000Z'
+updated: '2021-03-02T21:01:00.000Z'
 description: 'A collection of things to avoid in React components'
 dev: 'https://dev.to/awnton/7-code-smells-in-react-components-5f66'
 state: 'growing'
@@ -9,7 +9,7 @@ state: 'growing'
 
 A growing collection of things I consider code smells in React components.
 
-> **What's a code smell?** In short, something that could indicate a deeper problem within a code base. ([Wikipedia](https://en.wikipedia.org/wiki/Code_smell))
+> **What's a code smell?** A code smell is something that _could_ indicate a deeper problem within a code base, but isn't necessarily a bug. More information on [Wikipedia](https://en.wikipedia.org/wiki/Code_smell).
 
 ### The smells 💩
 
@@ -51,10 +51,10 @@ Looking at the props of this component we can see that all of them are related t
 
 ```jsx
 <ApplicationForm onSubmit={handleSubmit} onCancel={handleCancel}>
-  <ApplicationUserForm user={userData} />
-  <ApplicationOrganizationForm organization={organizationData} />
-  <ApplicationCategoryForm categories={categoriesData} />
-  <ApplicationLocationsForm locations={locationsData} />
+  <UserField user={userData} />
+  <OrganizationField organization={organizationData} />
+  <CategoryField categories={categoriesData} />
+  <LocationsField locations={locationsData} />
 </ApplicationForm>
 ```
 
