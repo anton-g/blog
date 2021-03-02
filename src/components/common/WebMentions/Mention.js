@@ -2,6 +2,11 @@ import React from 'react'
 import styled from 'styled-components'
 
 function Mention({ data }) {
+  if (!data.author) {
+    console.log(data)
+    return null
+  }
+
   return (
     <Wrapper>
       <CardLink href={data.url} />
