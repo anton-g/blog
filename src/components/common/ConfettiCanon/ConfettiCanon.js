@@ -77,6 +77,7 @@ export default function ConfettiCanon() {
     setConfetti(true)
     stop()
     if (soundMode === true) playPop()
+    window.fathom.trackGoal('GPLPLS3A', 0)
   }
 
   return (
