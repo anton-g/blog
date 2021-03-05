@@ -1,0 +1,98 @@
+---
+title: Compound components in React
+date: '2021-03-04T20:17:00.000Z'
+description: 'How compound components lets you build very flexible components in React'
+state: 'budding'
+unlisted: true
+---
+
+import { AccordionExample } from './components/AccordionExample'
+
+Sometimes you find yourself in a situation where you need to build a component that is reusable but also very flexible so it can adapt for a myriad of situations. It could be something like a toggle, tabbed navigation or an accordion. A pattern that I think is fantastic for solving these problems is <Confettis>compound components</Confettis>. That is when you have multiple components working together in a very coupled but flexible way.
+
+Let's look at how we could build this accordion as a compound component:
+
+<AccordionExample />
+
+This accordion consists of three components: One for the toggling buttons, one for the collapsible content and one parent that ties everything together. Here's how it looks when using it:
+
+```jsx
+<Accordion>
+  <div>
+    <Accordion.Toggle eventKey="item1">Item 1</Accordion.Toggle>
+    <Accordion.Collapse eventKey="item1">Content 1...</Accordion.Collapse>
+  </div>
+  <div>
+    <Accordion.Toggle eventKey="item2">Item 2</Accordion.Toggle>
+    <Accordion.Collapse eventKey="item2">Content 2...</Accordion.Collapse>
+  </div>
+  <div>
+    <Accordion.Toggle eventKey="item3">Item 3</Accordion.Toggle>
+    <Accordion.Collapse eventKey="item3">Content 3...</Accordion.Collapse>
+  </div>
+</Accordion>
+```
+
+There's a couple of things to note here. First of `<Accordion.Toggle>` and `<Accordion.Collapse>` might look a little weird with it if you haven't seen it before, but it is because the `<Toggle>` and `<Collapse>` components are added as static properties on the `<Accordion>` component. This is not a requirement when building compound components but I think it makes it clearer that we are in fact dealing with tightly coupled components intended to be used together.
+
+<Callout>
+  If you've ever used [Reach UI](https://reach.tech/) or [React Bootstrap](https://react-bootstrap.github.io/) this
+  probably looks familiar to you.
+</Callout>
+
+Secondly the `<Toggle>` and `<Collapse>` components are **not** direct children of `<Accordion>`. This is possible because of how they're implemented which we'll see in just a second, but since this works it gives us a lot of flexibility in how we want our accordion to look and work.
+
+```jsx
+const AccordionContext = React.createContext(null)
+
+function Accordion({ children }) {
+  const [activeKey, setActiveKey] = useState(null)
+
+  const setKey = newKey => {
+    if (newKey === activeKey) setActiveKey(null)
+    else setActiveKey(newKey)
+  }
+
+  return <AccordionContext.Provider value={{ activeKey, setKey }}>{children}</AccordionContext.Provider>
+}
+```
+
+```jsx
+function Toggle({ children, eventKey }) {
+  const { setKey } = useContext(AccordionContext)
+
+  return <button onClick={() => setKey(eventKey)}>{children}</button>
+}
+```
+
+<Callout>
+  Sometimes you might not want to use a `button` for the toggle and one way of adding that flexibility would be to use a
+  [render prop](/render-props-in-the-age-of-hooks). We could also use another pattern where you can control the element
+  type with a prop. Usually this prop is called `as`. In our example it would look like this:
+</Callout>
+
+```jsx
+function Toggle({ children, eventKey, as = 'button' }) {
+  const { setKey } = useContext(AccordionContext)
+
+  return React.createElement(as, {
+    onClick: () => setKey(eventKey),
+    children: children
+  })
+}
+```
+
+```jsx
+function Collapse({ children, eventKey }) {
+  const { activeKey } = useContext(AccordionContext)
+
+  if (activeKey !== eventKey) return null
+
+  return children
+}
+```
+
+<Callout>
+  **Extracurricular: Compound components without React context?** It is possible to create compound components without
+  using context, with the caveat that it's a bit more complex and a little less flexible. React.createElement osv osv
+</Callout>
