@@ -33,6 +33,7 @@
     "gatsby-remark-smartypants": "^3.0.0",
     "gatsby-source-filesystem": "^3.0.0",
     "gatsby-transformer-sharp": "^3.0.0",
+    "prettier": "^2.2.1",
     "prismjs": "^1.23.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
@@ -53,9 +54,6 @@
     "typography-theme-wordpress-2016": "^0.16.19",
     "use-sound": "^1.0.2",
     "vec-la": "^1.5.0"
-  },
-  "devDependencies": {
-    "prettier": "^1.19.1"
   },
   "homepage": "https://github.com/gatsbyjs/gatsby-starter-blog#readme",
   "keywords": [
