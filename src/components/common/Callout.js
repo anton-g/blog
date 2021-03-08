@@ -4,13 +4,25 @@ import styled from 'styled-components'
 const Wrapper = styled.div`
   margin: 18px -2.5rem 18px -2.5rem;
   padding: 20px 32px;
-  border: 1px solid #f9a8d4;
+  border: 1px solid #059669;
   border-radius: 4px;
   font-size: 14px;
 
   @media screen and (max-width: 849px) {
     margin-left: 0;
     margin-right: 0;
+  }
+
+  p {
+    margin-top: 0;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .gatsby-highlight {
+    margin: 0;
   }
 `
 
@@ -22,6 +34,7 @@ const Icon = styled.svg`
   border-radius: 50%;
   background-color: var(--color-background);
   padding: 4px 0;
+  color: #10b981;
 
   path {
     opacity: 0.8;

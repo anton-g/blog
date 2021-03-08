@@ -5,7 +5,7 @@ const AccordionContext = React.createContext(null)
 export function Accordion({ children }) {
   const [activeKey, setActiveKey] = useState('item1')
 
-  const setKey = newKey => {
+  const setKey = (newKey) => {
     if (newKey === activeKey) setActiveKey(null)
     else setActiveKey(newKey)
   }

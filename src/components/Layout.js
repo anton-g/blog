@@ -3,13 +3,14 @@ import { MDXProvider } from '@mdx-js/react'
 import Header from './Header'
 import Confettis from './common/Confettis/Confettis'
 import { Callout } from './common/Callout'
+import { Extracurricular } from './common/Extracurricular'
 
 require('../fonts/inter/inter.css')
 require('../fonts/ms-sans-serif/ms-sans-serif.css')
 require('./index.css')
 require('./prism-theme.css')
 
-const shortcodes = { Confettis, Callout }
+const shortcodes = { Confettis, Callout, Extracurricular }
 
 export default function Layout({ children, maxWidth }) {
   return (
@@ -19,7 +20,7 @@ export default function Layout({ children, maxWidth }) {
         <main
           style={{
             maxWidth: maxWidth ? maxWidth : '800px',
-            margin: '0 auto 0'
+            margin: '0 auto 0',
           }}
         >
           {children}
