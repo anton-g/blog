@@ -23,7 +23,7 @@ const Toggle = ({ children, eventKey, className }) => {
   )
 }
 
-const Collapse = ({ children, eventKey }) => {
+const Content = ({ children, eventKey }) => {
   const { activeKey } = useContext(AccordionContext)
 
   if (activeKey !== eventKey) return null
@@ -32,4 +32,4 @@ const Collapse = ({ children, eventKey }) => {
 }
 
 Accordion.Toggle = Toggle
-Accordion.Collapse = Collapse
+Accordion.Content = Content

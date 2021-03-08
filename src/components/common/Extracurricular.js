@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 const Wrapper = styled.section`
-  margin: 18px -2.5rem 18px -2.5rem;
+  margin: 32px -2.5rem 32px -2.5rem;
   border: 1px solid #059669;
   border-radius: 4px;
   font-size: 14px;
@@ -30,7 +30,7 @@ const Title = styled.button`
   padding: 0;
   color: var(--color-text);
   cursor: pointer;
-  padding: 8px 32px;
+  padding: 8px 40px;
   width: 100%;
   text-align: left;
   display: flex;
@@ -42,7 +42,7 @@ const Icon = styled.svg`
   width: 20px;
   height: 20px;
   position: absolute;
-  top: 4px;
+  top: 6px;
   margin-left: -10px;
   border-radius: 50%;
   background-color: var(--color-background);
@@ -62,7 +62,12 @@ const Chevron = styled.svg`
 `
 
 const Content = styled.div`
-  padding: 0 32px 10px 32px;
+  padding: 0 40px 10px 40px;
+  ${(p) =>
+    !p.open &&
+    css`
+      display: none;
+    `}
 
   .gatsby-highlight {
     margin: 0;
@@ -90,7 +95,7 @@ export function Extracurricular({ title, children }) {
           />
         </Chevron>
       </Title>
-      {open && <Content>{children}</Content>}
+      <Content open={open}>{children}</Content>
     </Wrapper>
   )
 }

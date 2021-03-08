@@ -54,29 +54,29 @@ export function AccordionExample() {
       <Accordion>
         <Option>
           <StyledToggle eventKey="item1">Item 1</StyledToggle>
-          <Accordion.Collapse eventKey="item1">
+          <Accordion.Content eventKey="item1">
             <Content>
               Hey you! I'm a <b>interactive</b> example! Try expanding the other items or closing this one!
             </Content>
-          </Accordion.Collapse>
+          </Accordion.Content>
         </Option>
         <Option>
           <StyledToggle eventKey="item2">Item 2</StyledToggle>
-          <Accordion.Collapse eventKey="item2">
+          <Accordion.Content eventKey="item2">
             <Content>
               I'm built with flexibility in mind so that I don't limit the type of content any section can have. Like a
               component with some more <Confettis>C O N F E T T I</Confettis>!
             </Content>
-          </Accordion.Collapse>
+          </Accordion.Content>
         </Option>
         <Option>
           <StyledToggle eventKey="item3">Item 3</StyledToggle>
-          <Accordion.Collapse eventKey="item3">
+          <Accordion.Content eventKey="item3">
             <Content>
               Or why not a gif:
               <Image src={raccoon} />
             </Content>
-          </Accordion.Collapse>
+          </Accordion.Content>
         </Option>
       </Accordion>
     </Wrapper>
