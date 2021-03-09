@@ -1,20 +1,19 @@
 ---
 title: Compound components in React
 date: '2021-03-09T20:17:00.000Z'
-description: 'How compound components lets you build very flexible components in React'
+description: 'How to use compound components to build flexible and expressive React components'
 state: 'budding'
-unlisted: true
 ---
 
 import { AccordionExample } from './components/AccordionExample'
 
-Sometimes you find yourself in a situation where you need to build a component that is reusable but also very flexible so it can adapt for a myriad of situations. It could be something like a toggle, tabbed navigation or an accordion. A pattern that I think is fantastic for solving these problems is <Confettis>compound components</Confettis>. That is when you have multiple components working together in a coupled but flexible way.
+Sometimes you find yourself in a situation where you need to build a component that is reusable but also very flexible so it can adapt to a myriad of situations. It could be something like a toggle, tabbed navigation, or an accordion. A pattern that I think is fantastic for solving these problems is <Confettis>compound components</Confettis>. That is when you have multiple components working together in a coupled but flexible way.
 
 Let's look at how we could build this accordion as a compound component:
 
 <AccordionExample />
 
-This accordion consists of three components: One for the toggling buttons, one for the collapsible content and one parent that ties everything together. Here's how it looks when using it:
+This accordion consists of three components: One for the toggling buttons, one for the collapsible content, and one parent that ties everything together. Here's how it looks when using it:
 
 ```jsx
 <Accordion>
@@ -33,7 +32,7 @@ This accordion consists of three components: One for the toggling buttons, one f
 </Accordion>
 ```
 
-There's a couple of things to note here. First of `<Accordion.Toggle>` and `<Accordion.Content>` might look a little weird with it if you haven't seen it before, but it is because the `<Toggle>` and `<Content>` components are added as static properties on `<Accordion>`. This is not a requirement in any way but I think it makes it clearer that we are in fact dealing with tightly coupled components intended to be used together.
+There's a couple of things to note here. First off `<Accordion.Toggle>` and `<Accordion.Content>` might look a little weird with it if you haven't seen it before, but it is because the `<Toggle>` and `<Content>` components are added as static properties on `<Accordion>`. This is not a requirement in any way but I think it makes it clearer that we are dealing with tightly coupled components intended to be used together.
 
 <Callout>
 
@@ -41,7 +40,7 @@ If you've ever used [Reach UI](https://reach.tech/) or [React Bootstrap](https:/
 
 </Callout>
 
-Secondly the `<Toggle>` and `<Content>` components are **not** direct children of `<Accordion>`. This is possible because we use a Context to pass data between our components, which gives us a lot of flexibility in how we want our accordion to look and work.
+Secondly neither the `<Toggle>` and `<Content>` components are direct children of `<Accordion>`. This is possible because we use a Context to pass data between our components, which gives us a lot of flexibility in how we want our accordion to look and work.
 
 Here is how the parent component `<Accordion>` is implemented:
 
@@ -60,7 +59,7 @@ function Accordion({ children }) {
 }
 ```
 
-There's a bit to unpack here so let's start at the top. We create a context called `AccordionContext` that will be used to connect our components. Then we set up some state, `activeKey`, to hold the currently open "tab"s key and create a function which that updates our state to open/close the accordion. Lastly we return the components `children` wrapped in our contexts `<Provider>` which value we set to an object with `activeKey` and `setKey`.
+There's a bit to unpack here so let's start at the top. We create a context called `AccordionContext` that will be used to connect our components. Then we set up some state, `activeKey`, to hold the currently open "tab"s key and create a function that updates our state to open/close the accordion. Lastly, we return the component's `children` wrapped in our contexts `<Provider>` which value we set to an object with `activeKey` and `setKey`.
 
 With that set up we can take a look at `<Content>` where the implementation looks like this:
 
@@ -76,7 +75,7 @@ function Content({ children, eventKey }) {
 
 We get `activeKey` from the `AccordionContext` and if it doesn't match the prop `eventKey` we return `null`, otherwise we return `children`.
 
-Finally this is how `<Toggle>` looks:
+Finally, this is how `<Toggle>` looks:
 
 ```jsx
 function Toggle({ children, eventKey }) {
@@ -86,7 +85,7 @@ function Toggle({ children, eventKey }) {
 }
 ```
 
-Here we grab `setKey` from our `AccordionContext` and when the user clicks the button we calls it with the toggles `eventKey` as its only argument.
+Here we grab `setKey` from our `AccordionContext` and when the user clicks the button we call it with the toggles `eventKey` as its only argument.
 
 <Extracurricular title="Give the user more control of <Toggle>">
 
@@ -103,7 +102,7 @@ function Toggle({ children, eventKey, as = 'button' }) {
 }
 ```
 
-To achieve this we use the [cloneElement](https://reactjs.org/docs/react-api.html#cloneelement) function from Reacts top-level API and with this we can pass any element type to `Toggle` and it will _just work_.
+To achieve this we use the [cloneElement](https://reactjs.org/docs/react-api.html#cloneelement) function from Reacts top-level API and with this, we can pass any element type to `Toggle` and it will _just work_.
 
 </Extracurricular>
 
@@ -111,7 +110,7 @@ And with that our accordion is complete! You can find the complete implementatio
 
 So to recap: By splitting the implementation across multiple components that share an implicit state using `Context` we've created a more expressive and flexible API for our accordion. If we suddenly decide we want to have the accordion buttons below the content we only need to change the usage and not the implementation. This is one of the biggest benefits of compound components.
 
-Hopefully this have given you some insight in why and when compound components is useful. I think it should be a tool in every React developers toolbox.
+Hopefully this has given you some insight into why and when compound components are useful. I think it should be a tool in every React developers toolbox.
 
 <Extracurricular title="Compound components without React context?">
 
@@ -138,5 +137,7 @@ function Accordion({ children }) {
 ```
 
 </Extracurricular>
+
+You're welcome to hit me up on [Twitter](https://twitter.com/awnton) if you have any suggestions or feedback!
 
 Thanks for reading!
