@@ -18,7 +18,7 @@ const PostState = ({ state }) => {
       text = '🌱 This post is just budding and will be updated.'
       break
     case 'growing':
-      text = '🌿 This post is still growing and will likely be updated.'
+      text = '🌿 This post is still growing and might be updated.'
       break
     case 'bloomed':
       text = '🌸 This post has bloomed and is unlikely to change.'
@@ -38,7 +38,7 @@ const DevButton = ({ link }) => {
       style={{
         display: 'flex',
         alignItems: 'center',
-        margin: '16px 0px'
+        margin: '16px 0px',
       }}
     >
       <img
@@ -71,7 +71,7 @@ class BlogPostTemplate extends React.Component {
       taglineFont: 'roboto',
       taglineFontSize: 48,
       cloudName: 'anton-g',
-      imagePublicID: 'social-card-template_jphyku'
+      imagePublicID: 'social-card-template_jphyku',
     })
 
     const encodedTitle = encodeURI('"' + post.frontmatter.title + '"')
@@ -83,9 +83,10 @@ class BlogPostTemplate extends React.Component {
         <SEO
           title={post.frontmatter.title}
           description={post.frontmatter.description}
+          noIndex={isUnlisted}
           meta={[
             { name: 'og:image', content: socialImage },
-            { name: 'og:type', content: 'article' }
+            { name: 'og:type', content: 'article' },
           ]}
         />
         <Post>

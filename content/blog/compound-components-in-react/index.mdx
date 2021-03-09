@@ -13,7 +13,7 @@ Let's look at how we could build this accordion as a compound component:
 
 <AccordionExample />
 
-This accordion consists of three components: One for the toggling buttons, one for the collapsible content, and one parent that ties everything together. Here's how it looks when using it:
+This accordion consists of three components: One for the toggling button, one for the collapsible content, and one parent that ties everything together. Here's how it looks when using it:
 
 ```jsx
 <Accordion>
@@ -106,7 +106,7 @@ To achieve this we use the [cloneElement](https://reactjs.org/docs/react-api.htm
 
 </Extracurricular>
 
-And with that our accordion is complete! You can find the complete implementation [here]().
+And with that our accordion is complete! You can find the complete implementation [here](https://github.com/anton-g/blog/blob/master/content/blog/compound-components-in-react/components/Accordion.js).
 
 So to recap: By splitting the implementation across multiple components that share an implicit state using `Context` we've created a more expressive and flexible API for our accordion. If we suddenly decide we want to have the accordion buttons below the content we only need to change the usage and not the implementation. This is one of the biggest benefits of compound components.
 
