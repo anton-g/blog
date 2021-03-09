@@ -1,7 +1,7 @@
 ---
 title: Compound components in React
 date: '2021-03-09T20:17:00.000Z'
-description: 'How to use compound components to build flexible and expressive React components'
+description: 'How compound components lets you build flexible and expressive React components'
 state: 'budding'
 ---
 
@@ -127,8 +127,8 @@ function Accordion({ children }) {
     else setActiveKey(newKey)
   }
 
-  return React.Children.map(children, (el) =>
-    React.cloneElement(el, {
+  return React.Children.map(children, (child) =>
+    React.cloneElement(child, {
       setKey,
       activeKey,
     })
@@ -136,8 +136,14 @@ function Accordion({ children }) {
 }
 ```
 
+This works but with the big caveat that it requires `<Toggle>` and `<Content>` to be direct children of `<Accordion>`, and with that we lose the flexibility to structure our markup however we want.
+
+Another drawback is that we now pass both `activeKey` and `setKey` to **all** children. We could work around this by checking the type of `child` before cloning it but this also increases the complexity of our implementation and for no apparent benefit.
+
+So while it is possible to create compound components without a context there is little to no benefit to doing so if Context is an alternative.
+
 </Extracurricular>
 
-You're welcome to hit me up on [Twitter](https://twitter.com/awnton) if you have any suggestions or feedback!
+You're more than welcome to hit me up on [Twitter](https://twitter.com/awnton) if you have any suggestions or feedback!
 
 Thanks for reading!
