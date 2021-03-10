@@ -12,28 +12,28 @@ function WebMentions({ target, shareLink }) {
     const t = target?.slice(-1) === '/' ? target : target + '/'
 
     fetch(`https://webmention.io/api/mentions?page=${page}&per-page=50&target=${t}`)
-      .then(x => x.json())
-      .then(x => setMentions(x.links))
+      .then((x) => x.json())
+      .then((x) => setMentions(x.links))
   }, [target])
 
   const rx = /^<a href=".*">.*<\/a>$/
-  const likes = mentions?.filter(x => x.activity.type === 'like')
+  const likes = mentions?.filter((x) => x.activity.type === 'like')
   const other = mentions?.filter(
-    x => x.activity.type !== 'like' && x.activity.type !== 'repost' && !x.data.content?.match(rx)
+    (x) => x.activity.type !== 'like' && x.activity.type !== 'repost' && !x.data.content?.match(rx)
   )
 
   return (
     <div style={{ maxWidth: 600, margin: '0 auto' }}>
       <Header>
         <Title>WebMentions</Title>
-        <Help href="https://indieweb.org/Webmention" target="_blank">
+        <Help href="https://indieweb.org/Webmention" target="_blank" rel="noreferrer">
           What's this?
         </Help>
       </Header>
       {likes?.length > 0 && <Likes likes={likes}></Likes>}
       {other?.length > 0 ? (
         <Mentions>
-          {other.map(x => (
+          {other.map((x) => (
             <Mention key={x.id} data={x.data} />
           ))}
         </Mentions>

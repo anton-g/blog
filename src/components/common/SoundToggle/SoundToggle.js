@@ -16,12 +16,8 @@ export const SoundToggle = () => {
   }, [playOff, playOn, soundMode, setSoundMode])
 
   return (
-    <Button onClick={onClick} name="sound toggle">
-      <svg
-        viewBox="0 0 20 20"
-        fill="currentColor"
-        className="volume-up w-6 h-6"
-      >
+    <Button onClick={onClick} aria-label="sound toggle">
+      <svg viewBox="0 0 20 20" fill="currentColor" className="volume-up w-6 h-6">
         <defs>
           <clipPath id="volume-off">
             <rect x="0" y="0" width="10" height="20"></rect>

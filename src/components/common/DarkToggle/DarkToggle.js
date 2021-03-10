@@ -42,7 +42,7 @@ export const DarkToggle = () => {
   )
 
   return (
-    <Button onClick={onClick} name="theme toggle">
+    <Button onClick={onClick} aria-label="theme toggle">
       {isDark ? moon : sun}
     </Button>
   )

@@ -195,7 +195,7 @@ const Timestamp = styled.p`
   margin-top: 32px;
   margin-bottom: 48px;
   font-size: 12px;
-  color: hsl(157, 5%, 36%);
+  color: hsl(157, 5%, 46%);
   text-align: right;
 `
 

@@ -13,7 +13,7 @@ export default function Header() {
         <RightSide>
           <SoundToggle></SoundToggle>
           <DarkToggle></DarkToggle>
-          <RssLink href="/rss.xml">
+          <RssLink href="/rss.xml" aria-label="RSS">
             <svg
               className="w-6 h-6"
               fill="none"
