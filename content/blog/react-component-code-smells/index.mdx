@@ -9,7 +9,11 @@ state: 'growing'
 
 A growing collection of things I consider code smells in React components.
 
-> **What's a code smell?** A code smell is something that _could_ indicate a deeper problem within a code base, but isn't necessarily a bug. More information on [Wikipedia](https://en.wikipedia.org/wiki/Code_smell).
+<Callout>
+
+**What's a code smell?** A code smell is something that _could_ indicate a deeper problem within a code base, but isn't necessarily a bug. More information on [Wikipedia](https://en.wikipedia.org/wiki/Code_smell).
+
+</Callout>
 
 ### The smells 💩
 
@@ -171,7 +175,11 @@ function Button({ text }) {
 
 Now `slowlyFormatText` only runs when `text` changes and we haven't stopped the component from updating.
 
-> Sometimes we do need a prop where all updates to it are ignored, e.g. a color picker where we need the option to set an initially picked color but when the user has picked a color we don't want an update to override the users choice. In this case it's totally fine to copy the prop into state, but to indicate this behavior to the user most developers prefix the prop with either initial or default (`initialColor`/`defaultColor`).
+<Callout>
+
+Sometimes we do need a prop where all updates to it are ignored, e.g. a color picker where we need the option to set an initially picked color but when the user has picked a color we don't want an update to override the users choice. In this case it's totally fine to copy the prop into state, but to indicate this behavior to the user most developers prefix the prop with either initial or default (`initialColor`/`defaultColor`).
+
+</Callout>
 
 Further reading: [Writing resilient components by Dan Abramov](https://overreacted.io/writing-resilient-components/).
 
@@ -219,7 +227,11 @@ function Component() {
 
 While this might feel okay at first it makes it hard to reason about the code, discourages good patterns, and should be avoided. To solve it I either inline the JSX because a large return isn't _that big_ of a problem, but more often this is a reason to break these sections into separate components instead.
 
-> Remember that just because you create a new component you don't have to move it to a new file as well. Sometimes it makes sense to keep multiple components in the same file if they are tightly coupled.
+<Callout>
+
+Remember that just because you create a new component you don't have to move it to a new file as well. Sometimes it makes sense to keep multiple components in the same file if they are tightly coupled.
+
+</Callout>
 
 ## <a id="multiple-booleans"></a> Multiple booleans for state
 
@@ -369,7 +381,11 @@ function AutocompleteInput() {
 
 By using a reducer we've encapsulated the logic for managing our state and moved the complexity out of our component. This makes it much easier to understand what is going on now that we can think about our state and our component separately.
 
-> Both `useState` and `useReducer` come with their [pros, cons](https://kentcdodds.com/blog/should-i-usestate-or-usereducer) and different use cases (pun intended). One of my favorites with reducers is the [state reducer pattern by Kent C. Dodds](https://kentcdodds.com/blog/the-state-reducer-pattern-with-react-hooks).
+<Callout>
+
+Both `useState` and `useReducer` come with their [pros, cons](https://kentcdodds.com/blog/should-i-usestate-or-usereducer) and different use cases (pun intended). One of my favorites with reducers is the [state reducer pattern by Kent C. Dodds](https://kentcdodds.com/blog/the-state-reducer-pattern-with-react-hooks).
+
+</Callout>
 
 ## <a id="large-useeffect"></a> Large useEffect
 

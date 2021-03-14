@@ -14,7 +14,11 @@ In this post we'll touch on what recursion is, why recursive components are pret
 
 <Folders />
 
-> While we will use React to implement this component it's possible to build recursive components in all other modern JS frameworks too.
+<Callout>
+
+While we will use React to implement this component it's possible to build recursive components in all other modern JS frameworks too.
+
+</Callout>
 
 Before we get started, let's talk just a little bit about recursion. Feel free to skip ahead if you got a good grasp on it already.
 
@@ -69,7 +73,7 @@ export default function Folder({ folder }) {
   return (
     <li>
       {folder.name}
-      {folder.children.map(child => (
+      {folder.children.map((child) => (
         <Folder folder={child}></Folder>
       ))}
     </li>
@@ -88,8 +92,7 @@ export default function Folder({ folder }) {
   return (
     <li>
       {folder.name}
-      {!isLeaf &&
-        folder.children.map(child => <Folder folder={child}></Folder>)}
+      {!isLeaf && folder.children.map((child) => <Folder folder={child}></Folder>)}
     </li>
   )
 }

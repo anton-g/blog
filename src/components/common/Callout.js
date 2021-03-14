@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const Wrapper = styled.div`
+const Wrapper = styled.aside`
   margin: 18px -2.5rem 18px -2.5rem;
   padding: 20px 32px;
   border: 1px solid #059669;
@@ -15,6 +15,10 @@ const Wrapper = styled.div`
 
   p {
     margin-top: 0;
+
+    code {
+      font-size: inherit;
+    }
 
     &:last-child {
       margin-bottom: 0;

@@ -12,7 +12,11 @@ Through the years many different patterns have emerged to solve problems we enco
 
 In this post, we'll walk through what render props are, what the implementation looks like, and how they fit into the React landscape now that we live in _the Golden Age of Hooks_. Let's get started!
 
-> If you know what render props are but are curious about its current use cases, feel free to [skip ahead!](#in-the-age-of-hooks)
+<Callout>
+
+If you know what render props are but are curious about its current use cases, feel free to [skip ahead!](#in-the-age-of-hooks)
+
+</Callout>
 
 ## So what is a render prop?
 
@@ -24,7 +28,7 @@ Yeah, I know. Let's take a look at a _very_ simplified example instead of talkin
 
 This is a small component that renders a button and when you click that button you increase the count by one.
 
-<Counter renderCount={count => count} />
+<Counter renderCount={(count) => count} />
 
 The implementation looks like this:
 
@@ -35,7 +39,7 @@ export default function Counter() {
   return (
     <div>
       <h1>Click it, I'm interactive!</h1>
-      <button onClick={() => setCount(c => c + 1)}>Increase count</button>
+      <button onClick={() => setCount((c) => c + 1)}>Increase count</button>
       <p>{count}</p>
     </div>
   )
@@ -65,17 +69,15 @@ Now our component receives a prop called `renderCount` which we expect to be a f
 And here is how we now use this component:
 
 ```jsx
-<Counter renderCount={count => <span>The count is {count}!</span>} />
+<Counter renderCount={(count) => <span>The count is {count}!</span>} />
 ```
 
-We pass in the `renderCount` prop as an arrow function that receives the count and returns a span with our desired text.
+We pass in the `renderCount` prop as an arrow function that receives the count and returns a span with our desired text. (Note that the prop `renderCount` could be called anything.)
 
-> Note that the prop `renderCount` could be called anything.
-
-And now our component looks like this: 
+And now our component looks like this:
 
 <>
-  <Counter renderCount={count => <span>The count is {count}!</span>} />
+  <Counter renderCount={(count) => <span>The count is {count}!</span>} />
 </>
 
 By doing this we've _inverted_ the control of rendering the count from the component itself to the consumer of the component.
@@ -103,12 +105,16 @@ export default function Counter({ children }) {
 This looks very similar to before, we've just removed our custom prop and now uses the reserved `children` prop instead and hence we pass the function down as the child:
 
 ```jsx
-<Counter>{count => <span>The count is {count}!</span>}</Counter>
+<Counter>{(count) => <span>The count is {count}!</span>}</Counter>
 ```
 
 I had a really hard time wrapping my head around this syntax when I first learned about render props, but it's also the most popular way of using them so it's likely you'll encounter it too.
 
-> In reality, it's more likely you'll encounter components that use render props to handle tracking mouse movement, scrolling or similar things.
+<Callout>
+
+In reality, it's more likely you'll encounter components that use render props to handle tracking mouse movement, scrolling or similar things.
+
+</Callout>
 
 ## Drawbacks
 
@@ -118,19 +124,14 @@ One problem is that when you get to a point where you need to use multiple compo
 
 ```jsx
 <Mouse>
-  {mouse => (
+  {(mouse) => (
     <Scroll>
-      {scroll => (
+      {(scroll) => (
         <Motion>
-          {style => (
+          {(style) => (
             <Measure>
-              {size => (
-                <ConsumingComponent
-                  mouse={mouse}
-                  scroll={scroll}
-                  style={style}
-                  size={size}
-                ></ConsumingComponent>
+              {(size) => (
+                <ConsumingComponent mouse={mouse} scroll={scroll} style={style} size={size}></ConsumingComponent>
               )}
             </Measure>
           )}
@@ -149,9 +150,7 @@ const scroll = useScroll()
 const style = useMotion()
 const size = useMeasure()
 
-return (
-  <ConsumingComponent mouse={mouse} scroll={scroll} style={style} size={size} />
-)
+return <ConsumingComponent mouse={mouse} scroll={scroll} style={style} size={size} />
 ```
 
 Another thing that this example illustrates is that we get a much clearer separation between rendering and preparing to render. In the render prop-example we don't care about the `<Mouse>` component, we just care about the value we get in the render prop function.
@@ -212,11 +211,7 @@ return <Grid data={data} />
 Now imagine that we need to change how a row or cell is displayed. This is a perfect opportunity to implement two render props in the component that defers this rendering to the user:
 
 ```jsx
-<Grid
-  data={data}
-  rowRenderer={(row, idx) => <div>...</div>}
-  cellRenderer={(cell, row, idx) => <div>...</div>}
-/>
+<Grid data={data} rowRenderer={(row, idx) => <div>...</div>} cellRenderer={(cell, row, idx) => <div>...</div>} />
 ```
 
 This could be implemented with a hook that takes the renderers as arguments, but in this case I believe the render prop api is much more pleasant to work with.

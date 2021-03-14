@@ -33,7 +33,11 @@ You can find more examples and things like creating a new branch from a specific
 
 The other thing we often use `git checkout` for is restoring files to it's "unchanged" state (resetting the working copy to how it looks in the repository).
 
-> The **working copy** refers to a local copy of the repository, that is the files on your hard drive.
+<Callout>
+
+The **working copy** refers to a local copy of the repository, that is the files on your hard drive.
+
+</Callout>
 
 I've never completely grasped the intricities of checkout for restoring files, but with `git restore` it becomes much easier. To restore a file that you have changed but not yet `git add`ed you do this:
 
@@ -47,7 +51,11 @@ If you have already run `git add` and the file is in the _index_ you can restore
 git restore --staged file.js
 ```
 
-> The **index** (or staging area) contains the changes that have been `git add`ed, i.e. the files that would with committed by `git commit`.
+<Callout>
+
+The **index** (or staging area) contains the changes that have been `git add`ed, i.e. the files that would with committed by `git commit`.
+
+</Callout>
 
 Finally, we can also specify where we want to restore _from_. By default this is the _index_ but by passing the `--source` flag we can adjust it. For example we can restore the index to a revision a couple of commits back:
 
