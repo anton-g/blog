@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import Layout from '../components/Layout'
 import SEO from '../components/Seo'
 
-const BlogIndex = props => {
+const BlogIndex = (props) => {
   return (
     <Layout maxWidth="900px" location={props.location}>
       <SEO title={'home'} meta={[{ name: 'og:type', content: 'website' }]} />
@@ -42,6 +42,36 @@ const BlogIndex = props => {
                 <a href="https://www.youtube.com/watch?v=q7bAYxZMJho">
                   It's always better when we're together (Mob Programming)
                 </a>
+              </li>
+            </List>
+            <Title>appearances</Title>
+            <List>
+              <li>
+                <span role="img" aria-label="microphone emoji">
+                  🎙
+                </span>{' '}
+                <a href="https://kodsnack.se/409/">Kodsnack 409</a>{' '}
+                <span role="img" aria-label="swedish flag">
+                  🇸🇪
+                </span>
+              </li>
+              <li>
+                <span role="img" aria-label="microphone emoji">
+                  🎙
+                </span>{' '}
+                <a href="https://kodsnack.se/393/">Kodsnack 393</a>{' '}
+                <span role="img" aria-label="swedish flag">
+                  🇸🇪
+                </span>
+              </li>
+              <li>
+                <span role="img" aria-label="microphone emoji">
+                  🎙
+                </span>{' '}
+                <a href="https://kodsnack.se/194/">Kodsnack 194</a>{' '}
+                <span role="img" aria-label="swedish flag">
+                  🇸🇪
+                </span>
               </li>
             </List>
           </Section>
@@ -136,4 +166,5 @@ const List = styled.ul`
   margin: 0;
   padding: 0;
   line-height: 1.7;
+  margin-bottom: 2rem;
 `
