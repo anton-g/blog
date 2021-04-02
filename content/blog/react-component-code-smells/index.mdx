@@ -1,7 +1,7 @@
 ---
 title: React component code smells
 date: '2020-08-13T20:17:00.000Z'
-updated: '2021-03-02T21:01:00.000Z'
+updated: '2021-04-02T15:11:00.000Z'
 description: 'A collection of things to avoid in React components'
 dev: 'https://dev.to/awnton/7-code-smells-in-react-components-5f66'
 state: 'growing'
@@ -63,6 +63,12 @@ Looking at the props of this component we can see that all of them are related t
 ```
 
 Now we've made sure that the `ApplicationForm` only handles its most narrow responsibility, submitting and canceling the form. The child components can handle everything related to their part of the bigger picture. This is also a great opportunity to use [React Context](https://reactjs.org/docs/context.html) for the communication between the children and their parent.
+
+<Callout>
+
+Read more about how to build [compound components in React](/compound-components-in-react/).
+
+</Callout>
 
 #### Am I passing down many 'configuration'-props?
 
