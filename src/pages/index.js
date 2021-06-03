@@ -103,6 +103,12 @@ const BlogIndex = (props) => {
                 <a href="https://github.com/anton-g/quizify">Quizify</a>
               </li>
               <li>
+                <span role="img" aria-label="people wrestling emoji">
+                  🤼
+                </span>{' '}
+                <a href="https://kampgeneratorn.se">Kampgeneratorn</a> 🇸🇪
+              </li>
+              <li>
                 <span role="img" aria-label="theater emoji">
                   🎭
                 </span>{' '}

@@ -59,7 +59,6 @@ export const pageQuery = graphql`
 
 const PostsWrapper = styled.div`
   margin-top: 4rem;
-  margin-bottom: 4rem;
   padding: 0px 12px;
 
   display: grid;

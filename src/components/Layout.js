@@ -14,7 +14,7 @@ const shortcodes = { Confettis, Callout, Extracurricular }
 
 export default function Layout({ children, maxWidth }) {
   return (
-    <div style={{ paddingTop: '3rem', position: 'relative', zIndex: 2 }}>
+    <div style={{ paddingTop: '3rem', paddingBottom: '3rem', position: 'relative', zIndex: 2 }}>
       <Header />
       <MDXProvider components={shortcodes}>
         <main

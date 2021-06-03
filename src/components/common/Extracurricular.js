@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled, { css } from 'styled-components'
 
-const Wrapper = styled.section`
+const Wrapper = styled.aside`
   margin: 32px -2.5rem 32px -2.5rem;
   border: 1px solid #059669;
   border-radius: 4px;
