@@ -13,7 +13,12 @@ export default function HTML(props) {
         <link rel="webmention" href="https://webmention.io/antongunnarsson.com/webmention" />
         <link rel="pingback" href="https://webmention.io/antongunnarsson.com/xmlrpc" />
         {props.headComponents}
-        <script src="https://cdn.usefathom.com/script.js" data-spa="auto" data-site="TZJQFTNI" defer></script>
+        <script
+          src="https://rewarding-scientific.b-cdn.net/script.js"
+          data-spa="auto"
+          data-site="TZJQFTNI"
+          defer
+        ></script>
       </head>
       <body {...props.bodyAttributes}>
         {props.preBodyComponents}
@@ -30,5 +35,5 @@ HTML.propTypes = {
   bodyAttributes: PropTypes.object,
   preBodyComponents: PropTypes.array,
   body: PropTypes.string,
-  postBodyComponents: PropTypes.array
+  postBodyComponents: PropTypes.array,
 }
