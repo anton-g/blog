@@ -14,7 +14,7 @@ export default function HTML(props) {
         <link rel="pingback" href="https://webmention.io/antongunnarsson.com/xmlrpc" />
         {props.headComponents}
         <script
-          src="https://rewarding-scientific.b-cdn.net/script.js"
+          src="https://earthy-merit.antongunnarsson.com/script.js"
           data-spa="auto"
           data-site="TZJQFTNI"
           defer
