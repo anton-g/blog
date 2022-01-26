@@ -1,6 +1,6 @@
 ---
 title: Remote-friendly games
-date: '2022-01-26T18:33:00.000Z'
+date: '2022-01-26T18:12:00.000Z'
 description: 'List of games for the remote team activity.'
 dev: ''
 state: 'growing'
