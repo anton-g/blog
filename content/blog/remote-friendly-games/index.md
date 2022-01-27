@@ -30,7 +30,7 @@ _(Free)_
 
 ## Kahoot!
 
-[Kahoot] is the go-to service for hosting online quizes. There's lots of premade quizes, but it's definitely most fun if you create one yourself. One favorite of mine is asking your team members to send you a photo of their fridge and then let the team guess whos fridge is whos (works great without Kahoot as well!).
+[Kahoot](http://kahoot.com) is the go-to service for hosting online quizes. There's lots of premade quizes, but it's definitely most fun if you create one yourself. One favorite of mine is asking your team members to send you a photo of their fridge and then let the team guess whos fridge is whos (works great without Kahoot as well!).
 
 _(Free with paid options)_
 
