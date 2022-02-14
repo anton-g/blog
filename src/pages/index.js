@@ -33,7 +33,7 @@ const BlogIndex = (props) => {
         </Intro>
         <Sections>
           <Section>
-            <Title>talks</Title>
+            <Title>recorded talks</Title>
             <List>
               <li>
                 <span role="img" aria-label="silloutes of two people">
