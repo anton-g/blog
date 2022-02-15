@@ -13,7 +13,8 @@ Since I tend to forget why I hold certain opinions I try to write them down. Her
 - [Don't name files index.js](#indexjs)
 - [No unnamed exports](#unnamed-exports)
 - [Put companion code below components](#companion-code)
-- [Return early over having a single return](#return-early)
+- [Return JSX early over having a single return](#return-early)
+- [Don't create React projects without TypeScript](#typescript)
 
 <Callout>
 
@@ -49,9 +50,9 @@ All this companion code should be put **below** your component definition. The r
 
 There are of course cases where companion code should be put in other files, but then it's most likely not companion code any more.
 
-_(and if your linter complains about something being used before it's defined, turn it off. It's 2022.)_
+_(and if your linter complains about something being used before it's defined, turn it off. It's 2022 after all.)_
 
-## <a id="return-early"></a> Return early over having a single return
+## <a id="return-early"></a> Return JSX early over having a single return
 
 By returning early you make the code path easier to follow. When trying to understand a code path you know that as soon as you hit `return` you don't need to care about the code below it. If you'd aim for a single return you would always need to keep the entire context in mind regardless of what code path you are looking at.
 
@@ -92,7 +93,19 @@ const Component = ({ input }) => {
 }
 ```
 
-This reads much better than the first example. If you're worried about the duplication of the div (you proobably shouldn't be) you can just abstract that to a new component that takes the dynamic text as a child/prop.
+This reads much better than the first example. If you're worried about the duplication of the div (you probably shouldn't be) you can just abstract that to a new component which takes the dynamic text as a child/prop.
+
+## <a id="typescript"></a> Don't create React projects without TypeScript
+
+TypeScript is fantastic and you should use it for all your React (new) projects. It's not merely about the fact that types help you write less bugs (which is true), but more so that it reduces the mental load of working with the code.
+
+No more switching searching through files and folders to find answers to questions such as "What props does this component have?", "How did I structure my state?" or "What input does this hook need?". TypeScript will tell you.
+
+No more double checking every thing you do while refactoring do make sure you haven't accidentaly misspelled a component prop or passed the wrong data. TypeScript will tell you.
+
+Yes, TypeScript is love ❤️
+
+If you're struggling with TS in React this [cheatsheet](https://github.com/typescript-cheatsheets/react) is fantastic.
 
 ## That's all folks!
 
