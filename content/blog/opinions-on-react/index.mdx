@@ -15,6 +15,7 @@ Since I tend to forget why I hold certain opinions I try to write them down. Her
 - [Put companion code below components](#companion-code)
 - [Return JSX early over having a single return](#return-early)
 - [Don't create React projects without TypeScript](#typescript)
+- [Components should not have margin](#no-margin)
 
 <Callout>
 
@@ -106,6 +107,14 @@ No more double checking every thing you do while refactoring do make sure you ha
 Yes, TypeScript is love ❤️
 
 If you're struggling with TS in React this [cheatsheet](https://github.com/typescript-cheatsheets/react) is great.
+
+## <a id="no-margin"></a> Components should not have margin
+
+You should avoid adding margin to your components as it makes them harder to reuse and compose. Max Stoiber has elaborated on this more succinctly than I can so go read his post [Margin considered harmful](https://mxstbr.com/thoughts/margin/).
+
+When you've read that and come back here either confused, angry or excited about spacer components (which I _love_) go read Josh's excellent article [Let's Bring Spacer GIFs Back](https://www.joshwcomeau.com/react/modern-spacer-gif/).
+
+Embrace both and it will make everything easier. I promise 🤞
 
 ## That's all folks!
 
