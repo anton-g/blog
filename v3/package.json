@@ -1,0 +1,29 @@
+{
+  "name": "v3",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@mdx-js/loader": "^2.0.0",
+    "@mdx-js/react": "^2.0.0",
+    "@mdx-js/runtime": "^1.6.22",
+    "@next/mdx": "^12.1.0",
+    "gray-matter": "^4.0.3",
+    "next": "12.1.0",
+    "next-mdx-remote": "^4.0.0",
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
+  },
+  "devDependencies": {
+    "@types/node": "17.0.21",
+    "@types/react": "17.0.39",
+    "eslint": "8.10.0",
+    "eslint-config-next": "12.1.0",
+    "typescript": "4.6.2"
+  }
+}
