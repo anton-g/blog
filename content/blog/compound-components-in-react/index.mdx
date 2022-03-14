@@ -90,7 +90,7 @@ Here we grab `setKey` from our `AccordionContext` and when the user clicks the b
 
 <Extracurricular title="Give the user more control of <Toggle>">
 
-Sometimes you might want to give the user the option of what element the toggle should be and one way of adding that flexibility would be to use a [render prop](/render-props-in-the-age-of-hooks). We could also use another pattern where you can control the element type with a prop. Usually this prop is called `as`. In our example it would look like this:
+Sometimes you might want to give the user the option of what element the toggle should be and one way of adding that flexibility would be to use a [render prop](/render-props). We could also use another pattern where you can control the element type with a prop. Usually this prop is called `as`. In our example it would look like this:
 
 ```jsx
 function Toggle({ children, eventKey, as = 'button' }) {
