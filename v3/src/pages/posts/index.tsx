@@ -12,18 +12,22 @@ const Posts: NextPage<PostsProps> = ({ posts }) => {
   return (
     <div>
       {posts.map((post) => (
-        <Link key={post.slug} href={'/posts/' + post.slug} passHref>
-          <a>
-            {post.date} - {post.title}
-          </a>
-        </Link>
+        <p key={post.slug}>
+          <Link href={'/posts/' + post.slug} passHref>
+            <a>
+              {post.frontmatter.date} - {post.frontmatter.title}
+            </a>
+          </Link>
+        </p>
       ))}
     </div>
   )
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const posts = getAllPosts(['slug', 'title', 'date', 'description', 'state', 'unlisted'])
+  const posts = await getAllPosts()
+
+  console.log(posts)
 
   return {
     props: {
@@ -31,18 +35,5 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     },
   }
 }
-
-// export const getStaticPaths: GetStaticPaths = () => {
-//   const numPages = 1
-
-//   return {
-//     paths: [...Array(numPages)].map((v, i) => {
-//       return {
-//         params: { page: (i + 1).toString() },
-//       }
-//     }),
-//     fallback: false,
-//   }
-// }
 
 export default Posts

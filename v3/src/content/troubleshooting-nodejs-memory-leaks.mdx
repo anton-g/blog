@@ -1,0 +1,84 @@
+---
+title: Troubleshooting NodeJS memory leaks with node-memwatch
+date: '2020-05-26T20:17:00.000Z'
+description: 'A story of memory, tensors and menacing graphs'
+dev: ''
+state: 'bloomed'
+---
+
+I recently released my social drawing game [draw.wtf](https://draw.wtf) where you compete against each other by drawing things and getting judged by a machine learning model. While I've gotten a lot of positive feedback since I released it, I also quickly discovered that _something_ was wrong. The backend for the game is written in [Nest](https://nestjs.com/) (node) and hosted on [Heroku](https://heroku.com) (which I can really recommend, their free tier is great for passion projects). But looking at the memory usage in the metrics overview I could clearly see that things we're not alright:
+
+![memory graph at 110%](/memory-usage.png)
+
+There was no way that my game would use this much memory so it was clear that I had a _memory leak_.
+
+A memory leak is when an application uses memory (RAM) without eventually releasing it. Most modern (high level) programming languages today implement some sort of automatic cleanup of unused memory and Node uses something called a ["garbage collector"](<https://en.wikipedia.org/wiki/Garbage_collection_(computer_science)>). For the sake of this debugging story that's all you need to know!
+
+Back to the issue in draw.wtf! I have almost only worked in languages with garbage collection so starting to troubleshoot this issue I had no experience with finding memory leaks. My first thought was just to skim the code and find the issue buuut to no avail. I had no idea where in the code the bug might live, and since we don't do any manual handling of memory there _shouldn't_ exist any bugs! :(
+
+The next step was to reach for the most common tool in every developers toolbox: Google!
+
+I read _a lot_ of articles on finding memory issues in node, but none that led me close to a solution. Finally I found an article that recommended the library [node-memwatch](https://github.com/lloyd/node-memwatch) which looked promising! Unfortunately it hasn't been updated for 7 years...
+
+### Open source to the rescue! 🚀
+
+Looking at the [forks](https://github.com/lloyd/node-memwatch/network/members) of node-memwatch we can try finding one that is still maintained, and after looking through a couple I ended up with [this fork](https://github.com/airbnb/node-memwatch) from AirBnB.
+
+Heading back into the code I started by testing the librarys [heap diffing](https://github.com/airbnb/node-memwatch#heap-diffing) by running `new memwatch.HeapDiff();` and `heapDiff.end();` which outputs before and after memory usage. And sure enough, I can see the memory grow with about 2mb for every round played in the game.
+
+One thing I did discover when testing this was that the memory _did not_ grow when I didn't draw anything! 🤔 This was really great since it narrowed down where in the code the issue is. With this knowledge I moved the heap diffing functions to a couple of different places where drawn lines are handled, and THIS led me to the function that was leaking memory: calculating scores.
+
+To calculate the scores I have a machine learning model trained with [Azure Custom Vision](https://www.customvision.ai/) and then runs it locally with [TensorFlow](https://www.tensorflow.org/). Here is the implementation of this calculation function, with the memory leak issue intact:
+
+```js
+async function calculate(pixels) {
+  const inputs = pixels instanceof tf.Tensor ? pixels : this._preprocess(tf.browser.fromPixels(pixels, 3))
+
+  const outputs = await this.model.execute(inputs, null)
+
+  const arrays = !Array.isArray(outputs) ? await outputs.array() : Promise.all(outputs.map((t) => t.array()))
+
+  const result = Array.isArray(arrays[0]) ? arrays[0].map((x, i) => ({ probability: x, tag: this.tags[i] })) : []
+
+  return result
+}
+```
+
+Do you see the issue? (It's not in the `_preprocess` function).
+
+I sure didn't, no matter how much I looked at this code so next up I dived into the TensorFlow.js documentation where I found [this little nugget](https://www.tensorflow.org/js/guide/tensors_operations#memory) of wisdom:
+
+> _"When using the WebGL backend, tf.Tensor memory must be managed explicitly (it is not sufficient to let a tf.Tensor go out of scope for its memory to be released)."_
+
+Aaah, the solution! With that it wasn't very hard to read some more documentation and end up with a score calculation that works:
+
+```ts{2,6,18-19}
+async function calculate(pixels) {
+  const inputs = tf.tidy(() => {
+    return pixels instanceof tf.Tensor
+      ? pixels
+      : this._preprocess(tf.browser.fromPixels(pixels, 3))
+  })
+
+  const outputs = await this.model.execute(inputs, null)
+
+  const arrays = !Array.isArray(outputs)
+    ? await outputs.array()
+    : Promise.all(outputs.map(t => t.array()))
+
+  const result = Array.isArray(arrays[0])
+    ? arrays[0].map((x, i) => ({ probability: x, tag: this.tags[i] }))
+    : []
+
+  inputs.dispose()
+  Array.isArray(outputs) ? outputs.forEach(o => o.dispose()) : outputs.dispose()
+
+  return result
+}
+```
+
+`tf.tidy()` automatically disposes of any `tf.Tensor` created within, and then I manually run `dispose()` on any tensor I have to create outside of it. And that's it! Now the memory isn't leaking any more:
+
+![memory graph at 23%](/memory-usage-2.png)
+
+To finish this up, if you're gonna take anything with you from this post I think it should be that `node-memwatch` is a pretty nice tool for troubleshooting memory issues. If there is something you should _not_ take with you, it's probably the code samples. I have no idea if they're good, bad or ugly 😅
