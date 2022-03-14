@@ -32,7 +32,7 @@ A very unsorted and incomplete list of terminology, phrases and products you mig
 - **CSS**  
   Language for controlling how web pages are _displayed_.
 - **CSS preprocessor**  
-  A way to write CSS but with more features, for example nesting, by utilizing a different syntax. Needs a build step to be transformed into CSS. Examples: [https://sass-lang.com/](Sass), [http://lesscss.org/](Less).
+  A way to write CSS but with more features, for example nesting, by utilizing a different syntax. Needs a build step to be transformed into CSS. Examples: [Sass](https://sass-lang.com/), [Less](http://lesscss.org/).
 - **CSS-in-JS**  
   A category of tools that allow you to write CSS inside of your JavaScript. Benefits include easier ways to applying styling based on state and reducing scoping issues. Examples: [styled-components](https://styled-components.com/), [emotion](https://emotion.sh/).
 - **CSS modules**  
