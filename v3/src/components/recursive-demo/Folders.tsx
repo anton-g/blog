@@ -1,5 +1,5 @@
-import { styled } from '@stitches/react'
 import React from 'react'
+import styled from 'styled-components'
 import { Folder } from './Folder'
 
 export function Folders() {
@@ -43,11 +43,11 @@ const data: FolderType = {
   ],
 }
 
-const List = styled('ul', {
-  margin: '4px 10px',
-  boxSizing: 'border-box',
-  listStyle: 'none',
-  paddingLeft: '20px',
-  border: 'none',
-  marginBottom: '2rem',
-})
+const List = styled.ul`
+  margin: 4px 10px;
+  box-sizing: border-box;
+  list-style: none;
+  padding-left: 20px;
+  border: none;
+  margin-bottom: 2rem;
+`

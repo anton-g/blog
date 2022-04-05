@@ -1,7 +1,7 @@
 // Very much built upon https://joshwcomeau.com/react/animated-sparkles-in-react/
 
-import { keyframes, styled } from '@stitches/react'
 import React, { ReactNode } from 'react'
+import styled, { keyframes } from 'styled-components'
 
 const COLORS = ['#a864fd', '#29cdff', '#78ff44', '#ff718d', '#fdff6a']
 
@@ -104,35 +104,9 @@ const Confetti = ({
   style: React.CSSProperties
 }) => {
   return (
-    <ConfettiWrapper
-      style={style}
-      css={{
-        '@media (prefers-reduced-motion: no-preference)': {
-          animation: `${comeInOut} forwards`,
-        },
-        animationDuration: `${speed}ms`,
-      }}
-    >
-      <FallWrapper
-        css={{
-          '@media (prefers-reduced-motion: no-preference)': {
-            animation: `${fall(wind)} linear forwards`,
-          },
-          animationDuration: `${speed}ms`,
-        }}
-      >
-        <ConfettiSvg
-          css={{
-            '@media (prefers-reduced-motion: no-preference)': {
-              animation: `${spin(rotation)} linear`,
-            },
-            animationDuration: `${speed}ms`,
-          }}
-          width={size}
-          height={size}
-          viewBox="0 0 68 68"
-          fill="none"
-        >
+    <ConfettiWrapper style={style} speed={speed}>
+      <FallWrapper speed={speed} wind={wind}>
+        <ConfettiSvg speed={speed} rotation={rotation} width={size} height={size} viewBox="0 0 68 68" fill="none">
           <path d={path} fill={color} />
         </ConfettiSvg>
       </FallWrapper>
@@ -140,66 +114,77 @@ const Confetti = ({
   )
 }
 
-const comeInOut = keyframes({
-  '0%': {
-    opacity: 0,
+const comeInOut = keyframes`
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+`
+const spin = ({ rotation }: { rotation: number }) => keyframes`
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(${rotation}deg);
+  }
+`
+const fall = ({ wind }: { wind: number }) => keyframes`
+  0% {
+    transform: translateY(0px) translateX(0px);
+  }
+  100% {
+    transform: translateY(15px) translateX(${wind}px);
+  }
+`
+
+const Wrapper = styled.span`
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+`
+
+const ConfettiWrapper = styled.span<{ speed: number }>`
+  position: absolute;
+  display: block;
+  z-index: 2;
+  @media (prefers-reduced-motion: no-preference) {
+    animation: ${comeInOut} forwards;
+  }
+  animation-duration: ${({ speed }) => `${speed}ms`};
+`
+
+const FallWrapper = styled.span<{ speed: number; wind: number }>`
+  display: block;
+  @media (prefers-reduced-motion: no-preference) {
+    animation: ${fall} linear forwards;
+  }
+  animation-duration: ${({ speed }) => `${speed}ms`};
+`
+
+const ConfettiSvg = styled.svg.attrs(({ speed }: { speed: number }) => ({
+  style: {
+    animationDuration: `${speed}ms`,
   },
-  '25%': {
-    opacity: 1,
-  },
-  '85%': {
-    opacity: 1,
-  },
-  '100%': {
-    opacity: 0,
-  },
-})
+}))`
+  display: block;
+  @media (prefers-reduced-motion: no-preference) {
+    animation: ${spin} linear;
+  }
+`
 
-const spin = (rotation: number) =>
-  keyframes({
-    '0%': {
-      transform: `rotate(0deg)`,
-    },
-    '100%': {
-      transform: `rotate(${rotation}deg)`,
-    },
-  })
-
-const fall = (wind: number) =>
-  keyframes({
-    '0%': {
-      transform: `translateY(0px) translateX(0px);`,
-    },
-    '100%': {
-      transform: `translateY(15px) translateX(${wind}px);`,
-    },
-  })
-
-const Wrapper = styled('span', {
-  display: 'inline-block',
-  position: 'relative',
-  cursor: 'pointer',
-})
-
-const ConfettiWrapper = styled('span', {
-  position: 'absolute',
-  display: 'block',
-  zIndex: 2,
-})
-
-const FallWrapper = styled('span', {
-  display: 'block',
-})
-
-const ConfettiSvg = styled('svg', {
-  display: 'block',
-})
-
-const ChildWrapper = styled('strong', {
-  position: 'relative',
-  zIndex: 1,
-  fontWeight: 'bold',
-})
+const ChildWrapper = styled.strong`
+  position: relative;
+  z-index: 1px;
+  font-weight: bold;
+`
 
 export default Confettis
 

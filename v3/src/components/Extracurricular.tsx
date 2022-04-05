@@ -1,5 +1,5 @@
-import { styled } from '@stitches/react'
 import React, { ReactNode, useState } from 'react'
+import styled from 'styled-components'
 
 export function Extracurricular({ title, children }: { title: string; children: ReactNode }) {
   const [open, setOpen] = useState(false)
@@ -24,82 +24,56 @@ export function Extracurricular({ title, children }: { title: string; children: 
   )
 }
 
-const Wrapper = styled('aside', {
-  margin: '32px',
-  border: '1px solid black',
-  borderRadius: '4px',
-  fontSize: '14px',
-  position: 'relative',
-  opacity: '0.75',
+const Wrapper = styled.aside<{ open: boolean }>`
+  margin: 32px;
+  border: 1px solid black;
+  border-radius: 4px;
+  font-size: 14px;
+  position: relative;
+  opacity: ${({ open }) => (open ? 1 : 0.75)};
 
-  '&:hover': {
-    opacity: 1,
-  },
+  &:hover {
+    opacity: 1;
+  }
+  @media screen and (max-width: 849px) {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  p {
+    margin-top: 0 code {
+      font-size: inherit;
+    }
 
-  '@media screen and (max-width: 849px)': {
-    marginLeft: 0,
-    marginRight: 0,
-  },
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+`
 
-  p: {
-    marginTop: 0,
+const Title = styled.button`
+  border: none;
+  background: none;
+  font-size: 14px;
+  margin: 0;
+  padding: 8px 40px;
+  color: black;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  line-height: inherit;
+`
 
-    code: {
-      fontSize: 'inherit',
-    },
+const Chevron = styled.svg<{ open: boolean }>`
+  width: 20px;
+  height: 20px;
+  transition: transform 0.2s ease;
 
-    '&:last-child': {
-      marginBottom: 0,
-    },
-  },
+  transform: ${({ open }) => (open ? 'rotate(180deg)' : 'rotate(0deg)')};
+`
 
-  variants: {
-    open: {
-      false: {
-        opacity: 0.75,
-      },
-      true: {
-        opacity: 1,
-      },
-    },
-  },
-})
-
-const Title = styled('button', {
-  border: 'none',
-  background: 'none',
-  fontSize: '14px',
-  margin: '0',
-  padding: '8px 40px',
-  color: 'black',
-  cursor: 'pointer',
-  width: '100%',
-  textAlign: 'left',
-  display: 'flex',
-  justifyContent: 'space-between',
-  lineHeight: 'inherit',
-})
-
-const Chevron = styled('svg', {
-  width: '20px',
-  height: '20px',
-  transition: 'transform 0.2s ease',
-
-  variants: {
-    open: {
-      true: { transform: 'rotate(180deg)' },
-      false: { transform: 'rotate(0deg)' },
-    },
-  },
-})
-
-const Content = styled('div', {
-  padding: '0 40px 10px 40px',
-
-  variants: {
-    open: {
-      true: { display: 'block' },
-      false: { display: 'none' },
-    },
-  },
-})
+const Content = styled.div<{ open: boolean }>`
+  padding: 0 40px 10px 40px;
+  display: ${({ open }) => (open ? 'block' : 'none')};
+`

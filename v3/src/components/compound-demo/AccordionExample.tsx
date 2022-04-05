@@ -1,10 +1,10 @@
 import React from 'react'
 import { Accordion } from './Accordion'
-import { styled } from '@stitches/react'
 
 import raccoon from './raccoon.gif'
 import Confettis from '../Confettis'
 import Image from 'next/image'
+import styled from 'styled-components'
 
 export function AccordionExample() {
   return (
@@ -41,38 +41,38 @@ export function AccordionExample() {
   )
 }
 
-const Wrapper = styled('div', {
-  margin: '0 auto 24px',
-  maxWidth: '480px',
-})
+const Wrapper = styled.div`
+  margin: 0 auto 24px;
+  max-width: 480px;
+`
 
-const Option = styled('div', {
-  border: '1px solid grey',
-  '&:first-child': {
-    borderTopLeftRadius: '4px',
-    borderTopRightRadius: '4px',
-  },
-  '&:last-child': {
-    borderBottomLeftRadius: '4px',
-    borderBottomRightRadius: '4px',
-  },
-  '&:not(:last-child)': {
-    borderBottom: 0,
-  },
-})
+const Option = styled.div`
+  border: 1px solid grey;
+  &:first-child {
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+  }
+  &:last-child {
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+  }
+  &:not(:last-child) {
+    border-bottom: 0;
+  }
+`
 
-const StyledToggle = styled(Accordion.Toggle, {
-  background: 'none',
-  color: 'var(--color-text)',
-  padding: '8px 16px',
-  border: 'none',
-  width: '100%',
-  textAlign: 'left',
-  cursor: 'pointer',
-  fontSize: '16px',
-})
+const StyledToggle = styled(Accordion.Toggle)`
+  background: none;
+  color: var(--color-text);
+  padding: 8px 16px;
+  border: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  font-size: 16px;
+`
 
-const Content = styled('div', {
-  fontSize: '14px',
-  padding: '8px 16px 16px',
-})
+const Content = styled.div`
+  font-size: 14px;
+  padding: 8px 16px 16px;
+`

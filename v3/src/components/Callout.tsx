@@ -1,5 +1,5 @@
-import { styled } from '@stitches/react'
 import { ReactNode } from 'react'
+import styled from 'styled-components'
 
 export function Callout({ children }: { children: ReactNode }) {
   return (
@@ -12,21 +12,21 @@ export function Callout({ children }: { children: ReactNode }) {
   )
 }
 
-const Wrapper = styled('div', {
-  backgroundColor: 'PaleGoldenRod',
-})
+const Wrapper = styled.div`
+  background-color: palegoldenrod;
+`
 
-const Icon = styled('svg', {
-  width: 20,
-  height: 20,
-  position: 'absolute',
-  marginLeft: -42,
-  borderRadius: '50%',
-  backgroundColor: 'var(--color-background)',
-  padding: '2 0',
-  color: '#10b981',
-  opacity: 0.8,
+const Icon = styled.svg`
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  margin-left: -42;
+  border-radius: 50%;
+  background-color: var(--color-background);
+  padding: 2 0;
+  color: #10b981;
+  opacity: 0.8px;
   path: {
-    opacity: 0.8,
-  },
-})
+    opacity: 0.8;
+  }
+`
