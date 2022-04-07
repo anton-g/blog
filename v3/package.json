@@ -13,6 +13,7 @@
     "@mdx-js/react": "^2.0.0",
     "@mdx-js/runtime": "^1.6.22",
     "@next/mdx": "^12.1.0",
+    "@radix-ui/colors": "^0.1.8",
     "gray-matter": "^4.0.3",
     "next": "12.1.0",
     "next-mdx-remote": "^4.0.0",
