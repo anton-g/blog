@@ -1,11 +1,11 @@
 import Link from 'next/link'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import { Spacer } from './Spacer'
 
 export const FeaturedPosts = () => {
   return (
     <Wrapper>
-      <Heading>Featured posts</Heading>
+      <Heading>Selected writing</Heading>
       <Posts>
         <Link href="/posts/react-component-code-smells" passHref>
           <Post>React Component Code Smells</Post>

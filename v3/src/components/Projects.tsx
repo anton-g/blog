@@ -13,7 +13,9 @@ export const Projects = () => {
         </Link>
         <Spacer size={64} />
         <Link href="/" passHref>
-          <Scream>AAAAAAAHHHH</Scream>
+          <Scream>
+            AAAAAA<br></br>AAHHHH
+          </Scream>
         </Link>
         <Spacer size={96} />
         <Link href="/" passHref>
@@ -113,13 +115,12 @@ const DrawWTF = styled(Project)`
 
 const Scream = styled(Project)`
   padding: 0px;
-  line-height: 1;
+  line-height: 0.8;
   margin-bottom: -24px;
 
   &:hover {
-    color: ${({ theme }) => theme.colors.primary11};
+    color: ${({ theme }) => theme.colors.orange11};
     background-color: #e5e5f7;
-    opacity: 0.8;
     background-size: 10px 10px;
     background-image: repeating-linear-gradient(45deg, #444cf7 0, #444cf7 1px, #e5e5f7 0, #e5e5f7 50%);
   }
@@ -195,7 +196,6 @@ const Charad = styled(Project)`
 
   &:hover {
     background-color: #e5e5f7;
-    opacity: 0.8;
     background-image: repeating-linear-gradient(
         45deg,
         ${({ theme }) => theme.colors.teal11} 25%,

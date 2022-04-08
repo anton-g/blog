@@ -1,13 +1,14 @@
 import { DefaultTheme } from 'styled-components'
 
 // Remember to update styled.d.ts when adding/removing colors here.
-import { crimson, gray, teal, blue } from '@radix-ui/colors'
+import { crimson, gray, teal, blue, orange } from '@radix-ui/colors'
 
 const lightTheme: DefaultTheme = {
   colors: {
     ...gray,
     ...teal,
     ...blue,
+    ...orange,
     primary1: crimson.crimson1,
     primary2: crimson.crimson2,
     primary3: crimson.crimson3,

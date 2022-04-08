@@ -1,6 +1,7 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import styled from 'styled-components'
+import { BlogRoll } from '../components/BlogRoll'
 import { FeaturedPosts } from '../components/FeaturedPosts'
 import { Projects } from '../components/Projects'
 import { Spacer } from '../components/Spacer'
@@ -19,6 +20,7 @@ const Home: NextPage = () => {
       <Spacer size={128} />
       <Projects />
       <Spacer size={400} />
+      <BlogRoll />
     </Wrapper>
   )
 }

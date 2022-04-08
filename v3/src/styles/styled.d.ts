@@ -2,7 +2,7 @@
 
 import 'styled-components'
 
-import { gray, teal, blue } from '@radix-ui/colors'
+import { gray, teal, blue, orange } from '@radix-ui/colors'
 
 type CustomColors = {
   primary1: string
@@ -20,6 +20,6 @@ type CustomColors = {
 }
 declare module 'styled-components' {
   export interface DefaultTheme {
-    colors: typeof gray & typeof teal & typeof blue & CustomColors
+    colors: typeof gray & typeof teal & typeof blue & typeof orange & CustomColors
   }
 }
