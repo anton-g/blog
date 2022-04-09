@@ -7,7 +7,7 @@ export default createGlobalStyle`
   body {
     padding: 0;
     margin: 0;
-    font-family: Inter, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
+    font-family: Plus Jakarta Sans, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
       Helvetica Neue, sans-serif;
   }
 
@@ -22,5 +22,19 @@ export default createGlobalStyle`
       color: ${({ theme }) => theme.colors.primary2};
       background: ${({ theme }) => theme.colors.primary11};
     }
+  }
+
+  @font-face {
+    font-family: "Plus Jakarta Sans";
+    font-weight: normal;
+    src: url("/fonts/PlusJakartaSans-Regular.woff2") format("woff2"),
+        url("/fonts/PlusJakartaSans-Regular.woff") format("woff");
+  }
+
+  @font-face {
+    font-family: "Plus Jakarta Sans";
+    font-weight: bold;
+    src: url("/fonts/PlusJakartaSans-Bold.woff2") format("woff2"),
+        url("/fonts/PlusJakartaSans-Bold.woff") format("woff");
   }
 `

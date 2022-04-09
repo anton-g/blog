@@ -46,7 +46,7 @@ const Title = styled.h2`
 
 const Subtitle = styled.span`
   font-size: 24px;
-  font-family: 'Inter';
+  font-family: 'Plus Jakarta Sans';
   ::selection {
     color: ${({ theme }) => theme.colors.primary2};
     background: ${({ theme }) => theme.colors.gray12};

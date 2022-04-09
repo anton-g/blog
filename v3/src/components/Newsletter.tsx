@@ -31,7 +31,8 @@ const Wrapper = styled.div`
 const Description = styled.p`
   margin: 0;
   padding: 0;
-  font-family: 'Inter';
+  font-family: 'Plus Jakarta Sans';
+  line-height: 1.5;
   font-weight: normal;
 `
 
@@ -54,7 +55,7 @@ const Signup = styled.div`
 const Input = styled.input`
   padding: 4px 8px;
   font-size: 28px;
-  font-family: 'Inter';
+  font-family: 'Plus Jakarta Sans';
   background: none;
   border: 2px solid ${({ theme }) => theme.colors.gray12};
   border-top-left-radius: 8px;
