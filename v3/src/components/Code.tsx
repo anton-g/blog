@@ -29,7 +29,19 @@ const Pre = styled.pre`
     font-family: 'Share Tech Mono', monospace;
     display: grid;
     line-height: 1.4;
-    padding: 16px;
+    padding: 16px 0;
     overflow-x: scroll;
+
+    .line {
+      padding: 0 16px;
+
+      &.highlighted {
+        background-color: ${({ theme }) => theme.colors.gray4};
+      }
+    }
+
+    .word {
+      background-color: ${({ theme }) => theme.colors.gray5};
+    }
   }
 `

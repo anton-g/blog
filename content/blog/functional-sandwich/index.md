@@ -55,7 +55,7 @@ It's important to remember that, in javascript, variables declared with `const` 
 
 ```javascript
 const person = {
-  name: 'Anton'
+  name: 'Anton',
 }
 person.name = 'Alfredo'
 ```
@@ -92,7 +92,7 @@ The first step in making our sandwich is to slice our ingredients, which in othe
 ```javascript
 const ingredients = ['cucumber', 'tomato', 'sallad']
 
-const slice = ingredient => {
+const slice = (ingredient) => {
   return `sliced ${ingredient}`
 }
 
