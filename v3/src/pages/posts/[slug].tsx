@@ -70,7 +70,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export default PostPage
 
 const Wrapper = styled.div`
-  font-size: 18px;
+  font-size: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -94,4 +94,18 @@ const Title = styled.h1`
 const Content = styled.div`
   max-width: 660px;
   width: 100%;
+
+  code {
+    background-color: ${({ theme }) => theme.colors.gray2};
+    font-family: 'Share Tech Mono', monospace;
+  }
+
+  a {
+    color: ${({ theme }) => theme.colors.primary11};
+
+    &:focus,
+    &:hover {
+      text-decoration: underline ${({ theme }) => theme.colors.primary11} wavy;
+    }
+  }
 `

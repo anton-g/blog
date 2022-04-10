@@ -7,7 +7,6 @@ export const Code = ({ children }: Props) => {
 }
 
 const Pre = styled.pre`
-  background-color: ${({ theme }) => theme.colors.gray2};
   margin: 0 -56px;
   border-radius: 8px;
   font-size: 16px;
@@ -26,7 +25,6 @@ const Pre = styled.pre`
   }
 
   > code {
-    font-family: 'Share Tech Mono', monospace;
     display: grid;
     line-height: 1.4;
     padding: 16px 0;
