@@ -4,17 +4,21 @@ import { ParsedUrlQuery } from 'querystring'
 import { MDXRemote } from 'next-mdx-remote'
 import { getAllPosts, getPostBySlug } from '../../api'
 import { Callout } from '../../components/Callout'
-import Image, { ImageProps } from 'next/image'
+import Image from 'next/image'
 import RenderPropsCounter from '../../components/RenderPropsCounter'
 import { Extracurricular } from '../../components/Extracurricular'
 import Confettis from '../../components/Confettis'
 import { AccordionExample } from '../../components/compound-demo/AccordionExample'
 import { Folders } from '../../components/recursive-demo/Folders'
+import styled from 'styled-components'
+import { Spacer } from '../../components/Spacer'
+import { Code } from '../../components/Code'
 
 const ResponsiveImage = (props: any) => <Image alt={props.alt} layout="responsive" {...props} />
 
 const components = {
   img: ResponsiveImage,
+  pre: Code,
   Callout,
   RenderPropsCounter,
   Folders,
@@ -26,10 +30,12 @@ const components = {
 const PostPage: NextPage<{ post: any }> = ({ post }) => {
   return (
     <MDXProvider components={components}>
-      <div>
-        <h1>{post.frontmatter.title}</h1>
-        <MDXRemote {...post} />
-      </div>
+      <Wrapper>
+        <Title>{post.frontmatter.title}</Title>
+        <Content>
+          <MDXRemote {...post} />
+        </Content>
+      </Wrapper>
     </MDXProvider>
   )
 }
@@ -62,3 +68,30 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 export default PostPage
+
+const Wrapper = styled.div`
+  font-size: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px;
+
+  @media screen and (max-width: 420px) {
+    padding: 16px;
+  }
+`
+
+const Title = styled.h1`
+  font-family: 'Yeseva One';
+  max-width: 1000px;
+  font-size: clamp(46px, 6vw + 1rem, 96px);
+  text-align: center;
+  font-weight: normal;
+  line-height: 1;
+  margin-top: clamp(66px, 10vw + 1rem, 96px);
+`
+
+const Content = styled.div`
+  max-width: 660px;
+  width: 100%;
+`
