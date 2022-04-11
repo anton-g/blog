@@ -97,6 +97,7 @@ const Wrapper = styled.div`
   font-family: 'Abril Fatface';
   letter-spacing: 1px;
   display: flex;
+  align-items: center;
 `
 
 const Title = styled.span`
@@ -124,6 +125,8 @@ const MarqueeWrapper = styled.div`
   height: 100%;
   overflow: hidden;
   position: relative;
+  display: flex;
+  align-items: center;
 `
 
 const marquee = keyframes`
@@ -134,7 +137,6 @@ const marquee = keyframes`
 const MarqueeInner = styled.div`
   display: block;
   width: max-content;
-  height: 100%;
 
   position: absolute;
   overflow: hidden;
