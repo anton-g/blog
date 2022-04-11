@@ -1,8 +1,8 @@
-import type { GetStaticPaths, GetStaticProps, NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
+import type { GetStaticProps, NextPage } from 'next'
 import Link from 'next/link'
-import { getAllPosts } from '../../api'
+import styled from 'styled-components'
+import { getAllPublicPosts } from '../../api'
+import { Nav } from '../../components/Nav'
 
 type PostsProps = {
   posts: any[]
@@ -10,22 +10,21 @@ type PostsProps = {
 
 const Posts: NextPage<PostsProps> = ({ posts }) => {
   return (
-    <div>
-      {posts.map((post) => (
-        <p key={post.slug}>
-          <Link href={'/posts/' + post.slug} passHref>
-            <a>
-              {post.frontmatter.date} - {post.frontmatter.title}
-            </a>
+    <>
+      <Nav />
+      <Columns>
+        {posts.map((post) => (
+          <Link key={post.slug} href={'/posts/' + post.slug} passHref>
+            <PostLink>{post.frontmatter.title}</PostLink>
           </Link>
-        </p>
-      ))}
-    </div>
+        ))}
+      </Columns>
+    </>
   )
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const posts = await getAllPosts()
+  const posts = await getAllPublicPosts()
 
   return {
     props: {
@@ -33,5 +32,27 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     },
   }
 }
+
+const Columns = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem 4rem;
+  max-width: 1000px;
+  margin: 96px auto;
+`
+
+const PostLink = styled.a`
+  font-family: 'Yeseva One';
+  font-size: 36px;
+
+  &:nth-child(2n + 1) {
+    text-align: right;
+  }
+
+  &:hover {
+    text-decoration: underline ${({ theme }) => theme.colors.primary11} wavy;
+    text-decoration-skip-ink: none;
+  }
+`
 
 export default Posts
