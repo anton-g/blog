@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { Appearances } from '../components/Appearances'
 import { BlogRoll } from '../components/BlogRoll'
 import { FeaturedPosts } from '../components/FeaturedPosts'
+import { Nav } from '../components/Nav'
 import { Newsletter } from '../components/Newsletter'
 import { Projects } from '../components/Projects'
 import { ShopCTA } from '../components/ShopCTA'
@@ -29,6 +30,7 @@ const Home: NextPage<Props> = ({ isShopOpen }) => {
         <meta name="description" content="anton gunnarsson" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Nav hideLogo />
       <Heading>anton gunnarsson</Heading>
       <Spacer size={48} />
       <FeaturedPosts />
