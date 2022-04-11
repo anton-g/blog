@@ -24,7 +24,7 @@ const Posts: NextPage<PostsProps> = ({ posts }) => {
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const posts = await getAllPublicPosts()
+  const posts = await getAllPublicPosts(['slug', 'date', 'title', 'unlisted'])
 
   return {
     props: {

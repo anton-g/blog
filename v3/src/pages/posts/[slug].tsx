@@ -2,7 +2,7 @@ import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { MDXProvider } from '@mdx-js/react'
 import { ParsedUrlQuery } from 'querystring'
 import { MDXRemote } from 'next-mdx-remote'
-import { getAllPosts, getPostBySlug } from '../../api'
+import { getAllPublicPosts, getPostBySlug } from '../../api'
 import { Callout } from '../../components/Callout'
 import Image from 'next/image'
 import RenderPropsCounter from '../../components/RenderPropsCounter'
@@ -11,8 +11,8 @@ import Confettis from '../../components/Confettis'
 import { AccordionExample } from '../../components/compound-demo/AccordionExample'
 import { Folders } from '../../components/recursive-demo/Folders'
 import styled from 'styled-components'
-import { Spacer } from '../../components/Spacer'
 import { Code } from '../../components/Code'
+import { Nav } from '../../components/Nav'
 
 const ResponsiveImage = (props: any) => <Image alt={props.alt} layout="responsive" {...props} />
 
@@ -30,6 +30,7 @@ const components = {
 const PostPage: NextPage<{ post: any }> = ({ post }) => {
   return (
     <MDXProvider components={components}>
+      <Nav />
       <Wrapper>
         <Title>{post.frontmatter.title}</Title>
         <Content>
@@ -47,7 +48,7 @@ interface IParams extends ParsedUrlQuery {
 export const getStaticProps: GetStaticProps<{}, IParams> = async ({ params }) => {
   if (!params) throw Error('wtf')
 
-  const post = await getPostBySlug(params.slug)
+  const post = await getPostBySlug(params.slug, ['slug', 'title', 'content'])
 
   return {
     props: { post },
@@ -55,7 +56,7 @@ export const getStaticProps: GetStaticProps<{}, IParams> = async ({ params }) =>
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const posts = await getAllPosts()
+  const posts = await getAllPublicPosts(['slug', 'content', 'date', 'title'])
 
   return {
     paths: posts.map((post) => {
@@ -106,6 +107,7 @@ const Content = styled.div`
     &:focus,
     &:hover {
       text-decoration: underline ${({ theme }) => theme.colors.primary11} wavy;
+      text-decoration-skip-ink: none;
     }
   }
 `

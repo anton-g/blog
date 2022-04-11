@@ -28,7 +28,7 @@ export function getPostSlugs(dir: string) {
   return fs.readdirSync(dir)
 }
 
-export async function getPostBySlug(slug: string): Promise<Record<string, any>> {
+export async function getPostBySlug(slug: string, fields: string[]): Promise<Record<string, any>> {
   const realSlug = slug.replace(/\.mdx$/, '')
   const fullPath = join(postsDirectory, `${realSlug}.mdx`)
   const fileContents = fs.readFileSync(fullPath, 'utf8')
@@ -47,14 +47,30 @@ export async function getPostBySlug(slug: string): Promise<Record<string, any>> 
     },
   })
 
-  return {
-    slug: realSlug,
-    ...source,
+  const result: Record<string, any> = {
+    frontmatter: {},
   }
+  fields.forEach((field) => {
+    if (field === 'slug') {
+      result[field] = realSlug
+      return
+    }
+    if (field === 'content') {
+      result.compiledSource = source.compiledSource
+      return
+    }
+
+    if (source.frontmatter?.[field]) {
+      result.frontmatter[field] = source.frontmatter?.[field]
+    }
+  })
+
+  return result
 }
 
-export async function getAllPosts() {
+export async function getAllPublicPosts(fields: string[]) {
   const slugs = getPostSlugs(postsDirectory)
-  const posts = await Promise.all(slugs.map((slug) => getPostBySlug(slug)))
-  return posts
+  const posts = await Promise.all(slugs.map((slug) => getPostBySlug(slug, fields)))
+  const publicPosts = posts.filter((x) => !x.frontmatter.unlisted)
+  return publicPosts
 }
