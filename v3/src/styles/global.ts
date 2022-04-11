@@ -21,18 +21,4 @@ export default createGlobalStyle`
       background: ${({ theme }) => theme.colors.primary11};
     }
   }
-
-  @font-face {
-    font-family: "Plus Jakarta Sans";
-    font-weight: normal;
-    src: url("/fonts/PlusJakartaSans-Regular.woff2") format("woff2"),
-        url("/fonts/PlusJakartaSans-Regular.woff") format("woff");
-  }
-
-  @font-face {
-    font-family: "Plus Jakarta Sans";
-    font-weight: bold;
-    src: url("/fonts/PlusJakartaSans-Bold.woff2") format("woff2"),
-        url("/fonts/PlusJakartaSans-Bold.woff") format("woff");
-  }
 `
