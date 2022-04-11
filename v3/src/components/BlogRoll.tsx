@@ -107,6 +107,7 @@ const Title = styled.span`
 const Link = styled.a`
   &:hover {
     text-decoration: underline ${({ theme }) => theme.colors.primary11} wavy;
+    text-decoration-skip-ink: none;
   }
 `
 

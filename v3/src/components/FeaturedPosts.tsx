@@ -67,6 +67,7 @@ const Post = styled.a`
 
   &:hover {
     text-decoration: underline ${({ theme }) => theme.colors.primary11} wavy;
+    text-decoration-skip-ink: none;
   }
 `
 
