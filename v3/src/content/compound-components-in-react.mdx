@@ -117,7 +117,7 @@ Glad you want to learn more! It is possible to create compound components withou
 
 Instead of connecting our components with a context we can use `React.cloneElement` to pass `activeKey` and `setKey` as props from the parent to its children:
 
-```jsx{9-14}
+```jsx {9-14}
 function Accordion({ children }) {
   const [activeKey, setActiveKey] = useState(null)
 

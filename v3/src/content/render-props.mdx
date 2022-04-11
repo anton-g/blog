@@ -48,14 +48,14 @@ Now, for the sake of the example let's say we want to give the user more control
 
 Imagining we want to add some styling and then display the count like "`The count is X!`" we can move this control to the consumer of the component by refactoring our component to this:
 
-```jsx{1,8}
+```jsx {1,8}
 export default function Counter({ renderCount }) {
   const [count, setCount] = useState(0)
 
   return (
     <div>
       <h1>Click it, I'm interactive!</h1>
-      <button onClick={() => setCount(c => c + 1)}>Increase count</button>
+      <button onClick={() => setCount((c) => c + 1)}>Increase count</button>
       <p>{renderCount(count)}</p>
     </div>
   )
@@ -84,14 +84,14 @@ Before moving on to why render props aren't as widely used anymore and in which 
 
 Refactoring our component once again we end up with this:
 
-```jsx{1,8}
+```jsx {1,8}
 export default function Counter({ children }) {
   const [count, setCount] = useState(0)
 
   return (
     <div>
       <h1>Click it, I'm interactive!</h1>
-      <button onClick={() => setCount(c => c + 1)}>Increase count</button>
+      <button onClick={() => setCount((c) => c + 1)}>Increase count</button>
       <p>{children(count)}</p>
     </div>
   )
@@ -216,7 +216,7 @@ This could be implemented with a hook that takes the renderers as arguments, but
 
 Finally, I recently watched a talk by [@erikras](https://twitter.com/erikras) and learned about a third use case when you might want to use render props. Below is a component that uses the previously mentioned `useHover` hook, but it also renders a component called `VerySlowToRender` which is, well.. very slow to render. It's probably from a third-party package that you have no control over but for some reason you still have to use it.
 
-```jsx{5,7}
+```jsx {5,7}
 function MyComponent() {
   const [hoverRef, isHovered] = useHover()
 
@@ -232,7 +232,7 @@ So in this case the problem is that when you hover the `div` the entire componen
 
 What we could do instead is to use our previously defined `Hover` component with a render prop!
 
-```jsx{4-8}
+```jsx {4-8}
 function MyComponent() {
   return (
     <VerySlowToRender>

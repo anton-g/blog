@@ -52,26 +52,20 @@ I sure didn't, no matter how much I looked at this code so next up I dived into 
 
 Aaah, the solution! With that it wasn't very hard to read some more documentation and end up with a score calculation that works:
 
-```ts{2,6,18-19}
+```ts {2,6,18-19}
 async function calculate(pixels) {
   const inputs = tf.tidy(() => {
-    return pixels instanceof tf.Tensor
-      ? pixels
-      : this._preprocess(tf.browser.fromPixels(pixels, 3))
+    return pixels instanceof tf.Tensor ? pixels : this._preprocess(tf.browser.fromPixels(pixels, 3))
   })
 
   const outputs = await this.model.execute(inputs, null)
 
-  const arrays = !Array.isArray(outputs)
-    ? await outputs.array()
-    : Promise.all(outputs.map(t => t.array()))
+  const arrays = !Array.isArray(outputs) ? await outputs.array() : Promise.all(outputs.map((t) => t.array()))
 
-  const result = Array.isArray(arrays[0])
-    ? arrays[0].map((x, i) => ({ probability: x, tag: this.tags[i] }))
-    : []
+  const result = Array.isArray(arrays[0]) ? arrays[0].map((x, i) => ({ probability: x, tag: this.tags[i] })) : []
 
   inputs.dispose()
-  Array.isArray(outputs) ? outputs.forEach(o => o.dispose()) : outputs.dispose()
+  Array.isArray(outputs) ? outputs.forEach((o) => o.dispose()) : outputs.dispose()
 
   return result
 }
