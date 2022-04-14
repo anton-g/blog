@@ -1,6 +1,8 @@
 // Very much built upon https://joshwcomeau.com/react/animated-sparkles-in-react/
 
-import React, { ReactNode } from 'react'
+import React from 'react'
+import { CSSProperties } from 'react'
+import { ReactNode } from 'react'
 import styled, { keyframes } from 'styled-components'
 
 const COLORS = ['#a864fd', '#29cdff', '#78ff44', '#ff718d', '#fdff6a']
@@ -29,7 +31,22 @@ const confettis = [
   },
 ]
 
-const generateConfetti = () => {
+type Confetti = {
+  id: string
+  createdAt: number
+  color: string
+  size: number
+  speed: number
+  rotation: number
+  wind: number
+  path: string
+  style: {
+    top: string
+    left: string
+  }
+}
+
+const generateConfetti = (): Confetti => {
   const confetti = confettis[random(0, confettis.length)]
 
   return {
@@ -48,10 +65,10 @@ const generateConfetti = () => {
   }
 }
 
-const Confettis = ({ children }: { children: ReactNode }) => {
+const Confettis = ({ children, ...delegated }: { children: ReactNode }) => {
   // TODO add sound for toggle
   const [disabled, setDisabled] = React.useState(false)
-  const [confettis, setConfettis] = React.useState<ReturnType<typeof generateConfetti>[]>([])
+  const [confettis, setConfettis] = React.useState<Confetti[]>([])
   const prefersReducedMotion = usePrefersReducedMotion()
   useRandomInterval(
     () => {
@@ -68,7 +85,7 @@ const Confettis = ({ children }: { children: ReactNode }) => {
     prefersReducedMotion || disabled ? null : 250
   )
   return (
-    <Wrapper onClick={() => setDisabled((d) => !d)}>
+    <Wrapper {...delegated} onClick={() => setDisabled((d) => !d)}>
       {confettis.map((confetti) => (
         <Confetti
           key={confetti.id}
@@ -85,7 +102,6 @@ const Confettis = ({ children }: { children: ReactNode }) => {
     </Wrapper>
   )
 }
-
 const Confetti = ({
   size,
   color,
@@ -101,7 +117,10 @@ const Confetti = ({
   rotation: number
   wind: number
   path: string
-  style: React.CSSProperties
+  style: {
+    top: CSSProperties['top']
+    left: CSSProperties['left']
+  }
 }) => {
   return (
     <ConfettiWrapper style={style} speed={speed}>
@@ -113,7 +132,6 @@ const Confetti = ({
     </ConfettiWrapper>
   )
 }
-
 const comeInOut = keyframes`
   0% {
     opacity: 0;
@@ -128,50 +146,55 @@ const comeInOut = keyframes`
     opacity: 0;
   }
 `
-const spin = ({ rotation }: { rotation: number }) => keyframes`
+const spin = (props: { rotation: number }) => keyframes`
   0% {
     transform: rotate(0deg);
   }
   100% {
-    transform: rotate(${rotation}deg);
+    transform: rotate(${props.rotation}deg);
   }
 `
-const fall = ({ wind }: { wind: number }) => keyframes`
+const fall = (p: { wind: number }) => keyframes`
   0% {
     transform: translateY(0px) translateX(0px);
   }
   100% {
-    transform: translateY(15px) translateX(${wind}px);
+    transform: translateY(15px) translateX(${p.wind}px);
   }
 `
-
 const Wrapper = styled.span`
   display: inline-block;
   position: relative;
   cursor: pointer;
 `
 
-const ConfettiWrapper = styled.span<{ speed: number }>`
+const ConfettiWrapper = styled.span.attrs<{ speed: number }>((props) => ({
+  style: {
+    animationDuration: `${props.speed}ms`,
+  },
+}))<{ speed: number }>`
   position: absolute;
   display: block;
   z-index: 2;
   @media (prefers-reduced-motion: no-preference) {
     animation: ${comeInOut} forwards;
   }
-  animation-duration: ${({ speed }) => `${speed}ms`};
 `
 
-const FallWrapper = styled.span<{ speed: number; wind: number }>`
+const FallWrapper = styled.span.attrs<{ speed: number }>((props) => ({
+  style: {
+    animationDuration: `${props.speed}ms`,
+  },
+}))<{ wind: number; speed: number }>`
   display: block;
   @media (prefers-reduced-motion: no-preference) {
     animation: ${fall} linear forwards;
   }
-  animation-duration: ${({ speed }) => `${speed}ms`};
 `
 
-const ConfettiSvg = styled.svg.attrs(({ speed }: { speed: number }) => ({
+const ConfettiSvg = styled.svg.attrs((props) => ({
   style: {
-    animationDuration: `${speed}ms`,
+    animationDuration: `${props.speed}ms`,
   },
 }))`
   display: block;
@@ -182,10 +205,9 @@ const ConfettiSvg = styled.svg.attrs(({ speed }: { speed: number }) => ({
 
 const ChildWrapper = styled.strong`
   position: relative;
-  z-index: 1px;
+  z-index: 1;
   font-weight: bold;
 `
-
 export default Confettis
 
 const random = (min: number, max: number) => Math.floor(Math.random() * (max - min)) + min
@@ -203,7 +225,7 @@ function usePrefersReducedMotion() {
   const [prefersReducedMotion, setPrefersReducedMotion] = React.useState(getInitialState)
   React.useEffect(() => {
     const mediaQueryList = window.matchMedia(QUERY)
-    const listener = (event: MediaQueryListEvent) => {
+    const listener = (event: any) => {
       setPrefersReducedMotion(!event.matches)
     }
     mediaQueryList.addListener(listener)
@@ -214,7 +236,7 @@ function usePrefersReducedMotion() {
   return prefersReducedMotion
 }
 
-const useRandomInterval = (callback: Function, minDelay: number | null, maxDelay: number | null) => {
+const useRandomInterval = (callback: () => void, minDelay: number | null, maxDelay: number | null) => {
   const timeoutId = React.useRef<number>(null!)
   const savedCallback = React.useRef(callback)
   React.useEffect(() => {
@@ -224,7 +246,7 @@ const useRandomInterval = (callback: Function, minDelay: number | null, maxDelay
     let isEnabled = typeof minDelay === 'number' && typeof maxDelay === 'number'
     if (isEnabled) {
       const handleTick = () => {
-        const nextTickAt = random(minDelay!, maxDelay!)
+        const nextTickAt = random(minDelay as number, maxDelay as number)
         timeoutId.current = window.setTimeout(() => {
           savedCallback.current()
           handleTick()
