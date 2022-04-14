@@ -25,7 +25,7 @@ export function Extracurricular({ title, children }: { title: string; children: 
 }
 
 const Wrapper = styled.aside<{ open: boolean }>`
-  margin: 32px;
+  margin: 32px 0;
   border: 1px solid black;
   border-radius: 4px;
   font-size: 14px;
@@ -55,7 +55,7 @@ const Title = styled.button`
   background: none;
   font-size: 14px;
   margin: 0;
-  padding: 8px 40px;
+  padding: 8px 24px;
   color: black;
   cursor: pointer;
   width: 100%;
@@ -63,6 +63,7 @@ const Title = styled.button`
   display: flex;
   justify-content: space-between;
   line-height: inherit;
+  align-items: center;
 `
 
 const Chevron = styled.svg<{ open: boolean }>`
@@ -74,6 +75,10 @@ const Chevron = styled.svg<{ open: boolean }>`
 `
 
 const Content = styled.div<{ open: boolean }>`
-  padding: 0 40px 10px 40px;
+  padding: 0 24px 10px 24px;
   display: ${({ open }) => (open ? 'block' : 'none')};
+
+  pre {
+    margin: 0 -24px;
+  }
 `

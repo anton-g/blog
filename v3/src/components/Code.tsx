@@ -25,6 +25,7 @@ const Pre = styled.pre`
   }
 
   > code {
+    font-family: 'Share Tech Mono', monospace;
     display: grid;
     line-height: 1.4;
     padding: 16px 0;
@@ -34,7 +35,9 @@ const Pre = styled.pre`
       padding: 0 16px;
 
       &.highlighted {
-        background-color: ${({ theme }) => theme.colors.gray4};
+        background-color: ${({ theme }) => theme.colors.gray3};
+        border-left: 6px solid ${({ theme }) => theme.colors.primary11};
+        padding-left: 10px;
       }
     }
 
