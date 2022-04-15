@@ -3,6 +3,7 @@ import Link from 'next/link'
 import styled from 'styled-components'
 import { getAllPublicPosts } from '../../api'
 import { Nav } from '../../components/Nav'
+import { generateMainFeeds } from '../../lib/feeds'
 
 type PostsProps = {
   posts: any[]
@@ -25,6 +26,7 @@ const Posts: NextPage<PostsProps> = ({ posts }) => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const posts = await getAllPublicPosts(['slug', 'date', 'title', 'unlisted'])
+  generateMainFeeds()
 
   return {
     props: {

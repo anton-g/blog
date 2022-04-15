@@ -13,10 +13,11 @@ import { Folders } from '../../components/recursive-demo/Folders'
 import styled from 'styled-components'
 import { Code } from '../../components/Code'
 import { Nav } from '../../components/Nav'
+import { generateMainFeeds } from '../../lib/feeds'
 
 const ResponsiveImage = (props: any) => <Image alt={props.alt} layout="responsive" {...props} />
 
-const components = {
+export const components = {
   img: ResponsiveImage,
   pre: Code,
   Callout,
