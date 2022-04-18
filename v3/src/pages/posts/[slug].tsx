@@ -2,7 +2,7 @@ import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { MDXProvider } from '@mdx-js/react'
 import { ParsedUrlQuery } from 'querystring'
 import { MDXRemote } from 'next-mdx-remote'
-import { getAllPublicPosts, getPostBySlug } from '../../api'
+import { getAllPublicPosts, getPostBySlug, Post } from '../../api'
 import { Callout } from '../../components/Callout'
 import Image from 'next/image'
 import RenderPropsCounter from '../../components/RenderPropsCounter'
@@ -13,7 +13,6 @@ import { Folders } from '../../components/recursive-demo/Folders'
 import styled from 'styled-components'
 import { Code } from '../../components/Code'
 import { Nav } from '../../components/Nav'
-import { generateMainFeeds } from '../../lib/feeds'
 
 const ResponsiveImage = (props: any) => <Image alt={props.alt} layout="responsive" {...props} />
 
@@ -28,7 +27,7 @@ export const components = {
   Extracurricular,
 }
 
-const PostPage: NextPage<{ post: any }> = ({ post }) => {
+const PostPage: NextPage<{ post: Post }> = ({ post }) => {
   return (
     <MDXProvider components={components}>
       <Nav />
@@ -57,12 +56,14 @@ export const getStaticProps: GetStaticProps<{}, IParams> = async ({ params }) =>
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const posts = await getAllPublicPosts(['slug', 'content', 'date', 'title'])
+  const posts = await getAllPublicPosts(['slug'])
 
   return {
     paths: posts.map((post) => {
       return {
-        params: { ...post },
+        params: {
+          slug: post.slug,
+        },
       }
     }),
     fallback: false,

@@ -1,12 +1,12 @@
 import type { GetStaticProps, NextPage } from 'next'
 import Link from 'next/link'
 import styled from 'styled-components'
-import { getAllPublicPosts } from '../../api'
+import { getAllPublicPosts, Post } from '../../api'
 import { Nav } from '../../components/Nav'
 import { generateMainFeeds } from '../../lib/feeds'
 
 type PostsProps = {
-  posts: any[]
+  posts: Post[]
 }
 
 const Posts: NextPage<PostsProps> = ({ posts }) => {

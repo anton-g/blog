@@ -6,7 +6,7 @@ import { ThemeProvider } from 'styled-components'
 import { components } from '../pages/posts/[slug]'
 import { lightTheme } from '../styles/theme'
 import { parseISO } from 'date-fns'
-import { getAllPublicPosts } from '../api'
+import { getAllPublicPosts, Post } from '../api'
 
 const buildFeed = (): Feed => {
   return new Feed({
@@ -32,7 +32,7 @@ const buildFeed = (): Feed => {
   })
 }
 
-const makeItem = (post: any): Item => {
+const makeItem = (post: Post): Item => {
   const baseUrl = `https://antongunnarsson.com`
   const url = `${baseUrl}/posts/${post.slug}`
   const htmlContent = ReactDOMServer.renderToStaticMarkup(
@@ -45,11 +45,11 @@ const makeItem = (post: any): Item => {
     .replace(/src="\//g, `src="${baseUrl}/`)
 
   return {
-    title: post.frontmatter.title,
+    title: post.frontmatter.title || 'Missing title',
     link: url,
     id: url,
-    date: parseISO(post.frontmatter.date),
-    description: post.frontmatter.summary,
+    date: post.frontmatter.date ? parseISO(post.frontmatter.date) : new Date(),
+    description: post.frontmatter.description,
     content: htmlContent,
   }
 }
@@ -59,7 +59,7 @@ export const generateMainFeeds = async () => {
 
   const posts = await getAllPublicPosts(['slug', 'date', 'title', 'unlisted', 'content'])
 
-  posts.forEach((post: any) => feed.addItem(makeItem(post)))
+  posts.forEach((post) => feed.addItem(makeItem(post)))
   fs.mkdirSync('public/feeds/', { recursive: true })
   fs.writeFileSync('public/feeds/feed.xml', feed.rss2())
   fs.writeFileSync('public/feeds/feed.json', feed.json1())

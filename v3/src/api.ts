@@ -24,11 +24,27 @@ const options = {
 }
 const postsDirectory = join(process.cwd(), 'src/content')
 
+export type Post = {
+  slug?: string
+  compiledSource: string
+  frontmatter: {
+    title?: string
+    date?: string
+    description?: string
+    dev?: string
+    state?: string
+    unlisted?: string
+    tags?: string
+  }
+}
+
+type PostField = Exclude<Exclude<keyof Post, 'frontmatter'>, 'compiledSource'> | keyof Post['frontmatter'] | 'content'
+
 export function getPostSlugs(dir: string) {
   return fs.readdirSync(dir)
 }
 
-export async function getPostBySlug(slug: string, fields: string[]): Promise<Record<string, any>> {
+export async function getPostBySlug(slug: string, fields: PostField[]): Promise<Post> {
   const realSlug = slug.replace(/\.mdx$/, '')
   const fullPath = join(postsDirectory, `${realSlug}.mdx`)
   const fileContents = fs.readFileSync(fullPath, 'utf8')
@@ -47,7 +63,8 @@ export async function getPostBySlug(slug: string, fields: string[]): Promise<Rec
     },
   })
 
-  const result: Record<string, any> = {
+  const result: Post = {
+    compiledSource: '',
     frontmatter: {},
   }
   fields.forEach((field) => {
@@ -61,14 +78,14 @@ export async function getPostBySlug(slug: string, fields: string[]): Promise<Rec
     }
 
     if (source.frontmatter?.[field]) {
-      result.frontmatter[field] = source.frontmatter?.[field]
+      result.frontmatter[field] = source.frontmatter[field]
     }
   })
 
   return result
 }
 
-export async function getAllPublicPosts(fields: string[]) {
+export async function getAllPublicPosts(fields: PostField[]) {
   const slugs = getPostSlugs(postsDirectory)
   const posts = await Promise.all(slugs.map((slug) => getPostBySlug(slug, fields)))
   const publicPosts = posts.filter((x) => !x.frontmatter.unlisted)
