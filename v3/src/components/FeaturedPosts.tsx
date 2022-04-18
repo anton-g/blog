@@ -21,7 +21,21 @@ export const FeaturedPosts = () => {
       </Posts>
       <Spacer size={16} />
       <Link href="/posts" passHref>
-        <AllPosts>All posts -&gt;</AllPosts>
+        <AllPosts>
+          All posts{' '}
+          <svg width="60" height="12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M1 5.25H.25v1.5H1v-1.5Zm14.5 1.5a.75.75 0 0 0 0-1.5v1.5ZM1 6.75h14.5v-1.5H1v1.5Z"
+              fill="currentColor"
+            />
+            <path
+              d="m11 1 4.646 4.646a.5.5 0 0 1 0 .708L11 11"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+            />
+          </svg>
+        </AllPosts>
       </Link>
     </Wrapper>
   )
