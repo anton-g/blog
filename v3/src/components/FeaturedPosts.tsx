@@ -1,8 +1,12 @@
 import Link from 'next/link'
-import styled, { keyframes } from 'styled-components'
+import { useState, useRef, useEffect } from 'react'
+import styled from 'styled-components'
 import { Spacer } from './Spacer'
+import { animated, useSpring, config } from '@react-spring/web'
 
 export const FeaturedPosts = () => {
+  const [ref, hover] = useHover<HTMLAnchorElement>()
+
   return (
     <Wrapper>
       <Heading>Selected writing</Heading>
@@ -19,25 +23,35 @@ export const FeaturedPosts = () => {
           <Post>Render Props in the Age of Hooks</Post>
         </Link>
       </Posts>
-      <Spacer size={16} />
       <Link href="/posts" passHref>
-        <AllPosts>
-          All posts{' '}
-          <svg width="60" height="12" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M1 5.25H.25v1.5H1v-1.5Zm14.5 1.5a.75.75 0 0 0 0-1.5v1.5ZM1 6.75h14.5v-1.5H1v1.5Z"
-              fill="currentColor"
-            />
-            <path
-              d="m11 1 4.646 4.646a.5.5 0 0 1 0 .708L11 11"
-              stroke="currentColor"
-              stroke-width="1.5"
-              stroke-linecap="round"
-            />
-          </svg>
+        <AllPosts ref={ref}>
+          All posts <Arrow hover={hover} />
         </AllPosts>
       </Link>
     </Wrapper>
+  )
+}
+
+const Arrow = ({ hover }: { hover: boolean }) => {
+  const length = 180
+  const width = length - 14.5 + 17 + 38
+  const margin = -(width - 17)
+
+  const { first, second } = useSpring({
+    first: hover
+      ? `M1 5.25H.25v1.5H1v-1.5Zm${length} 1.5a.75.75 0 0 0 0-1.5v1.5ZM1 6.75h${length}v-1.5H1v1.5Z`
+      : `M1 5.25H.25v1.5H1v-1.5Zm${14.5} 1.5a.75.75 0 0 0 0-1.5v1.5ZM1 6.75h${14.5}v-1.5H1v1.5Z`,
+    second: hover
+      ? `m${length - 3.5} 1 4.646 4.646a.5.5 0 0 1 0 .708L${length - 3.5} 11`
+      : `m${11} 1 4.646 4.646a.5.5 0 0 1 0 .708L${11} 11`,
+    config: config.wobbly,
+  })
+
+  return (
+    <svg width={width} height="12" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ marginRight: margin }}>
+      <animated.path d={first} fill="currentColor" />
+      <animated.path d={second} stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+    </svg>
   )
 }
 
@@ -86,5 +100,29 @@ const Post = styled.a`
 `
 
 const AllPosts = styled.a`
-  align-self: flex-end;
+  margin-top: 48px;
+
+  @media screen and (min-width: 1350px) {
+    margin-top: 16px;
+    align-self: flex-end;
+  }
 `
+
+function useHover<T>() {
+  const [value, setValue] = useState<boolean>(false)
+  const ref = useRef<T | null>(null)
+  const handleMouseOver = (): void => setValue(true)
+  const handleMouseOut = (): void => setValue(false)
+  useEffect(() => {
+    const node: any = ref.current
+    if (node) {
+      node.addEventListener('mouseover', handleMouseOver)
+      node.addEventListener('mouseout', handleMouseOut)
+      return () => {
+        node.removeEventListener('mouseover', handleMouseOver)
+        node.removeEventListener('mouseout', handleMouseOut)
+      }
+    }
+  }, [ref.current])
+  return [ref, value] as const
+}
