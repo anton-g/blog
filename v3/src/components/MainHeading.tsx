@@ -1,20 +1,22 @@
 import { useSpring, animated, config } from '@react-spring/web'
 import { useState } from 'react'
 import ReactCanvasConfetti from 'react-canvas-confetti'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import useDimensions from '../hooks/useDimensions'
 import useSound from 'use-sound'
 import ballonPop from '../sounds/balloon-pop.mp3'
 import blow from '../sounds/blow.mp3'
+import { useRef } from 'react'
 
 export const MainHeading = () => {
   const [playbackRate, setPlaybackRate] = useState(1)
   const [popped, setPopped] = useState(false)
   const [size, setSize] = useState(1)
   const [ref, dimensions] = useDimensions()
-  const [playPop] = useSound(ballonPop, { volume: 0.4 })
-  const [playBlow, { stop: stopBlow }] = useSound(blow, { volume: 0.3, interrupt: true, playbackRate })
-  const [playDeflate] = useSound(blow, { volume: 0.3, playbackRate: 0.7 })
+  const [playPop] = useSound(ballonPop, { volume: 0.35 })
+  const [playBlow, { stop: stopBlow }] = useSound(blow, { volume: 0.25, interrupt: true, playbackRate })
+  const [playDeflate] = useSound(blow, { volume: 0.25, playbackRate: 2 })
+  const timeoutRef = useRef<any>()
 
   const [styles, api] = useSpring(() => ({
     fontSize: `${size}em`,
@@ -31,35 +33,44 @@ export const MainHeading = () => {
   const x = left / (process.browser ? window.innerWidth : 1)
   const y = top / (process.browser ? window.innerHeight : 1)
 
+  const onBalloonClick = () => {
+    if (size > 7.6) {
+      setPopped(true)
+      stopBlow()
+      playPop()
+      clearTimeout(timeoutRef.current)
+      return
+    }
+
+    let change = 0.5
+    if (size > 2.2) change = 0.4
+    if (size > 3.8) change = 0.3
+    if (size > 5) change = 0.15
+    if (size > 6.6) change = 0.1
+    setSize((s) => s + change)
+    api.start({ fontSize: `${size + change}em` })
+    playBlow()
+    setPlaybackRate(playbackRate + 0.05)
+
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current)
+      timeoutRef.current = null
+    }
+
+    timeoutRef.current = setTimeout(() => {
+      playDeflate()
+    }, 800)
+  }
+
   return (
     <Title>
       anton{' '}
       <LastName style={{ whiteSpace: 'nowrap' }}>
         gunnarss
-        <LetterO ref={ref}>
+        <LetterO ref={ref} popped={popped}>
           o
           {!popped && (
-            <Balloon
-              onClick={() => {
-                if (size > 7.6) {
-                  setPopped(true)
-                  stopBlow()
-                  playPop()
-                  return
-                }
-
-                let change = 0.5
-                if (size > 2.2) change = 0.4
-                if (size > 3.8) change = 0.3
-                if (size > 5) change = 0.15
-                if (size > 6.6) change = 0.1
-                setSize((s) => s + change)
-                api.start({ fontSize: `${size + change}em` })
-                playBlow()
-                setPlaybackRate(playbackRate + 0.05)
-              }}
-              style={styles}
-            >
+            <Balloon onClick={onBalloonClick} style={styles}>
               o
             </Balloon>
           )}
@@ -126,9 +137,14 @@ const LastName = styled.span`
   white-space: nowrap;
 `
 
-const LetterO = styled.span`
+const LetterO = styled.span<{ popped: boolean }>`
   position: relative;
   color: white;
+  ${({ popped }) =>
+    popped &&
+    css`
+      user-select: none;
+    `}
 `
 
 const Balloon = styled(animated.span)`
