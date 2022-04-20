@@ -3,17 +3,25 @@ import { useState } from 'react'
 import ReactCanvasConfetti from 'react-canvas-confetti'
 import styled from 'styled-components'
 import useDimensions from '../hooks/useDimensions'
+import useSound from 'use-sound'
+import ballonPop from '../sounds/balloon-pop.mp3'
+import blow from '../sounds/blow.mp3'
 
 export const MainHeading = () => {
+  const [playbackRate, setPlaybackRate] = useState(1)
   const [popped, setPopped] = useState(false)
   const [size, setSize] = useState(1)
   const [ref, dimensions] = useDimensions()
+  const [playPop] = useSound(ballonPop, { volume: 0.4 })
+  const [playBlow, { stop: stopBlow }] = useSound(blow, { volume: 0.3, interrupt: true, playbackRate })
+  const [playDeflate] = useSound(blow, { volume: 0.3, playbackRate: 0.7 })
 
   const [styles, api] = useSpring(() => ({
     fontSize: `${size}em`,
     onRest: () => {
       api.start({ fontSize: `1em` })
       setSize(1)
+      setPlaybackRate(1)
     },
     config: config.wobbly,
   }))
@@ -33,14 +41,22 @@ export const MainHeading = () => {
           {!popped && (
             <Balloon
               onClick={() => {
+                if (size > 7.6) {
+                  setPopped(true)
+                  stopBlow()
+                  playPop()
+                  return
+                }
+
                 let change = 0.5
                 if (size > 2.2) change = 0.4
                 if (size > 3.8) change = 0.3
                 if (size > 5) change = 0.15
                 if (size > 6.6) change = 0.1
-                if (size > 7.6) setPopped(true)
                 setSize((s) => s + change)
                 api.start({ fontSize: `${size + change}em` })
+                playBlow()
+                setPlaybackRate(playbackRate + 0.05)
               }}
               style={styles}
             >
