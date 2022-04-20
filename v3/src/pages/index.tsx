@@ -1,5 +1,7 @@
+import { animated, config, useSpring } from '@react-spring/web'
 import type { GetServerSideProps, NextPage } from 'next'
 import Head from 'next/head'
+import { useState } from 'react'
 import styled from 'styled-components'
 import { Appearances } from '../components/Appearances'
 import { BlogRoll } from '../components/BlogRoll'
@@ -9,6 +11,9 @@ import { Newsletter } from '../components/Newsletter'
 import { Projects } from '../components/Projects'
 import { ShopCTA } from '../components/ShopCTA'
 import { Spacer } from '../components/Spacer'
+import ReactCanvasConfetti from 'react-canvas-confetti'
+import useDimensions from '../hooks/useDimensions'
+import { MainHeading } from '../components/MainHeading'
 
 type Props = {
   isShopOpen: boolean
@@ -31,7 +36,7 @@ const Home: NextPage<Props> = ({ isShopOpen }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Nav hideLogo />
-      <Heading>anton gunnarsson</Heading>
+      <MainHeading />
       <Spacer size={48} />
       <FeaturedPosts />
       <Spacer size={128} />
@@ -50,20 +55,13 @@ const Home: NextPage<Props> = ({ isShopOpen }) => {
 
 const Wrapper = styled.div`
   width: 100%;
+  max-width: 100%;
   height: 100%;
   color: ${({ theme }) => theme.colors.gray12};
   display: flex;
   flex-direction: column;
   align-items: center;
-`
-
-const Heading = styled.h1`
-  font-family: 'Yeseva One';
-  font-weight: normal;
-  line-height: 0.75;
-  width: min-content;
-
-  font-size: clamp(56px, 10vw + 1rem, 156px);
+  overflow-x: hidden;
 `
 
 export default Home

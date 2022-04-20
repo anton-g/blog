@@ -80,7 +80,7 @@ const svg = (
     />
     <path
       stroke="#2D2D2D"
-      stroke-width="2"
+      strokeWidth="2"
       d="M12.2394 124.351 117.239 1.35074M223.760565 124.350738 118.76061584 1.35064507"
     />
     <circle cx="118" cy="4" r="3.5" fill="#B8B8B8" stroke="#505050" />
