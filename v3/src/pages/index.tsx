@@ -1,7 +1,5 @@
-import { animated, config, useSpring } from '@react-spring/web'
 import type { GetServerSideProps, NextPage } from 'next'
 import Head from 'next/head'
-import { useState } from 'react'
 import styled from 'styled-components'
 import { Appearances } from '../components/Appearances'
 import { BlogRoll } from '../components/BlogRoll'
@@ -11,8 +9,6 @@ import { Newsletter } from '../components/Newsletter'
 import { Projects } from '../components/Projects'
 import { ShopCTA } from '../components/ShopCTA'
 import { Spacer } from '../components/Spacer'
-import ReactCanvasConfetti from 'react-canvas-confetti'
-import useDimensions from '../hooks/useDimensions'
 import { MainHeading } from '../components/MainHeading'
 
 type Props = {

@@ -1,19 +1,22 @@
 import type { AppProps } from 'next/app'
-import styled, { ThemeProvider } from 'styled-components'
+import { ThemeProvider } from 'styled-components'
 import { lightTheme } from '../styles/theme'
 import GlobalStyle from '../styles/global'
-import { useCallback, useContext } from 'react'
-import { SoundContext, SoundProvider } from '../SoundContext'
-import { SpeakerLoudIcon, SpeakerOffIcon, SpeakerQuietIcon, TwitterLogoIcon } from '@radix-ui/react-icons'
+import { SoundProvider } from '../SoundContext'
+import { QueryClient, QueryClientProvider } from 'react-query'
+
+const queryClient = new QueryClient()
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <ThemeProvider theme={lightTheme}>
-      <SoundProvider>
-        <Component {...pageProps} />
-      </SoundProvider>
-      <GlobalStyle />
-    </ThemeProvider>
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider theme={lightTheme}>
+        <SoundProvider>
+          <Component {...pageProps} />
+        </SoundProvider>
+        <GlobalStyle />
+      </ThemeProvider>
+    </QueryClientProvider>
   )
 }
 
