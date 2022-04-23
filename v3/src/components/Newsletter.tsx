@@ -67,7 +67,7 @@ export const Newsletter = () => {
                 onChange={(e) => setEmail(e.target.value)}
               ></Input>
               <Spacer size={16} />
-              <Button disabled={isLoading} onClick={() => mutate({ email: '' })}>
+              <Button disabled={isLoading} onClick={() => mutate({ email })}>
                 Subscribe
               </Button>
             </Signup>
