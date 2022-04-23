@@ -2,12 +2,15 @@ import styled from 'styled-components'
 import { TwitterLogoIcon } from '@radix-ui/react-icons'
 import Link from 'next/link'
 import { Spacer } from './Spacer'
+import { SoundToggle } from './SoundToggle'
 
 export const Nav = ({ hideLogo }: { hideLogo?: boolean }) => {
   return (
     <Wrapper>
       <Left>{!hideLogo && <Link href="/">ag</Link>}</Left>
       <Right>
+        <SoundToggle />
+        <Spacer size={8} />
         <a href="/feeds/feed.xml">
           <svg
             height={24}

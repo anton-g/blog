@@ -1,5 +1,5 @@
 import { useSpring, animated, config } from '@react-spring/web'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import ReactCanvasConfetti from 'react-canvas-confetti'
 import styled, { css } from 'styled-components'
 import useDimensions from '../hooks/useDimensions'
@@ -7,6 +7,7 @@ import useSound from 'use-sound'
 import ballonPop from '../sounds/balloon-pop.mp3'
 import blow from '../sounds/blow.mp3'
 import { useRef } from 'react'
+import { SoundContext } from '../SoundContext'
 
 export const MainHeading = () => {
   const [playbackRate, setPlaybackRate] = useState(1)
@@ -17,6 +18,7 @@ export const MainHeading = () => {
   const [playBlow, { stop: stopBlow }] = useSound(blow, { volume: 0.25, interrupt: true, playbackRate })
   const [playDeflate] = useSound(blow, { volume: 0.25, playbackRate: 2 })
   const timeoutRef = useRef<any>()
+  const { soundMode } = useContext(SoundContext)
 
   const [styles, api] = useSpring(() => ({
     fontSize: `${size}em`,
@@ -37,7 +39,7 @@ export const MainHeading = () => {
     if (size > 7.6) {
       setPopped(true)
       stopBlow()
-      playPop()
+      soundMode && playPop()
       clearTimeout(timeoutRef.current)
       return
     }
@@ -49,7 +51,7 @@ export const MainHeading = () => {
     if (size > 6.6) change = 0.1
     setSize((s) => s + change)
     api.start({ fontSize: `${size + change}em` })
-    playBlow()
+    soundMode && playBlow()
     setPlaybackRate(playbackRate + 0.05)
 
     if (timeoutRef.current) {
@@ -58,7 +60,7 @@ export const MainHeading = () => {
     }
 
     timeoutRef.current = setTimeout(() => {
-      playDeflate()
+      soundMode && playDeflate()
     }, 800)
   }
 
