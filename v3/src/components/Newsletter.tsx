@@ -2,11 +2,17 @@ import styled from 'styled-components'
 import Confettis from './Confettis'
 import { Spacer } from './Spacer'
 import { useMutation } from 'react-query'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
+import { Fireworks } from './Fireworks'
+import useSound from 'use-sound'
+import fanfareSound from '../sounds/fanfare.mp3'
+import { SoundContext } from '../SoundContext'
 
 export const Newsletter = () => {
   const [email, setEmail] = useState('')
+  const [playFanfare] = useSound(fanfareSound)
+  const { soundMode } = useContext(SoundContext)
 
   const { mutate, isLoading, isError, isSuccess } = useMutation(({ email }: { email: string }) => {
     return fetch('/api/subscribe', {
@@ -19,7 +25,10 @@ export const Newsletter = () => {
       },
     }).then((response) => {
       if (!response.ok) throw new Error()
-      else return response.json()
+      else {
+        soundMode && playFanfare()
+        return response.json()
+      }
     })
   })
 
@@ -28,7 +37,7 @@ export const Newsletter = () => {
       <Description>
         Now and then I send out a newsletter about <Confettis>web development things</Confettis> that I find
         interesting. Never more than once a month. Never any spam. It won&apos;t fill your inbox with noise since
-        I&apos;ve limited myself to just 50 words. How long that is? Like the text you just read.
+        I&apos;ve limited myself to just 50 words. How long that is? Just as long as this text.
       </Description>
       <Spacer size={24} />
       <Title>50 words</Title>
@@ -36,20 +45,23 @@ export const Newsletter = () => {
       <div style={{ position: 'relative' }}>
         <AnimatePresence>
           {isSuccess ? (
-            <SuccessMessage
-              key="success"
-              initial={{ opacity: 0, transform: 'perspective(600px) rotateX(-90deg)' }}
-              animate={{
-                opacity: 1,
-                transform: 'perspective(600px) rotateX(0deg)',
-                transitionEnd: {
-                  position: 'relative',
-                },
-              }}
-              transition={{ type: 'spring' }}
-            >
-              Woho! Check your email to confirm your subscription!
-            </SuccessMessage>
+            <>
+              <Fireworks />
+              <SuccessMessage
+                key="success"
+                initial={{ opacity: 0, transform: 'perspective(600px) rotateX(-90deg)' }}
+                animate={{
+                  opacity: 1,
+                  transform: 'perspective(600px) rotateX(0deg)',
+                  transitionEnd: {
+                    position: 'relative',
+                  },
+                }}
+                transition={{ type: 'spring' }}
+              >
+                Woho! Check your email to confirm your subscription!
+              </SuccessMessage>
+            </>
           ) : (
             <Signup
               key="signup"
