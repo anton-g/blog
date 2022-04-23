@@ -2,16 +2,25 @@ import { SpeakerLoudIcon, SpeakerOffIcon } from '@radix-ui/react-icons'
 import { useContext, useCallback } from 'react'
 import styled from 'styled-components'
 import { SoundContext } from '../SoundContext'
+import onSound from '../sounds/on.mp3'
+import offSound from '../sounds/off.mp3'
+import useSound from 'use-sound'
 
 export const SoundToggle = () => {
   const { soundMode, setSoundMode } = useContext(SoundContext)
-  // const [playOn] = useSound(onSound, { volume: 0.5 })
-  // const [playOff] = useSound(offSound, { volume: 0.25 })
+  const [playOn] = useSound(onSound, { volume: 0.25 })
+  const [playOff] = useSound(offSound, { volume: 0.5 })
 
   const onClick = useCallback(() => {
-    // soundMode ? playOff() : playOn()
+    if (soundMode) {
+      console.log('off')
+      playOff()
+    } else {
+      console.log('on')
+      playOn()
+    }
     setSoundMode(!soundMode)
-  }, [soundMode, setSoundMode])
+  }, [soundMode, setSoundMode, playOff, playOn])
 
   return (
     <Button onClick={onClick} aria-label="sound toggle">
