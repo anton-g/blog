@@ -123,6 +123,7 @@ function useHover<T>() {
         node.removeEventListener('mouseout', handleMouseOut)
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ref.current])
   return [ref, value] as const
 }

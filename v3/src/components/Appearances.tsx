@@ -7,7 +7,7 @@ export const Appearances = () => {
     <Wrapper>
       <Heading>Selected appearances</Heading>
       <Posts>
-        <Post href="/">It's always better when we're together</Post>
+        <Post href="/">It&apos;s always better when we&apos;re together</Post>
         <Spacer size={48} />
         <Post href="/">Kodsnack 465 - En liknelse som flyger 🇸🇪</Post>
         <Spacer size={48} />

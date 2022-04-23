@@ -7,8 +7,8 @@ export const Newsletter = () => {
     <Wrapper>
       <Description>
         Now and then I send out a newsletter about <Confettis>web development things</Confettis> that I find
-        interesting. Never more than once a month. Never any spam. It won't fill your inbox with noise since I've
-        limited myself to just 50 words. How long that is? Like the text you just read.
+        interesting. Never more than once a month. Never any spam. It won&apos;t fill your inbox with noise since
+        I&apos;ve limited myself to just 50 words. How long that is? Like the text you just read.
       </Description>
       <Spacer size={24} />
       <Title>50 words</Title>

@@ -14,7 +14,7 @@ export function AccordionExample() {
           <StyledToggle eventKey="item1">Item 1</StyledToggle>
           <Accordion.Content eventKey="item1">
             <Content>
-              Hey you! I'm a <b>interactive</b> example! Try expanding the other items or closing this one!
+              Hey you! I&apos;m a <b>interactive</b> example! Try expanding the other items or closing this one!
             </Content>
           </Accordion.Content>
         </Option>
@@ -22,8 +22,8 @@ export function AccordionExample() {
           <StyledToggle eventKey="item2">Item 2</StyledToggle>
           <Accordion.Content eventKey="item2">
             <Content>
-              I'm built with flexibility in mind so that I don't limit the type of content any section can have. Like a
-              component with some more <Confettis>C O N F E T T I</Confettis>!
+              I&apos;m built with flexibility in mind so that I don&apos;t limit the type of content any section can
+              have. Like a component with some more <Confettis>C O N F E T T I</Confettis>!
             </Content>
           </Accordion.Content>
         </Option>
