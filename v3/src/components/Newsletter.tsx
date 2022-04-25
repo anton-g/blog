@@ -11,7 +11,7 @@ import { SoundContext } from '../SoundContext'
 
 export const Newsletter = () => {
   const [email, setEmail] = useState('')
-  const [playFanfare] = useSound(fanfareSound)
+  const [playFanfare] = useSound(fanfareSound, { volume: 0.5 })
   const { soundMode } = useContext(SoundContext)
 
   const { mutate, isLoading, isError, isSuccess } = useMutation(({ email }: { email: string }) => {
@@ -79,7 +79,7 @@ export const Newsletter = () => {
                 onChange={(e) => setEmail(e.target.value)}
               ></Input>
               <Spacer size={16} />
-              <Button disabled={isLoading} onClick={() => mutate({ email })}>
+              <Button disabled={isLoading || email.length < 4} onClick={() => mutate({ email })}>
                 Subscribe
               </Button>
             </Signup>
