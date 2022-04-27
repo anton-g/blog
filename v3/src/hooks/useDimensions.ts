@@ -56,7 +56,7 @@ export interface DimensionObject {
   bottom: number
 }
 
-export type UseDimensionsHook = [(node: HTMLElement) => void, null | DimensionObject, HTMLElement]
+export type UseDimensionsHook = [(node: HTMLElement | null) => void, null | DimensionObject, HTMLElement]
 
 export interface UseDimensionsArgs {
   liveMeasure?: boolean

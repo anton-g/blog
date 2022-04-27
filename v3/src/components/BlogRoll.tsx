@@ -103,6 +103,8 @@ const Wrapper = styled.div`
 const Title = styled.span`
   padding-left: 8px;
   padding-right: 16px;
+  user-select: none;
+  cursor: grab;
 `
 
 const Link = styled.a`

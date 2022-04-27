@@ -2,7 +2,6 @@ import type { GetServerSideProps, NextPage } from 'next'
 import Head from 'next/head'
 import styled from 'styled-components'
 import { Appearances } from '../components/Appearances'
-import { BlogRoll } from '../components/BlogRoll'
 import { FeaturedPosts } from '../components/FeaturedPosts'
 import { Nav } from '../components/Nav'
 import { Newsletter } from '../components/Newsletter'
@@ -10,6 +9,7 @@ import { Projects } from '../components/Projects'
 import { ShopCTA } from '../components/ShopCTA'
 import { Spacer } from '../components/Spacer'
 import { MainHeading } from '../components/MainHeading'
+import { BottomDrawer } from '../components/BottomDrawer'
 
 type Props = {
   isShopOpen: boolean
@@ -43,8 +43,8 @@ const Home: NextPage<Props> = ({ isShopOpen }) => {
       <ShopCTA open={isShopOpen} />
       <Spacer size={140} />
       <Newsletter />
-      <Spacer size={196} />
-      <BlogRoll />
+      <Spacer size={148} />
+      <BottomDrawer />
     </Wrapper>
   )
 }
