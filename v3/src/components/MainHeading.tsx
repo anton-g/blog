@@ -81,7 +81,7 @@ export const MainHeading = () => {
       </LastName>
       <Confetti
         angle={90}
-        colors={['#26ccff', '#a25afd', '#ff5e7e', '#88ff5a', '#fcff42', '#ffa62d', '#ff36ff']}
+        colors={['#a864fd', '#29cdff', '#78ff44', '#ff718d', '#fdff6a']}
         decay={0.9}
         drift={0}
         gravity={1}
