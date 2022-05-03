@@ -39,7 +39,7 @@ export const BottomDrawer = () => {
         variants={variants}
         transition={{ type: 'spring', damping: 20, stiffness: 280 }}
         onDragEnd={(_event, info) => {
-          const isDraggingUp = info.velocity.y < 0
+          const isDraggingUp = info.velocity.y <= 0
           const multiplier = isDraggingUp ? 2 / 3 : 1 / 4
           const threshold = height * multiplier
 
