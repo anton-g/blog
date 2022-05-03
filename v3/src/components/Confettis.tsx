@@ -6,6 +6,7 @@ import { ReactNode } from 'react'
 import styled, { keyframes } from 'styled-components'
 import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion'
 import { useRandomInterval } from '../hooks/useRandomInterval'
+import { useUserConfig } from '../UserConfigContext'
 import { random } from '../utils/random'
 
 const COLORS = ['#a864fd', '#29cdff', '#78ff44', '#ff718d', '#fdff6a']
@@ -49,13 +50,13 @@ type Confetti = {
   }
 }
 
-const generateConfetti = (): Confetti => {
+const generateConfetti = (colors: string[]): Confetti => {
   const confetti = confettis[random(0, confettis.length)]
 
   return {
     id: String(random(10000, 99999)),
     createdAt: Date.now(),
-    color: COLORS[random(0, COLORS.length)],
+    color: colors[random(0, colors.length)],
     size: random(confetti.min, confetti.max),
     speed: random(1000, 1500),
     rotation: random(-90, 90),
@@ -70,12 +71,20 @@ const generateConfetti = (): Confetti => {
 
 const Confettis = ({ children, ...delegated }: { children: ReactNode }) => {
   // TODO add sound for toggle
+  const { userConfig } = useUserConfig()
   const [disabled, setDisabled] = React.useState(false)
   const [confettis, setConfettis] = React.useState<Confetti[]>([])
   const prefersReducedMotion = usePrefersReducedMotion()
   useRandomInterval(
     () => {
-      const confetti = generateConfetti()
+      const confetti = generateConfetti([
+        // could probably set these as css vars instead
+        userConfig.confettiColor1,
+        userConfig.confettiColor2,
+        userConfig.confettiColor3,
+        userConfig.confettiColor4,
+        userConfig.confettiColor5,
+      ])
       const now = Date.now()
       const nextConfettis = confettis.filter((sp) => {
         const delta = now - sp.createdAt

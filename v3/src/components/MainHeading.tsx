@@ -8,8 +8,10 @@ import ballonPop from '../sounds/balloon-pop.mp3'
 import blow from '../sounds/blow.mp3'
 import { useRef } from 'react'
 import { SoundContext } from '../SoundContext'
+import { useUserConfig } from '../UserConfigContext'
 
 export const MainHeading = () => {
+  const { userConfig } = useUserConfig()
   const [playbackRate, setPlaybackRate] = useState(1)
   const [popped, setPopped] = useState(false)
   const [size, setSize] = useState(1)
@@ -64,6 +66,14 @@ export const MainHeading = () => {
     }, 800)
   }
 
+  const confettiColors = [
+    userConfig.confettiColor1,
+    userConfig.confettiColor2,
+    userConfig.confettiColor3,
+    userConfig.confettiColor4,
+    userConfig.confettiColor5,
+  ]
+
   return (
     <Title>
       anton{' '}
@@ -81,7 +91,7 @@ export const MainHeading = () => {
       </LastName>
       <Confetti
         angle={90}
-        colors={['#a864fd', '#29cdff', '#78ff44', '#ff718d', '#fdff6a']}
+        colors={confettiColors}
         decay={0.9}
         drift={0}
         gravity={1}
@@ -102,7 +112,7 @@ export const MainHeading = () => {
       />
       <Confetti
         angle={90}
-        colors={['#26ccff', '#a25afd', '#ff5e7e', '#88ff5a', '#fcff42', '#ffa62d', '#ff36ff']}
+        colors={confettiColors}
         decay={0.9}
         drift={0}
         gravity={1}

@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useState } from 'react'
 
-export function useLocalStorage(key: string, initialValue: any) {
+export function useLocalStorage<T>(key: string, initialValue: T) {
   const initialize = (key: string) => {
     try {
       const item = window.localStorage.getItem(key)
@@ -11,12 +11,13 @@ export function useLocalStorage(key: string, initialValue: any) {
       return initialValue
     }
   }
-  const [storedValue, setStoredValue] = useState<any>()
+  const [storedValue, setStoredValue] = useState<T>(initialize(key))
   useEffect(() => {
     setStoredValue(initialize(key))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const setValue = (value: any) => {
+  const setValue = (value: T) => {
     try {
       const valueToStore = value instanceof Function ? value(storedValue) : value
       setStoredValue(valueToStore)
@@ -26,5 +27,5 @@ export function useLocalStorage(key: string, initialValue: any) {
     }
   }
 
-  return [storedValue, setValue]
+  return [storedValue, setValue] as const
 }
