@@ -172,7 +172,7 @@ const Confetti = styled(ReactCanvasConfetti)`
   position: absolute;
   pointer-events: none;
   width: 100%;
-  height: 200%;
+  height: 200vh;
   top: 0;
   left: 0;
   overflow: hidden;

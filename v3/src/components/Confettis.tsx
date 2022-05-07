@@ -54,7 +54,7 @@ const generateConfetti = (colors: string[]): Confetti => {
   const confetti = confettis[random(0, confettis.length)]
 
   return {
-    id: String(random(10000, 99999)),
+    id: String(random(10000, 999999)),
     createdAt: Date.now(),
     color: colors[random(0, colors.length)],
     size: random(confetti.min, confetti.max),

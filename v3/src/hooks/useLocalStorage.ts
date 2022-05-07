@@ -1,13 +1,13 @@
 import { useEffect } from 'react'
 import { useState } from 'react'
 
+// TODO fix ssr
 export function useLocalStorage<T>(key: string, initialValue: T) {
   const initialize = (key: string) => {
     try {
       const item = window.localStorage.getItem(key)
       return item ? JSON.parse(item) : initialValue
     } catch (error) {
-      console.log(error)
       return initialValue
     }
   }
