@@ -20,7 +20,7 @@ const initialConfig: UserConfigState = {
 }
 
 export const UserConfigContext = createContext<{
-  userConfig: UserConfigState
+  userConfig: UserConfigState | undefined
   updateConfig: (config: UserConfigState) => void
 }>(null!)
 

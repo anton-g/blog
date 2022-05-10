@@ -5,6 +5,8 @@ import { Spacer } from './Spacer'
 export const ConfettiConfig = () => {
   const { userConfig, updateConfig } = useUserConfig()
 
+  if (!userConfig?.confettiColor1) return null
+
   return (
     <Wrapper>
       <Text>

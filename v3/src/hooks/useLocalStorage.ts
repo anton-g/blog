@@ -1,7 +1,6 @@
-import { useEffect } from 'react'
+import { useEffect, useLayoutEffect } from 'react'
 import { useState } from 'react'
 
-// TODO fix ssr
 export function useLocalStorage<T>(key: string, initialValue: T) {
   const initialize = (key: string) => {
     try {
@@ -11,8 +10,8 @@ export function useLocalStorage<T>(key: string, initialValue: T) {
       return initialValue
     }
   }
-  const [storedValue, setStoredValue] = useState<T>(initialize(key))
-  useEffect(() => {
+  const [storedValue, setStoredValue] = useState<T>({} as T)
+  useLayoutEffect(() => {
     setStoredValue(initialize(key))
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])

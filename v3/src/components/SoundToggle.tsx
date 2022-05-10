@@ -13,10 +13,8 @@ export const SoundToggle = () => {
 
   const onClick = useCallback(() => {
     if (soundMode) {
-      console.log('off')
       playOff()
     } else {
-      console.log('on')
       playOn()
     }
     setSoundMode(!soundMode)
