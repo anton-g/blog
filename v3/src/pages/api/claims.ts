@@ -1,5 +1,10 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
+import { PrismaClient } from '@prisma/client'
+import Filter from 'bad-words'
 import { getDayAndMinute } from '../../utils/time'
+
+const wordFilter = new Filter()
+const prisma = new PrismaClient()
 
 type Response =
   | {
@@ -9,51 +14,32 @@ type Response =
 
 export type Claim = { x: number; y: number; name: string; minute: number; day: number }
 
-const temp: Claim[] = [
-  {
-    x: 0.529,
-    y: 0.968,
-    day: 6,
-    minute: getDayAndMinute().minute,
-    name: 'foo',
-  },
-]
-
 export default async function handler(req: NextApiRequest, res: NextApiResponse<Response>) {
   if (req.method === 'POST') {
     const { x, y, name } = req.body
     const { day, minute } = getDayAndMinute()
 
-    const claim = { x, y, name, day, minute }
+    const claim = { x, y, name: wordFilter.clean(name).slice(0, 22), day, minute }
 
-    if (temp.find((x) => x.minute == minute && x.day == minute)) return res.status(401).json({})
+    const existingClaim = await prisma.waveClaim.findFirst({
+      where: {
+        AND: [{ minute: minute }, { day: day }],
+      },
+    })
 
-    console.log(claim)
-    temp.push(claim)
+    if (existingClaim) return res.status(401).json({})
+
+    await prisma.waveClaim.create({
+      data: claim,
+    })
 
     return res.status(201).json(claim)
   }
 
   try {
-    const { day, minute } = getDayAndMinute()
-    // const FORM_ID = process.env.CONVERTKIT_FORM_ID
+    const claims = await prisma.waveClaim.findMany()
 
-    // const response = await fetch(`${API_URL}forms/${FORM_ID}/subscribe`, {
-    //   body: JSON.stringify(data),
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   method: 'POST',
-    // })
-
-    // if (response.status >= 400) {
-    //   console.log(response.body)
-    //   return res.status(400).json({
-    //     error: `There was an error subscribing to the list.`,
-    //   })
-    // }
-
-    return res.status(200).json(temp)
+    return res.status(200).json(claims)
   } catch (error: any) {
     return res.status(500).json({ error: error.message || error.toString() })
   }

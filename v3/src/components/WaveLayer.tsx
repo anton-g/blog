@@ -14,7 +14,7 @@ export const WaveLayer = () => {
   const ref = useRef<HTMLDivElement>(null)
   const mouse = useMouse(ref)
 
-  const { mutate, isLoading, isError, isSuccess } = useMutation(
+  const { mutate } = useMutation(
     ({ x, y, name }: Wave) => {
       return fetch('/api/claims', {
         method: 'POST',
@@ -40,9 +40,6 @@ export const WaveLayer = () => {
     }
   )
 
-  let mouseXPosition = mouse.pageX || 0
-  let mouseYPosition = mouse.pageY || 0
-
   const onClaim: MouseEventHandler<HTMLDivElement> = (e) => {
     const relativeX = e.pageX / document.body.clientWidth
     const relativeY = e.pageY / document.body.clientHeight
@@ -57,6 +54,9 @@ export const WaveLayer = () => {
 
     setClaiming(null)
   }
+
+  const mouseXPosition = mouse.pageX || 0
+  const mouseYPosition = mouse.pageY || 0
 
   return (
     <Wavings ref={ref} claiming={Boolean(claiming)} onClick={onClaim}>
@@ -110,7 +110,7 @@ export const WaveLayer = () => {
                 </TooltipTrigger>
                 <TooltipContent>
                   <Tooltip.Arrow />
-                  {currentWave.name} says hi!
+                  {currentWave.name} says {randomGreeting(currentWave.name)}!
                 </TooltipContent>
               </motion.div>
             </Tooltip.Root>
@@ -119,6 +119,18 @@ export const WaveLayer = () => {
       </Tooltip.Provider>
     </Wavings>
   )
+}
+
+const randomGreeting = (name: string) => {
+  const greetings = ['hi', 'hello', 'ciao', 'yo', 'hey', 'ola', 'hej hej']
+
+  let hash = 0
+  for (var i = 0; i < name.length; i++) {
+    hash = name.charCodeAt(i) + ((hash << 5) - hash)
+    hash = hash & hash
+  }
+  hash = ((hash % greetings.length) + greetings.length) % greetings.length
+  return greetings[hash]
 }
 
 const wave = keyframes`
