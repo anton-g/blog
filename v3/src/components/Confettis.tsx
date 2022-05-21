@@ -9,7 +9,7 @@ import { useRandomInterval } from '../hooks/useRandomInterval'
 import { useUserConfig } from '../UserConfigContext'
 import { random } from '../utils/random'
 
-const COLORS = ['#a864fd', '#29cdff', '#78ff44', '#ff718d', '#fdff6a']
+const DEFAULT_COLORS = ['#a864fd', '#29cdff', '#78ff44', '#ff718d', '#fdff6a']
 
 const confettis = [
   {
@@ -77,14 +77,18 @@ const Confettis = ({ children, ...delegated }: { children: ReactNode }) => {
   const prefersReducedMotion = usePrefersReducedMotion()
   useRandomInterval(
     () => {
-      const confetti = generateConfetti([
-        // could probably set these as css vars instead
-        userConfig.confettiColor1,
-        userConfig.confettiColor2,
-        userConfig.confettiColor3,
-        userConfig.confettiColor4,
-        userConfig.confettiColor5,
-      ])
+      const confetti = generateConfetti(
+        userConfig
+          ? [
+              // could probably set these as css vars instead
+              userConfig.confettiColor1,
+              userConfig.confettiColor2,
+              userConfig.confettiColor3,
+              userConfig.confettiColor4,
+              userConfig.confettiColor5,
+            ]
+          : DEFAULT_COLORS
+      )
       const now = Date.now()
       const nextConfettis = confettis.filter((sp) => {
         const delta = now - sp.createdAt
