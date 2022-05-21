@@ -120,10 +120,10 @@ The second parameter of the _callback_ function is the _initialValue_. The _accu
 
 Alright, now that we know about `reduce` we can assemble our sandwich and since `map` returns an array we can _chain_ the call to `reduce`, making our code more compact and legible:
 
-```javascript{7-9,13}
+```javascript {7-9, 11}
 const ingredients = ['cucumber', 'tomato', 'sallad']
 
-const slice = ingredient => {
+const slice = (ingredient) => {
   return `sliced ${ingredient}`
 }
 
@@ -145,7 +145,7 @@ But what if we are allergic to tomatoes? Let's remove it with `filter`.
 
 `filter` takes a single argument that is a callback function (just like `map`), and the callback function has three parameters (the element, the index and the array). The return value of the callback must be a bool indicating whether or not the current element should be included in the new array. In our case this means that we check if the current ingredient isn't tomato and in this case we return true.
 
-```javascript{12-14}
+```javascript {12-14}
 const ingredients = ['cucumber', 'tomato', 'sallad']
 
 const slice = (ingredient) => {
