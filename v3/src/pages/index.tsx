@@ -10,6 +10,7 @@ import { ShopCTA } from '../components/ShopCTA'
 import { Spacer } from '../components/Spacer'
 import { MainHeading } from '../components/MainHeading'
 import { BottomDrawer } from '../components/BottomDrawer'
+import { Puzzle } from '../components/puzzle'
 
 type Props = {
   isShopOpen: boolean
@@ -39,11 +40,10 @@ const Home: NextPage<Props> = ({ isShopOpen }) => {
       <Projects />
       <Spacer size={128} />
       <Appearances />
-      <Spacer size={140} />
-      <ShopCTA open={isShopOpen} />
-      <Spacer size={140} />
+      <Spacer size={128} />
+      {/* <Puzzle /> */}
+      <Spacer size={128} />
       <Newsletter />
-      <Spacer size={148} />
       <BottomDrawer />
     </Wrapper>
   )
@@ -52,7 +52,6 @@ const Home: NextPage<Props> = ({ isShopOpen }) => {
 const Wrapper = styled.div`
   width: 100%;
   max-width: 100%;
-  height: 100%;
   color: ${({ theme }) => theme.colors.gray12};
   display: flex;
   flex-direction: column;

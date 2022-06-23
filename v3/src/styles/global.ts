@@ -7,6 +7,11 @@ export default createGlobalStyle`
     margin: 0;
     font-family: Plus Jakarta Sans, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
       Helvetica Neue, sans-serif;
+    height: 100%;
+  }
+
+  #__next {
+    height: 100%;
   }
 
   a {

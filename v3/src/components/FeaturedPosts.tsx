@@ -101,10 +101,10 @@ const Post = styled.a`
 
 const AllPosts = styled.a`
   margin-top: 48px;
+  align-self: flex-end;
 
   @media screen and (min-width: 1350px) {
     margin-top: 16px;
-    align-self: flex-end;
   }
 `
 

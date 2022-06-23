@@ -16,7 +16,7 @@ export const WaveLayerProvider = ({ children }: { children: ReactNode }) => {
   const [claiming, setClaiming] = useState<string | null>(null)
   const [currentWave, setCurrentWave] = useState<Wave | null>(null)
 
-  const { data } = useQuery<Claim[]>(
+  const { data } = useQuery<Claim[] | { error: string }>(
     'claims',
     () => {
       return fetch('/api/claims').then((r) => r.json())
@@ -29,7 +29,9 @@ export const WaveLayerProvider = ({ children }: { children: ReactNode }) => {
   useAbsoluteMinuteInterval(() => {
     const { day, minute } = getDayAndMinute()
 
-    const current = data?.find((x) => x.minute === minute && x.day === day)
+    if (!data || 'error' in data) return
+
+    const current = data.find((x) => x.minute === minute && x.day === day)
     setCurrentWave(current || null)
 
     if (current) {
@@ -40,7 +42,9 @@ export const WaveLayerProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     const { day, minute } = getDayAndMinute()
 
-    const current = data?.find((x) => x.minute === minute && x.day === day)
+    if (!data || 'error' in data) return
+
+    const current = data.find((x) => x.minute === minute && x.day === day)
     if (current) setCurrentWave(current)
   }, [data])
 
