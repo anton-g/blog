@@ -11,6 +11,7 @@ import { Spacer } from '../components/Spacer'
 import { MainHeading } from '../components/MainHeading'
 import { BottomDrawer } from '../components/BottomDrawer'
 import { Puzzle } from '../components/puzzle'
+import { CircleTextButton } from '../components/CircleTextButton'
 
 type Props = {
   isShopOpen: boolean
@@ -41,6 +42,7 @@ const Home: NextPage<Props> = ({ isShopOpen }) => {
       <Spacer size={128} />
       <Appearances />
       <Spacer size={128} />
+      <CircleTextButton />
       {/* <Puzzle /> */}
       <Spacer size={128} />
       <Newsletter />
