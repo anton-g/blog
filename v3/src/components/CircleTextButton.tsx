@@ -61,8 +61,8 @@ const Svg = styled.svg`
 `
 
 const Button = styled.button`
-  background: ${({ theme }) => theme.colors.primary9};
-  border: 2px solid ${({ theme }) => theme.colors.primary10};
+  background: ${({ theme }) => theme.colors.gray12};
+  border: 2px solid ${({ theme }) => theme.colors.gray12};
   color: ${({ theme }) => theme.colors.gray1};
   font-family: 'Yeseva One';
   font-size: 22px;
@@ -79,8 +79,7 @@ const Button = styled.button`
   &:hover {
     transform: translate(0, -0.5em);
     &::before {
-      box-shadow: 0 0 0 2px ${({ theme }) => theme.colors.primary10},
-        0 0.5em 0 0 ${({ theme }) => theme.colors.primary4};
+      box-shadow: 0 0 0 2px ${({ theme }) => theme.colors.gray12}, 0 0.5em 0 0 ${({ theme }) => theme.colors.gray6};
       transform: translate3d(0, 0.5em, -1em);
     }
   }
@@ -90,7 +89,7 @@ const Button = styled.button`
     transition-duration: 75ms;
 
     &::before {
-      box-shadow: 0 0 0 2px ${({ theme }) => theme.colors.primary10}, 0 0 ${({ theme }) => theme.colors.primary4};
+      box-shadow: 0 0 0 2px ${({ theme }) => theme.colors.gray12}, 0 0 ${({ theme }) => theme.colors.gray6};
       transform: translate3d(0, 0, -1px);
       transition-duration: 75ms;
     }
@@ -105,12 +104,12 @@ const Button = styled.button`
     left: 0;
     right: 0;
     bottom: 0;
-    background: ${({ theme }) => theme.colors.primary8};
+    background: ${({ theme }) => theme.colors.gray11};
     border-radius: inherit;
     transform: translateZ(-1px);
     transition: transform 300ms cubic-bezier(0, 0, 0.58, 1), box-shadow 300ms cubic-bezier(0, 0, 0.58, 1);
     box-sizing: border-box;
-    box-shadow: 0 0 0 2px ${({ theme }) => theme.colors.primary10}, 0 0 ${({ theme }) => theme.colors.primary4};
+    box-shadow: 0 0 0 2px ${({ theme }) => theme.colors.gray12}, 0 0 ${({ theme }) => theme.colors.gray6};
   }
 `
 
