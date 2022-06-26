@@ -1,12 +1,30 @@
 // https://codepen.io/essingen123/pen/mYwoNQ
 
+import { useContext } from 'react'
 import styled, { keyframes } from 'styled-components'
+import useSound from 'use-sound'
+import { SoundContext } from '../SoundContext'
+import clickDown from '../sounds/clickDown.mp3'
+import clickUp from '../sounds/clickUp.mp3'
 
 export const CircleTextButton = () => {
+  const [playClickDown, { sound }] = useSound(clickDown)
+  const [playClickUp] = useSound(clickUp)
+  const { soundMode } = useContext(SoundContext)
+
   return (
     <Container>
       <Circle>
-        <Button>The Button</Button>
+        <Button
+          onMouseDown={() => {
+            soundMode && playClickDown()
+          }}
+          onMouseUp={() => {
+            soundMode && playClickUp()
+          }}
+        >
+          The Button
+        </Button>
         <Svg
           version="1.1"
           xmlns="http://www.w3.org/2000/svg"
