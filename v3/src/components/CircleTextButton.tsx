@@ -1,27 +1,60 @@
 // https://codepen.io/essingen123/pen/mYwoNQ
 
-import { useContext } from 'react'
+import { animated, config, useSpring } from '@react-spring/web'
+import { useRef } from 'react'
+import { useContext, useState } from 'react'
 import styled, { keyframes } from 'styled-components'
 import useSound from 'use-sound'
 import { SoundContext } from '../SoundContext'
 import clickDown from '../sounds/clickDown.mp3'
 import clickUp from '../sounds/clickUp.mp3'
 
+const AnimFeDisplacementMap = animated('feDisplacementMap')
+
 export const CircleTextButton = () => {
-  const [playClickDown, { sound }] = useSound(clickDown)
+  const [playClickDown] = useSound(clickDown)
   const [playClickUp] = useSound(clickUp)
   const { soundMode } = useContext(SoundContext)
+  const [turbulenceScale, setTurbulenceScale] = useState(0)
+  const [clicks, setClicks] = useState(0)
+  const timeoutRef = useRef<any>(null)
+  const timeRef = useRef<number>(0)
+
+  const { scale } = useSpring({
+    scale: turbulenceScale,
+    config: config.wobbly,
+  })
+
+  const handleMouseDown = () => {
+    soundMode && playClickDown()
+    timeRef.current = Date.now()
+  }
+
+  const handleMouseUp = () => {
+    soundMode && playClickUp()
+
+    if (Date.now() - timeRef.current > 1750) {
+      setClicks((c) => c + 1)
+      setTurbulenceScale((s) => (s === 0 ? 50 : s * 1.3))
+    }
+
+    timeRef.current = 0
+
+    if (timeoutRef.current) clearTimeout(timeoutRef.current)
+    timeoutRef.current = setTimeout(() => {
+      setTurbulenceScale(0)
+      setClicks(0)
+    }, 10000)
+  }
 
   return (
     <Container>
       <Circle>
         <Button
-          onMouseDown={() => {
-            soundMode && playClickDown()
-          }}
-          onMouseUp={() => {
-            soundMode && playClickUp()
-          }}
+          onMouseDown={() => handleMouseDown()}
+          onMouseUp={() => handleMouseUp()}
+          onTouchStart={() => handleMouseDown()}
+          onTouchEnd={() => handleMouseUp()}
         >
           The Button
         </Button>
@@ -34,21 +67,36 @@ export const CircleTextButton = () => {
           width="300px"
           height="300px"
           viewBox="0 0 300 300"
-          enableBackground="new 0 0 300 300"
           xmlSpace="preserve"
+          overflow={'visible'}
         >
           <defs>
-            <path
-              id="circlePath"
-              d="M 150, 150 m -120, 0 a 120,120 0 0,1 240,0 a 120,120 0 0,1 -240,0 "
-              // stroke="blue"
-              fill="none"
-            />
+            <path id="circlePath" d="M 150, 150 m -120, 0 a 120,120 0 0,1 240,0 a 120,120 0 0,1 -240,0 " fill="none" />
+            <filter id="filter">
+              <feTurbulence
+                id="turbulence"
+                type="fractalNoise"
+                baseFrequency="0.002"
+                numOctaves="5"
+                result="NOISE"
+                seed={'4432'}
+              ></feTurbulence>
+              <feGaussianBlur in="SourceGraphic" result="BLURRED" stdDeviation="0"></feGaussianBlur>
+              <AnimFeDisplacementMap
+                id="displacer"
+                in2="NOISE"
+                in="BLURRED"
+                scale={scale}
+                xChannelSelector="R"
+                yChannelSelector="R"
+                result="DISPLACED"
+              ></AnimFeDisplacementMap>
+            </filter>
           </defs>
           <circle cx="150" cy="150" r="150" fill="none" />
           <g>
             <use xlinkHref="#circlePath" fill="none" />
-            <text fill="currentColor">
+            <text fill="currentColor" filter="url(#filter)">
               <textPath xlinkHref="#circlePath">I PROMISE YOU THIS BUTTON DOES SOMETHING, REALLY 🤞</textPath>
             </text>
           </g>
@@ -135,7 +183,7 @@ const Circle = styled.div`
   position: relative;
   width: 300px;
   height: 300px;
-  overflow: hidden;
+  overflow: visible;
   display: flex;
   align-content: center;
   justify-content: center;
