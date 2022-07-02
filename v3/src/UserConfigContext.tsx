@@ -22,7 +22,10 @@ const initialConfig: UserConfigState = {
 export const UserConfigContext = createContext<{
   userConfig: UserConfigState
   updateConfig: (config: UserConfigState) => void
-}>(null!)
+}>({
+  userConfig: initialConfig,
+  updateConfig: () => {},
+})
 
 export const UserConfigProvider = ({ children }: { children: ReactNode }) => {
   const [userConfig, setUserConfig] = useLocalStorage('user-config', initialConfig)
