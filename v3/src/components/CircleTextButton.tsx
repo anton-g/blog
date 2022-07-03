@@ -68,7 +68,7 @@ export const CircleTextButton = () => {
 
   return (
     <Container>
-      {clicks >= target && <HiddenParty seed={seed} onClose={handleReset} />}
+      {clicks >= target && <EasterEggContainer seed={seed} onClose={handleReset} />}
       <Circle>
         <Button
           onMouseDown={() => handleMouseDown()}
@@ -239,14 +239,12 @@ const path1 =
 const path4 =
   'M49.6,-45.6C62.2,-37,68.9,-18.5,69.4,0.5C69.9,19.5,64.2,39,51.6,53.7C39,68.3,19.5,78.2,-1.1,79.3C-21.8,80.4,-43.5,72.8,-55.5,58.2C-67.6,43.5,-69.9,21.8,-67.1,2.8C-64.3,-16.1,-56.3,-32.2,-44.3,-40.8C-32.2,-49.4,-16.1,-50.4,1.2,-51.6C18.5,-52.8,37,-54.2,49.6,-45.6Z'
 
-type HiddenPartyProps = {
+type EasterEggContainerProps = {
   seed: number
   onClose: () => void
 }
 
-const HiddenParty = ({ seed, onClose }: HiddenPartyProps) => {
-  const [svgUrl, setSvgUrl] = useState('')
-
+const EasterEggContainer = ({ seed, onClose }: EasterEggContainerProps) => {
   const saveEgg = () => {
     saveSvgAsPng(document.getElementById('easter-egg-svg'), 'egg.png')
   }
