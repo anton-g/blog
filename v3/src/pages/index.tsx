@@ -6,12 +6,11 @@ import { FeaturedPosts } from '../components/FeaturedPosts'
 import { Nav } from '../components/Nav'
 import { Newsletter } from '../components/Newsletter'
 import { Projects } from '../components/Projects'
-import { ShopCTA } from '../components/ShopCTA'
 import { Spacer } from '../components/Spacer'
 import { MainHeading } from '../components/MainHeading'
 import { BottomDrawer } from '../components/BottomDrawer'
-import { Puzzle } from '../components/puzzle'
 import { CircleTextButton } from '../components/CircleTextButton'
+import { EasterEgg } from '../components/EasterEgg'
 
 type Props = {
   isShopOpen: boolean
