@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import styled from 'styled-components'
+import { BouncyArrowLink } from './BouncyArrowLink'
 import { Spacer } from './Spacer'
 
 export const Appearances = () => {
@@ -14,9 +15,7 @@ export const Appearances = () => {
         <Post href="/">Kodsnack 409 - Komplex och komplicerad 🇸🇪</Post>
       </Posts>
       <Spacer size={16} />
-      <Link href="/appearances" passHref>
-        <AllPosts>All appareances -&gt;</AllPosts>
-      </Link>
+      <BouncyArrowLink href="/appearances" text="All appearances" />
     </Wrapper>
   )
 }
