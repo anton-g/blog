@@ -60,6 +60,13 @@ const EggMask = () => {
           />
         </svg>
       </mask>
+      <filter id="glow">
+        <feGaussianBlur stdDeviation="5" />
+        <feComponentTransfer>
+          <feFuncA type="linear" slope="2" />
+        </feComponentTransfer>
+        <feBlend in2="SourceGraphic" />
+      </filter>
     </defs>
   )
 }

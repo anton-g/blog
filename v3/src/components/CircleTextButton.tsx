@@ -24,6 +24,12 @@ export const CircleTextButton = () => {
   const { soundMode } = useContext(SoundContext)
   const [turbulenceScale, setTurbulenceScale] = useState(0)
   const [clicks, setClicks] = useState(0)
+  const [previousSeed, setPreviousSeed] = useState<number | null>(() => {
+    if (typeof window === 'undefined') return null
+
+    const existingSeed = localStorage.getItem('es')
+    return existingSeed ? parseInt(existingSeed) : null
+  })
   const [seed, setSeed] = useState(0)
   const timeoutRef = useRef<any>(null)
   const timeRef = useRef<number>(0)
@@ -43,15 +49,23 @@ export const CircleTextButton = () => {
     if (timeoutRef.current) clearTimeout(timeoutRef.current)
 
     const clickDiff = Date.now() - timeRef.current
+    const newClicks = clicks + 1
     if (clickDiff > clickTimeout) {
-      setClicks((c) => c + 1)
+      setClicks(newClicks)
       setTurbulenceScale((s) => (s === 0 ? 50 : s * 1.3))
-      setSeed((s) => s + clickDiff)
+      const newSeed = seed + clickDiff
+      setSeed(newSeed)
+
+      if (newClicks >= target) {
+        if (!previousSeed) {
+          setPreviousSeed(newSeed)
+          localStorage.setItem('es', newSeed.toString())
+        }
+        return
+      }
     }
 
     timeRef.current = 0
-
-    if (clicks >= target - 1) return
 
     timeoutRef.current = setTimeout(() => {
       setTurbulenceScale(0)
@@ -68,7 +82,7 @@ export const CircleTextButton = () => {
 
   return (
     <Container>
-      {clicks >= target && <EasterEggContainer seed={seed} onClose={handleReset} />}
+      {clicks >= target && <EasterEggContainer seed={previousSeed ?? seed} onClose={handleReset} />}
       <Circle>
         <Button
           onMouseDown={() => handleMouseDown()}
@@ -237,7 +251,7 @@ const path3 = `M53.3,-45.8C67.2,-39.4,75.4,-19.7,71.1,-4.3C66.7,11.1,49.9,22.1,3
 const path1 =
   'M33.2,-34.1C35.5,-30.8,24.7,-15.4,17.6,-7.2C10.4,1.1,6.9,2.2,4.5,8.8C2.2,15.3,1.1,27.3,-10.1,37.4C-21.2,47.5,-42.5,55.6,-48.3,49C-54.2,42.5,-44.7,21.2,-35.1,9.6C-25.4,-2,-15.7,-3.9,-9.8,-7.1C-3.9,-10.4,-2,-14.9,6.7,-21.6C15.4,-28.3,30.8,-37.3,33.2,-34.1Z'
 const path4 =
-  'M49.6,-45.6C62.2,-37,68.9,-18.5,69.4,0.5C69.9,19.5,64.2,39,51.6,53.7C39,68.3,19.5,78.2,-1.1,79.3C-21.8,80.4,-43.5,72.8,-55.5,58.2C-67.6,43.5,-69.9,21.8,-67.1,2.8C-64.3,-16.1,-56.3,-32.2,-44.3,-40.8C-32.2,-49.4,-16.1,-50.4,1.2,-51.6C18.5,-52.8,37,-54.2,49.6,-45.6Z'
+  'M49.6,-45.6C62.2,-37,68.9,-18.5,69.4,0.5C69.9,19.5,64.2,39,51.6,53.7C39,68.3,19.5,74.2,-1.1,75.3C-21.8,76.4,-43.5,72.8,-55.5,58.2C-67.6,43.5,-69.9,21.8,-67.1,2.8C-64.3,-16.1,-56.3,-32.2,-44.3,-40.8C-32.2,-49.4,-16.1,-50.4,1.2,-51.6C18.5,-52.8,37,-54.2,49.6,-45.6Z'
 
 type EasterEggContainerProps = {
   seed: number
@@ -300,9 +314,32 @@ const EasterEggContainer = ({ seed, onClose }: EasterEggContainerProps) => {
   )
 }
 
+/*
+
+  // Set background color
+  const bg = tinycolor
+    .mix(colorPalette[0], colorPalette[1], 50)
+    .desaturate(10)
+    .toString();
+
+  // Make Lighter version
+  const bgInner = tinycolor(bg).lighten(10).toString();
+  // And darker version
+  const bgOuter = tinycolor(bg).darken(10).toString();
+
+  // Set to CSS Custom Properties
+  gsap.to(".container", {
+    "--bg-inner": bgInner,
+    "--bg-outer": bgOuter,
+    duration: 0.5
+  });
+
+*/
+
 const Wrapper = styled.div`
   position: absolute;
   background: url(/party-bg.svg);
+  backdrop-filter: opacity(0.5);
   background-size: contain;
   top: 0;
   left: 0;
