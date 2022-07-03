@@ -51,7 +51,6 @@ const ProjectsWrapper = styled.div`
   padding: 8px 4px;
   max-width: 1500px;
 
-  opacity: 0.8;
   background-size: 10px 10px;
   background-image: repeating-linear-gradient(
     45deg,
@@ -152,7 +151,6 @@ const TvShow = styled(Project)`
   padding-bottom: 32px;
   margin-top: -16px;
   text-shadow: -3px 4px black;
-  transform: perspective(1px) translateZ(0);
 
   &:hover {
     background-color: #e5e5f7;
@@ -168,6 +166,7 @@ const TvShow = styled(Project)`
       );
     background-blend-mode: multiply;
 
+    will-change: transform;
     animation-name: ${pulse};
     animation-duration: 0.3s;
     animation-timing-function: linear;
