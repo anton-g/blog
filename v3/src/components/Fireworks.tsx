@@ -4,7 +4,7 @@ import { CSSProperties } from 'react'
 
 export function Fireworks() {
   const refAnimationInstance = useRef<confetti.CreateTypes | null>(null)
-  const getInstance = useCallback((instance) => {
+  const getInstance = useCallback((instance: any) => {
     refAnimationInstance.current = instance
   }, [])
 

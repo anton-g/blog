@@ -19,7 +19,7 @@ function useDimensions({ liveMeasure = true }: UseDimensionsArgs = {}): UseDimen
   const [dimensions, setDimensions] = useState<DimensionObject | null>(null)
   const [node, setNode] = useState(null!)
 
-  const ref = useCallback((node) => {
+  const ref = useCallback((node: any) => {
     setNode(node)
   }, [])
 
