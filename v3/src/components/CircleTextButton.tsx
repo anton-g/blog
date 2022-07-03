@@ -314,28 +314,6 @@ const EasterEggContainer = ({ seed, onClose }: EasterEggContainerProps) => {
   )
 }
 
-/*
-
-  // Set background color
-  const bg = tinycolor
-    .mix(colorPalette[0], colorPalette[1], 50)
-    .desaturate(10)
-    .toString();
-
-  // Make Lighter version
-  const bgInner = tinycolor(bg).lighten(10).toString();
-  // And darker version
-  const bgOuter = tinycolor(bg).darken(10).toString();
-
-  // Set to CSS Custom Properties
-  gsap.to(".container", {
-    "--bg-inner": bgInner,
-    "--bg-outer": bgOuter,
-    duration: 0.5
-  });
-
-*/
-
 const Wrapper = styled.div`
   position: absolute;
   background: url(/party-bg.svg);
