@@ -11,7 +11,7 @@ import { WaveLayerProvider } from './WaveLayerContext'
 export const BottomDrawer = () => {
   const [isActive, setIsActive] = useState<boolean>(false)
   const controls = useAnimation()
-  const [ref, dimensions] = useDimensions()
+  const [ref, dimensions] = useDimensions({ liveMeasure: false })
 
   const height = dimensions?.height || 0
 
