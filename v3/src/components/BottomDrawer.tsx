@@ -8,10 +8,10 @@ import { ControlPanel } from './ControlPanel'
 import { Spacer } from './Spacer'
 import { WaveLayerProvider } from './WaveLayerContext'
 
-export const BottomDrawer = () => {
+export const BottomDrawer = ({ liveMeasureDisabled }: { liveMeasureDisabled: boolean }) => {
   const [isActive, setIsActive] = useState<boolean>(false)
   const controls = useAnimation()
-  const [ref, dimensions] = useDimensions({ liveMeasure: false })
+  const [ref, dimensions] = useDimensions({ liveMeasure: !liveMeasureDisabled })
 
   const height = dimensions?.height || 0
 

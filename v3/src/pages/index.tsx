@@ -13,10 +13,12 @@ import { CircleTextButton } from '../components/CircleTextButton'
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 import useKonami from '../hooks/useKonamiCode'
+import useDimensions from '../hooks/useDimensions'
 
 const Home: NextPage = () => {
   const [konamiActive, setKonamiActive] = useState(false)
   useKonami(() => setKonamiActive((a) => !a))
+  const [ref, dimensions] = useDimensions({ liveMeasure: false })
 
   const variants = {
     open: {
@@ -40,8 +42,13 @@ const Home: NextPage = () => {
   }
 
   return (
-    <OuterWrapper>
-      <Wrapper animate={konamiActive ? 'open' : 'closed'} initial={false} variants={variants}>
+    <OuterWrapper
+      style={{
+        height: dimensions?.height,
+      }}
+    >
+      <h1>Hello :)</h1>
+      <Wrapper animate={konamiActive ? 'open' : 'closed'} initial={false} variants={variants} ref={ref}>
         <Head>
           <title>anton gunnarsson</title>
           <meta name="description" content="anton gunnarsson" />
@@ -61,7 +68,7 @@ const Home: NextPage = () => {
         {/* <Puzzle /> */}
         <Spacer size={128} />
         <Newsletter />
-        <BottomDrawer />
+        <BottomDrawer liveMeasureDisabled={konamiActive} />
       </Wrapper>
     </OuterWrapper>
   )
@@ -69,13 +76,16 @@ const Home: NextPage = () => {
 
 const OuterWrapper = styled.div`
   display: flex;
-  align-items: center;
   justify-content: center;
   background-color: ${({ theme }) => theme.colors.gray12};
   perspective: 1200px;
+  color: palevioletred;
+  position: relative;
+  height: 100%;
 `
 
 const Wrapper = styled(motion.div)`
+  top: 0;
   width: 100%;
   max-width: 100%;
   color: ${({ theme }) => theme.colors.gray12};
@@ -83,9 +93,9 @@ const Wrapper = styled(motion.div)`
   flex-direction: column;
   align-items: center;
   overflow-x: hidden;
-  position: relative;
+  position: absolute;
   background-color: ${({ theme }) => theme.colors.gray1};
-  transform-origin: 50% 20%;
+  transform-origin: 50% 30%;
 `
 
 export default Home

@@ -38,7 +38,7 @@ function useDimensions({ liveMeasure = true }: UseDimensionsArgs = {}): UseDimen
         }
       }
     }
-  }, [node])
+  }, [node, liveMeasure])
 
   return [ref, dimensions, node]
 }

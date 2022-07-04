@@ -1,5 +1,4 @@
-import type { GetStaticProps, NextPage } from 'next'
-import Link from 'next/link'
+import type { NextPage } from 'next'
 import styled from 'styled-components'
 import { Nav } from '../components/Nav'
 import { Spacer } from '../components/Spacer'
