@@ -14,6 +14,8 @@ import { motion } from 'framer-motion'
 import { useState } from 'react'
 import useKonami from '../hooks/useKonamiCode'
 import useDimensions from '../hooks/useDimensions'
+import dynamic from 'next/dynamic'
+const ThreeDeeBackground = dynamic(() => import('../components/ThreeDeeBackground'))
 
 const Home: NextPage = () => {
   const [konamiActive, setKonamiActive] = useState(false)
@@ -28,6 +30,7 @@ const Home: NextPage = () => {
         ease: 'easeInOut',
         duration: 2.5,
         times: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.8, 1],
+        delay: 0.5,
       },
     },
     closed: {
@@ -44,10 +47,13 @@ const Home: NextPage = () => {
   return (
     <OuterWrapper
       style={{
-        height: dimensions?.height,
+        height: dimensions?.height || '100%',
       }}
     >
-      <h1>Hello :)</h1>
+      {/* <Suspense fallback={<div>loading..</div>}> */}
+      {konamiActive && <ThreeDeeBackground />}
+      {/* </Suspense> */}
+      {/* <h1>Hello :)</h1> */}
       <Wrapper animate={konamiActive ? 'open' : 'closed'} initial={false} variants={variants} ref={ref}>
         <Head>
           <title>anton gunnarsson</title>
@@ -55,7 +61,6 @@ const Home: NextPage = () => {
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <Nav hideLogo />
-        {/* <button onClick={() => setKonamiActive(!konamiActive)}>debug</button> */}
         <MainHeading />
         <Spacer size={48} />
         <FeaturedPosts />
@@ -65,7 +70,6 @@ const Home: NextPage = () => {
         <Appearances />
         <Spacer size={128} />
         <CircleTextButton />
-        {/* <Puzzle /> */}
         <Spacer size={128} />
         <Newsletter />
         <BottomDrawer liveMeasureDisabled={konamiActive} />
@@ -77,7 +81,7 @@ const Home: NextPage = () => {
 const OuterWrapper = styled.div`
   display: flex;
   justify-content: center;
-  background-color: ${({ theme }) => theme.colors.gray12};
+  background-color: black;
   perspective: 1200px;
   color: palevioletred;
   position: relative;
