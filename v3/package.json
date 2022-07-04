@@ -44,6 +44,7 @@
     "save-svg-as-png": "^1.4.17",
     "shiki": "^0.10.1",
     "styled-components": "^5.3.5",
+    "three": "^0.142.0",
     "use-sound": "^4.0.1"
   },
   "devDependencies": {
