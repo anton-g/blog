@@ -79,6 +79,12 @@ const BlogIndex = (props) => {
             <Title>projects</Title>
             <List>
               <li>
+                <span role="img" aria-label="hamburger emoji">
+                  🍔
+                </span>{' '}
+                <a href="https://fredagslunchen.club">Fredagslunchen</a>
+              </li>
+              <li>
                 <span role="img" aria-label="painting palette emoji">
                   🎨
                 </span>{' '}
