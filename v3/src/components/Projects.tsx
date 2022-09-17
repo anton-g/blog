@@ -11,6 +11,10 @@ export const Projects = () => {
         <Link href="https://draw.wtf" passHref>
           <DrawWTF>draw.wtf</DrawWTF>
         </Link>
+        <Spacer size={32} />
+        <Link href="https://fredagslunchen.club" passHref>
+          <DrawWTF>Fredagslunchen</DrawWTF>
+        </Link>
         <Spacer size={64} />
         <Link href="/" passHref>
           <Scream>
