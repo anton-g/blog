@@ -308,6 +308,8 @@ By doing it this way we've removed the possibility for impossible states and mad
 const [state, setState] = useState<'idle' | 'loading' | 'error' | 'finished'>('idle')
 ```
 
+One final option if you want to take it a step further is the use a concept called State Machines. For JavaScript there's a library called [XState](https://xstate.js.org/) which I highly recommend. I have a short talk with an [introduction to XState here](https://youtu.be/GYSD0JudjwI?t=125).
+
 ## <a id="many-usestate"></a> Too many useState
 
 Avoid using too many `useState` hooks in the same component.

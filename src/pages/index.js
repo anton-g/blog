@@ -36,6 +36,12 @@ const BlogIndex = (props) => {
             <Title>recorded talks</Title>
             <List>
               <li>
+                <span role="img" aria-label="two arrows in a circle creating a loop">
+                  🔁
+                </span>{' '}
+                <a href="https://youtu.be/GYSD0JudjwI?t=125">Into the Visual World of State Machines</a>
+              </li>
+              <li>
                 <span role="img" aria-label="silloutes of two people">
                   👥
                 </span>{' '}
