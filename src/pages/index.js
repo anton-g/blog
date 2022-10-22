@@ -36,17 +36,23 @@ const BlogIndex = (props) => {
             <Title>recorded talks</Title>
             <List>
               <li>
+                <span role="img" aria-label="lightning bolt">
+                  ⚡️
+                </span>{' '}
+                <a href="https://www.youtube.com/watch?v=uo3px1L3H70">Nordic.js: CSS *is* awesome</a>
+              </li>
+              <li>
                 <span role="img" aria-label="two arrows in a circle creating a loop">
                   🔁
                 </span>{' '}
-                <a href="https://youtu.be/GYSD0JudjwI?t=125">Into the Visual World of State Machines</a>
+                <a href="https://youtu.be/GYSD0JudjwI?t=125">sthlm.js: Into the Visual World of State Machines</a>
               </li>
               <li>
                 <span role="img" aria-label="silloutes of two people">
                   👥
                 </span>{' '}
                 <a href="https://www.youtube.com/watch?v=q7bAYxZMJho">
-                  It's always better when we're together (Mob Programming)
+                  sthlm.js: It's always better when we're together (Mob Programming)
                 </a>
               </li>
             </List>
