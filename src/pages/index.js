@@ -52,7 +52,7 @@ const BlogIndex = (props) => {
                   👥
                 </span>{' '}
                 <a href="https://www.youtube.com/watch?v=q7bAYxZMJho">
-                  sthlm.js: It's always better when we're together (Mob Programming)
+                  sthlm.js: It's always better when we're together
                 </a>
               </li>
             </List>
