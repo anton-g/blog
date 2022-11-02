@@ -8,39 +8,23 @@ export const Projects = () => {
       <LeftSide>projects</LeftSide>
       <Inner>
         <Spacer size={96} />
-        <Link href="https://draw.wtf" passHref>
-          <DrawWTF>draw.wtf</DrawWTF>
-        </Link>
+        <DrawWTF href="https://draw.wtf">draw.wtf</DrawWTF>
         <Spacer size={32} />
-        <Link href="https://fredagslunchen.club" passHref>
-          <DrawWTF>Fredagslunchen</DrawWTF>
-        </Link>
+        <DrawWTF href="https://fredagslunchen.club">Fredagslunchen</DrawWTF>
         <Spacer size={64} />
-        <Link href="/" passHref>
-          <Scream>
-            AAAAAA<br></br>AAHHHH
-          </Scream>
-        </Link>
+        <Scream href="/">
+          AAAAAA<br></br>AAHHHH
+        </Scream>
         <Spacer size={96} />
-        <Link href="/" passHref>
-          <Quizify>Quizify</Quizify>
-        </Link>
+        <Quizify href="/">Quizify</Quizify>
         <Spacer size={64} />
-        <Link href="/" passHref>
-          <TvShow>TV Show Ratings Quiz</TvShow>
-        </Link>
+        <TvShow href="/">TV Show Ratings Quiz</TvShow>
         <Spacer size={64} />
-        <Link href="/" passHref>
-          <Kamp>Kampgeneratorn 🇸🇪</Kamp>
-        </Link>
+        <Kamp href="/">Kampgeneratorn 🇸🇪</Kamp>
         <Spacer size={32} />
-        <Link href="/" passHref>
-          <Charad>Charadgeneratorn 🇸🇪</Charad>
-        </Link>
+        <Charad href="/">Charadgeneratorn 🇸🇪</Charad>
         <Spacer size={64} />
-        <Link href="/" passHref>
-          <Asdf>asdf.pizza 🇸🇪</Asdf>
-        </Link>
+        <Asdf href="/">asdf.pizza 🇸🇪</Asdf>
         <Spacer size={96} />
       </Inner>
       <Side>projects</Side>
@@ -88,7 +72,7 @@ const Inner = styled.div`
   }
 `
 
-const Project = styled.a`
+const Project = styled(Link)`
   background-color: ${({ theme }) => theme.colors.gray12};
   color: ${({ theme }) => theme.colors.gray1};
   padding: 8px 16px;

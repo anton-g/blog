@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import styled from 'styled-components'
 import { BouncyArrowLink } from './BouncyArrowLink'
 import { Spacer } from './Spacer'

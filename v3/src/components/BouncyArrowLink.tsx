@@ -7,14 +7,12 @@ export const BouncyArrowLink = ({ text, href }: { text: string; href: string }) 
   const [ref, hover] = useHover<HTMLAnchorElement>()
 
   return (
-    <Link href={href} passHref>
-      <StyledLink ref={ref}>
-        {text} <Arrow hover={hover} />
-      </StyledLink>
-    </Link>
+    <StyledLink href={href} ref={ref}>
+      {text} <Arrow hover={hover} />
+    </StyledLink>
   )
 }
-const StyledLink = styled.a`
+const StyledLink = styled(Link)`
   margin-top: 48px;
   align-self: flex-end;
 

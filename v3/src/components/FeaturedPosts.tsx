@@ -8,17 +8,13 @@ export const FeaturedPosts = () => {
     <Wrapper>
       <Heading>Selected writing</Heading>
       <Posts>
-        <Link href="/posts/react-component-code-smells" passHref>
-          <Post>React Component Code Smells</Post>
-        </Link>
+        <Post href="/posts/react-component-code-smells">React Component Code Smells</Post>
         <Spacer size={48} />
-        <Link href="/posts/software-development-is-a-social-profession" passHref>
-          <Post>Software Development is a Social Profession</Post>
-        </Link>
+        <Post href="/posts/software-development-is-a-social-profession">
+          Software Development is a Social Profession
+        </Post>
         <Spacer size={48} />
-        <Link href="/posts/render-props" passHref>
-          <Post>Render Props in the Age of Hooks</Post>
-        </Link>
+        <Post href="/posts/render-props">Render Props in the Age of Hooks</Post>
       </Posts>
       <BouncyArrowLink text="All posts" href="/posts" />
     </Wrapper>
@@ -44,7 +40,7 @@ const Heading = styled.h2`
   color: ${({ theme }) => theme.colors.gray12};
 `
 
-const Post = styled.a`
+const Post = styled(Link)`
   font-family: 'Abril Fatface';
   font-size: 2rem;
   min-width: 280px;

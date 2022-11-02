@@ -15,9 +15,9 @@ const Posts: NextPage<PostsProps> = ({ posts }) => {
       <Nav />
       <Columns>
         {posts.map((post) => (
-          <Link key={post.slug} href={'/posts/' + post.slug} passHref>
-            <PostLink>{post.frontmatter.title}</PostLink>
-          </Link>
+          <PostLink key={post.slug} href={'/posts/' + post.slug}>
+            {post.frontmatter.title}
+          </PostLink>
         ))}
       </Columns>
     </>
@@ -43,7 +43,7 @@ const Columns = styled.div`
   margin: 96px auto;
 `
 
-const PostLink = styled.a`
+const PostLink = styled(Link)`
   font-family: 'Yeseva One';
   font-size: 36px;
 
