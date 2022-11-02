@@ -14,7 +14,7 @@
     "@mdx-js/react": "^2.0.0",
     "@mdx-js/runtime": "^1.6.22",
     "@next/mdx": "^12.1.0",
-    "@prisma/client": "^3.13.0",
+    "@prisma/client": "^4.5.0",
     "@radix-ui/colors": "^0.1.8",
     "@radix-ui/react-icons": "^1.1.0",
     "@radix-ui/react-tooltip": "^0.1.7",
