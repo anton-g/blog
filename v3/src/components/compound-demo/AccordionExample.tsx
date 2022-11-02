@@ -32,7 +32,14 @@ export function AccordionExample() {
           <Accordion.Content eventKey="item3">
             <Content>
               Or why not a gif:
-              <Image src={raccoon} alt="racoon" />
+              <Image
+                src={raccoon}
+                alt="racoon"
+                style={{
+                  maxWidth: '100%',
+                  height: 'auto',
+                }}
+              />
             </Content>
           </Accordion.Content>
         </Option>

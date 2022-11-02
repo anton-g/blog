@@ -14,7 +14,17 @@ import styled from 'styled-components'
 import { Code } from '../../components/Code'
 import { Nav } from '../../components/Nav'
 
-const ResponsiveImage = (props: any) => <Image alt={props.alt} layout="responsive" {...props} />
+const ResponsiveImage = (props: any) => (
+  <Image
+    alt={props.alt}
+    {...props}
+    sizes="100vw"
+    style={{
+      width: '100%',
+      height: 'auto',
+    }}
+  />
+)
 
 export const components = {
   img: ResponsiveImage,
