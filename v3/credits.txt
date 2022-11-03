@@ -1,7 +1,0 @@
-- https://freesound.org/people/qubodup/sounds/222373/
-- https://freesound.org/people/Slooshie_96/sounds/408865/
-- https://freesound.org/people/FractalStudios/sounds/363084/
-- https://freesound.org/people/FunWithSound/sounds/456966/
-- https://freesound.org/people/tim.kahn/sounds/91510/
-- rotating text https://codepen.io/essingen123/pen/mYwoNQ
-- frontend horse
