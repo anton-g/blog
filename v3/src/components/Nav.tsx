@@ -44,7 +44,7 @@ const Wrapper = styled.nav`
 `
 
 const Left = styled.div`
-  font-family: 'Yeseva One';
+  font-family: var(--font-yeseva);
   display: flex;
   align-items: center;
   font-size: 20px;

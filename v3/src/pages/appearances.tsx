@@ -74,7 +74,7 @@ const Wrapper = styled.div`
 
 const Title = styled.h1`
   font-size: 22px;
-  font-family: 'Yeseva One';
+  font-family: var(--font-yeseva);
 `
 
 const AppearancesList = styled.ul`
@@ -88,7 +88,7 @@ const Appearance = styled.li`
 `
 
 const AppearanceLink = styled.a`
-  font-family: 'Yeseva One';
+  font-family: var(--font-yeseva);
   font-size: 28px;
   cursor: pointer;
   max-width: 600px;

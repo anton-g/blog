@@ -22,7 +22,7 @@ const Wrapper = styled.div`
 `
 
 const Inner = styled.div<{ open: boolean }>`
-  font-family: 'Yeseva One';
+  font-family: var(--font-yeseva);
   font-size: 64px;
   color: ${({ theme }) => theme.colors.gray1};
   background-color: ${({ theme, open }) => (open ? theme.colors.primary11 : theme.colors.gray8)};
@@ -46,7 +46,7 @@ const Title = styled.h2`
 
 const Subtitle = styled.span`
   font-size: 24px;
-  font-family: 'Plus Jakarta Sans';
+  font-family: var(--font-jakarta);
   ::selection {
     color: ${({ theme }) => theme.colors.primary2};
     background: ${({ theme }) => theme.colors.gray12};

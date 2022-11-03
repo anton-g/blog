@@ -44,7 +44,7 @@ const Columns = styled.div`
 `
 
 const PostLink = styled(Link)`
-  font-family: 'Yeseva One';
+  font-family: var(--font-yeseva);
   font-size: 36px;
 
   &:nth-child(2n + 1) {

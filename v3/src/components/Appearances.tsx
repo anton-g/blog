@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { abril } from '../fonts'
 import { BouncyArrowLink } from './BouncyArrowLink'
 import { Spacer } from './Spacer'
 
@@ -39,7 +40,7 @@ const Heading = styled.h2`
 `
 
 const Post = styled.a`
-  font-family: 'Abril Fatface';
+  font-family: var(--font-abril);
   font-size: 2rem;
   min-width: 280px;
   max-width: 280px;

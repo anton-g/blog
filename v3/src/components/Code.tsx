@@ -25,7 +25,7 @@ const Pre = styled.pre`
   }
 
   > code {
-    font-family: 'Share Tech Mono', monospace;
+    font-family: var(--font-share-tech), monospace;
     display: grid;
     line-height: 1.4;
     padding: 16px 0;

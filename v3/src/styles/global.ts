@@ -5,7 +5,7 @@ export default createGlobalStyle`
   body {
     padding: 0;
     margin: 0;
-    font-family: Plus Jakarta Sans, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
+    font-family: var(--font-jakarta), BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
       Helvetica Neue, sans-serif;
     height: 100%;
   }

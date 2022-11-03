@@ -116,13 +116,13 @@ const Wrapper = styled.div`
 const Description = styled.p`
   margin: 0;
   padding: 0;
-  font-family: 'Plus Jakarta Sans';
+  font-family: var(--font-jakarta);
   line-height: 1.5;
   font-weight: normal;
 `
 
 const Title = styled.h2`
-  font-family: 'Yeseva One';
+  font-family: var(--font-yeseva);
   font-size: 4.5rem;
   margin: 0;
   padding: 0;
@@ -140,7 +140,7 @@ const Signup = styled(motion.div)`
 const Input = styled.input`
   padding: 4px 8px;
   font-size: 28px;
-  font-family: 'Plus Jakarta Sans';
+  font-family: var(--font-jakarta);
   background: none;
   border: 2px solid ${({ theme }) => theme.colors.gray12};
   border-top-left-radius: 8px;
@@ -160,7 +160,7 @@ const Button = styled.button`
   background: none;
   border: 0;
   color: ${({ theme }) => theme.colors.gray12};
-  font-family: 'Yeseva One';
+  font-family: var(--font-yeseva);
   font-size: 32px;
   border-radius: 8px;
   padding: 0 12px;

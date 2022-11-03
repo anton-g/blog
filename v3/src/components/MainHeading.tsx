@@ -136,7 +136,7 @@ export const MainHeading = () => {
 }
 
 const Title = styled.h1`
-  font-family: 'Yeseva One';
+  font-family: var(--font-yeseva);
   font-weight: normal;
   line-height: 0.75;
   width: min-content;

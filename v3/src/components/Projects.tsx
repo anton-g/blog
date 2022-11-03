@@ -52,7 +52,7 @@ const ProjectsWrapper = styled.div`
 const Side = styled.div`
   writing-mode: vertical-rl;
   text-orientation: mixed;
-  font-family: 'Yeseva One';
+  font-family: var(--font-yeseva);
   font-size: 4rem;
   text-align: end;
 `
@@ -76,7 +76,7 @@ const Project = styled(Link)`
   background-color: ${({ theme }) => theme.colors.gray12};
   color: ${({ theme }) => theme.colors.gray1};
   padding: 8px 16px;
-  font-family: 'Abril Fatface';
+  font-family: var(--font-abril);
   font-size: 24px;
   letter-spacing: 1px;
   white-space: nowrap;

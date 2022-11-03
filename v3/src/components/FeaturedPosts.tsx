@@ -41,7 +41,7 @@ const Heading = styled.h2`
 `
 
 const Post = styled(Link)`
-  font-family: 'Abril Fatface';
+  font-family: var(--font-abril);
   font-size: 2rem;
   min-width: 280px;
   max-width: 280px;

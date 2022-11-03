@@ -166,7 +166,7 @@ const Button = styled.button`
   background: ${({ theme }) => theme.colors.gray12};
   border: 2px solid ${({ theme }) => theme.colors.gray12};
   color: ${({ theme }) => theme.colors.gray1};
-  font-family: 'Yeseva One';
+  font-family: var(--font-yeseva);
   font-size: 22px;
   border-radius: 8px;
   cursor: pointer;
@@ -342,7 +342,7 @@ const Content = styled.div`
 `
 
 const Title = styled.h2`
-  font-family: 'Yeseva One';
+  font-family: var(--font-yeseva);
   font-size: 48px;
   margin: 0;
 `
@@ -363,7 +363,7 @@ const ButtonThing = styled.button`
   width: 300px;
   border-radius: 4px;
   padding: 8px 16px;
-  font-family: 'Yeseva One';
+  font-family: var(--font-yeseva);
   cursor: pointer;
 
   :hover {

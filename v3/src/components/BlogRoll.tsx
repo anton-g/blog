@@ -94,7 +94,7 @@ const Wrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.gray12};
   color: ${({ theme }) => theme.colors.gray1};
   font-size: 2rem;
-  font-family: 'Abril Fatface';
+  font-family: var(--font-abril);
   letter-spacing: 1px;
   display: flex;
   align-items: center;

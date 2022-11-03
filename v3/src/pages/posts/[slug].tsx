@@ -95,7 +95,7 @@ const Wrapper = styled.div`
 `
 
 const Title = styled.h1`
-  font-family: 'Yeseva One';
+  font-family: var(--font-yeseva);
   max-width: 1000px;
   font-size: clamp(46px, 6vw + 1rem, 96px);
   text-align: center;
@@ -110,7 +110,7 @@ const Content = styled.div`
 
   code {
     background-color: ${({ theme }) => theme.colors.gray2};
-    font-family: 'Share Tech Mono', monospace;
+    font-family: var(--font-share-tech), monospace;
   }
 
   a {
