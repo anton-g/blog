@@ -1,5 +1,5 @@
 import { createGlobalStyle } from 'styled-components'
-import { gray, crimson } from '@radix-ui/colors'
+import { gray, crimson, red } from '@radix-ui/colors'
 
 export default createGlobalStyle`
   :root {
@@ -28,6 +28,19 @@ export default createGlobalStyle`
     --color-gray10: ${gray.gray10};
     --color-gray11: ${gray.gray11};
     --color-gray12: ${gray.gray12};
+    
+    --color-red1: ${red.red1};
+    --color-red2: ${red.red2};
+    --color-red3: ${red.red3};
+    --color-red4: ${red.red4};
+    --color-red5: ${red.red5};
+    --color-red6: ${red.red6};
+    --color-red7: ${red.red7};
+    --color-red8: ${red.red8};
+    --color-red9: ${red.red9};
+    --color-red10: ${red.red10};
+    --color-red11: ${red.red11};
+    --color-red12: ${red.red12};
   }
 
   html,

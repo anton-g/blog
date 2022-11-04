@@ -27,7 +27,9 @@ export default async function handler(
         API_KEY,
         API_URL,
       })
-      return
+      return res.status(405).json({
+        error: `Bad Request `,
+      })
     }
 
     const data = { email, api_key: API_KEY }

@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { Spacer } from './Spacer'
-// import { useMutation } from 'react-query'
+import { useMutation } from '@tanstack/react-query'
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Fireworks } from './Fireworks'
@@ -10,29 +10,27 @@ import { useSoundMode } from '../contexts/SoundContext'
 
 export const Newsletter = () => {
   const [email, setEmail] = useState('')
-  const [playFanfare] = useSound('sounds/fanfareSound.mp3', { volume: 0.5 })
+  const [playFanfare] = useSound('sounds/fanfare.mp3', { volume: 0.4 })
   const { soundMode } = useSoundMode()
 
-  const isSuccess = false
-  // const { mutate, isLoading, isError, isSuccess } = useMutation(
-  //   ({ email }: { email: string }) => {
-  //     return fetch('/api/subscribe', {
-  //       method: 'POST',
-  //       body: JSON.stringify({
-  //         email,
-  //       }),
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //     }).then((response) => {
-  //       if (!response.ok) throw new Error()
-  //       else {
-  //         soundMode && playFanfare()
-  //         return response.json()
-  //       }
-  //     })
-  //   }
-  // )
+  const { mutate, isLoading, isError, isSuccess } = useMutation(
+    async ({ email }: { email: string }) => {
+      const response = await fetch('/api/subscribe', {
+        method: 'POST',
+        body: JSON.stringify({
+          email,
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      if (!response.ok) throw new Error()
+      else {
+        soundMode && playFanfare()
+        return response.json()
+      }
+    }
+  )
 
   return (
     <Wrapper>
@@ -90,8 +88,8 @@ export const Newsletter = () => {
               ></Input>
               <Spacer size={16} />
               <Button
-              // disabled={isLoading || email.length < 4}
-              // onClick={() => mutate({ email })}
+                disabled={isLoading || email.length < 4}
+                onClick={() => mutate({ email })}
               >
                 Subscribe
               </Button>
@@ -99,7 +97,7 @@ export const Newsletter = () => {
           )}
         </AnimatePresence>
       </div>
-      {/* {isError && (
+      {isError && (
         <>
           <Spacer size={16} />
           <ErrorMessage
@@ -118,7 +116,7 @@ export const Newsletter = () => {
             doesn&apos;t work.
           </ErrorMessage>
         </>
-      )} */}
+      )}
     </Wrapper>
   )
 }
