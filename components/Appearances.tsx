@@ -5,12 +5,10 @@ import { Spacer } from './Spacer'
 export const Appearances = () => {
   return (
     <Wrapper>
-      <Heading>Selected talks</Heading>
+      <Heading>Recommended talks</Heading>
       <Posts>
-        <Post href="/">Lightning talk: CSS *is* awesome</Post>
-        <Spacer size={48} />
+        <Post href="/">CSS *is* awesome</Post>
         <Post href="/">It&apos;s always better when we&apos;re together</Post>
-        <Spacer size={48} />
         <Post href="/">Into the Visual World of State Machines</Post>
       </Posts>
       <Spacer size={16} />
@@ -25,9 +23,11 @@ const Wrapper = styled.div`
 `
 
 const Posts = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 36px 48px;
   @media (max-width: 931px) {
-    flex-direction: column;
+    grid-template-columns: 1fr;
   }
 `
 
@@ -40,11 +40,13 @@ const Heading = styled.h2`
 const Post = styled.a`
   font-family: var(--font-abril);
   font-size: 2rem;
-  min-width: 280px;
-  max-width: 280px;
+  max-width: 340px;
   text-align: center;
   font-kerning: normal;
   letter-spacing: 1px;
+  display: flex;
+  flex-direction: column;
+
   @media (min-width: 930px) {
     &:first-child {
       text-align: right;

@@ -43,7 +43,6 @@ export default async function handler(
     })
 
     if (response.status >= 400) {
-      console.log(response.body)
       return res.status(400).json({
         error: `There was an error subscribing to the list.`,
       })

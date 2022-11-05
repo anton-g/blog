@@ -9,14 +9,14 @@ const queryClient = new QueryClient()
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <div
-      className={`${plusJakarta.className} ${abril.variable} ${shareTech.variable} ${yeseva.variable}`}
+      className={`${plusJakarta.className} ${plusJakarta.variable} ${abril.variable} ${shareTech.variable} ${yeseva.variable}`}
     >
-      <QueryClientProvider client={queryClient}>
-        <SoundProvider>
-          <GlobalStyles />
+      <GlobalStyles />
+      <SoundProvider>
+        <QueryClientProvider client={queryClient}>
           <Component {...pageProps} />
-        </SoundProvider>
-      </QueryClientProvider>
+        </QueryClientProvider>
+      </SoundProvider>
     </div>
   )
 }

@@ -6,7 +6,7 @@ import { BouncyArrowLink } from './BouncyArrowLink'
 export const FeaturedPosts = () => {
   return (
     <Wrapper>
-      <Heading>Selected writing</Heading>
+      <Heading>Recommended posts</Heading>
       <Posts>
         <Post href="/posts/react-component-code-smells">
           React Component Code Smells
@@ -45,7 +45,7 @@ const Post = styled(Link)`
   font-family: var(--font-abril);
   font-size: 2rem;
   min-width: 280px;
-  max-width: 280px;
+  max-width: 340px;
   text-align: center;
   font-kerning: normal;
   letter-spacing: 1px;

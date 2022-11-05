@@ -10,8 +10,8 @@ export const ControlPanel = () => {
       <Spacer size={8} />
       <Instruction>Here&apos;s a riddle for you:</Instruction>
       <Riddle>
-        If you have me, you want to share me. If you share me, you don&apos;t
-        have me.
+        If you have me, you want to share me. If you share me, you haven&apos;t
+        got me.
       </Riddle>
       <Spacer size={24} />
       <Instruction>

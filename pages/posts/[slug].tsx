@@ -103,8 +103,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
       const slug = fileName.replace('.mdx', '')
       const mdx = await getPost(slug)
 
-      console.log('ERRORS', mdx.errors)
-
       return {
         frontmatter: mdx.frontmatter,
         slug,
