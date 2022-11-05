@@ -1,5 +1,6 @@
 import styled, { keyframes } from 'styled-components'
 import { DrawWTFButton } from './DrawWTFButton'
+import { FredagslunchenButton } from './FredagslunchenButton'
 import ProjectLink from './ProjectLink'
 import { Spacer } from './Spacer'
 
@@ -11,9 +12,7 @@ export const Projects = () => {
         <Spacer size={96} />
         <DrawWTFButton />
         <Spacer size={32} />
-        <Fredagslunchen href="https://fredagslunchen.club">
-          Fredagslunchen
-        </Fredagslunchen>
+        <FredagslunchenButton />
         <Spacer size={64} />
         <Scream href="/">
           AAAAAA<br></br>AAHHHH
@@ -74,16 +73,6 @@ const Inner = styled.div`
   justify-content: space-around;
   @media (max-width: 931px) {
     flex-direction: column;
-  }
-`
-
-const Fredagslunchen = styled(ProjectLink)`
-  font-size: 32px;
-  padding-left: 48px;
-  margin-top: -28px;
-  @media (max-width: 931px) {
-    margin: 0;
-    margin-left: -28px;
   }
 `
 

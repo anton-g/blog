@@ -17,6 +17,7 @@ export const DrawWTFButton = () => {
           stroke="black"
           strokeWidth="3"
           strokeLinecap="round"
+          strokeDashoffset={1}
           pathLength={1}
         />
       </DrawingSvg>
