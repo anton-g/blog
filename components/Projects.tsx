@@ -3,6 +3,7 @@ import { DrawWTFButton } from './DrawWTFButton'
 import { FredagslunchenButton } from './FredagslunchenButton'
 import ProjectLink from './ProjectLink'
 import { Spacer } from './Spacer'
+import { TvShowQuiz } from './TvShowQuizButton'
 
 export const Projects = () => {
   return (
@@ -20,11 +21,7 @@ export const Projects = () => {
         <Spacer size={96} />
         <Quizify href="/">Quizify</Quizify>
         <Spacer size={64} />
-        <TvShow href="/">
-          TV Show
-          <br />
-          Ratings Quiz
-        </TvShow>
+        <TvShowQuiz />
         <Spacer size={64} />
         <Kamp href="/">Kampgeneratorn 🇸🇪</Kamp>
         <Spacer size={32} />
@@ -104,40 +101,6 @@ const Quizify = styled(ProjectLink)`
   @media (max-width: 931px) {
     margin: 0;
     margin-right: -8px;
-  }
-`
-
-const pulse = keyframes`
-  to {
-    transform: scale(1.1);
-  }
-`
-
-const TvShow = styled(ProjectLink)`
-  font-size: 16px;
-  margin-top: -16px;
-
-  &:hover {
-    color: var(--color-gray12);
-    background-color: #e5e5f7;
-    background-color: #e5e5f7;
-    background-image: repeating-radial-gradient(
-        circle at 24px 12px,
-        transparent 0,
-        #e5e5f7 10px
-      ),
-      repeating-linear-gradient(#ce015d55, #ce015d);
-    /* background-blend-mode: multiply; */
-    will-change: transform;
-    animation-name: ${pulse};
-    animation-duration: 0.3s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-  }
-  @media (max-width: 931px) {
-    margin: 0;
-    margin-right: -64px;
   }
 `
 
