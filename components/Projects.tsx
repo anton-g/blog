@@ -1,5 +1,6 @@
-import Link from 'next/link'
 import styled, { keyframes } from 'styled-components'
+import { DrawWTFButton } from './DrawWTFButton'
+import ProjectLink from './ProjectLink'
 import { Spacer } from './Spacer'
 
 export const Projects = () => {
@@ -8,9 +9,11 @@ export const Projects = () => {
       <LeftSide>projects</LeftSide>
       <Inner>
         <Spacer size={96} />
-        <DrawWTF href="https://draw.wtf">draw.wtf</DrawWTF>
+        <DrawWTFButton />
         <Spacer size={32} />
-        <DrawWTF href="https://fredagslunchen.club">Fredagslunchen</DrawWTF>
+        <Fredagslunchen href="https://fredagslunchen.club">
+          Fredagslunchen
+        </Fredagslunchen>
         <Spacer size={64} />
         <Scream href="/">
           AAAAAA<br></br>AAHHHH
@@ -18,7 +21,11 @@ export const Projects = () => {
         <Spacer size={96} />
         <Quizify href="/">Quizify</Quizify>
         <Spacer size={64} />
-        <TvShow href="/">TV Show Ratings Quiz</TvShow>
+        <TvShow href="/">
+          TV Show
+          <br />
+          Ratings Quiz
+        </TvShow>
         <Spacer size={64} />
         <Kamp href="/">Kampgeneratorn 🇸🇪</Kamp>
         <Spacer size={32} />
@@ -70,37 +77,17 @@ const Inner = styled.div`
   }
 `
 
-const Project = styled(Link)`
-  background-color: var(--color-gray12);
-  color: var(--color-gray1);
-  padding: 8px 16px;
-  font-family: var(--font-abril);
-  font-size: 24px;
-  letter-spacing: 1px;
-  white-space: nowrap;
-`
-
-const DrawWTF = styled(Project)`
+const Fredagslunchen = styled(ProjectLink)`
   font-size: 32px;
   padding-left: 48px;
-  margin-top: -48px;
-  &:hover {
-    color: var(--color-gray1);
-    background-color: #e5e5f7;
-    background-image: repeating-radial-gradient(
-        circle at 24px 12px,
-        transparent 0,
-        #e5e5f7 10px
-      ),
-      repeating-linear-gradient(#ce015d55, #ce015d);
-  }
+  margin-top: -28px;
   @media (max-width: 931px) {
     margin: 0;
     margin-left: -28px;
   }
 `
 
-const Scream = styled(Project)`
+const Scream = styled(ProjectLink)`
   padding: 0px;
   line-height: 0.8;
   margin-bottom: -24px;
@@ -122,7 +109,7 @@ const Scream = styled(Project)`
   }
 `
 
-const Quizify = styled(Project)`
+const Quizify = styled(ProjectLink)`
   margin-top: -56px;
   margin-left: -24px;
   @media (max-width: 931px) {
@@ -137,28 +124,21 @@ const pulse = keyframes`
   }
 `
 
-const TvShow = styled(Project)`
+const TvShow = styled(ProjectLink)`
   font-size: 16px;
-  padding-bottom: 32px;
   margin-top: -16px;
-  text-shadow: -3px 4px black;
+
   &:hover {
+    color: var(--color-gray12);
     background-color: #e5e5f7;
-    opacity: 0.8;
-    background-image: radial-gradient(
-        circle at center center,
-        var(--color-blue11),
-        #e5e5f7
+    background-color: #e5e5f7;
+    background-image: repeating-radial-gradient(
+        circle at 24px 12px,
+        transparent 0,
+        #e5e5f7 10px
       ),
-      repeating-radial-gradient(
-        circle at center center,
-        var(--color-blue11),
-        var(--color-blue11),
-        10px,
-        transparent 20px,
-        transparent 10px
-      );
-    background-blend-mode: multiply;
+      repeating-linear-gradient(#ce015d55, #ce015d);
+    /* background-blend-mode: multiply; */
     will-change: transform;
     animation-name: ${pulse};
     animation-duration: 0.3s;
@@ -172,7 +152,7 @@ const TvShow = styled(Project)`
   }
 `
 
-const Kamp = styled(Project)`
+const Kamp = styled(ProjectLink)`
   padding: 4px 8px;
   margin-bottom: -36px;
   @media (max-width: 931px) {
@@ -181,7 +161,7 @@ const Kamp = styled(Project)`
   }
 `
 
-const Charad = styled(Project)`
+const Charad = styled(ProjectLink)`
   margin-right: 8px;
   &:hover {
     background-color: #e5e5f7;
@@ -229,7 +209,7 @@ const bobFloat = keyframes`
   }
 `
 
-const Asdf = styled(Project)`
+const Asdf = styled(ProjectLink)`
   margin-top: -32px;
   margin-left: -38px;
   &:hover {
