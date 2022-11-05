@@ -1,0 +1,47 @@
+---
+title: Principles of software engineering
+date: '2020-08-13T20:17:00.000Z'
+updated: '2021-03-02T21:01:00.000Z'
+description: 'My growing collection of important software engineering principles'
+state: 'budding'
+unlisted: true
+---
+
+import Callout from '../components/Callout'
+
+I make no attempt to claim these as original ideas, but for my and others benefit I've collected these principles that I consider important.
+
+## Bugs begets bugs
+
+The broken window theory states that a window left unfixed will lead to more serious issues such as crime and disorder. While now mostly [debunked](https://news.northeastern.edu/2019/05/15/northeastern-university-researchers-find-little-evidence-for-broken-windows-theory-say-neighborhood-disorder-doesnt-cause-crime/) it is a good analogy for software development if you imagine that the window is a bug or a code smell.
+
+The quality and number of bugs in our software will influence how we as developers perceive and feel about our application. Have you ever come across some buggy piece of code while implementing a feature and decided that instead of "fixing the window" to just make sure that the new feature works as intended? That's a symtom of your view of the code affecting how much you care.
+
+To avoid this the development team need a culture where quality, refactorings and bug fixing is part of every day work ...
+
+## Repeat yourself
+
+Premature abstractions cost more than duplicated code.
+Don't DRY
+
+## Write code that is easy to read
+
+Early in your career it's easy to gravitate towards _clever_ code. Asking yourself questions such as "Could this be written as a one-liner?" or "Isn't this a perfect case for recursion?" can feel exciting and the feeling when you actually succeed can be even greater.
+
+<Callout>
+
+Hint: Recursion is _usually_ the wrong answer for day-to-day issues, but for a few use cases it is great. For example when building [recursive components](/recursive-components/).
+
+</Callout>
+
+The problem with this is that it comes from an assumption that short and clever code is also easy to understand.
+
+Code is read more often than written
+
+One of my favorite articles of all time is [Small Functions considered Harmful](https://copyconstruct.medium.com/small-functions-considered-harmful-91035d316c29) by Cindy Sridharan.
+
+## Don't identify with your code
+
+Something about pragmatism and code ownership
+
+As soon as you start working in a team with more developers than just you, you'll run into the somewhat scary situation of getting your code reviewed. I know software developers of all experience levels who dread comments on their pull requests

@@ -1,0 +1,123 @@
+---
+title: Opinions on React
+description: Why you shouldn't name component files index.js and other opinions on React.
+date: '2022-02-15T08:10:00.000Z'
+dev: ''
+state: 'growing'
+---
+
+import Callout from '../components/Callout'
+
+Since I tend to forget why I hold certain opinions I try to write them down. Here are some thoughts related to React.
+
+### The Opinions
+
+- [Don't name files index.js](#indexjs)
+- [No unnamed exports](#unnamed-exports)
+- [Put companion code below components](#companion-code)
+- [Return JSX early over having a single return](#return-early)
+- [Don't create React projects without TypeScript](#typescript)
+- [Components should not have margin](#no-margin)
+
+<Callout>
+
+I've also written about [code smells in React](/react-component-code-smells) that is a little bit less opinionated than this.
+
+</Callout>
+
+## <a id="indexjs"></a> Don't name files index.js
+
+Components should be put in a file called ComponentName.js. It makes it way easier to find the correct file, navigate between files and see what files are open. Another benefit is that it's way easier to name files for your tests: ComponentName.test.js is way better than index.test.js for the 111th time.
+
+This also means you should never have an index.js file in folder just to export that folders components again.
+
+The counter argument to this is usually that the import paths looks nicer/is easier to write and to that I say: **You should never write your imports manually**. There's a reason we have automatic imports in all modern editors. If your editor can't do it, switch editor.
+
+## <a id="unnamed-exports"></a> No unnamed exports
+
+Don't export unnamed components. For example:
+
+```jsx
+export default () => {
+  return <div>hello</div>
+}
+```
+
+This makes it harder for your editor to help with autocomplete, and makes the name of the component show up as "\_default" in React DevTools.
+
+## <a id="companion-code"></a> Put companion code below components
+
+Companion code refers to code that is related, or a _companion_, to a single component but not strictly a part of it. This could be things like [styled-components](https://styled-components.com), a very specific utility function or something else entirely.
+
+All this companion code should be put **below** your component definition. The reason is that when you open a file with a component you want to see the component definition first. How a utility function works or how it's styling is defined is implementation details. It's not interesting at first sight. Especially not if it's the first time you are seeing the code.
+
+There are of course cases where companion code should be put in other files, but then it's most likely not companion code any more.
+
+_(and if your linter complains about something being used before it's defined, turn it off. It's 2022 after all.)_
+
+## <a id="return-early"></a> Return JSX early over having a single return
+
+By returning early you make the code path easier to follow. When trying to understand a code path you know that as soon as you hit `return` you don't need to care about the code below it. If you'd aim for a single return you would always need to keep the entire context in mind regardless of what code path you are looking at.
+
+Here's an example of a component with a single return:
+
+```jsx
+const Component = ({ input }) => {
+  let text
+
+  switch (input) {
+    case 'foo':
+      text = 'first text'
+      break
+    case 'bar':
+      text = 'second text'
+      break
+    case 'baz':
+      text = 'third text'
+      break
+  }
+
+  return <div>our text: {text}</div>
+}
+```
+
+And here is the same component rewritten to return early:
+
+```jsx
+const Component = ({ input }) => {
+  switch (input) {
+    case 'foo':
+      return <div>our text: first text</div>
+    case 'bar':
+      return <div>our text: second text</div>
+    case 'baz':
+      return <div>our text: third text</div>
+  }
+}
+```
+
+This reads much better than the first example. If you're worried about the duplication of the div (you probably shouldn't be) you can just abstract that to a new component which takes the dynamic text as a child/prop.
+
+## <a id="typescript"></a> Don't create React projects without TypeScript
+
+TypeScript is fantastic and you should use it for all your (new) React projects. It's not merely about the fact that types help you write less bugs (which they do), but more so that it reduces the mental load of working with the code.
+
+No more searching through files and folders to find answers to questions such as "What props does this component have?", "How did I structure my state?" or "What input does this hook need?". TypeScript will tell you.
+
+No more double checking every thing you do while refactoring do make sure you haven't accidentaly misspelled a component prop or passed the wrong data. TypeScript will tell you.
+
+Yes, TypeScript is love ❤️
+
+If you're struggling with TS in React this [cheatsheet](https://github.com/typescript-cheatsheets/react) is great.
+
+## <a id="no-margin"></a> Components should not have margin
+
+You should avoid adding margin to your components as it makes them harder to reuse and compose. Max Stoiber has elaborated on this more succinctly than I can so go read his post [Margin considered harmful](https://mxstbr.com/thoughts/margin/).
+
+When you've read that and come back here either confused, angry or excited about spacer components (which I _love_) go read Josh's excellent article [Let's Bring Spacer GIFs Back](https://www.joshwcomeau.com/react/modern-spacer-gif/).
+
+Embrace both and it will make everything easier. I promise 🤞
+
+## That's all folks!
+
+Got any feedback on why I'm _very wrong_ about this? Hit me up on [Twitter](https://twitter.com/awnton)!

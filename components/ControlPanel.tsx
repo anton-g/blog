@@ -8,10 +8,10 @@ export const ControlPanel = () => {
         Heyy! You found an <span>easter egg!</span>
       </Title>
       <Spacer size={8} />
-      <Instruction>Here's a riddle for you:</Instruction>
+      <Instruction>Here&apos;s a riddle for you:</Instruction>
       <Riddle>
-        If you have me, you want to share me. If you share me, you don't have
-        me.
+        If you have me, you want to share me. If you share me, you don&apos;t
+        have me.
       </Riddle>
       <Spacer size={24} />
       <Instruction>

@@ -9,6 +9,7 @@ import { useSoundMode } from '../contexts/SoundContext'
 import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion'
 import { useRandomInterval } from '../hooks/useRandomInterval'
 import { random } from '../utils/random'
+import Accordion from './Accordion'
 
 const DEFAULT_COLORS = ['#a864fd', '#29cdff', '#78ff44', '#ff718d', '#fdff6a']
 
@@ -68,7 +69,7 @@ const generateConfetti = (colors: string[]): Confetti => {
 }
 
 const Confettis = ({ children, ...delegated }: { children: ReactNode }) => {
-  const { soundMode, setSoundMode } = useSoundMode()
+  const { soundMode } = useSoundMode()
   const [playOn] = useSound('sounds/on.mp3', { volume: 0.15 })
   const [playOff] = useSound('sounds/off.mp3', { volume: 0.25 })
   const [disabled, setDisabled] = React.useState(false)
@@ -97,7 +98,7 @@ const Confettis = ({ children, ...delegated }: { children: ReactNode }) => {
       playOn()
     }
     setDisabled((d) => !d)
-  }, [soundMode, setSoundMode, playOff, playOn])
+  }, [soundMode, playOff, playOn])
 
   return (
     <Wrapper {...delegated} onClick={onClick}>
@@ -214,6 +215,12 @@ const FallWrapper = styled.span.attrs<{ speed: number }>((props) => ({
   }
 `
 
+const ChildWrapper = styled.strong`
+  position: relative;
+  z-index: 1;
+  font-weight: bold;
+`
+
 const ConfettiSvg = styled.svg.attrs((props) => ({
   style: {
     animationDuration: `${props.speed}ms`,
@@ -225,9 +232,4 @@ const ConfettiSvg = styled.svg.attrs((props) => ({
   }
 `
 
-const ChildWrapper = styled.strong`
-  position: relative;
-  z-index: 1;
-  font-weight: bold;
-`
 export default Confettis

@@ -7,7 +7,10 @@ type SoundState = {
   setSoundMode: (value: boolean) => void
 }
 
-const SoundContext = createContext<SoundState>(null!)
+const SoundContext = createContext<SoundState>({
+  soundMode: true,
+  setSoundMode: () => {},
+})
 
 export const SoundProvider = ({ children }: { children: ReactNode }) => {
   const [soundMode, setSoundMode] = useLocalStorage('sound-mode', true)
