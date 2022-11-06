@@ -9,11 +9,7 @@ export const KampgeneratorButton = () => {
     </Wrapper>
   )
 }
-const bootSpin = keyframes`
-  100% {
-    transform: translateY(-40px);
-  }
-`
+
 const followPath = keyframes`
   0% {
     motion-offset: 100%;
@@ -25,6 +21,7 @@ const followPath = keyframes`
     offset-distance: 0%;
   }
 `
+
 const rotate = keyframes`
   0% {
     transform: rotateZ(0deg);
@@ -34,6 +31,7 @@ const rotate = keyframes`
     transform: rotateZ(-720deg);
   }
 `
+
 const Boot = () => {
   // TODO support in safari?
   return (
@@ -55,6 +53,7 @@ const Boot = () => {
     </StyledSvg>
   )
 }
+
 const StyledSvg = styled.svg`
   motion-offset: 100%;
   offset-distance: 100%;
@@ -64,6 +63,7 @@ const StyledSvg = styled.svg`
   offset-rotate: 0deg;
   pointer-events: none;
 `
+
 const Kamp = styled(ProjectLink)`
   position: relative;
   padding: 4px 8px;
@@ -75,6 +75,7 @@ const Kamp = styled(ProjectLink)`
     margin-left: -48px;
   }
 `
+
 const Wrapper = styled.div`
   position: relative;
 
