@@ -1,6 +1,7 @@
 import styled, { keyframes } from 'styled-components'
 import { DrawWTFButton } from './DrawWTFButton'
 import { FredagslunchenButton } from './FredagslunchenButton'
+import { KampgeneratorButton } from './KampgeneratorButton'
 import ProjectLink from './ProjectLink'
 import { Spacer } from './Spacer'
 import { TvShowQuiz } from './TvShowQuizButton'
@@ -23,7 +24,7 @@ export const Projects = () => {
         <Spacer size={64} />
         <TvShowQuiz />
         <Spacer size={64} />
-        <Kamp href="/">Kampgeneratorn 🇸🇪</Kamp>
+        <KampgeneratorButton />
         <Spacer size={32} />
         <Charad href="/">Charadgeneratorn 🇸🇪</Charad>
         <Spacer size={64} />
@@ -101,15 +102,6 @@ const Quizify = styled(ProjectLink)`
   @media (max-width: 931px) {
     margin: 0;
     margin-right: -8px;
-  }
-`
-
-const Kamp = styled(ProjectLink)`
-  padding: 4px 8px;
-  margin-bottom: -36px;
-  @media (max-width: 931px) {
-    margin: 0;
-    margin-left: -48px;
   }
 `
 

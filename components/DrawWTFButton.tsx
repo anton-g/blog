@@ -44,7 +44,8 @@ const DrawProjectLink = styled(ProjectLink)`
   padding-left: 48px;
   margin-top: -48px;
 
-  &:hover {
+  &:hover,
+  :focus {
     ${DrawingSvg} path {
       stroke-dashoffset: 0;
     }

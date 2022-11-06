@@ -59,7 +59,8 @@ const Wrapper = styled(Link)`
   position: relative;
   perspective: 400px;
 
-  &:hover {
+  &:hover,
+  &:focus {
     ${Inner} {
       transform: rotateX(540deg);
     }

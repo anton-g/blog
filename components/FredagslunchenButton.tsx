@@ -71,7 +71,8 @@ const FredagslunchenLink = styled(ProjectLink)`
   position: relative;
   overflow: hidden;
 
-  &:hover {
+  &:hover,
+  &:focus {
     ${StyledSvg} {
       animation-name: ${appear};
       animation-duration: 0.01s;
