@@ -7,9 +7,15 @@ import { useSoundMode } from '../contexts/SoundContext'
 
 const AnimFeDisplacementMap = animated('feDisplacementMap')
 
-const target = 8
-const clickTimeout = 950
-export const CircleTextButton = ({ onSuccess }: { onSuccess: () => void }) => {
+const target = 1
+const clickTimeout = 50
+export const CircleTextButton = ({
+  onSuccess,
+  onClick,
+}: {
+  onSuccess: () => void
+  onClick: () => void
+}) => {
   const [playClickDown] = useSound('/sounds/clickDown.mp3')
   const [playClickUp] = useSound('/sounds/clickUp.mp3')
   const { soundMode } = useSoundMode()
@@ -62,6 +68,7 @@ export const CircleTextButton = ({ onSuccess }: { onSuccess: () => void }) => {
           onMouseUp={() => handleMouseUp()}
           onTouchStart={() => handleMouseDown()}
           onTouchEnd={() => handleMouseUp()}
+          onClick={onClick}
         >
           The Button
         </Button>

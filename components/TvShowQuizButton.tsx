@@ -236,7 +236,7 @@ const Line = () => {
       <path
         d="M1.5 23L21 10L36 16L53 5.5L70 20L85.5 3L103.5 13L116.5 40.5"
         stroke="#FF0000"
-        stroke-width="4"
+        strokeWidth="4"
         strokeLinecap="round"
         strokeDashoffset={1}
         pathLength={1}

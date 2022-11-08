@@ -1,24 +1,15 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import fs from 'fs'
-// import { MDXProvider } from '@mdx-js/react'
 import { ParsedUrlQuery } from 'querystring'
-// import { MDXRemote } from 'next-mdx-remote'
-// import { getAllPublicPosts, getPostBySlug, Post } from '../../api'
-// import { Callout } from '../../components/Callout'
-import Image, { ImageProps } from 'next/image'
-// import RenderPropsCounter from '../../components/RenderPropsCounter'
-// import { Extracurricular } from '../../components/Extracurricular'
-import Confettis from '../../components/Confettis'
-// import { AccordionExample } from '../../components/compound-demo/AccordionExample'
-// import { Folders } from '../../components/recursive-demo/Folders'
+import Image from 'next/image'
 import styled from 'styled-components'
-// import { Code } from '../../components/Code'
 import { Nav } from '../../components/Nav'
 import { join } from 'path'
 import { getMDXComponent } from 'mdx-bundler/client'
 import { useMemo } from 'react'
 import { Code } from '../../components/Code'
-import { getPost } from '../../lib/mdx'
+import { getPost, Post } from '../../lib/mdx'
+import Head from 'next/head'
 
 if (process.platform === 'win32') {
   process.env.ESBUILD_BINARY_PATH = join(
@@ -58,11 +49,19 @@ const components = {
   img: ResponsiveImage,
 }
 
-const PostPage: NextPage<{ result: any }> = ({ result }) => {
+const PostPage: NextPage<{ result: Post }> = ({ result }) => {
   const Component = useMemo(() => getMDXComponent(result.code), [result.code])
 
   return (
     <div>
+      <Head>
+        <title>{result.frontmatter.title}</title>
+        <meta
+          name="description"
+          content={`${result.frontmatter.description}, written by Anton Gunnarsson`}
+        />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <Nav />
       <Wrapper>
         <Title>{result.frontmatter.title}</Title>

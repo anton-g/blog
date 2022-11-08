@@ -2,7 +2,7 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
-import { useState } from 'react'
+import { startTransition, useState } from 'react'
 import useDimensions from '../hooks/useDimensions'
 import { Spacer } from '../components/Spacer'
 import { Nav } from '../components/Nav'
@@ -13,12 +13,13 @@ import { Appearances } from '../components/Appearances'
 import { CircleTextButton } from '../components/CircleTextButton'
 import { Newsletter } from '../components/Newsletter'
 import { BottomDrawer } from '../components/BottomDrawer'
-// import dynamic from 'next/dynamic'
-// const ThreeDeeBackground = dynamic(
-//   () => import('../components/ThreeDeeBackground')
-// )
+import dynamic from 'next/dynamic'
+const ThreeDeeBackground = dynamic(
+  () => import('../components/ThreeDeeBackground')
+)
 
 const Home: NextPage = () => {
+  const [load3D, setLoad3D] = useState(false)
   const [zoomOutActive, setZoomOutActive] = useState(false)
   const [ref, dimensions] = useDimensions({ liveMeasure: false })
 
@@ -28,7 +29,7 @@ const Home: NextPage = () => {
         height: dimensions?.height || '100%',
       }}
     >
-      {/* {konamiActive && <ThreeDeeBackground />} */}
+      {load3D && <ThreeDeeBackground />}
       <Wrapper
         animate={zoomOutActive ? 'open' : 'closed'}
         initial={false}
@@ -37,7 +38,10 @@ const Home: NextPage = () => {
       >
         <Head>
           <title>anton gunnarsson</title>
-          <meta name="description" content="anton gunnarsson" />
+          <meta
+            name="description"
+            content="antons home on the world wide web"
+          />
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <Nav hideLogo />
@@ -49,7 +53,14 @@ const Home: NextPage = () => {
         <Spacer size={128} />
         <Appearances />
         <Spacer size={128} />
-        <CircleTextButton onSuccess={() => setZoomOutActive(true)} />
+        <CircleTextButton
+          onClick={() =>
+            startTransition(() => {
+              setLoad3D(true)
+            })
+          }
+          onSuccess={() => setZoomOutActive(true)}
+        />
         <Spacer size={128} />
         <Newsletter />
         <BottomDrawer liveMeasureDisabled={zoomOutActive} />
@@ -86,7 +97,7 @@ export default Home
 
 const zoomVariants = {
   open: {
-    scale: [1, 0.99, 1.02, 0.98, 1.03, 0.97, 1.04, 0.85, 0.7],
+    scale: [1, 0.99, 1.02, 0.98, 1.03, 0.97, 1.04, 0.85, 0.4],
     rotateX: [
       '0deg',
       '0deg',
@@ -106,7 +117,7 @@ const zoomVariants = {
     },
   },
   closed: {
-    scale: [0.7, 1],
+    scale: [0.4, 1],
     rotateX: ['0deg', '6deg', '0deg'],
     transition: {
       ease: 'easeInOut',

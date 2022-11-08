@@ -5,7 +5,8 @@ import { join } from 'path'
 import styled from 'styled-components'
 import { Nav } from '../../components/Nav'
 import PageTitle from '../../components/PageTitle'
-import { getPost, PostFrontmatter } from '../../lib/mdx'
+import { generateMainFeeds } from '../../lib/feeds'
+import { getAllPublicPosts, getPost, PostFrontmatter } from '../../lib/mdx'
 // import { generateMainFeeds } from '../../lib/feeds'
 
 type PostsProps = {
@@ -42,20 +43,9 @@ const Posts: NextPage<PostsProps> = ({ posts }) => {
 const postsDirectory = join(process.cwd(), 'content')
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  // generateMainFeeds()
+  generateMainFeeds()
 
-  const slugs = fs.readdirSync(postsDirectory)
-  const posts = await Promise.all(
-    slugs.map(async (slug) => {
-      const mdx = await getPost(slug.replace('.mdx', ''))
-
-      return {
-        frontmatter: mdx.frontmatter,
-        slug: slug.replace('.mdx', ''),
-      }
-    })
-  )
-  const publicPosts = posts.filter((x) => !x.frontmatter.unlisted)
+  const publicPosts = await getAllPublicPosts()
 
   return {
     props: {

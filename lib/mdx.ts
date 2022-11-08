@@ -1,3 +1,4 @@
+import fs from 'fs'
 import { join } from 'path'
 import rehypePrettyCode from 'rehype-pretty-code'
 import remarkMdxImages from 'remark-mdx-images'
@@ -12,6 +13,12 @@ export type PostFrontmatter = {
   description: string
   state: 'budding' | 'growing' | 'bloomed'
   unlisted: boolean
+}
+
+export type Post = {
+  code: string
+  frontmatter: PostFrontmatter
+  slug?: string
 }
 
 export const getPost = async (slug: string) => {
@@ -41,6 +48,22 @@ export const getPost = async (slug: string) => {
       return options
     },
   })
+}
+
+export const getAllPublicPosts = async (): Promise<Post[]> => {
+  const slugs = fs.readdirSync(postsDirectory)
+  const posts = await Promise.all(
+    slugs.map(async (slug) => {
+      const mdx = await getPost(slug.replace('.mdx', ''))
+
+      return {
+        frontmatter: mdx.frontmatter,
+        code: mdx.code,
+        slug: slug.replace('.mdx', ''),
+      }
+    })
+  )
+  return posts.filter((x) => !x.frontmatter.unlisted)
 }
 
 const codeOptions = {
