@@ -1,9 +1,9 @@
 import Link from 'next/link'
-import styled, { keyframes } from 'styled-components'
+import styled, { CSSProperties, keyframes } from 'styled-components'
 
-export const TvShowQuiz = () => {
+export const TvShowQuiz = ({ style }: { style?: CSSProperties }) => {
   return (
-    <Wrapper href="/">
+    <Wrapper href="/" style={style}>
       <Border />
       <Line />
       <Button
@@ -86,11 +86,6 @@ const TvShow = styled.div`
   text-align: center;
   animation: ${delayedAppear} linear 600ms;
   animation-fill-mode: forwards;
-
-  @media (max-width: 931px) {
-    margin: 0;
-    margin-right: -64px;
-  }
 `
 
 const Border = styled.div`
@@ -184,7 +179,6 @@ const Button = styled.div`
   width: 25px;
   height: 15px;
   z-index: 4;
-  border-radius: 4px;
   bottom: 22px;
   opacity: 0;
 `

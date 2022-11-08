@@ -1,9 +1,9 @@
 import styled, { CSSProperties, keyframes } from 'styled-components'
 import ProjectLink from './ProjectLink'
 
-export const FredagslunchenButton = () => {
+export const FredagslunchenButton = ({ style }: { style?: CSSProperties }) => {
   return (
-    <FredagslunchenLink href="https://fredagslunchen.club">
+    <FredagslunchenLink href="https://fredagslunchen.club" style={style}>
       Fredagslunchen
       <Bite
         style={{
@@ -67,7 +67,6 @@ const StyledSvg = styled.svg`
 const FredagslunchenLink = styled(ProjectLink)`
   font-size: 32px;
   padding-left: 48px;
-  margin-top: -28px;
   position: relative;
   overflow: hidden;
 
@@ -79,11 +78,6 @@ const FredagslunchenLink = styled(ProjectLink)`
       animation-timing-function: linear;
       animation-fill-mode: forwards;
     }
-  }
-
-  @media (max-width: 931px) {
-    margin: 0;
-    margin-left: -28px;
   }
 `
 const Bite = ({ style }: { style?: CSSProperties }) => {

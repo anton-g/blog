@@ -1,9 +1,9 @@
-import styled, { keyframes } from 'styled-components'
+import styled, { CSSProperties, keyframes } from 'styled-components'
 import ProjectLink from './ProjectLink'
 
-export const KampgeneratorButton = () => {
+export const KampgeneratorButton = ({ style }: { style?: CSSProperties }) => {
   return (
-    <Wrapper>
+    <Wrapper style={style}>
       <Boot />
       <Kamp href="/">Kampgeneratorn 🇸🇪</Kamp>
     </Wrapper>
@@ -67,19 +67,14 @@ const StyledSvg = styled.svg`
 const Kamp = styled(ProjectLink)`
   position: relative;
   padding: 4px 8px;
-  margin-bottom: -36px;
   z-index: 1;
-
-  @media (max-width: 931px) {
-    margin: 0;
-    margin-left: -48px;
-  }
 `
 
 const Wrapper = styled.div`
   position: relative;
 
-  &:hover {
+  &:hover,
+  &:focus {
     ${StyledSvg} {
       animation: ${followPath} 1s cubic-bezier(0, 0, 1, 1) 1,
         ${rotate} 1s linear 1;

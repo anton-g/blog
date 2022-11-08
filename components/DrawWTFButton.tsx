@@ -1,9 +1,9 @@
-import styled from 'styled-components'
+import styled, { CSSProperties } from 'styled-components'
 import ProjectLink from './ProjectLink'
 
-export const DrawWTFButton = () => {
+export const DrawWTFButton = ({ style }: { style?: CSSProperties }) => {
   return (
-    <DrawProjectLink href="https://draw.wtf">
+    <DrawProjectLink href="https://draw.wtf" style={style}>
       draw.wtf
       <DrawingSvg
         width="163"
@@ -41,18 +41,11 @@ const DrawingSvg = styled.svg`
 const DrawProjectLink = styled(ProjectLink)`
   position: relative;
   font-size: 32px;
-  padding-left: 48px;
-  margin-top: -48px;
 
   &:hover,
   :focus {
     ${DrawingSvg} path {
       stroke-dashoffset: 0;
     }
-  }
-
-  @media (max-width: 931px) {
-    margin: 0;
-    margin-left: -28px;
   }
 `
