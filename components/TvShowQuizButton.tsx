@@ -1,7 +1,18 @@
 import Link from 'next/link'
+import { useEffect, useState } from 'react'
 import styled, { CSSProperties, keyframes } from 'styled-components'
 
 export const TvShowQuiz = ({ style }: { style?: CSSProperties }) => {
+  const [loaded, setLoaded] = useState(false)
+  useEffect(() => {
+    // Workaround to avoid initial animation on page load
+    const timeoutId = setTimeout(() => {
+      setLoaded(true)
+    }, 100)
+
+    return clearTimeout(timeoutId)
+  }, [])
+
   return (
     <Wrapper href="/" style={style}>
       <Border />
@@ -31,9 +42,9 @@ export const TvShowQuiz = ({ style }: { style?: CSSProperties }) => {
         }}
       />
       <TvEffect>
-        <InnerEffect />
+        <InnerEffect disableAnimation={!loaded} />
       </TvEffect>
-      <TvShow>
+      <TvShow disableAnimation={!loaded}>
         TV Show
         <br />
         Ratings Quiz
@@ -72,7 +83,7 @@ const disappear = keyframes`
   }
 `
 
-const TvShow = styled.div`
+const TvShow = styled.div<{ disableAnimation: boolean }>`
   color: var(--color-gray1);
   font-family: var(--font-abril);
   letter-spacing: 1px;
@@ -86,6 +97,8 @@ const TvShow = styled.div`
   text-align: center;
   animation: ${delayedAppear} linear 600ms;
   animation-fill-mode: forwards;
+  animation-duration: ${({ disableAnimation }) =>
+    disableAnimation ? '0s' : '400ms'};
 `
 
 const Border = styled.div`
@@ -143,13 +156,16 @@ const TvEffect = styled.div`
   z-index: 1;
 `
 
-const InnerEffect = styled.div`
+const InnerEffect = styled.div<{ disableAnimation: boolean }>`
   background-color: white;
   height: 1px;
   width: 1px;
   transform: scaleX(0) scaleY(0);
+
   animation: ${tvOff} linear 400ms;
   animation-fill-mode: forwards;
+  animation-duration: ${({ disableAnimation }) =>
+    disableAnimation ? '0s' : '400ms'};
 `
 
 const LineSvg = styled.svg`

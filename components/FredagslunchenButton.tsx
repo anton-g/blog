@@ -65,7 +65,7 @@ const StyledSvg = styled.svg`
   }
 `
 const FredagslunchenLink = styled(ProjectLink)`
-  font-size: 32px;
+  font-size: 28px;
   padding-left: 48px;
   position: relative;
   overflow: hidden;

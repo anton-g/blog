@@ -18,11 +18,11 @@ export const Projects = () => {
         <Spacer size={32} />
         <FredagslunchenButton style={{ marginTop: -12 }} />
         <Spacer size={64} />
-        <AaaaaahhButton />
-        <Spacer size={64} />
-        <TvShowQuiz />
-        <Spacer size={64} />
         <KampgeneratorButton style={{ marginTop: -24 }} />
+        <Spacer size={96} />
+        <TvShowQuiz />
+        <Spacer size={96} />
+        <AaaaaahhButton />
         <Spacer size={32} />
         <CharadgeneratornButton style={{ marginTop: -36 }} />
         <Spacer size={64} />
@@ -62,6 +62,7 @@ const LeftSide = styled(Side)`
   transform: rotate(180deg);
 `
 
+// TODO probably easier to do this with a grid and then offset the elements?
 const Inner = styled.div`
   display: flex;
   align-items: center;
