@@ -1,10 +1,11 @@
-import { Suspense, useRef } from 'react'
+import { ReactNode, Suspense, useRef } from 'react'
 import { Canvas, Size, useFrame, useThree, Vector3 } from '@react-three/fiber'
 import {
   Center,
   Cone,
   MeshDistortMaterial,
   MeshWobbleMaterial,
+  OrbitControls,
   OrthographicCamera,
   RoundedBox,
   Sphere,
@@ -12,6 +13,7 @@ import {
   Text3D,
   Torus,
 } from '@react-three/drei'
+import { useAnimatedGLTF } from '../hooks/useAnimatedGLTF'
 
 const ThreeDeeBackground = () => {
   return (
@@ -28,7 +30,6 @@ const ThreeDeeBackground = () => {
     >
       <Canvas>
         <Suspense fallback={null}>
-          {/* <OrbitControls /> */}
           <OrthographicCamera makeDefault zoom={120} position={[0, 0, 10]} />
           <ambientLight />
           <pointLight position={[1, 3, 3]} />
@@ -37,6 +38,7 @@ const ThreeDeeBackground = () => {
           <Stars radius={1} depth={30} count={20000} factor={1} />
           <Objects />
         </Suspense>
+        {/* <OrbitControls /> */}
       </Canvas>
     </div>
   )
@@ -68,29 +70,34 @@ const Objects = () => {
       <Boxy size={0.5} position={[getX(0.37), getY(0.95), 0]} />
       <Boxy size={0.5} position={[getX(0.1), getY(0.1), 0]} />
       <Coney size={1} position={[getX(0.95), getY(0.5), 0]} color="red" />
-      <Center position={[getX(0.45), getY(0.3), 0]}>
-        <Text3D
-          curveSegments={32}
-          bevelEnabled
-          bevelSize={0.04}
-          bevelThickness={0.1}
-          height={10}
-          lineHeight={0.7}
-          letterSpacing={0.06}
-          size={0.7}
-          font="/Inter_Bold.json"
-        >
-          {`you\nmade\nit!`}
-          <MeshDistortMaterial
-            color={'rebeccapurple'}
-            attach="material"
-            distort={0.2} // Strength, 0 disables the effect (default=1)
-            speed={1} // Speed (default=1)
-            roughness={0}
-          />
-        </Text3D>
-      </Center>
+      <YouMadeItText position={[getX(0.45), getY(0.3), 0]} />
+      <Suspense fallback={null}>
+        <Spin position={[getX(0.45), getY(0.3), 0]}>
+          <Birb scale={0.3} position={[2, 0, 0]} />
+        </Spin>
+      </Suspense>
     </>
+  )
+}
+
+const Spin = ({
+  position,
+  children,
+}: {
+  position?: Vector3
+  children: ReactNode
+}) => {
+  const group = useRef<any>()
+  useFrame(() => {
+    if (!group.current) return
+
+    group.current.rotation.y -= 0.002
+  })
+
+  return (
+    <group ref={group} position={position}>
+      {children}
+    </group>
   )
 }
 
@@ -244,5 +251,92 @@ const Coney = ({
     </Cone>
   )
 }
+
+const YouMadeItText = ({ position }: { position: Vector3 }) => {
+  const mesh = useRef<any>()
+  useFrame(() => {
+    if (!mesh.current) return
+
+    mesh.current.rotation.x = mesh.current.rotation.z += 0.0001
+  })
+
+  return (
+    <Center position={position}>
+      <Text3D
+        ref={mesh}
+        curveSegments={32}
+        bevelEnabled
+        bevelSize={0.04}
+        bevelThickness={0.1}
+        height={0.5}
+        lineHeight={0.7}
+        letterSpacing={0.06}
+        size={0.7}
+        font="/Inter_Bold.json"
+      >
+        {`you\nmade\nit!`}
+        <MeshDistortMaterial
+          color={'dodgerblue'}
+          attach="material"
+          distort={0.2} // Strength, 0 disables the effect (default=1)
+          speed={1} // Speed (default=1)
+          roughness={0}
+        />
+      </Text3D>
+    </Center>
+  )
+}
+
+function Birb({ play = 'Dance', ...props }) {
+  // @ts-ignore
+  const { ref, nodes, materials } = useAnimatedGLTF('/models/Pigeon.glb', play)
+  return (
+    // @ts-ignore
+    <group ref={ref} {...props} dispose={null}>
+      <group name="Scene">
+        <group name="CharacterArmature">
+          <primitive object={nodes.Body} />
+          <primitive object={nodes.Head} />
+          <group name="Pigeon_Blob_Eyes">
+            <skinnedMesh
+              name="Cube228"
+              // @ts-ignore
+              geometry={nodes.Cube228.geometry}
+              material={materials.Pigeon_Main}
+              // @ts-ignore
+              skeleton={nodes.Cube228.skeleton}
+            />
+            <skinnedMesh
+              name="Cube228_1"
+              // @ts-ignore
+              geometry={nodes.Cube228_1.geometry}
+              material={materials.Pigeon_Secondary}
+              // @ts-ignore
+              skeleton={nodes.Cube228_1.skeleton}
+            />
+            <skinnedMesh
+              name="Cube228_2"
+              // @ts-ignore
+              geometry={nodes.Cube228_2.geometry}
+              material={materials.Eye_White}
+              // @ts-ignore
+              skeleton={nodes.Cube228_2.skeleton}
+            />
+            <skinnedMesh
+              name="Cube228_3"
+              // @ts-ignore
+              geometry={nodes.Cube228_3.geometry}
+              material={materials.Eye_Black}
+              // @ts-ignore
+              skeleton={nodes.Cube228_3.skeleton}
+            />
+          </group>
+        </group>
+      </group>
+    </group>
+  )
+}
+
+useAnimatedGLTF.preload('/blob/Birb-transformed.glb')
 
 export default ThreeDeeBackground

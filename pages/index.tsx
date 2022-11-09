@@ -54,12 +54,17 @@ const Home: NextPage = () => {
         <Appearances />
         <Spacer size={128} />
         <CircleTextButton
-          onClick={() =>
-            startTransition(() => {
-              setLoad3D(true)
-            })
-          }
-          onSuccess={() => setZoomOutActive(true)}
+          onClick={() => {
+            if (zoomOutActive) {
+              setZoomOutActive(false)
+            }
+          }}
+          onSuccess={() => {
+            setLoad3D(true)
+            setTimeout(() => {
+              setZoomOutActive(true)
+            }, 1000)
+          }}
         />
         <Spacer size={128} />
         <Newsletter />

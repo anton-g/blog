@@ -35,6 +35,8 @@ export const CircleTextButton = ({
   }
 
   const handleMouseUp = () => {
+    onClick()
+
     soundMode && playClickUp()
     if (timeoutRef.current) clearTimeout(timeoutRef.current)
 
@@ -68,7 +70,6 @@ export const CircleTextButton = ({
           onMouseUp={() => handleMouseUp()}
           onTouchStart={() => handleMouseDown()}
           onTouchEnd={() => handleMouseUp()}
-          onClick={onClick}
         >
           The Button
         </Button>
