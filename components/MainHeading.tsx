@@ -164,7 +164,7 @@ const Confetti = styled(ReactCanvasConfetti)`
   position: absolute;
   pointer-events: none;
   width: 100%;
-  height: 200vh;
+  height: 150vh;
   top: 0;
   left: 0;
   overflow: hidden;
