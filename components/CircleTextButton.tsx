@@ -7,8 +7,8 @@ import { useSoundMode } from '../contexts/SoundContext'
 
 const AnimFeDisplacementMap = animated('feDisplacementMap')
 
-const target = 1
-const clickTimeout = 50
+const target = 8
+const clickTimeout = 850
 export const CircleTextButton = ({
   onSuccess,
   onClick,
