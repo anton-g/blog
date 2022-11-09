@@ -42,10 +42,12 @@ const DrawProjectLink = styled(ProjectLink)`
   position: relative;
   font-size: 32px;
 
-  &:hover,
-  :focus {
-    ${DrawingSvg} path {
-      stroke-dashoffset: 0;
+  @media (prefers-reduced-motion: no-preference) {
+    &:hover,
+    :focus {
+      ${DrawingSvg} path {
+        stroke-dashoffset: 0;
+      }
     }
   }
 `

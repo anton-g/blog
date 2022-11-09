@@ -108,25 +108,27 @@ const Wrapper = styled(Link)`
   align-items: center;
   justify-content: center;
 
-  &:hover,
-  &:focus {
-    ${Text} {
-      animation: ${textScaleAnimation} ease-in 600ms;
-      animation-fill-mode: forwards;
-    }
+  @media (prefers-reduced-motion: no-preference) {
+    &:hover,
+    &:focus {
+      ${Text} {
+        animation: ${textScaleAnimation} ease-in 600ms;
+        animation-fill-mode: forwards;
+      }
 
-    ${InnerText} {
-      animation: ${scrollAnimation} linear 10s infinite;
-      animation-delay: 550ms;
-    }
+      ${InnerText} {
+        animation: ${scrollAnimation} linear 10s infinite;
+        animation-delay: 550ms;
+      }
 
-    ${Mouth} {
-      animation: ${scaleUpAnimation} ease-in 600ms;
-      animation-fill-mode: forwards;
-    }
+      ${Mouth} {
+        animation: ${scaleUpAnimation} ease-in 600ms;
+        animation-fill-mode: forwards;
+      }
 
-    ${ShakeWrapper} {
-      animation: ${shakeAnimation} linear 1.5s infinite;
+      ${ShakeWrapper} {
+        animation: ${shakeAnimation} linear 1.5s infinite;
+      }
     }
   }
 `

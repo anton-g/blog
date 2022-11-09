@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import styled from 'styled-components'
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import { startTransition, useState } from 'react'
 import useDimensions from '../hooks/useDimensions'
 import { Spacer } from '../components/Spacer'
@@ -22,6 +22,7 @@ const Home: NextPage = () => {
   const [load3D, setLoad3D] = useState(false)
   const [zoomOutActive, setZoomOutActive] = useState(false)
   const [ref, dimensions] = useDimensions({ liveMeasure: false })
+  const prefersReducedMotion = useReducedMotion()
 
   return (
     <OuterWrapper
@@ -33,7 +34,7 @@ const Home: NextPage = () => {
       <Wrapper
         animate={zoomOutActive ? 'open' : 'closed'}
         initial={false}
-        variants={zoomVariants}
+        variants={zoomVariants(prefersReducedMotion ?? false)}
         ref={ref}
       >
         <Head>
@@ -100,7 +101,7 @@ const Wrapper = styled(motion.div)`
 
 export default Home
 
-const zoomVariants = {
+const zoomVariants = (prefersReducedMotion: boolean) => ({
   open: {
     scale: [1, 0.99, 1.02, 0.98, 1.03, 0.97, 1.04, 0.85, 0.4],
     rotateX: [
@@ -116,7 +117,7 @@ const zoomVariants = {
     ],
     transition: {
       ease: 'easeInOut',
-      duration: 2.5,
+      duration: prefersReducedMotion ? 0.01 : 2.5,
       times: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.8, 1],
       delay: 0.2,
     },
@@ -126,8 +127,8 @@ const zoomVariants = {
     rotateX: ['0deg', '6deg', '0deg'],
     transition: {
       ease: 'easeInOut',
-      duration: 1,
+      duration: prefersReducedMotion ? 0.01 : 1,
       times: [0, 0.6, 1],
     },
   },
-}
+})

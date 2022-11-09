@@ -102,9 +102,11 @@ const Charad = styled(ProjectLink)`
     }
   }
 
-  &:hover {
-    > span {
-      animation-name: ${bounce};
+  @media (prefers-reduced-motion: no-preference) {
+    &:hover {
+      > span {
+        animation-name: ${bounce};
+      }
     }
   }
   @media (max-width: 931px) {

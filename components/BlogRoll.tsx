@@ -147,4 +147,7 @@ const MarqueeInner = styled.div`
   &:hover {
     animation-play-state: paused;
   }
+  @media (prefers-reduced-motion: reduce) {
+    animation-duration: 300s;
+  }
 `

@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { useState, useRef, useEffect } from 'react'
 import styled from 'styled-components'
 import { animated, useSpring, config } from '@react-spring/web'
+import { useReducedMotion } from 'framer-motion'
 
 export const BouncyArrowLink = ({
   text,
@@ -26,11 +27,13 @@ const StyledLink = styled(Link)`
   }
 `
 const Arrow = ({ hover }: { hover: boolean }) => {
+  const prefersReducedMotion = useReducedMotion()
   const length = 180
   const width = length - 14.5 + 17 + 38
   const margin = -(width - 17)
 
   const { first, second } = useSpring({
+    immediate: prefersReducedMotion ?? false,
     first: hover
       ? `M1 5.25H.25v1.5H1v-1.5Zm${length} 1.5a.75.75 0 0 0 0-1.5v1.5ZM1 6.75h${length}v-1.5H1v1.5Z`
       : `M1 5.25H.25v1.5H1v-1.5Zm${14.5} 1.5a.75.75 0 0 0 0-1.5v1.5ZM1 6.75h${14.5}v-1.5H1v1.5Z`,

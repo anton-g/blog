@@ -73,12 +73,14 @@ const Kamp = styled(ProjectLink)`
 const Wrapper = styled.div`
   position: relative;
 
-  &:hover,
-  &:focus {
-    ${StyledSvg} {
-      animation: ${followPath} 1s cubic-bezier(0, 0, 1, 1) 1,
-        ${rotate} 1s linear 1;
-      animation-fill-mode: forwards;
+  @media (prefers-reduced-motion: no-preference) {
+    &:hover,
+    &:focus {
+      ${StyledSvg} {
+        animation: ${followPath} 1s cubic-bezier(0, 0, 1, 1) 1,
+          ${rotate} 1s linear 1;
+        animation-fill-mode: forwards;
+      }
     }
   }
 `

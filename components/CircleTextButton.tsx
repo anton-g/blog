@@ -224,7 +224,9 @@ const Circle = styled.div`
     top: 0;
     width: 100%;
     height: 100%;
-    animation-name: ${rotate};
+    @media (prefers-reduced-motion: no-preference) {
+      animation-name: ${rotate};
+    }
     animation-duration: 10s;
     animation-iteration-count: infinite;
     animation-timing-function: linear;

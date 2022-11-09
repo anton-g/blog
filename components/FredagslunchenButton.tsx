@@ -70,13 +70,15 @@ const FredagslunchenLink = styled(ProjectLink)`
   position: relative;
   overflow: hidden;
 
-  &:hover,
-  &:focus {
-    ${StyledSvg} {
-      animation-name: ${appear};
-      animation-duration: 0.01s;
-      animation-timing-function: linear;
-      animation-fill-mode: forwards;
+  @media (prefers-reduced-motion: no-preference) {
+    &:hover,
+    &:focus {
+      ${StyledSvg} {
+        animation-name: ${appear};
+        animation-duration: 0.01s;
+        animation-timing-function: linear;
+        animation-fill-mode: forwards;
+      }
     }
   }
 `

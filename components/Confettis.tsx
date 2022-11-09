@@ -1,15 +1,14 @@
 // Very much built upon https://joshwcomeau.com/react/animated-sparkles-in-react/
 
+import { useReducedMotion } from 'framer-motion'
 import React, { useCallback } from 'react'
 import { CSSProperties } from 'react'
 import { ReactNode } from 'react'
 import styled, { keyframes } from 'styled-components'
 import useSound from 'use-sound'
 import { useSoundMode } from '../contexts/SoundContext'
-import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion'
 import { useRandomInterval } from '../hooks/useRandomInterval'
 import { random } from '../utils/random'
-import Accordion from './Accordion'
 
 const DEFAULT_COLORS = ['#a864fd', '#29cdff', '#78ff44', '#ff718d', '#fdff6a']
 
@@ -74,7 +73,7 @@ const Confettis = ({ children, ...delegated }: { children: ReactNode }) => {
   const [playOff] = useSound('sounds/off.mp3', { volume: 0.25 })
   const [disabled, setDisabled] = React.useState(false)
   const [confettis, setConfettis] = React.useState<Confetti[]>([])
-  const prefersReducedMotion = usePrefersReducedMotion()
+  const prefersReducedMotion = useReducedMotion()
 
   useRandomInterval(
     () => {

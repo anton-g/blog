@@ -111,22 +111,24 @@ const SoundWidget = styled.div`
 const Wrapper = styled.div`
   position: relative;
 
-  &:hover {
-    animation-name: ${bobFloat}, ${bob};
-    animation-duration: 0.3s, 1.5s;
-    animation-delay: 0s, 0.3s;
-    animation-timing-function: ease-out, ease-in-out;
-    animation-iteration-count: 1, infinite;
-    animation-fill-mode: forwards;
-    animation-direction: normal, alternate;
+  @media (prefers-reduced-motion: no-preference) {
+    &:hover {
+      animation-name: ${bobFloat}, ${bob};
+      animation-duration: 0.3s, 1.5s;
+      animation-delay: 0s, 0.3s;
+      animation-timing-function: ease-out, ease-in-out;
+      animation-iteration-count: 1, infinite;
+      animation-fill-mode: forwards;
+      animation-direction: normal, alternate;
 
-    ${SoundWidget} {
-      ${Icon} {
-        opacity: 1;
-      }
+      ${SoundWidget} {
+        ${Icon} {
+          opacity: 1;
+        }
 
-      > span {
-        opacity: 0;
+        > span {
+          opacity: 0;
+        }
       }
     }
   }

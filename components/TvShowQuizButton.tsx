@@ -208,34 +208,36 @@ const Wrapper = styled(Link)`
   overflow: hidden;
   z-index: 1;
 
-  &:hover,
-  &:focus {
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
+  @media (prefers-reduced-motion: no-preference) {
+    &:hover,
+    &:focus {
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
 
-    ${InnerEffect} {
-      animation: ${tvOn} ease-out 400ms;
-      animation-fill-mode: forwards;
-    }
+      ${InnerEffect} {
+        animation: ${tvOn} ease-out 400ms;
+        animation-fill-mode: forwards;
+      }
 
-    ${TvShow} {
-      animation-name: ${disappear};
-      animation-duration: 0.1s;
-      animation-timing-function: linear;
-      animation-fill-mode: forwards;
-    }
+      ${TvShow} {
+        animation-name: ${disappear};
+        animation-duration: 0.1s;
+        animation-timing-function: linear;
+        animation-fill-mode: forwards;
+      }
 
-    ${LineSvg} path {
-      animation: ${line} ease-in-out 400ms;
-      animation-fill-mode: forwards;
-      animation-delay: 350ms;
-    }
+      ${LineSvg} path {
+        animation: ${line} ease-in-out 400ms;
+        animation-fill-mode: forwards;
+        animation-delay: 350ms;
+      }
 
-    ${Button} {
-      animation-name: ${appear};
-      animation-duration: 0.1s;
-      animation-timing-function: linear;
-      animation-fill-mode: forwards;
+      ${Button} {
+        animation-name: ${appear};
+        animation-duration: 0.1s;
+        animation-timing-function: linear;
+        animation-fill-mode: forwards;
+      }
     }
   }
 `

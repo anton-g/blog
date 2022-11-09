@@ -2,13 +2,14 @@ import styled from 'styled-components'
 import { Spacer } from './Spacer'
 import { useMutation } from '@tanstack/react-query'
 import { useState } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { Fireworks } from './Fireworks'
 import useSound from 'use-sound'
 import Confettis from './Confettis'
 import { useSoundMode } from '../contexts/SoundContext'
 
 export const Newsletter = () => {
+  const prefersReducedMotion = useReducedMotion()
   const [email, setEmail] = useState('')
   const [playFanfare] = useSound('sounds/fanfare.mp3', { volume: 0.4 })
   const { soundMode } = useSoundMode()
@@ -48,7 +49,7 @@ export const Newsletter = () => {
         <AnimatePresence>
           {isSuccess ? (
             <>
-              <Fireworks />
+              {!prefersReducedMotion && <Fireworks />}
               <SuccessMessage
                 key="success"
                 initial={{

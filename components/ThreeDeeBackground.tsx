@@ -14,6 +14,7 @@ import {
   Torus,
 } from '@react-three/drei'
 import { useAnimatedGLTF } from '../hooks/useAnimatedGLTF'
+import { useReducedMotion } from 'framer-motion'
 
 const ThreeDeeBackground = () => {
   return (
@@ -87,9 +88,10 @@ const Spin = ({
   position?: Vector3
   children: ReactNode
 }) => {
+  const prefersReducedMotion = useReducedMotion()
   const group = useRef<any>()
   useFrame(() => {
-    if (!group.current) return
+    if (!group.current || prefersReducedMotion) return
 
     group.current.rotation.y -= 0.002
   })
@@ -113,9 +115,10 @@ const getUtils = (size: Size) => {
 }
 
 const Boxy = ({ position, size }: { size: number; position: Vector3 }) => {
+  const prefersReducedMotion = useReducedMotion()
   const mesh = useRef<any>()
   useFrame(() => {
-    if (!mesh.current) return
+    if (!mesh.current || prefersReducedMotion) return
 
     mesh.current.rotation.x =
       mesh.current.rotation.y =
@@ -145,13 +148,14 @@ const Sphery = ({
   position: Vector3
   color: string
 }) => {
+  const prefersReducedMotion = useReducedMotion()
   return (
     <Sphere visible position={position} args={[size, 16, 200]}>
       <MeshDistortMaterial
         color={color}
         attach="material"
         distort={0.5} // Strength, 0 disables the effect (default=1)
-        speed={2} // Speed (default=1)
+        speed={prefersReducedMotion ? 0 : 2} // Speed (default=1)
         roughness={0}
       />
     </Sphere>
@@ -159,9 +163,10 @@ const Sphery = ({
 }
 
 const Torusy = ({ position, color }: { position: Vector3; color: string }) => {
+  const prefersReducedMotion = useReducedMotion()
   const mesh = useRef<any>()
   useFrame(() => {
-    if (!mesh.current) return
+    if (!mesh.current || prefersReducedMotion) return
 
     mesh.current.rotation.x =
       mesh.current.rotation.y =
@@ -175,7 +180,7 @@ const Torusy = ({ position, color }: { position: Vector3; color: string }) => {
         attach="material"
         color={color}
         factor={3} // Strength, 0 disables the effect (default=1)
-        speed={0.5} // Speed (default=1)
+        speed={prefersReducedMotion ? 0 : 0.5} // Speed (default=1)
         roughness={0}
       />
     </Torus>
@@ -191,9 +196,10 @@ const TwistyBoxy = ({
   position: Vector3
   color: string
 }) => {
+  const prefersReducedMotion = useReducedMotion()
   const mesh = useRef<any>()
   useFrame(() => {
-    if (!mesh.current) return
+    if (!mesh.current || prefersReducedMotion) return
 
     mesh.current.rotation.x =
       mesh.current.rotation.y =
@@ -213,7 +219,7 @@ const TwistyBoxy = ({
         attach="material"
         color={color}
         factor={2} // Strength, 0 disables the effect (default=1)
-        speed={1.5} // Speed (default=1)
+        speed={prefersReducedMotion ? 0 : 1.5} // Speed (default=1)
         roughness={0}
       />
     </RoundedBox>
@@ -229,9 +235,10 @@ const Coney = ({
   position: Vector3
   color: string
 }) => {
+  const prefersReducedMotion = useReducedMotion()
   const mesh = useRef<any>()
   useFrame(() => {
-    if (!mesh.current) return
+    if (!mesh.current || prefersReducedMotion) return
 
     mesh.current.rotation.x =
       mesh.current.rotation.y =
@@ -245,7 +252,7 @@ const Coney = ({
         attach="material"
         color={color}
         factor={2} // Strength, 0 disables the effect (default=1)
-        speed={1.5} // Speed (default=1)
+        speed={prefersReducedMotion ? 0 : 1.5} // Speed (default=1)
         roughness={0}
       />
     </Cone>
@@ -253,9 +260,10 @@ const Coney = ({
 }
 
 const YouMadeItText = ({ position }: { position: Vector3 }) => {
+  const prefersReducedMotion = useReducedMotion()
   const mesh = useRef<any>()
   useFrame(() => {
-    if (!mesh.current) return
+    if (!mesh.current || prefersReducedMotion) return
 
     mesh.current.rotation.x = mesh.current.rotation.z += 0.0001
   })
@@ -279,7 +287,7 @@ const YouMadeItText = ({ position }: { position: Vector3 }) => {
           color={'dodgerblue'}
           attach="material"
           distort={0.2} // Strength, 0 disables the effect (default=1)
-          speed={1} // Speed (default=1)
+          speed={prefersReducedMotion ? 0 : 1} // Speed (default=1)
           roughness={0}
         />
       </Text3D>
@@ -288,8 +296,12 @@ const YouMadeItText = ({ position }: { position: Vector3 }) => {
 }
 
 function Birb({ play = 'Dance', ...props }) {
+  const prefersReducedMotion = useReducedMotion()
   // @ts-ignore
-  const { ref, nodes, materials } = useAnimatedGLTF('/models/Pigeon.glb', play)
+  const { ref, nodes, materials } = useAnimatedGLTF(
+    '/models/Pigeon.glb',
+    prefersReducedMotion ? 'Idle' : play
+  )
   return (
     // @ts-ignore
     <group ref={ref} {...props} dispose={null}>
@@ -337,6 +349,6 @@ function Birb({ play = 'Dance', ...props }) {
   )
 }
 
-useAnimatedGLTF.preload('/blob/Birb-transformed.glb')
+useAnimatedGLTF.preload('/models/Pigeon.glb')
 
 export default ThreeDeeBackground
