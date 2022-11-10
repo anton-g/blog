@@ -13,8 +13,9 @@ import {
   Text3D,
   Torus,
 } from '@react-three/drei'
-import { useAnimatedGLTF } from '../hooks/useAnimatedGLTF'
 import { useReducedMotion } from 'framer-motion'
+import { Group, Mesh } from 'three'
+import { Pigeon } from './Pigeon'
 
 const ThreeDeeBackground = () => {
   return (
@@ -74,7 +75,7 @@ const Objects = () => {
       <YouMadeItText position={[getX(0.45), getY(0.3), 0]} />
       <Suspense fallback={null}>
         <Spin position={[getX(0.45), getY(0.3), 0]}>
-          <Birb scale={0.3} position={[2, 0, 0]} />
+          <Pigeon scale={0.3} position={[2.3, 0, 0]} />
         </Spin>
       </Suspense>
     </>
@@ -89,11 +90,11 @@ const Spin = ({
   children: ReactNode
 }) => {
   const prefersReducedMotion = useReducedMotion()
-  const group = useRef<any>()
+  const group = useRef<Group>(null!)
   useFrame(() => {
     if (!group.current || prefersReducedMotion) return
 
-    group.current.rotation.y -= 0.002
+    group.current.rotation.y -= 0.003
   })
 
   return (
@@ -116,7 +117,7 @@ const getUtils = (size: Size) => {
 
 const Boxy = ({ position, size }: { size: number; position: Vector3 }) => {
   const prefersReducedMotion = useReducedMotion()
-  const mesh = useRef<any>()
+  const mesh = useRef<Mesh>(null!)
   useFrame(() => {
     if (!mesh.current || prefersReducedMotion) return
 
@@ -164,7 +165,7 @@ const Sphery = ({
 
 const Torusy = ({ position, color }: { position: Vector3; color: string }) => {
   const prefersReducedMotion = useReducedMotion()
-  const mesh = useRef<any>()
+  const mesh = useRef<Mesh>()
   useFrame(() => {
     if (!mesh.current || prefersReducedMotion) return
 
@@ -197,7 +198,7 @@ const TwistyBoxy = ({
   color: string
 }) => {
   const prefersReducedMotion = useReducedMotion()
-  const mesh = useRef<any>()
+  const mesh = useRef<Mesh>(null!)
   useFrame(() => {
     if (!mesh.current || prefersReducedMotion) return
 
@@ -236,7 +237,7 @@ const Coney = ({
   color: string
 }) => {
   const prefersReducedMotion = useReducedMotion()
-  const mesh = useRef<any>()
+  const mesh = useRef<Mesh>()
   useFrame(() => {
     if (!mesh.current || prefersReducedMotion) return
 
@@ -261,17 +262,11 @@ const Coney = ({
 
 const YouMadeItText = ({ position }: { position: Vector3 }) => {
   const prefersReducedMotion = useReducedMotion()
-  const mesh = useRef<any>()
-  useFrame(() => {
-    if (!mesh.current || prefersReducedMotion) return
-
-    mesh.current.rotation.x = mesh.current.rotation.z += 0.0001
-  })
 
   return (
     <Center position={position}>
       <Text3D
-        ref={mesh}
+        rotation={[0.3, -0.2, 0.3]}
         curveSegments={32}
         bevelEnabled
         bevelSize={0.04}
@@ -282,7 +277,7 @@ const YouMadeItText = ({ position }: { position: Vector3 }) => {
         size={0.7}
         font="/Inter_Bold.json"
       >
-        {`you\nmade\nit!`}
+        {`you\nfound\nme!`}
         <MeshDistortMaterial
           color={'dodgerblue'}
           attach="material"
@@ -294,61 +289,5 @@ const YouMadeItText = ({ position }: { position: Vector3 }) => {
     </Center>
   )
 }
-
-function Birb({ play = 'Dance', ...props }) {
-  const prefersReducedMotion = useReducedMotion()
-  // @ts-ignore
-  const { ref, nodes, materials } = useAnimatedGLTF(
-    '/models/Pigeon.glb',
-    prefersReducedMotion ? 'Idle' : play
-  )
-  return (
-    // @ts-ignore
-    <group ref={ref} {...props} dispose={null}>
-      <group name="Scene">
-        <group name="CharacterArmature">
-          <primitive object={nodes.Body} />
-          <primitive object={nodes.Head} />
-          <group name="Pigeon_Blob_Eyes">
-            <skinnedMesh
-              name="Cube228"
-              // @ts-ignore
-              geometry={nodes.Cube228.geometry}
-              material={materials.Pigeon_Main}
-              // @ts-ignore
-              skeleton={nodes.Cube228.skeleton}
-            />
-            <skinnedMesh
-              name="Cube228_1"
-              // @ts-ignore
-              geometry={nodes.Cube228_1.geometry}
-              material={materials.Pigeon_Secondary}
-              // @ts-ignore
-              skeleton={nodes.Cube228_1.skeleton}
-            />
-            <skinnedMesh
-              name="Cube228_2"
-              // @ts-ignore
-              geometry={nodes.Cube228_2.geometry}
-              material={materials.Eye_White}
-              // @ts-ignore
-              skeleton={nodes.Cube228_2.skeleton}
-            />
-            <skinnedMesh
-              name="Cube228_3"
-              // @ts-ignore
-              geometry={nodes.Cube228_3.geometry}
-              material={materials.Eye_Black}
-              // @ts-ignore
-              skeleton={nodes.Cube228_3.skeleton}
-            />
-          </group>
-        </group>
-      </group>
-    </group>
-  )
-}
-
-useAnimatedGLTF.preload('/models/Pigeon.glb')
 
 export default ThreeDeeBackground

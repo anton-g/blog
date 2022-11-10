@@ -1,8 +1,13 @@
 import { useEffect } from 'react'
 import { useGLTF, useAnimations } from '@react-three/drei'
+import { GLTF } from 'three-stdlib'
+import { ObjectMap } from '@react-three/fiber'
 
-export function useAnimatedGLTF(url: string, play: string) {
-  const { animations, ...rest } = useGLTF(url)
+export function useAnimatedGLTF<ModelGLTF extends GLTF & ObjectMap>(
+  url: string,
+  play: string
+) {
+  const { animations, ...rest } = useGLTF(url) as unknown as ModelGLTF
   const { ref, actions } = useAnimations(animations)
 
   useEffect(() => {
@@ -16,7 +21,11 @@ export function useAnimatedGLTF(url: string, play: string) {
     return () => {}
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [play])
-  return { ref, animations, ...rest } as const
+  return {
+    ref,
+    animations,
+    ...rest,
+  } as const
 }
 
 useAnimatedGLTF.preload = useGLTF.preload

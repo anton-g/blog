@@ -58,6 +58,7 @@ const Home: NextPage = () => {
           onClick={() => {
             if (zoomOutActive) {
               setZoomOutActive(false)
+              setLoad3D(false)
             }
           }}
           onSuccess={() => {
