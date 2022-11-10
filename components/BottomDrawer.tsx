@@ -15,7 +15,7 @@ export const BottomDrawer = ({
   const controls = useAnimation()
   const [ref, dimensions] = useDimensions({ liveMeasure: !liveMeasureDisabled })
 
-  const height = dimensions?.height || 0
+  const height = (dimensions?.height || 0) - 5
 
   useEffect(() => {
     controls.start(isActive ? 'active' : 'inactive')

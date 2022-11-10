@@ -29,15 +29,27 @@ const Pre = styled.pre`
     display: grid;
     line-height: 1.4;
     padding: 16px 0;
-    overflow-x: scroll;
+    overflow-x: auto;
+    counter-reset: line;
 
     .line {
-      padding: 0 16px;
+      padding: 0 12px;
 
       &.highlighted {
         background-color: var(--color-gray3);
         border-left: 6px solid var(--color-primary11);
         padding-left: 10px;
+      }
+
+      &::before {
+        counter-increment: line;
+        content: counter(line);
+
+        display: inline-block;
+        width: 1rem;
+        margin-right: 16px;
+        text-align: right;
+        color: var(--color-gray9);
       }
     }
 

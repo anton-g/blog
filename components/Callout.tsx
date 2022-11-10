@@ -6,9 +6,11 @@ export default function Callout({ children }: { children: ReactNode }) {
 }
 
 const Wrapper = styled.div`
-  background-color: var(--color-primary2);
+  background-color: var(--color-primary3);
   padding: 16px 32px;
   color: var(--color-primary12);
+  font-size: 16px;
+  line-height: 1.5;
 
   > p {
     &:first-child {

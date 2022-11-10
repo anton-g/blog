@@ -160,4 +160,7 @@ const Content = styled.div`
       text-decoration-skip-ink: none;
     }
   }
+  h2 {
+    margin-top: 48px;
+  }
 `

@@ -40,8 +40,6 @@ const Posts: NextPage<PostsProps> = ({ posts }) => {
   )
 }
 
-const postsDirectory = join(process.cwd(), 'content')
-
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   generateMainFeeds()
 
@@ -49,7 +47,10 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   return {
     props: {
-      posts: publicPosts,
+      posts: publicPosts.map((x) => ({
+        frontmatter: x.frontmatter,
+        slug: x.slug,
+      })),
     },
   }
 }

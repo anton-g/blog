@@ -11,7 +11,7 @@ export const Nav = ({ hideLogo }: { hideLogo?: boolean }) => {
       <Right>
         <SoundToggle />
         <Spacer size={8} />
-        <a href="/feeds/feed.xml">
+        <a href="/feeds/feed.xml" aria-label="RSS feed for AntonGunnarsson.com">
           <svg
             height={24}
             width={24}
@@ -29,7 +29,10 @@ export const Nav = ({ hideLogo }: { hideLogo?: boolean }) => {
           </svg>
         </a>
         <Spacer size={8} />
-        <a href="https://twitter.com/awnton">
+        <a
+          href="https://twitter.com/awnton"
+          aria-label="Anton Gunnarssons Twitter profile"
+        >
           <TwitterLogoIcon height="24px" width="24px" />
         </a>
       </Right>
