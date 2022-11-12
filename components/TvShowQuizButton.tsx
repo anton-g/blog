@@ -8,7 +8,7 @@ export const TvShowQuiz = ({ style }: { style?: CSSProperties }) => {
     // Workaround to avoid initial animation on page load
     const timeoutId = setTimeout(() => {
       setLoaded(true)
-    }, 100)
+    }, 400)
 
     return () => clearTimeout(timeoutId)
   }, [])
@@ -158,8 +158,8 @@ const TvEffect = styled.div`
 
 const InnerEffect = styled.div<{ disableAnimation: boolean }>`
   background-color: white;
-  height: 1.2px;
-  width: 1.2px;
+  height: 1px;
+  width: 1px;
   transform: scaleX(0) scaleY(0);
 
   animation: ${tvOff} linear;
