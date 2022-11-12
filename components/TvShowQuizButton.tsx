@@ -1,16 +1,16 @@
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import { useEffect, useLayoutEffect, useState } from 'react'
 import styled, { CSSProperties, keyframes } from 'styled-components'
 
 export const TvShowQuiz = ({ style }: { style?: CSSProperties }) => {
   const [loaded, setLoaded] = useState(false)
-  useEffect(() => {
+  useLayoutEffect(() => {
     // Workaround to avoid initial animation on page load
     const timeoutId = setTimeout(() => {
       setLoaded(true)
     }, 100)
 
-    return clearTimeout(timeoutId)
+    return () => clearTimeout(timeoutId)
   }, [])
 
   return (
@@ -158,11 +158,11 @@ const TvEffect = styled.div`
 
 const InnerEffect = styled.div<{ disableAnimation: boolean }>`
   background-color: white;
-  height: 1px;
-  width: 1px;
+  height: 1.2px;
+  width: 1.2px;
   transform: scaleX(0) scaleY(0);
 
-  animation: ${tvOff} linear 400ms;
+  animation: ${tvOff} linear;
   animation-fill-mode: forwards;
   animation-duration: ${({ disableAnimation }) =>
     disableAnimation ? '0s' : '400ms'};
