@@ -5,7 +5,7 @@ type Response =
       error: string
     }
   | {
-      value: 'foo'
+      value: 'woopwoop'
     }
 
 export default async function handler(
@@ -22,7 +22,7 @@ export default async function handler(
 
   if (pink === 'blue' && green === 'red' && red === 'yellow') {
     return res.status(200).json({
-      value: 'foo',
+      value: 'woopwoop',
     })
   }
 

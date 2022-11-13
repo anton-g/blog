@@ -3,6 +3,7 @@ import { Canvas, useFrame } from '@react-three/fiber'
 import { useMutation } from '@tanstack/react-query'
 import type { NextPage } from 'next'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 import { Suspense, useRef } from 'react'
 import styled from 'styled-components'
 import { Mesh } from 'three'
@@ -11,6 +12,7 @@ const Secret: NextPage = () => {
   const pinkInput = useRef<HTMLInputElement>(null!)
   const redInput = useRef<HTMLInputElement>(null!)
   const greenInput = useRef<HTMLInputElement>(null!)
+  const router = useRouter()
 
   const { mutate, isLoading, isError, isSuccess } = useMutation(
     async ({
@@ -39,8 +41,8 @@ const Secret: NextPage = () => {
       }
     },
     {
-      onSuccess: () => {
-        console.log('woop woop')
+      onSuccess: (data) => {
+        router.push(`/${data.value}`)
       },
     }
   )

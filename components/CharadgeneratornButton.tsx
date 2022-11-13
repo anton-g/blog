@@ -7,7 +7,7 @@ export const CharadgeneratornButton = ({
   style?: CSSProperties
 }) => {
   return (
-    <Charad href="/" style={style}>
+    <Charad href="https://charadgeneratorn.se/" style={style}>
       <span>C</span>
       <span>h</span>
       <span>a</span>

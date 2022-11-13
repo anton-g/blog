@@ -4,7 +4,7 @@ import ProjectLink from './ProjectLink'
 export const PodcastButton = ({ style }: { style?: CSSProperties }) => {
   return (
     <Wrapper style={style}>
-      <Asdf href="/">
+      <Asdf href="https://asdf.pizza">
         asdf.pizza{' '}
         <SoundWidget>
           <Icon>

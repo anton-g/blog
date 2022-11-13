@@ -4,7 +4,7 @@ import styled, { CSSProperties, keyframes } from 'styled-components'
 
 export const AaaaaahhButton = ({ style }: { style?: CSSProperties }) => {
   return (
-    <Wrapper href="/" style={style}>
+    <Wrapper href="https://github.com/anton-g/AAAAAAAHHHH" style={style}>
       <Text>
         <InnerText>AAAHHHAAAAAAAAAHHHHAAAAHHHAAAAHHHHHHHHHHAAA</InnerText>
       </Text>

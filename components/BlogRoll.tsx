@@ -9,11 +9,11 @@ export const BlogRoll = () => {
       <Marquee>
         •
         <Spacer size={16} inline />
-        <Link href="https://sara.fail">Sara Vieira</Link>
+        <Link href="https://www.atrost.com">Alex Trost</Link>
         <Spacer size={16} inline />
         •
         <Spacer size={16} inline />
-        <Link href="https://www.atrost.com">Alex Trost</Link>
+        <Link href="http://www.bjoreman.com">Fredrik Björeman</Link>
         <Spacer size={16} inline />
         •
         <Spacer size={16} inline />
@@ -22,6 +22,10 @@ export const BlogRoll = () => {
         •
         <Spacer size={16} inline />
         <Link href="https://wattenberger.com">Amelia Wattenberger</Link>
+        <Spacer size={16} inline />
+        •
+        <Spacer size={16} inline />
+        <Link href="https://twitter.com/chrisferdinandi">Chris Ferdinandi</Link>
         <Spacer size={16} inline />
         •
         <Spacer size={16} inline />
@@ -49,15 +53,15 @@ export const BlogRoll = () => {
         <Spacer size={16} inline />
         •
         <Spacer size={16} inline />
+        <Link href="https://sara.fail">Sara Vieira</Link>
+        <Spacer size={16} inline />
+        •
+        <Spacer size={16} inline />
         <Link href="https://huangxuan.me">Xuan Huang</Link>
         <Spacer size={16} inline />
         •
         <Spacer size={16} inline />
         <Link href="https://erikras.com">Erik Rasmussen</Link>
-        <Spacer size={16} inline />
-        •
-        <Spacer size={16} inline />
-        <Link href="https://seldo.com">Laurie Voss</Link>
         <Spacer size={16} inline />
         •
         <Spacer size={16} inline />
@@ -73,17 +77,9 @@ export const BlogRoll = () => {
         <Spacer size={16} inline />
         •
         <Spacer size={16} inline />
-        <Link href="https://www.irisclasson.com">Iris Classon</Link>
-        <Spacer size={16} inline />
-        •
-        <Spacer size={16} inline />
         <Link href="https://www.barbarianmeetscoding.com">
           Jaime González García
         </Link>
-        <Spacer size={16} inline />
-        •
-        <Spacer size={16} inline />
-        <Link href="http://www.bjoreman.com">Fredrik Björeman</Link>
         <Spacer size={16} inline />•
       </Marquee>
     </Wrapper>

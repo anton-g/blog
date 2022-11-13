@@ -14,7 +14,7 @@ export const TvShowQuiz = ({ style }: { style?: CSSProperties }) => {
   }, [])
 
   return (
-    <Wrapper href="/" style={style}>
+    <Wrapper href="https://tv-show-quiz.netlify.app/" style={style}>
       <Border />
       <Line />
       <Button

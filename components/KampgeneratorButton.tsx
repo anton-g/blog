@@ -5,7 +5,7 @@ export const KampgeneratorButton = ({ style }: { style?: CSSProperties }) => {
   return (
     <Wrapper style={style}>
       <Boot />
-      <Kamp href="/">Kampgeneratorn 🇸🇪</Kamp>
+      <Kamp href="https://kampgeneratorn.se">Kampgeneratorn 🇸🇪</Kamp>
     </Wrapper>
   )
 }
