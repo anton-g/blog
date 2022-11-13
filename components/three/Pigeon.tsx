@@ -1,7 +1,8 @@
-import { useAnimatedGLTF } from '../hooks/useAnimatedGLTF'
+import { useAnimatedGLTF } from '../../hooks/useAnimatedGLTF'
 import { useReducedMotion } from 'framer-motion'
 import { GLTF } from 'three-stdlib'
 import { GroupProps } from '@react-three/fiber'
+import { useState } from 'react'
 
 type PigeonGLTF = GLTF & {
   nodes: {
@@ -33,10 +34,9 @@ type ActionName =
 
 export type PigeonActions = Record<ActionName, THREE.AnimationAction>
 
-export function Pigeon({
-  play = 'Dance',
-  ...props
-}: { play?: ActionName } & GroupProps) {
+export function Pigeon(props: GroupProps) {
+  const [play, setPlay] = useState<ActionName>('Dance')
+
   const prefersReducedMotion = useReducedMotion()
   const { ref, nodes, materials } = useAnimatedGLTF<PigeonGLTF>(
     '/models/Pigeon.glb',
@@ -44,8 +44,21 @@ export function Pigeon({
   )
 
   return (
-    // @ts-ignore
-    <group ref={ref} {...props} dispose={null}>
+    <group
+      // @ts-ignore
+      ref={ref}
+      {...props}
+      dispose={null}
+      onClick={() => {
+        if (play === 'Dance') {
+          setPlay('Walk')
+        } else if (play === 'Walk') {
+          setPlay('Jump')
+        } else {
+          setPlay('Dance')
+        }
+      }}
+    >
       <group name="Scene">
         <group name="CharacterArmature">
           <primitive object={nodes.Body} />

@@ -1,7 +1,7 @@
 import { Suspense } from 'react'
 import { Canvas, useThree } from '@react-three/fiber'
 import { OrthographicCamera, Stars } from '@react-three/drei'
-import { Pigeon } from '../Pigeon'
+import { Pigeon } from './Pigeon'
 import { getUtils } from '../../utils/three'
 import { Spin } from './Spin'
 import { Boxy } from './Boxy'
@@ -48,15 +48,26 @@ const Objects = () => {
         color={'#c8ff00'}
         position={[getX(0.95), getY(0.9), 0]}
       />
-      <Boxy size={0.5} position={[getX(0.15), getY(0.68), 0]} />
-      <Torusy position={[getX(0.7), getY(0.15), 0]} color="#EB1E99" />
-      <TwistyBoxy
-        position={[getX(0.1), getY(0.42), 0]}
-        size={1.5}
-        color="#c8ff00"
+      <Boxy
+        size={0.5}
+        position={[getX(0.15), getY(0.68), 0]}
+        initialColor="#DB7093"
+        activeColor="#531CB3"
       />
-      <Boxy size={0.5} position={[getX(0.37), getY(0.95), 0]} />
-      <Boxy size={0.5} position={[getX(0.1), getY(0.1), 0]} />
+      <Torusy position={[getX(0.7), getY(0.15), 0]} color="#EB1E99" />
+      <TwistyBoxy position={[getX(0.1), getY(0.42), 0]} size={1.5} />
+      <Boxy
+        size={0.5}
+        position={[getX(0.37), getY(0.95), 0]}
+        initialColor="#DB7093"
+        activeColor="#E2C044"
+      />
+      <Boxy
+        size={0.5}
+        position={[getX(0.1), getY(0.1), 0]}
+        initialColor="#DB7093"
+        activeColor="#7A9B76"
+      />
       <Coney size={1} position={[getX(0.95), getY(0.5), 0]} color="red" />
       <YouMadeItText position={[getX(0.45), getY(0.3), 0]} />
       <Suspense fallback={null}>
