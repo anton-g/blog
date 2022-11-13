@@ -51,22 +51,22 @@ const Objects = () => {
       <Boxy
         size={0.5}
         position={[getX(0.15), getY(0.68), 0]}
-        initialColor="#DB7093"
-        activeColor="#531CB3"
+        initialColor="#8f004c"
+        activeColor="#aa9600"
       />
       <Torusy position={[getX(0.7), getY(0.15), 0]} color="#EB1E99" />
       <TwistyBoxy position={[getX(0.1), getY(0.42), 0]} size={1.5} />
       <Boxy
         size={0.5}
         position={[getX(0.37), getY(0.95), 0]}
-        initialColor="#DB7093"
-        activeColor="#E2C044"
+        initialColor="#FF00FF"
+        activeColor="#001ba0"
       />
       <Boxy
         size={0.5}
         position={[getX(0.1), getY(0.1), 0]}
-        initialColor="#DB7093"
-        activeColor="#7A9B76"
+        initialColor="#00b309"
+        activeColor="#b50000"
       />
       <Coney size={1} position={[getX(0.95), getY(0.5), 0]} color="red" />
       <YouMadeItText position={[getX(0.45), getY(0.3), 0]} />
