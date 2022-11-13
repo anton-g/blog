@@ -6,8 +6,8 @@ import useSound from 'use-sound'
 
 export const SoundToggle = () => {
   const { soundMode, setSoundMode } = useSoundMode()
-  const [playOn] = useSound('sounds/on.mp3', { volume: 0.25 })
-  const [playOff] = useSound('sounds/off.mp3', { volume: 0.5 })
+  const [playOn] = useSound('/sounds/on.mp3', { volume: 0.25 })
+  const [playOff] = useSound('/sounds/off.mp3', { volume: 0.5 })
 
   const onClick = useCallback(() => {
     if (soundMode) {

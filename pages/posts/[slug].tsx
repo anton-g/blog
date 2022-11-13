@@ -10,6 +10,10 @@ import { useMemo } from 'react'
 import { Code } from '../../components/Code'
 import { getPost, Post } from '../../lib/mdx'
 import Head from 'next/head'
+import ConfettiCanon from '../../components/ConfettiCanon'
+import { useRouter } from 'next/router'
+import { Spacer } from '../../components/Spacer'
+import Confettis from '../../components/Confettis'
 
 if (process.platform === 'win32') {
   process.env.ESBUILD_BINARY_PATH = join(
@@ -52,6 +56,12 @@ const components = {
 const PostPage: NextPage<{ result: Post }> = ({ result }) => {
   const Component = useMemo(() => getMDXComponent(result.code), [result.code])
 
+  const router = useRouter()
+
+  const encodedTitle = encodeURI('"' + result.frontmatter.title + '"')
+  const url = `https://antongunnarsson.com/${router.asPath}`
+  const shareLink = `https://twitter.com/share?url=${url}&text=${encodedTitle}%20by%20Anton%20Gunnarsson.&via=Awnton`
+
   return (
     <div>
       <Head>
@@ -68,6 +78,64 @@ const PostPage: NextPage<{ result: Post }> = ({ result }) => {
         <Content>
           <Component components={components} />
         </Content>
+        <Spacer size={96} />
+        <svg
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlnsXlink="http://www.w3.org/1999/xlink"
+          width="3px"
+          height="3px"
+          viewBox="0 0 6 6"
+          xmlSpace="preserve"
+          overflow="visible"
+        >
+          <circle fill="black" r="6" cx="3" cy="3"></circle>
+        </svg>
+        <Spacer size={96} />
+        <Footer>
+          <ConfettiWrapper>
+            <ConfettiCanon></ConfettiCanon>
+            <Arrow>
+              <svg
+                fill="none"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+              </svg>
+            </Arrow>
+            <p>
+              Enjoyed the post? <br />
+              Celebrate with <Confettis>confetti</Confettis>!
+            </p>
+          </ConfettiWrapper>
+          <TwitterWrapper>
+            <p>Share this post on Twitter!</p>
+            <Arrow>
+              <svg
+                fill="none"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+              </svg>
+            </Arrow>
+            <a href={shareLink} target="_blank" rel="noopener noreferrer">
+              <Image
+                width={100}
+                height={100}
+                src={'/twitter.png'}
+                alt="twitter logo"
+              />
+            </a>
+          </TwitterWrapper>
+        </Footer>
       </Wrapper>
     </div>
   )
@@ -130,6 +198,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 32px;
+
   @media screen and (max-width: 420px) {
     padding: 16px;
   }
@@ -162,5 +231,53 @@ const Content = styled.div`
   }
   h2 {
     margin-top: 48px;
+  }
+`
+
+const Footer = styled.div`
+  max-width: 800px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 64px;
+  width: 100%;
+  gap: 12px 0;
+`
+
+const Arrow = styled.div`
+  width: 20px;
+  height: 20px;
+`
+
+const TwitterWrapper = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-left: auto;
+
+  img {
+    transition: transform 0.3s;
+  }
+
+  a:hover img {
+    transform: scale(1.2) rotateZ(-10deg);
+  }
+
+  p {
+    max-width: 150px;
+    text-align: right;
+  }
+
+  ${Arrow} {
+    margin-left: 20px;
+  }
+`
+
+const ConfettiWrapper = styled.div`
+  display: flex;
+  align-items: center;
+
+  ${Arrow} {
+    margin-right: 20px;
   }
 `

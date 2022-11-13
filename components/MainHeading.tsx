@@ -144,10 +144,13 @@ const LastName = styled.span`
 const LetterO = styled.span<{ popped: boolean }>`
   position: relative;
   color: white;
+  cursor: pointer;
+
   ${({ popped }) =>
     popped &&
     css`
       user-select: none;
+      cursor: auto;
     `}
 `
 

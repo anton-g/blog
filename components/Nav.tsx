@@ -43,7 +43,6 @@ export const Nav = ({ hideLogo }: { hideLogo?: boolean }) => {
 const Wrapper = styled.nav`
   width: 100%;
   display: flex;
-  padding: 8px 12px;
 `
 
 const Left = styled.div`
@@ -51,6 +50,10 @@ const Left = styled.div`
   display: flex;
   align-items: center;
   font-size: 20px;
+
+  a {
+    padding: 8px 12px;
+  }
 `
 
 const Right = styled.div`
@@ -58,4 +61,5 @@ const Right = styled.div`
   display: flex;
   align-items: center;
   line-height: 0;
+  padding: 8px 12px;
 `

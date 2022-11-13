@@ -69,8 +69,8 @@ const generateConfetti = (colors: string[]): Confetti => {
 
 const Confettis = ({ children, ...delegated }: { children: ReactNode }) => {
   const { soundMode } = useSoundMode()
-  const [playOn] = useSound('sounds/on.mp3', { volume: 0.15 })
-  const [playOff] = useSound('sounds/off.mp3', { volume: 0.25 })
+  const [playOn] = useSound('/sounds/on.mp3', { volume: 0.15 })
+  const [playOff] = useSound('/sounds/off.mp3', { volume: 0.25 })
   const [disabled, setDisabled] = React.useState(false)
   const [confettis, setConfettis] = React.useState<Confetti[]>([])
   const prefersReducedMotion = useReducedMotion()
