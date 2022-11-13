@@ -15,7 +15,7 @@ import { Newsletter } from '../components/Newsletter'
 import { BottomDrawer } from '../components/BottomDrawer'
 import dynamic from 'next/dynamic'
 const ThreeDeeBackground = dynamic(
-  () => import('../components/ThreeDeeBackground')
+  () => import('../components/three/ThreeDeeBackground')
 )
 
 const Home: NextPage = () => {
