@@ -4,8 +4,7 @@ import styled from 'styled-components'
 import useSound from 'use-sound'
 import ReactCanvasConfetti from 'react-canvas-confetti'
 import { useSoundMode } from '../contexts/SoundContext'
-// import pop from './pop.mp3'
-// import charge from './fuse.mp3'
+import { trackGoal } from 'fathom-client'
 
 export default function ConfettiCanon() {
   const { soundMode } = useSoundMode()
@@ -72,7 +71,7 @@ export default function ConfettiCanon() {
     setLoading(false)
     stop()
     if (soundMode === true) playPop()
-    // window.fathom.trackGoal('GPLPLS3A', 0)
+    trackGoal('GPLPLS3A', 0)
   }
 
   return (

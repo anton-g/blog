@@ -6,6 +6,7 @@ import useDimensions from '../hooks/useDimensions'
 import useSound from 'use-sound'
 import { useRef } from 'react'
 import { useSoundMode } from '../contexts/SoundContext'
+import { trackGoal } from 'fathom-client'
 
 export const MainHeading = () => {
   const [playbackRate, setPlaybackRate] = useState(1)
@@ -46,6 +47,7 @@ export const MainHeading = () => {
       stopBlow()
       soundMode && playPop()
       clearTimeout(timeoutRef.current)
+      trackGoal('9LGXBJZP', 0)
       return
     }
 

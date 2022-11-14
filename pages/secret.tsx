@@ -1,6 +1,7 @@
 import { OrthographicCamera, RoundedBox } from '@react-three/drei'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { useMutation } from '@tanstack/react-query'
+import { trackGoal } from 'fathom-client'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
@@ -44,6 +45,7 @@ const Secret: NextPage = () => {
     },
     {
       onSuccess: (data) => {
+        trackGoal('RYNQRL4W', 0)
         router.push(`/${data.value}`)
       },
     }

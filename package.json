@@ -27,6 +27,7 @@
     "date-fns": "^2.29.3",
     "eslint": "8.26.0",
     "eslint-config-next": "^13.0.1",
+    "fathom-client": "^3.5.0",
     "feed": "^4.2.2",
     "framer-motion": "^7.6.4",
     "mdx-bundler": "^9.0.1",

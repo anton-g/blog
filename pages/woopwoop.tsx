@@ -7,6 +7,7 @@ import { Fireworks } from '../components/Fireworks'
 import { saveSvgAsPng } from 'save-svg-as-png'
 import { getEggSeed } from '../utils/eggs'
 import Link from 'next/link'
+import { trackGoal } from 'fathom-client'
 
 const WoopWoop: NextPage = () => {
   const [showEasterEgg, setShowEasterEgg] = useState(false)
@@ -31,6 +32,7 @@ const WoopWoop: NextPage = () => {
 
   const saveEgg = () => {
     saveSvgAsPng(document.getElementById('easter-egg-svg'), 'egg.png')
+    trackGoal('VVH0PNHY', 0)
   }
 
   return (

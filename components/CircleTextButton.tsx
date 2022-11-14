@@ -1,4 +1,5 @@
 import { animated, config, useSpring } from '@react-spring/web'
+import { trackGoal } from 'fathom-client'
 import { useRef } from 'react'
 import { useState } from 'react'
 import styled, { keyframes } from 'styled-components'
@@ -70,10 +71,10 @@ export const CircleTextButton = ({
 
   const handleSuccess = () => {
     onSuccess()
-
     updateEggSeed({
       a: seedTimeRef.current,
     })
+    trackGoal('XQDOSANS', 0)
   }
 
   return (
