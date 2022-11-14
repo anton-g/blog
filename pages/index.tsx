@@ -58,7 +58,8 @@ const Home: NextPage = () => {
           onClick={() => {
             if (zoomOutActive) {
               setZoomOutActive(false)
-              setLoad3D(false)
+              // for some reason, unloading r3f breaks react-spring
+              // setLoad3D(false)
             }
           }}
           onSuccess={() => {

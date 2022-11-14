@@ -5,7 +5,7 @@ export const ControlPanel = () => {
   return (
     <Wrapper>
       <Title>
-        Heyy! You found an <span>easter egg!</span>
+        Heyy! You found an <span>easter egg</span>, almost..
       </Title>
       <Spacer size={8} />
       <Instruction>Here&apos;s a riddle for you:</Instruction>
