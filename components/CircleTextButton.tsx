@@ -4,6 +4,7 @@ import { useState } from 'react'
 import styled, { keyframes } from 'styled-components'
 import useSound from 'use-sound'
 import { useSoundMode } from '../contexts/SoundContext'
+import { updateEggSeed } from '../utils/eggs'
 
 const AnimFeDisplacementMap = animated('feDisplacementMap')
 
@@ -23,6 +24,7 @@ export const CircleTextButton = ({
   const [clicks, setClicks] = useState(0)
   const timeoutRef = useRef<any>(null)
   const timeRef = useRef<number>(0)
+  const seedTimeRef = useRef<number>(0)
 
   const { scale } = useSpring({
     scale: turbulenceScale,
@@ -32,6 +34,10 @@ export const CircleTextButton = ({
   const handleMouseDown = () => {
     soundMode && playClickDown()
     timeRef.current = Date.now()
+
+    if (!seedTimeRef.current) {
+      seedTimeRef.current = Date.now()
+    }
   }
 
   const handleMouseUp = () => {
@@ -49,7 +55,7 @@ export const CircleTextButton = ({
       if (newClicks >= target) {
         setTurbulenceScale(0)
         setClicks(0)
-        onSuccess()
+        handleSuccess()
         return
       }
     }
@@ -60,6 +66,14 @@ export const CircleTextButton = ({
       setTurbulenceScale(0)
       setClicks(0)
     }, 10000)
+  }
+
+  const handleSuccess = () => {
+    onSuccess()
+
+    updateEggSeed({
+      a: seedTimeRef.current,
+    })
   }
 
   return (

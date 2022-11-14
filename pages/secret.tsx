@@ -4,11 +4,13 @@ import { useMutation } from '@tanstack/react-query'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { Suspense, useRef } from 'react'
+import { Suspense, useRef, useState } from 'react'
 import styled from 'styled-components'
 import { Mesh } from 'three'
+import { updateEggSeed } from '../utils/eggs'
 
 const Secret: NextPage = () => {
+  const [seedPart, setSeedPart] = useState(0)
   const pinkInput = useRef<HTMLInputElement>(null!)
   const redInput = useRef<HTMLInputElement>(null!)
   const greenInput = useRef<HTMLInputElement>(null!)
@@ -57,6 +59,14 @@ const Secret: NextPage = () => {
       pink,
       red,
     })
+
+    updateEggSeed({
+      c: seedPart,
+    })
+  }
+
+  const increaseSeedPart = () => {
+    setSeedPart((s) => s + 1)
   }
 
   return (
@@ -70,13 +80,13 @@ const Secret: NextPage = () => {
         <Grid>
           <Clue color={'#FF00FF'} offset={-0.0005} />
           <Arrow />
-          <Input type="text" ref={pinkInput} />
+          <Input type="text" ref={pinkInput} onChange={increaseSeedPart} />
           <Clue color={'#00b309'} offset={0.0005} />
           <Arrow />
-          <Input type="text" ref={greenInput} />
+          <Input type="text" ref={greenInput} onChange={increaseSeedPart} />
           <Clue color={'#8f004c'} offset={0} />
           <Arrow />
-          <Input type="text" ref={redInput} />
+          <Input type="text" ref={redInput} onChange={increaseSeedPart} />
         </Grid>
         <Button onClick={handleClick} disabled={isLoading}>
           Continue

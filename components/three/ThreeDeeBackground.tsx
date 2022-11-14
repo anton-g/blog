@@ -1,4 +1,4 @@
-import { Suspense } from 'react'
+import { Suspense, useState } from 'react'
 import { Canvas, useThree } from '@react-three/fiber'
 import { OrthographicCamera, Stars } from '@react-three/drei'
 import { Pigeon } from './Pigeon'
@@ -11,11 +11,23 @@ import { TwistyBoxy } from './TwistyBoxy'
 import { Coney } from './Coney'
 import { YouMadeItText } from './YouMadeItText'
 import styled from 'styled-components'
+import { updateEggSeed } from '../../utils/eggs'
 
 const ThreeDeeBackground = () => {
+  const [clicks, setClicks] = useState(0)
+
+  const handleClick = () => {
+    const n = clicks + 1
+    setClicks(n)
+
+    updateEggSeed({
+      b: n,
+    })
+  }
+
   return (
     <Wrapper>
-      <Canvas>
+      <Canvas onClick={handleClick}>
         <Suspense fallback={null}>
           <OrthographicCamera makeDefault zoom={120} position={[0, 0, 10]} />
           <ambientLight />
