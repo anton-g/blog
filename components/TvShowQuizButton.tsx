@@ -1,10 +1,10 @@
 import Link from 'next/link'
-import { useEffect, useLayoutEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import styled, { CSSProperties, keyframes } from 'styled-components'
 
 export const TvShowQuiz = ({ style }: { style?: CSSProperties }) => {
   const [loaded, setLoaded] = useState(false)
-  useLayoutEffect(() => {
+  useEffect(() => {
     // Workaround to avoid initial animation on page load
     const timeoutId = setTimeout(() => {
       setLoaded(true)
