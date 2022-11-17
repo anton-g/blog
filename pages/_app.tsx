@@ -6,6 +6,7 @@ import GlobalStyles from '../styles/global'
 import * as Fathom from 'fathom-client'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
+import { AchievementsModal } from '../components/AchievementsModal'
 
 const queryClient = new QueryClient()
 
@@ -36,6 +37,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <GlobalStyles />
       <SoundProvider>
         <QueryClientProvider client={queryClient}>
+          <AchievementsModal />
           <Component {...pageProps} />
         </QueryClientProvider>
       </SoundProvider>
