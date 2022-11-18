@@ -3,7 +3,7 @@ import ProjectLink from './ProjectLink'
 
 export const KampgeneratorButton = ({ style }: { style?: CSSProperties }) => {
   return (
-    <Wrapper style={style}>
+    <Wrapper style={style} onAnimationEnd={(e) => e.stopPropagation()}>
       <Boot />
       <Kamp href="https://kampgeneratorn.se">Kampgeneratorn 🇸🇪</Kamp>
     </Wrapper>

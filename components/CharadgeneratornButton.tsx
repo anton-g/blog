@@ -7,7 +7,11 @@ export const CharadgeneratornButton = ({
   style?: CSSProperties
 }) => {
   return (
-    <Charad href="https://charadgeneratorn.se/" style={style}>
+    <Charad
+      href="https://charadgeneratorn.se/"
+      style={style}
+      onAnimationEnd={(e) => e.stopPropagation()}
+    >
       <span>C</span>
       <span>h</span>
       <span>a</span>

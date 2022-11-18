@@ -3,7 +3,7 @@ import ProjectLink from './ProjectLink'
 
 export const PodcastButton = ({ style }: { style?: CSSProperties }) => {
   return (
-    <Wrapper style={style}>
+    <Wrapper style={style} onAnimationEnd={(e) => e.stopPropagation()}>
       <Asdf href="https://asdf.pizza">
         asdf.pizza{' '}
         <SoundWidget>

@@ -1,13 +1,13 @@
 import styled, { css } from 'styled-components'
 import { useSpring, animated } from '@react-spring/web'
-import { MouseEventHandler, useRef } from 'react'
+import { MouseEventHandler } from 'react'
 import useDimensions from '../hooks/useDimensions'
 
 export const Achievement = ({
   variant,
   locked,
 }: {
-  variant: 'birb' | 'eggo' | 'space' | 'balloon'
+  variant: 'birb' | 'eggo' | 'space' | 'balloon' | 'barrel'
   locked: boolean
 }) => {
   switch (variant) {
@@ -19,6 +19,8 @@ export const Achievement = ({
       return <SpaceAchievement locked={locked} />
     case 'balloon':
       return <BalloonAchievement locked={locked} />
+    case 'barrel':
+      return <BarrelAchievement locked={locked} />
   }
 }
 
@@ -44,7 +46,7 @@ const Base = styled(animated.li)<{ locked: boolean }>`
     locked &&
     css`
       user-select: none !important;
-      filter: blur(3px);
+      filter: blur(3px) grayscale(80%);
 
       > * {
         filter: blur(10px);
@@ -60,13 +62,17 @@ const Base = styled(animated.li)<{ locked: boolean }>`
     margin: 0;
   }
 
-  &:hover {
-    box-shadow: 0px 30px 100px -10px rgba(0, 0, 0, 0.4);
-  }
+  ${({ locked }) =>
+    !locked &&
+    css`
+      &:hover {
+        box-shadow: 0px 30px 100px -10px rgba(0, 0, 0, 0.4);
+      }
+    `}
 `
 
 const BirbAchievement = ({ locked }: { locked: boolean }) => {
-  const { ref, attributes } = use3dEffect()
+  const { ref, attributes } = use3dEffect(locked)
 
   return (
     <BirbWrapper locked={locked} ref={ref} {...attributes}>
@@ -113,7 +119,7 @@ const BirbWrapper = styled(Base)`
 `
 
 const EggAchievement = ({ locked }: { locked: boolean }) => {
-  const { ref, attributes } = use3dEffect()
+  const { ref, attributes } = use3dEffect(locked)
 
   return (
     <EggWrapper locked={locked} ref={ref} {...attributes}>
@@ -128,7 +134,7 @@ const EggWrapper = styled(Base)`
 `
 
 const SpaceAchievement = ({ locked }: { locked: boolean }) => {
-  const { ref, attributes } = use3dEffect()
+  const { ref, attributes } = use3dEffect(locked)
 
   return (
     <SpaceWrapper locked={locked} ref={ref} {...attributes}>
@@ -142,8 +148,23 @@ const SpaceWrapper = styled(Base)`
   background-color: palevioletred;
 `
 
+const BarrelAchievement = ({ locked }: { locked: boolean }) => {
+  const { ref, attributes } = use3dEffect(locked)
+
+  return (
+    <BarrelWrapper locked={locked} ref={ref} {...attributes}>
+      <h2>What a maneuver</h2>
+      <p>You spin me right round baby, right round</p>
+    </BarrelWrapper>
+  )
+}
+
+const BarrelWrapper = styled(Base)`
+  background-color: rebeccapurple;
+`
+
 const BalloonAchievement = ({ locked }: { locked: boolean }) => {
-  const { ref, attributes } = use3dEffect()
+  const { ref, attributes } = use3dEffect(locked)
 
   return (
     <BalloonWrapper locked={locked} ref={ref} {...attributes}>
@@ -183,7 +204,7 @@ const O = styled.div`
 const trans = (x: number, y: number, s: number) =>
   `perspective(600px) rotateX(${x}deg) rotateY(${y}deg) scale(${s})`
 
-const use3dEffect = () => {
+const use3dEffect = (disabled: boolean) => {
   const [ref, dimensions] = useDimensions()
   const [props, api] = useSpring(() => ({
     xys: [0, 0, 1],
@@ -193,7 +214,7 @@ const use3dEffect = () => {
   const calc = (x: number, y: number) =>
     dimensions
       ? [
-          -(y - (dimensions.top + dimensions.height / 2)) / 3,
+          -((y - (dimensions.top + dimensions.height / 2)) / 3),
           (x - (dimensions.left + dimensions.width / 2)) / 30,
           1.05,
         ]
@@ -202,7 +223,11 @@ const use3dEffect = () => {
   const onMouseMove: MouseEventHandler<HTMLElement> = ({
     clientX: x,
     clientY: y,
-  }) => api.start({ xys: calc(x, y) })
+  }) => {
+    if (disabled) return
+
+    api.start({ xys: calc(x, y) })
+  }
   const onMouseLeave: MouseEventHandler<HTMLElement> = () =>
     api.start({ xys: [0, 0, 1] })
   const style = { transform: props.xys.to(trans) }

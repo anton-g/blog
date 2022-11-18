@@ -4,7 +4,11 @@ import styled, { CSSProperties, keyframes } from 'styled-components'
 
 export const AaaaaahhButton = ({ style }: { style?: CSSProperties }) => {
   return (
-    <Wrapper href="https://github.com/anton-g/AAAAAAAHHHH" style={style}>
+    <Wrapper
+      href="https://github.com/anton-g/AAAAAAAHHHH"
+      style={style}
+      onAnimationEnd={(e) => e.stopPropagation()}
+    >
       <Text>
         <InnerText>AAAHHHAAAAAAAAAHHHHAAAAHHHAAAAHHHHHHHHHHAAA</InnerText>
       </Text>

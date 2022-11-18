@@ -14,7 +14,11 @@ export const TvShowQuiz = ({ style }: { style?: CSSProperties }) => {
   }, [])
 
   return (
-    <Wrapper href="https://tv-show-quiz.netlify.app/" style={style}>
+    <Wrapper
+      href="https://tv-show-quiz.netlify.app/"
+      style={style}
+      onAnimationEnd={(e) => e.stopPropagation()}
+    >
       <Border />
       <Line />
       <Button

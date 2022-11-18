@@ -56,10 +56,11 @@ export const AchievementsModal = () => {
             </Description>
             <Spacer size={24} />
             <Achievements>
-              <Achievement variant="birb" locked={false} />
+              <Achievement variant="birb" locked={true} />
               <Achievement variant="eggo" locked={false} />
-              <Achievement variant="space" locked={false} />
-              <Achievement variant="balloon" locked={false} />
+              <Achievement variant="space" locked={true} />
+              <Achievement variant="balloon" locked={true} />
+              <Achievement variant="barrel" locked={true} />
             </Achievements>
           </Inner>
           <Close asChild>

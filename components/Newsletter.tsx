@@ -8,7 +8,7 @@ import useSound from 'use-sound'
 import Confettis from './Confettis'
 import { useSoundMode } from '../contexts/SoundContext'
 
-export const Newsletter = () => {
+export const Newsletter = ({ onEasterEgg }: { onEasterEgg: () => void }) => {
   const prefersReducedMotion = useReducedMotion()
   const [email, setEmail] = useState('')
   const [playFanfare] = useSound('sounds/fanfare.mp3', { volume: 0.4 })
@@ -32,6 +32,15 @@ export const Newsletter = () => {
       }
     }
   )
+
+  const handleSignup = () => {
+    if (email.toLowerCase() === 'do a barrel roll') {
+      onEasterEgg()
+      return
+    }
+
+    mutate({ email })
+  }
 
   return (
     <Wrapper>
@@ -90,7 +99,7 @@ export const Newsletter = () => {
               <Spacer size={16} />
               <Button
                 disabled={isLoading || email.length < 4}
-                onClick={() => mutate({ email })}
+                onClick={handleSignup}
               >
                 Subscribe
               </Button>

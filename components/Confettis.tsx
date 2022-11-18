@@ -100,7 +100,11 @@ const Confettis = ({ children, ...delegated }: { children: ReactNode }) => {
   }, [soundMode, playOff, playOn])
 
   return (
-    <Wrapper {...delegated} onClick={onClick}>
+    <Wrapper
+      {...delegated}
+      onClick={onClick}
+      onAnimationEnd={(e) => e.stopPropagation()}
+    >
       {confettis.map((confetti) => (
         <Confetti
           key={confetti.id}

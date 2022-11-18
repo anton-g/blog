@@ -3,7 +3,11 @@ import ProjectLink from './ProjectLink'
 
 export const FredagslunchenButton = ({ style }: { style?: CSSProperties }) => {
   return (
-    <FredagslunchenLink href="https://fredagslunchen.club" style={style}>
+    <FredagslunchenLink
+      href="https://fredagslunchen.club"
+      style={style}
+      onAnimationEnd={(e) => e.stopPropagation()}
+    >
       Fredagslunchen
       <Bite
         style={{

@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import styled from 'styled-components'
+import styled, { css, keyframes } from 'styled-components'
 import { motion, useReducedMotion } from 'framer-motion'
 import { useState } from 'react'
 import useDimensions from '../hooks/useDimensions'
@@ -14,11 +14,13 @@ import { CircleTextButton } from '../components/CircleTextButton'
 import { Newsletter } from '../components/Newsletter'
 import { BottomDrawer } from '../components/BottomDrawer'
 import dynamic from 'next/dynamic'
+import { trackGoal } from 'fathom-client'
 const ThreeDeeBackground = dynamic(
   () => import('../components/three/ThreeDeeBackground')
 )
 
 const Home: NextPage = () => {
+  const [barrelRoll, setBarrelRoll] = useState(false)
   const [load3D, setLoad3D] = useState(false)
   const [zoomOutActive, setZoomOutActive] = useState(false)
   const [ref, dimensions] = useDimensions({ liveMeasure: false })
@@ -36,6 +38,8 @@ const Home: NextPage = () => {
         initial={false}
         variants={zoomVariants(prefersReducedMotion ?? false)}
         ref={ref}
+        roll={barrelRoll}
+        onAnimationEnd={() => setBarrelRoll(false)}
       >
         <Head>
           <title>anton gunnarsson</title>
@@ -70,12 +74,26 @@ const Home: NextPage = () => {
           }}
         />
         <Spacer size={128} />
-        <Newsletter />
+        <Newsletter
+          onEasterEgg={() => {
+            setBarrelRoll(true)
+            trackGoal('YOFKF63X', 0)
+          }}
+        />
         <BottomDrawer liveMeasureDisabled={zoomOutActive} />
       </Wrapper>
     </OuterWrapper>
   )
 }
+
+const barrel = keyframes`
+  0% {
+    transform: rotateZ(0deg);
+  }
+  100% {
+    transform: rotateZ(360deg);
+  }
+`
 
 const OuterWrapper = styled.div`
   display: flex;
@@ -87,7 +105,7 @@ const OuterWrapper = styled.div`
   height: 100%;
 `
 
-const Wrapper = styled(motion.div)`
+const Wrapper = styled(motion.div)<{ roll: boolean }>`
   top: 0;
   width: 100%;
   max-width: 100%;
@@ -99,6 +117,13 @@ const Wrapper = styled(motion.div)`
   position: absolute;
   background-color: var(--color-gray1);
   transform-origin: 50% 30%;
+
+  ${({ roll }) =>
+    roll &&
+    css`
+      animation: ${barrel} 3s ease-in-out;
+      transform-origin: 50% 50%;
+    `}
 `
 
 export default Home

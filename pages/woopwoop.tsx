@@ -186,7 +186,8 @@ const Button = styled.button`
   }
 `
 
-const BackLink = styled(Link)`
+// TODO not using Link here because unloading a r3f scene seems to break react-spring????
+const BackLink = styled.a`
   color: var(--color-gray9);
   font-size: 14px;
   margin-top: 16px;
