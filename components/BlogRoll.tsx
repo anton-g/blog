@@ -21,6 +21,10 @@ export const BlogRoll = () => {
         <Spacer size={16} inline />
         •
         <Spacer size={16} inline />
+        <Link href="https://wtw.dev/">Ben Holmes</Link>
+        <Spacer size={16} inline />
+        •
+        <Spacer size={16} inline />
         <Link href="https://wattenberger.com">Amelia Wattenberger</Link>
         <Spacer size={16} inline />
         •
@@ -29,12 +33,17 @@ export const BlogRoll = () => {
         <Spacer size={16} inline />
         •
         <Spacer size={16} inline />
+        <Link href="https://whitep4nth3r.com/">Salma Alam-Naylor</Link>
+        <Spacer size={16} inline />
+        •
+        <Spacer size={16} inline />
         <Link href="https://www.joshwcomeau.com">Josh W. Comeau</Link>
         <Spacer size={16} inline />
         •
         <Spacer size={16} inline />
-        <Link href="https://kitze.io">Kitze</Link>
-        <Spacer size={16} inline />
+        <Link href="https://www.barbarianmeetscoding.com">
+          Jaime González García
+        </Link>
         •
         <Spacer size={16} inline />
         <Link href="https://www.sarasoueidan.com">Sara Soueidan</Link>
@@ -73,13 +82,23 @@ export const BlogRoll = () => {
         <Spacer size={16} inline />
         •
         <Spacer size={16} inline />
-        <Link href="http://rachelnabors.com">Rachel Lee Nabors</Link>
+        <Link href="http://rachelnabors.com">Rachel Nabors</Link>
         <Spacer size={16} inline />
         •
         <Spacer size={16} inline />
-        <Link href="https://www.barbarianmeetscoding.com">
-          Jaime González García
-        </Link>
+        <Link href="https://mxb.dev/">Max Böck</Link>
+        <Spacer size={16} inline />
+        •
+        <Spacer size={16} inline />
+        <Link href="https://maggieappleton.com/">Maggie Appleton</Link>
+        <Spacer size={16} inline />
+        •
+        <Spacer size={16} inline />
+        <Link href="https://twitter.com/jh3yy">Jhey Thompkins</Link>
+        <Spacer size={16} inline />
+        •
+        <Spacer size={16} inline />
+        <Link href="https://lynnandtonic.com/">Lynn Fisher</Link>
         <Spacer size={16} inline />•
       </Marquee>
     </Wrapper>

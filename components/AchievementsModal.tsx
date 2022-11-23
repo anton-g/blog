@@ -56,8 +56,9 @@ export const AchievementsModal = () => {
             </Description>
             <Spacer size={24} />
             <Achievements>
+              {/* Adding any more achivements here break the hover effect when parent is scrolled.. */}
               <Achievement variant="birb" locked={true} />
-              <Achievement variant="eggo" locked={false} />
+              <Achievement variant="eggo" locked={true} />
               <Achievement variant="space" locked={true} />
               <Achievement variant="balloon" locked={true} />
               <Achievement variant="barrel" locked={true} />
@@ -89,11 +90,11 @@ const Overlay = styled(Dialog.Overlay)`
   position: fixed;
   inset: 0;
   animation: ${overlayShow} 150ms cubic-bezier(0.16, 1, 0.3, 1);
-  z-index: 1;
+  z-index: 1000;
 `
 
 const Content = styled(Dialog.Content)`
-  z-index: 2;
+  z-index: 2000;
   background-color: white;
   border-radius: 6px;
   box-shadow: hsl(206 22% 7% / 35%) 0px 10px 38px -10px,
@@ -104,9 +105,11 @@ const Content = styled(Dialog.Content)`
   transform: translate(-50%, -50%);
   width: 100vw;
   max-width: 550px;
-  max-height: 85vh;
+  max-height: 95vh;
   padding-top: 0;
   animation: contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  overflow-y: auto;
+  overflow-x: hidden;
 
   &:focus {
     outline: none;
@@ -115,6 +118,7 @@ const Content = styled(Dialog.Content)`
 
 const Inner = styled.div`
   padding: 24px;
+  overflow: visible;
 `
 
 const Title = styled(Dialog.Title)`
@@ -153,4 +157,5 @@ const Achievements = styled.ul`
   margin: 0;
   padding: 0;
   list-style: none;
+  overflow-x: visible;
 `

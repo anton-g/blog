@@ -38,7 +38,7 @@ const Home: NextPage = () => {
         initial={false}
         variants={zoomVariants(prefersReducedMotion ?? false)}
         ref={ref}
-        roll={barrelRoll}
+        $roll={barrelRoll}
         onAnimationEnd={() => setBarrelRoll(false)}
       >
         <Head>
@@ -105,7 +105,7 @@ const OuterWrapper = styled.div`
   height: 100%;
 `
 
-const Wrapper = styled(motion.div)<{ roll: boolean }>`
+const Wrapper = styled(motion.div)<{ $roll: boolean }>`
   top: 0;
   width: 100%;
   max-width: 100%;
@@ -118,8 +118,8 @@ const Wrapper = styled(motion.div)<{ roll: boolean }>`
   background-color: var(--color-gray1);
   transform-origin: 50% 30%;
 
-  ${({ roll }) =>
-    roll &&
+  ${({ $roll }) =>
+    $roll &&
     css`
       animation: ${barrel} 3s ease-in-out;
       transform-origin: 50% 50%;
