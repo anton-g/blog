@@ -57,11 +57,11 @@ export const AchievementsModal = () => {
             <Spacer size={24} />
             <Achievements>
               {/* Adding any more achivements here break the hover effect when parent is scrolled.. */}
-              <Achievement variant="birb" locked={true} />
-              <Achievement variant="eggo" locked={true} />
-              <Achievement variant="space" locked={true} />
-              <Achievement variant="balloon" locked={true} />
-              <Achievement variant="barrel" locked={true} />
+              <Achievement variant="birb" locked={false} />
+              <Achievement variant="eggo" locked={false} />
+              <Achievement variant="space" locked={false} />
+              <Achievement variant="balloon" locked={false} />
+              <Achievement variant="barrel" locked={false} />
             </Achievements>
           </Inner>
           <Close asChild>

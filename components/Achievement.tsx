@@ -225,7 +225,26 @@ const O = styled.div`
 const trans = (x: number, y: number, s: number) =>
   `perspective(600px) rotateX(${x}deg) rotateY(${y}deg) scale(${s})`
 
-const use3dEffect = (disabled: boolean) => {
+const hypTrans = (mx: number, my: number) => {
+  const x = Math.min(Math.max(mx / 100, 0), 1)
+  const y = Math.min(Math.max(my / 100, 0), 1)
+
+  const hypX = -(4 * (x - 1)) * x
+  const hypY = -(4 * (y - 1)) * y
+
+  return Math.abs(hypX + hypY - 2)
+}
+
+type EffectOptions = {
+  hypModifier: number
+}
+const defaultOptions = {
+  hypModifier: 0.4,
+}
+const use3dEffect = (
+  disabled: boolean,
+  options: EffectOptions = defaultOptions
+) => {
   const [ref, dimensions] = useDimensions()
   const [props, api] = useSpring(() => ({
     xys: [0, 0, 1],
@@ -266,6 +285,7 @@ const use3dEffect = (disabled: boolean) => {
     transform: props.xys.to(trans),
     '--posy': props.mxy.to((mx, my) => `${my}%`),
     '--posx': props.mxy.to((mx) => `${mx / 4}%`),
+    '--hyp': props.mxy.to((mx, my) => hypTrans(mx, my) * options.hypModifier),
   }
 
   return { ref, attributes: { onMouseMove, onMouseLeave, style } }
