@@ -15,6 +15,7 @@ import { Newsletter } from '../components/Newsletter'
 import { BottomDrawer } from '../components/BottomDrawer'
 import dynamic from 'next/dynamic'
 import { trackGoal } from 'fathom-client'
+import { updateAchievements } from '../utils/eggs'
 const ThreeDeeBackground = dynamic(
   () => import('../components/three/ThreeDeeBackground')
 )
@@ -70,6 +71,9 @@ const Home: NextPage = () => {
             setLoad3D(true)
             setTimeout(() => {
               setZoomOutActive(true)
+              updateAchievements({
+                m: true,
+              })
             }, 1000)
           }}
         />
@@ -78,6 +82,9 @@ const Home: NextPage = () => {
           onEasterEgg={() => {
             setBarrelRoll(true)
             trackGoal('YOFKF63X', 0)
+            updateAchievements({
+              r: true,
+            })
           }}
         />
         <BottomDrawer liveMeasureDisabled={zoomOutActive} />

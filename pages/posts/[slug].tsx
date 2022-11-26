@@ -21,6 +21,7 @@ import { trackGoal } from 'fathom-client'
 import { useSoundMode } from '../../contexts/SoundContext'
 import * as Popover from '@radix-ui/react-popover'
 import Link from 'next/link'
+import { updateAchievements } from '../../utils/eggs'
 
 if (process.platform === 'win32') {
   process.env.ESBUILD_BINARY_PATH = join(
@@ -206,6 +207,12 @@ const PostFooter = ({ post }: { post: Post }) => {
       setBirdFed([...birdFed, feedNo])
       soundMode && playEatingSound()
       trackGoal('8CF5F0FV', 0)
+      console.log(birdFed)
+      if (birdFed.length === 2) {
+        updateAchievements({
+          t: true,
+        })
+      }
     }
   }
 

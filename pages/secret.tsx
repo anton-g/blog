@@ -8,7 +8,7 @@ import { useRouter } from 'next/router'
 import { Suspense, useRef, useState } from 'react'
 import styled from 'styled-components'
 import { Mesh } from 'three'
-import { updateEggSeed } from '../utils/eggs'
+import { updateAchievements, updateEggSeed } from '../utils/eggs'
 
 const Secret: NextPage = () => {
   const [seedPart, setSeedPart] = useState(0)
@@ -47,6 +47,9 @@ const Secret: NextPage = () => {
       onSuccess: (data) => {
         trackGoal('RYNQRL4W', 0)
         router.push(`/${data.value}`)
+        updateAchievements({
+          e: true,
+        })
       },
     }
   )

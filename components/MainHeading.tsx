@@ -7,6 +7,7 @@ import useSound from 'use-sound'
 import { useRef } from 'react'
 import { useSoundMode } from '../contexts/SoundContext'
 import { trackGoal } from 'fathom-client'
+import { updateAchievements } from '../utils/eggs'
 
 export const MainHeading = () => {
   const [playbackRate, setPlaybackRate] = useState(1)
@@ -48,6 +49,9 @@ export const MainHeading = () => {
       soundMode && playPop()
       clearTimeout(timeoutRef.current)
       trackGoal('9LGXBJZP', 0)
+      updateAchievements({
+        b: true,
+      })
       return
     }
 

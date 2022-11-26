@@ -5,12 +5,21 @@ import styled, { css, keyframes } from 'styled-components'
 import useKonami from '../hooks/useKonami'
 import { Spacer } from './Spacer'
 import { Achievement } from './Achievement'
+import { getAchievements } from '../utils/eggs'
 
 export const AchievementsModal = () => {
   const [open, setOpen] = useState(false)
   useKonami(() => {
     setOpen(true)
   })
+
+  const achivementsUnlocked = getAchievements()
+
+  const unlockedCount = achivementsUnlocked
+    ? Object.values(achivementsUnlocked).filter(Boolean).length
+    : 0
+
+  console.log({ unlockedCount })
 
   return (
     <>
@@ -56,12 +65,12 @@ export const AchievementsModal = () => {
             </Description>
             <Spacer size={24} />
             <Achievements>
-              {/* Adding any more achivements here break the hover effect when parent is scrolled.. */}
-              <Achievement variant="birb" locked={false} />
-              <Achievement variant="eggo" locked={false} />
-              <Achievement variant="space" locked={false} />
-              <Achievement variant="balloon" locked={false} />
-              <Achievement variant="barrel" locked={false} />
+              {/* Adding any more achivements here break the hover effect when parent is scrolled.. ;( */}
+              <Achievement variant="birb" locked={!achivementsUnlocked?.t} />
+              <Achievement variant="eggo" locked={!achivementsUnlocked?.e} />
+              <Achievement variant="space" locked={!achivementsUnlocked?.m} />
+              <Achievement variant="balloon" locked={!achivementsUnlocked?.b} />
+              <Achievement variant="barrel" locked={!achivementsUnlocked?.r} />
             </Achievements>
           </Inner>
           <Close asChild>

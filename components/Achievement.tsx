@@ -24,7 +24,7 @@ export const Achievement = ({
   }
 }
 
-const Base = styled(animated.li)<{ locked: boolean }>`
+const Base = styled(animated.li)<{ $locked: boolean }>`
   border-radius: 8px;
   width: 100%;
   color: var(--color-gray1);
@@ -56,8 +56,8 @@ const Base = styled(animated.li)<{ locked: boolean }>`
   --hyp: 0;
   --o: 0;
 
-  ${({ locked }) =>
-    locked &&
+  ${({ $locked }) =>
+    $locked &&
     css`
       user-select: none !important;
       filter: blur(3px) grayscale(80%);
@@ -76,8 +76,8 @@ const Base = styled(animated.li)<{ locked: boolean }>`
     margin: 0;
   }
 
-  ${({ locked }) =>
-    !locked &&
+  ${({ $locked }) =>
+    !$locked &&
     css`
       &:hover {
         box-shadow: 0px 30px 100px -10px rgba(0, 0, 0, 0.4);
@@ -90,7 +90,7 @@ const BirbAchievement = ({ locked }: { locked: boolean }) => {
   const { ref, attributes } = use3dEffect(locked)
 
   return (
-    <BirbWrapper locked={locked} ref={ref} {...attributes}>
+    <BirbWrapper $locked={locked} ref={ref} {...attributes}>
       <svg
         width="160"
         height="100"
@@ -139,7 +139,7 @@ const EggAchievement = ({ locked }: { locked: boolean }) => {
   const { ref, attributes } = use3dEffect(locked)
 
   return (
-    <EggWrapper locked={locked} ref={ref} {...attributes}>
+    <EggWrapper $locked={locked} ref={ref} {...attributes}>
       <h2>Egghead</h2>
       <p>Mr Holmes, I presume?</p>
       <Shine />
@@ -155,9 +155,9 @@ const SpaceAchievement = ({ locked }: { locked: boolean }) => {
   const { ref, attributes } = use3dEffect(locked)
 
   return (
-    <SpaceWrapper locked={locked} ref={ref} {...attributes}>
-      <h2>Moonwalker</h2>
-      <p>Alright alright, there was no moon.</p>
+    <SpaceWrapper $locked={locked} ref={ref} {...attributes}>
+      <h2>Stargazer</h2>
+      <p>?????????????</p>
       <Shine />
     </SpaceWrapper>
   )
@@ -171,9 +171,9 @@ const BarrelAchievement = ({ locked }: { locked: boolean }) => {
   const { ref, attributes } = use3dEffect(locked)
 
   return (
-    <BarrelWrapper locked={locked} ref={ref} {...attributes}>
+    <BarrelWrapper $locked={locked} ref={ref} {...attributes}>
       <h2>What a maneuver</h2>
-      <p>You spin me right round baby, right round</p>
+      <p>You spun me right round baby, right round</p>
       <Shine />
     </BarrelWrapper>
   )
@@ -187,9 +187,9 @@ const BalloonAchievement = ({ locked }: { locked: boolean }) => {
   const { ref, attributes } = use3dEffect(locked)
 
   return (
-    <BalloonWrapper locked={locked} ref={ref} {...attributes}>
+    <BalloonWrapper $locked={locked} ref={ref} {...attributes}>
       <O>o</O>
-      <h2>Balloon</h2>
+      <h2>Pop pop!</h2>
       <p>You just had to push the limit, didn&apos;t you?</p>
       <Shine />
     </BalloonWrapper>
