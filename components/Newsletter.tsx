@@ -34,12 +34,14 @@ export const Newsletter = ({ onEasterEgg }: { onEasterEgg: () => void }) => {
   )
 
   const handleSignup = () => {
+    mutate({ email })
+  }
+
+  const handleEasterEgg = () => {
     if (email.toLowerCase() === 'do a barrel roll') {
       onEasterEgg()
       return
     }
-
-    mutate({ email })
   }
 
   return (
@@ -89,6 +91,7 @@ export const Newsletter = ({ onEasterEgg }: { onEasterEgg: () => void }) => {
                 transform: 'perspective(600px) rotateX(90deg)',
               }}
               transition={{ type: 'spring' }}
+              onSubmit={handleSignup}
             >
               <Input
                 type="email"
@@ -99,7 +102,7 @@ export const Newsletter = ({ onEasterEgg }: { onEasterEgg: () => void }) => {
               <Spacer size={16} />
               <Button
                 disabled={isLoading || email.length < 4}
-                onClick={handleSignup}
+                onClick={handleEasterEgg}
               >
                 Subscribe
               </Button>
@@ -155,7 +158,7 @@ const Title = styled.h2`
   line-height: 0.8;
 `
 
-const Signup = styled(motion.div)`
+const Signup = styled(motion.form)`
   display: flex;
   @media (max-width: 481px) {
     flex-wrap: wrap;
