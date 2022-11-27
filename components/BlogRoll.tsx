@@ -158,7 +158,7 @@ const MarqueeInner = styled.div`
   width: max-content;
   position: absolute;
   overflow: hidden;
-  animation: ${marquee} 70s linear infinite;
+  animation: ${marquee} 120s linear infinite;
   &:hover {
     animation-play-state: paused;
   }

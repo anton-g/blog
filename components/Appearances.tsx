@@ -5,7 +5,7 @@ import { Spacer } from './Spacer'
 export const Appearances = () => {
   return (
     <Wrapper>
-      <Heading>Recommended talks</Heading>
+      <Heading>Selected talks</Heading>
       <Posts>
         <Post href="/">CSS *is* awesome</Post>
         <Post href="/">It&apos;s always better when we&apos;re together</Post>

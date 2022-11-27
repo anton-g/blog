@@ -6,7 +6,7 @@ import { BouncyArrowLink } from './BouncyArrowLink'
 export const FeaturedPosts = () => {
   return (
     <Wrapper>
-      <Heading>Recommended posts</Heading>
+      <Heading>Selected posts</Heading>
       <Posts>
         <Post href="/posts/react-component-code-smells">
           React Component Code Smells

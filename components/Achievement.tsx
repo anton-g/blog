@@ -2,6 +2,8 @@ import styled, { css } from 'styled-components'
 import { useSpring, animated } from '@react-spring/web'
 import { MouseEventHandler } from 'react'
 import useDimensions from '../hooks/useDimensions'
+import Image from 'next/image'
+import birb from '../images/birb.png'
 
 export const Achievement = ({
   variant,
@@ -157,14 +159,64 @@ const SpaceAchievement = ({ locked }: { locked: boolean }) => {
   return (
     <SpaceWrapper $locked={locked} ref={ref} {...attributes}>
       <h2>Stargazer</h2>
-      <p>?????????????</p>
+      <p>Do not go gentle into that good night</p>
+      <Image src={birb} alt="" />
+      <svg
+        id="patternId"
+        width="100%"
+        height="100%"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <defs>
+          <pattern
+            id="a"
+            patternUnits="userSpaceOnUse"
+            width="40"
+            height="40"
+            patternTransform="scale(0.8) rotate(190)"
+          >
+            <path
+              d="M23.222 25.097l-3.266-2.056-3.219 2.058.983-3.847-3.042-2.503 3.936-.18 1.52-3.668 1.342 3.578 3.846.312-2.996 2.505z"
+              strokeWidth="1"
+              stroke="none"
+              fill="#3131bd"
+            />
+            <path
+              d="M.133-5.1l-1.52 3.668-3.935.18 3.043 2.504-.985 3.848L-.043 3.04l3.264 2.057-.895-3.803L5.322-1.21l-3.845-.312L.133-5.1zm40 0l-1.52 3.668-3.935.18 3.043 2.504-.985 3.848 3.221-2.059 3.264 2.057-.895-3.803 2.996-2.504-3.845-.312L40.133-5.1zm-40 40l-1.52 3.668-3.935.18 3.043 2.504-.985 3.848 3.221-2.059 3.264 2.057-.895-3.803 2.996-2.504-3.845-.312L.133 34.9zm40 0l-1.52 3.668-3.935.18 3.043 2.504-.985 3.848 3.221-2.059 3.264 2.057-.895-3.803 2.996-2.504-3.845-.312-1.344-3.579z"
+              strokeWidth="1"
+              stroke="none"
+              fill="#4040b0"
+            />
+          </pattern>
+        </defs>
+        <rect
+          width="100%"
+          height="100%"
+          transform="translate(0,0)"
+          fill="url(#a)"
+        />
+      </svg>
       <Shine />
     </SpaceWrapper>
   )
 }
 
 const SpaceWrapper = styled(Base)`
-  background-color: darkslategray;
+  background-color: #191970;
+
+  > svg {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+  }
+
+  > img {
+    position: absolute;
+    bottom: -12px;
+    left: -12px;
+    height: 80px;
+    width: 100px;
+  }
 `
 
 const BarrelAchievement = ({ locked }: { locked: boolean }) => {
@@ -185,7 +237,7 @@ const BarrelAchievement = ({ locked }: { locked: boolean }) => {
         />
         <path
           d="M17 124C17 290.405 172 376.542 172 467.119C172 557.696 17 650.213 17 823M172 124C172 290.405 17 376.542 17 467.119C17 557.696 172 650.213 172 823"
-          stroke="black"
+          stroke="hsla(0, 100%, 0%, 50%)"
           stroke-width="4"
         />
       </svg>
@@ -217,10 +269,10 @@ const BarrelWrapper = styled(Base)`
 
   > svg {
     position: absolute;
-    top: -24px;
+    top: -32px;
     left: 24px;
     z-index: -1;
-    transform: rotateZ(60deg);
+    transform: rotateZ(65deg);
   }
 `
 
