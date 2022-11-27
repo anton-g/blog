@@ -5,7 +5,7 @@ import styled, { keyframes } from 'styled-components'
 import { EasterEgg } from '../components/EasterEgg'
 import { Fireworks } from '../components/Fireworks'
 import { saveSvgAsPng } from 'save-svg-as-png'
-import { getEggSeed } from '../utils/eggs'
+import { getEggSeed, updateEggSeed } from '../utils/eggs'
 import Link from 'next/link'
 import { trackGoal } from 'fathom-client'
 
@@ -14,10 +14,16 @@ const WoopWoop: NextPage = () => {
   const [seed] = useState(() => {
     const eggSeed = getEggSeed()
 
+    if (eggSeed?.x) return eggSeed.x
+
     let seed = 0
     if (eggSeed?.a) seed += eggSeed.a
     if (eggSeed?.b) seed += eggSeed.b
     if (eggSeed?.c) seed += eggSeed.c
+
+    updateEggSeed({
+      x: seed,
+    })
 
     return seed
   })

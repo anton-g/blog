@@ -5,9 +5,12 @@ type EggSeed = {
   a?: number
   b?: number
   c?: number
+  x?: number
 }
 
 export const updateEggSeed = (update: EggSeed) => {
+  if (typeof localStorage === 'undefined') return
+
   const existingSeed = getEggSeed()
 
   const newSeed: EggSeed = {
