@@ -1,9 +1,10 @@
 import styled, { css } from 'styled-components'
 import { useSpring, animated } from '@react-spring/web'
-import { MouseEventHandler } from 'react'
+import { MouseEventHandler, ReactNode } from 'react'
 import useDimensions from '../hooks/useDimensions'
 import Image from 'next/image'
 import birb from '../images/birb.png'
+import { LockClosedIcon } from '@radix-ui/react-icons'
 
 export const Achievement = ({
   variant,
@@ -14,21 +15,70 @@ export const Achievement = ({
 }) => {
   switch (variant) {
     case 'birb':
-      return <BirbAchievement locked={locked} />
+      return (
+        <Lock locked={locked}>
+          <BirbAchievement locked={locked} />
+        </Lock>
+      )
     case 'eggo':
-      return <EggAchievement locked={locked} />
+      return (
+        <Lock locked={locked}>
+          <EggAchievement locked={locked} />
+        </Lock>
+      )
     case 'space':
-      return <SpaceAchievement locked={locked} />
+      return (
+        <Lock locked={locked}>
+          <SpaceAchievement locked={locked} />
+        </Lock>
+      )
     case 'balloon':
-      return <BalloonAchievement locked={locked} />
+      return (
+        <Lock locked={locked}>
+          <BalloonAchievement locked={locked} />
+        </Lock>
+      )
     case 'barrel':
-      return <BarrelAchievement locked={locked} />
+      return (
+        <Lock locked={locked}>
+          <BarrelAchievement locked={locked} />
+        </Lock>
+      )
   }
 }
 
+const Lock = ({
+  locked,
+  children,
+}: {
+  locked: boolean
+  children: ReactNode
+}) => {
+  return (
+    <LockWrapper>
+      {children}
+      {locked && <LockClosedIcon />}
+    </LockWrapper>
+  )
+}
+
+const LockWrapper = styled.div`
+  position: relative;
+
+  > svg {
+    z-index: 9999;
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1.7);
+  }
+`
+
 const Base = styled(animated.li)<{ $locked: boolean }>`
-  border-radius: 8px;
   width: 100%;
+  height: 80px;
+  border-radius: 8px;
   color: var(--color-gray1);
   font-family: var(--font-yeseva);
   position: relative;
@@ -38,7 +88,6 @@ const Base = styled(animated.li)<{ $locked: boolean }>`
   align-items: flex-end;
   justify-content: center;
   padding-right: 24px;
-  height: 80px;
   background: palevioletred;
   z-index: 1;
   transition: box-shadow 0.5s;
@@ -62,7 +111,7 @@ const Base = styled(animated.li)<{ $locked: boolean }>`
     $locked &&
     css`
       user-select: none !important;
-      filter: blur(3px) grayscale(80%);
+      filter: blur(2px) grayscale(80%);
 
       > * {
         filter: blur(10px);
@@ -150,7 +199,7 @@ const EggAchievement = ({ locked }: { locked: boolean }) => {
 }
 
 const EggWrapper = styled(Base)`
-  background-color: gold;
+  background-color: #4daa57;
 `
 
 const SpaceAchievement = ({ locked }: { locked: boolean }) => {
