@@ -7,9 +7,15 @@ export const Appearances = () => {
     <Wrapper>
       <Heading>Selected talks</Heading>
       <Posts>
-        <Post href="/">CSS *is* awesome</Post>
-        <Post href="/">It&apos;s always better when we&apos;re together</Post>
-        <Post href="/">Into the Visual World of State Machines</Post>
+        <Post href="https://www.youtube.com/watch?v=uo3px1L3H70">
+          CSS *is* awesome
+        </Post>
+        <Post href="https://youtu.be/q7bAYxZMJho?t=3586">
+          It&apos;s always better when we&apos;re together
+        </Post>
+        <Post href="https://www.youtube.com/watch?v=GYSD0JudjwI&t=125s">
+          Into the Visual World of State Machines
+        </Post>
       </Posts>
       <Spacer size={16} />
       <BouncyArrowLink href="/appearances" text="All appearances" />
