@@ -94,7 +94,7 @@ export default function ConfettiCanon() {
           left: '36px',
           overflow: 'hidden',
           userSelect: 'none',
-          backgroundColor: 'red',
+          // backgroundColor: 'red',
         }}
         refConfetti={getInstance}
       />
