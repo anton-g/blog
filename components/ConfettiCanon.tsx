@@ -59,7 +59,7 @@ export default function ConfettiCanon() {
         particleCount: lerp(20, 200, percentage),
         ticks: lerp(100, 200, percentage),
         gravity: 0.7,
-        origin: { x: 0, y: 0.66 },
+        origin: { x: 0, y: 0.77 },
         colors: ['#a864fd', '#29cdff', '#78ff44', '#ff718d', '#fdff6a'],
       })
     }
@@ -87,13 +87,14 @@ export default function ConfettiCanon() {
         style={{
           position: 'absolute',
           pointerEvents: 'none',
-          width: '85vw',
-          height: '100vh',
+          width: 765,
+          maxWidth: '85vw',
+          height: '150vh',
           bottom: '-25vh',
           left: '36px',
           overflow: 'hidden',
           userSelect: 'none',
-          // backgroundColor: 'red',
+          backgroundColor: 'red',
         }}
         refConfetti={getInstance}
       />
