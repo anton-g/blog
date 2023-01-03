@@ -19,7 +19,14 @@ export const AchievementsModal = () => {
     ? Object.values(achivementsUnlocked).filter(Boolean).length
     : 0
 
-  console.log({ unlockedCount })
+  const texts: Record<number, string> = {
+    0: 'Wow, you found the super secret list of achivements! Now you just have to go explore the site to unlock your badges!',
+    1: 'Wow, you found the super secret list of achivements! Now you just have to go explore the site to unlock the rest of the badges!',
+    2: 'Looking great! You found some easter eggs already, keep looking for more!',
+    3: `Looking great! You've found more than half of the easter eggs, keep looking!`,
+    4: 'Wow! So close to finding them all, just one more!',
+    5: 'Wow, congrats! You found all the easter eggs! You win the right to brag about it to anyone you want! 🎉',
+  }
 
   return (
     <>
@@ -27,7 +34,7 @@ export const AchievementsModal = () => {
         <Overlay />
         <Content>
           <Title>
-            <svg viewBox="0 0 500 156">
+            <svg viewBox="0 0 500 156" style={{ marginTop: -16 }}>
               <path
                 id="curve"
                 d="M73.2002 148.6C77.2002 142.5 138.7 79.3 251.8 80.5C363.1 81.7 422.6 143.3 426.9 150"
@@ -59,10 +66,7 @@ export const AchievementsModal = () => {
             </svg>
           </Title>
           <Inner>
-            <Description>
-              Wow, you found the super secret list of achivements! Now you just
-              have to go explore the site to unlock your badges!
-            </Description>
+            <Description>{texts[unlockedCount]}</Description>
             <Spacer size={24} />
             <Achievements>
               {/* Adding any more achivements here break the hover effect when parent is scrolled.. ;( */}
@@ -127,6 +131,7 @@ const Content = styled(Dialog.Content)`
 
 const Inner = styled.div`
   padding: 24px;
+  padding-top: 8px;
   overflow: visible;
 `
 

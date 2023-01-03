@@ -105,7 +105,9 @@ const Base = styled(animated.li)<{ $locked: boolean }>`
   --posx: 50%;
   --posy: 50%;
   --hyp: 0;
+  --hyp-m: 1;
   --o: 0;
+  --bg-image: url(./illusion2.png);
 
   ${({ $locked }) =>
     $locked &&
@@ -193,6 +195,16 @@ const EggAchievement = ({ locked }: { locked: boolean }) => {
     <EggWrapper $locked={locked} ref={ref} {...attributes}>
       <h2>Egghead</h2>
       <p>Mr Holmes, I presume?</p>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        version="1.0"
+        viewBox="0 0 926 1280"
+      >
+        <path
+          fill="white"
+          d="M459 1c-50 7-106 32-155 69a519 519 0 0 0-101 104C122 281 60 433 20 620c-39 188-21 337 56 452 64 96 175 165 311 196 42 9 74 13 95 11 44-4 93-15 136-31a457 457 0 0 0 220-167c80-116 105-275 76-474-9-65-44-180-81-267A663 663 0 0 0 631 57c-36-26-74-43-112-51-23-5-47-7-60-5z"
+        />
+      </svg>
       <Shine />
     </EggWrapper>
   )
@@ -200,6 +212,19 @@ const EggAchievement = ({ locked }: { locked: boolean }) => {
 
 const EggWrapper = styled(Base)`
   background-color: #4daa57;
+  background-image: url("data:image/svg+xml,<svg id='patternId' width='100%' height='100%' xmlns='http://www.w3.org/2000/svg'><defs><pattern id='a' patternUnits='userSpaceOnUse' width='48' height='48' patternTransform='scale(1) rotate(50)'><rect x='0' y='0' width='100%' height='100%' fill='hsla(126, 0%, 100%, 1)'/><path d='M5.323 7.811a10.233 10.233 0 01-11.77 0m60.894 0a10.234 10.234 0 01-11.77 0M-6.447 40.19a10.234 10.234 0 0111.77 0m37.354 0a10.235 10.235 0 0111.77 0m-24.562-7.817a10.234 10.234 0 01-11.77 0m0-16.746A10.234 10.234 0 0124 13.767c2.107 0 4.162.649 5.886 1.86'  stroke-linejoin='round' stroke-linecap='round' stroke-width='5' stroke='hsla(126, 63%, 38%, 1)' fill='none'/><path d='M15.627 5.323a10.234 10.234 0 010-11.77m16.746 0a10.234 10.234 0 010 11.77M15.627 54.447a10.233 10.233 0 010-11.77m16.746 0a10.234 10.234 0 010 11.77m7.817-24.562a10.234 10.234 0 010-11.77m-32.379 0a10.234 10.234 0 010 11.771'  stroke-linejoin='round' stroke-linecap='round' stroke-width='5' stroke='hsla(126, 63%, 38%, 1)' fill='none'/></pattern></defs><rect width='800%' height='800%' transform='translate(0,0)' fill='url(%23a)'/></svg>");
+  --bg-image: url(/spots.png);
+  --imgsize: 30%;
+  --angle: 70deg;
+
+  > svg {
+    position: absolute;
+    top: 16px;
+    left: 8px;
+    z-index: -1;
+    transform-origin: 0% 0%;
+    transform: scale(0.15) rotateZ(-5deg);
+  }
 `
 
 const SpaceAchievement = ({ locked }: { locked: boolean }) => {
@@ -252,6 +277,9 @@ const SpaceAchievement = ({ locked }: { locked: boolean }) => {
 
 const SpaceWrapper = styled(Base)`
   background-color: #191970;
+  --bg-image: url(/illusion.png);
+  --imgsize: 15%;
+  --hyp-m: 1.2;
 
   > svg {
     position: absolute;
@@ -299,6 +327,8 @@ const BarrelAchievement = ({ locked }: { locked: boolean }) => {
 }
 
 const BarrelWrapper = styled(Base)`
+  --angle: 160deg;
+
   background-color: #ff4800;
   background-color: #ffffff;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cg fill='%23d80800' fill-opacity='0.15'%3E%3Cpolygon fill-rule='evenodd' points='8 4 12 6 8 8 6 12 4 8 0 6 4 4 6 0 8 4'/%3E%3C/g%3E%3C/svg%3E"),
@@ -437,7 +467,7 @@ const Shine = styled.div`
   position: absolute;
   inset: -50%;
   mix-blend-mode: color-dodge;
-  background-image: url(https://res.cloudinary.com/simey/image/upload/Dev/PokemonCards/illusion.webp),
+  background-image: var(--bg-image),
     repeating-linear-gradient(
       0deg,
       rgb(255, 119, 115) calc(var(--space) * 1),
@@ -460,9 +490,10 @@ const Shine = styled.div`
   background-blend-mode: exclusion, hue, hard-light;
   background-size: var(--imgsize), 200% 700%, 300%;
   background-position: center, 0% var(--posy), var(--posx) var(--posy);
-  filter: brightness(calc((var(--hyp) * 0.3) + 0.5)) contrast(2) saturate(1.5);
-  -webkit-filter: brightness(calc((var(--hyp) * 0.3) + 0.5)) contrast(2)
-    saturate(1.5);
+  filter: brightness(calc(((var(--hyp) * 0.3) + 0.5) * var(--hyp-m)))
+    contrast(2) saturate(1.5);
+  -webkit-filter: brightness(calc(((var(--hyp) * 0.3) + 0.5) * var(--hyp-m)))
+    contrast(2) saturate(1.5);
   display: grid;
   grid-area: 1/1;
   opacity: var(--o);
@@ -473,11 +504,10 @@ const Shine = styled.div`
     content: ' ';
     visibility: visible;
     --space: 5%;
-    --angle: 133deg;
     --imgsize: 10%;
     width: 100%;
     mix-blend-mode: exclusion;
-    background-image: url(https://res.cloudinary.com/simey/image/upload/Dev/PokemonCards/illusion.webp),
+    background-image: var(--bg-image),
       repeating-linear-gradient(
         0deg,
         rgb(255, 119, 115) calc(var(--space) * 1),
@@ -501,10 +531,10 @@ const Shine = styled.div`
     background-size: var(--imgsize), 200% 400%, 195%, 200%;
     background-position: center, 0% var(--posy),
       calc(var(--posx) * -1) calc(var(--posy) * -1), var(--posx) var(--posy);
-    filter: brightness(calc((var(--hyp) * 0.5) + 0.8)) contrast(1.6)
-      saturate(1.4);
-    -webkit-filter: brightness(calc((var(--hyp) * 0.5) + 0.8)) contrast(1.6)
-      saturate(1.4);
+    filter: brightness(calc(((var(--hyp) * 0.5) + 0.8) * var(--hyp-m)))
+      contrast(1.6) saturate(1.4);
+    -webkit-filter: brightness(calc(((var(--hyp) * 0.5) + 0.8) * var(--hyp-m)))
+      contrast(1.6) saturate(1.4);
     display: grid;
     grid-area: 1/1;
   }
