@@ -91,13 +91,13 @@ const Confettis = ({ children, ...delegated }: { children: ReactNode }) => {
   )
 
   const onClick = useCallback(() => {
-    if (soundMode) {
-      playOff()
+    if (disabled) {
+      soundMode && playOff()
     } else {
-      playOn()
+      soundMode && playOn()
     }
     setDisabled((d) => !d)
-  }, [soundMode, playOff, playOn])
+  }, [soundMode, playOff, playOn, disabled])
 
   return (
     <Wrapper
