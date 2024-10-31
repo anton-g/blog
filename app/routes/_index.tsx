@@ -17,6 +17,7 @@ import useDimensions from '~/hooks/useDimensions'
 import { cn } from '~/other/misc'
 import { Nav } from '~/components/Nav'
 import { MainHeading } from '~/components/MainHeading'
+import { FeaturedPosts } from '~/components/FeaturedPosts'
 // import { updateAchievements } from '../utils/eggs'
 // const ThreeDeeBackground = dynamic(() => import('../components/three/ThreeDeeBackground'))
 
@@ -59,9 +60,9 @@ export default function Index() {
       >
         <Nav />
         <MainHeading />
-        {/* 
-        <Spacer size={48} />
+        {/* <Spacer size={48} /> */}
         <FeaturedPosts />
+        {/* 
         <Spacer size={128} />
         <Projects />
         <Spacer size={128} />
