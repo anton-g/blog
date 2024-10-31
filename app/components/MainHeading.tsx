@@ -107,10 +107,15 @@ export const MainHeading = () => {
       particleCount: 500,
       startVelocity: 20,
     })
-    instance?.current?.({
+    instance.current({
       ...shared,
       particleCount: 100,
       startVelocity: 7,
+    })
+    instance.current({
+      ...shared,
+      particleCount: 100,
+      startVelocity: 50,
     })
   }
 
