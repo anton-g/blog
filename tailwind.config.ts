@@ -32,6 +32,7 @@ export default {
         appearDelayed: 'appearDelayed 400ms linear forwards',
         tvOff: 'tvOff 400ms linear forwards',
         oneToZeroDashoffset: 'oneToZeroDashoffset 1s linear forwards',
+        radioBounce: 'bounce2 2.2s ease infinite alternate',
       },
     },
     keyframes: {
@@ -145,6 +146,23 @@ export default {
         },
         '100%': {
           transform: 'translateY(0px)',
+        },
+      },
+      bounce2: {
+        '10%': {
+          transform: 'scaleY(0.3)',
+        },
+        '30%': {
+          transform: 'scaleY(1)',
+        },
+        '60%': {
+          transform: 'scaleY(0.5)',
+        },
+        '80%': {
+          transform: 'scaleY(0.75)',
+        },
+        '100%': {
+          transform: 'scaleY(0.6)',
         },
       },
     },

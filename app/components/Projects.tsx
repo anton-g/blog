@@ -9,6 +9,7 @@ import { AaaaaahhButton } from './AaaaaahhButton'
 import { CharadgeneratornButton } from './CharadgeneratornButton'
 import { DrawWTFButton } from './DrawWTFButton'
 import { FredagslunchenButton } from './FredagslunchenButton'
+import { PodcastButton } from './PodcastButton'
 import { TvShowQuiz } from './TvShowQuizButton'
 
 export const Projects = () => {
@@ -33,9 +34,9 @@ export const Projects = () => {
         <AaaaaahhButton />
         {/* <Spacer size={32} /> */}
         <CharadgeneratornButton style={{ marginTop: -36 }} />
-        {/* <Spacer size={64} />
+        {/* <Spacer size={64} /> */}
         <PodcastButton />
-        <Spacer size={96} /> */}
+        {/* <Spacer size={96} /> */}
       </div>
       <div
         style={{ writingMode: 'vertical-lr', textOrientation: 'mixed' }}
