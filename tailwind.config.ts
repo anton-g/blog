@@ -33,6 +33,7 @@ export default {
         tvOff: 'tvOff 400ms linear forwards',
         oneToZeroDashoffset: 'oneToZeroDashoffset 1s linear forwards',
         radioBounce: 'bounce2 2.2s ease infinite alternate',
+        boot: 'followPath 1s cubic-bezier(0, 0, 1, 1) 1 forwards, rotate720 1s linear 1 forwards',
       },
     },
     keyframes: {
@@ -163,6 +164,24 @@ export default {
         },
         '100%': {
           transform: 'scaleY(0.6)',
+        },
+      },
+      followPath: {
+        '0%': {
+          'motion-offset': '100%',
+          'offset-distance': '100%',
+        },
+        '100%': {
+          'motion-offset': '0%',
+          'offset-distance': '0%',
+        },
+      },
+      rotate720: {
+        '0%': {
+          transform: 'rotate(0deg)',
+        },
+        '100%': {
+          transform: 'rotate(-720deg)',
         },
       },
     },

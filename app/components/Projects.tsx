@@ -1,14 +1,8 @@
-// import { DrawWTFButton } from './DrawWTFButton'
-// import { FredagslunchenButton } from './FredagslunchenButton'
-// import { KampgeneratorButton } from './KampgeneratorButton'
-// import { PodcastButton } from './PodcastButton'
-// import { Spacer } from './Spacer'
-// import { TvShowQuiz } from './TvShowQuizButton'
-
 import { AaaaaahhButton } from './AaaaaahhButton'
 import { CharadgeneratornButton } from './CharadgeneratornButton'
 import { DrawWTFButton } from './DrawWTFButton'
 import { FredagslunchenButton } from './FredagslunchenButton'
+import { KampgeneratorButton } from './KampgeneratornButton'
 import { PodcastButton } from './PodcastButton'
 import { TvShowQuiz } from './TvShowQuizButton'
 
@@ -26,9 +20,9 @@ export const Projects = () => {
         <DrawWTFButton style={{ marginBottom: -12 }} />
         {/* <Spacer size={32} /> */}
         <FredagslunchenButton style={{ marginTop: -12 }} />
-        {/* <Spacer size={64} />
+        {/* <Spacer size={64} /> */}
         <KampgeneratorButton style={{ marginTop: -24 }} />
-        <Spacer size={96} /> */}
+        {/* <Spacer size={96} /> */}
         <TvShowQuiz />
         {/* <Spacer size={96} /> */}
         <AaaaaahhButton />
