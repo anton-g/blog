@@ -36,6 +36,7 @@
     "react-canvas-confetti": "^2.0.7",
     "react-dom": "^18.2.0",
     "tailwind-merge": "^2.5.4",
+    "tailwindcss-animation-delay": "^2.0.1",
     "three": "^0.169.0",
     "three-stdlib": "^2.33.0",
     "use-sound": "^4.0.3"

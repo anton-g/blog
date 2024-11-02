@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.striped-bg {
+  background-size: 10px 10px;
+  background-image: repeating-linear-gradient(
+    45deg,
+    theme('colors.gray.300') 0,
+    theme('colors.gray.300') 1px,
+    theme('colors.gray.100') 0,
+    theme('colors.gray.100') 50%
+  );
+}
+.drawwtf:focus svg path,
+.drawwtf:hover svg path {
+  stroke-dashoffset: 0;
+}
