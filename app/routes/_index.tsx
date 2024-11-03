@@ -20,6 +20,7 @@ import { MainHeading } from '~/components/MainHeading'
 import { FeaturedPosts } from '~/components/FeaturedPosts'
 import { Projects } from '~/components/Projects'
 import { Appearances } from '~/components/Appearances'
+import { BottomDrawer } from '~/components/BottomDrawer'
 // import { updateAchievements } from '../utils/eggs'
 // const ThreeDeeBackground = dynamic(() => import('../components/three/ThreeDeeBackground'))
 
@@ -89,6 +90,8 @@ export default function Index() {
           }}
         />
         <Spacer size={128} />
+        */}
+        {/*
         <Newsletter
           onEasterEgg={() => {
             setBarrelRoll(true)
@@ -97,8 +100,8 @@ export default function Index() {
               r: true,
             })
           }}
-        />
-        <BottomDrawer liveMeasureDisabled={zoomOutActive} /> */}
+        />*/}
+        <BottomDrawer liveMeasureDisabled={false} />
       </motion.div>
     </div>
   )

@@ -35,6 +35,7 @@ export default {
         radioBounce: 'bounce2 2.2s ease infinite alternate',
         boot: 'followPath 1s cubic-bezier(0, 0, 1, 1) 1 forwards, rotate720 1s linear 1 forwards',
         width: 'width 8s ease infinite',
+        marquee: 'marquee 120s linear infinite',
       },
     },
     keyframes: {
@@ -214,75 +215,11 @@ export default {
           width: '0',
         },
       },
+      marquee: {
+        '0%': { transform: 'translateX(101vw)' },
+        '100%': { transform: 'translateX(-100%)' },
+      },
     },
   },
   plugins: [require('tailwindcss-animation-delay')],
 } satisfies Config
-
-// const Wrapper = styled(Link)`
-//   @media (prefers-reduced-motion: no-preference) {
-//     &:hover,
-//     &:focus {
-//       ${Text} {
-//         animation: ${textScaleAnimation} ease-in 600ms;
-//         animation-fill-mode: forwards;
-//       }
-
-//       ${InnerText} {
-//         animation: ${scrollAnimation} linear 10s infinite;
-//         animation-delay: 550ms;
-//       }
-
-//       ${Mouth} {
-//         animation: ${scaleUpAnimation} ease-in 600ms;
-//         animation-fill-mode: forwards;
-//       }
-
-//       ${ShakeWrapper} {
-//         animation: ${shakeAnimation} linear 1.5s infinite;
-//       }
-//     }
-//   }
-// `
-
-// const shakeAnimation = keyframes`
-//   10%, 90% {
-//     transform: translate3d(-1px, -1px, 0);
-//   }
-
-//   20%, 80% {
-//     transform: translate3d(1px, 1px, 0);
-//   }
-
-//   30%, 50%, 70% {
-//     transform: translate3d(-2px, -1px, 0);
-//   }
-
-//   40%, 60% {
-//     transform: translate3d(2px, -2px, 0);
-//   }
-// `
-
-// const scrollAnimation = keyframes`
-//   to {
-//     transform: translateX(-100%);
-//   }
-// `
-
-// const scaleUpAnimation = keyframes`
-//  from {
-//   transform: scale(0);
-//  }
-//  to {
-//   transform: scale(1);
-//  }
-// `
-
-// const textScaleAnimation = keyframes`
-//  from {
-//   transform: scale(1);
-//  }
-//  to {
-//   transform: scale(0.6);
-//  }
-// `
