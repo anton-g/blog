@@ -1,4 +1,5 @@
 import { AaaaaahhButton } from './AaaaaahhButton'
+import { AreasButton } from './AreasButton'
 import { CharadgeneratornButton } from './CharadgeneratornButton'
 import { DrawWTFButton } from './DrawWTFButton'
 import { FredagslunchenButton } from './FredagslunchenButton'
@@ -31,6 +32,7 @@ export const Projects = () => {
         {/* <Spacer size={64} /> */}
         <PodcastButton />
         {/* <Spacer size={96} /> */}
+        <AreasButton />
       </div>
       <div
         style={{ writingMode: 'vertical-lr', textOrientation: 'mixed' }}

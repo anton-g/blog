@@ -34,6 +34,7 @@ export default {
         oneToZeroDashoffset: 'oneToZeroDashoffset 1s linear forwards',
         radioBounce: 'bounce2 2.2s ease infinite alternate',
         boot: 'followPath 1s cubic-bezier(0, 0, 1, 1) 1 forwards, rotate720 1s linear 1 forwards',
+        width: 'width 8s ease infinite',
       },
     },
     keyframes: {
@@ -182,6 +183,35 @@ export default {
         },
         '100%': {
           transform: 'rotate(-720deg)',
+        },
+      },
+      width: {
+        '0%': {
+          width: '0',
+        },
+        '10%': {
+          width: '70%',
+        },
+        '25%': {
+          width: '40%',
+        },
+        '45%': {
+          width: '60%',
+        },
+        '50%': {
+          width: '15%',
+        },
+        '75%': {
+          width: '80%',
+        },
+        '85%': {
+          width: '50%',
+        },
+        '95%': {
+          width: '97%',
+        },
+        '100%': {
+          width: '0',
         },
       },
     },
