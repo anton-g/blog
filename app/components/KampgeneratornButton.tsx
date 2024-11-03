@@ -16,7 +16,7 @@ const Boot = () => {
   // TODO support in safari?
   return (
     <svg
-      className="absolute overflow-visible pointer-events-none group-hover:animate-boot"
+      className="absolute overflow-visible pointer-events-none group-focus:animate-boot group-hover:animate-boot"
       width="26"
       height="30"
       viewBox="0 0 37 43"
@@ -37,23 +37,3 @@ const Boot = () => {
     </svg>
   )
 }
-
-// const Kamp = styled(ProjectLink)`
-//   position: relative;
-//   padding: 4px 8px;
-//   z-index: 1;
-// `
-
-// const Wrapper = styled.div`
-//   position: relative;
-
-//   @media (prefers-reduced-motion: no-preference) {
-//     &:hover,
-//     &:focus {
-//       ${StyledSvg} {
-//         animation: ${followPath} 1s cubic-bezier(0, 0, 1, 1) 1, ${rotate} 1s linear 1;
-//         animation-fill-mode: forwards;
-//       }
-//     }
-//   }
-// `

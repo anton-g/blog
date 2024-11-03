@@ -19,6 +19,7 @@ import { Nav } from '~/components/Nav'
 import { MainHeading } from '~/components/MainHeading'
 import { FeaturedPosts } from '~/components/FeaturedPosts'
 import { Projects } from '~/components/Projects'
+import { Appearances } from '~/components/Appearances'
 // import { updateAchievements } from '../utils/eggs'
 // const ThreeDeeBackground = dynamic(() => import('../components/three/ThreeDeeBackground'))
 
@@ -65,9 +66,9 @@ export default function Index() {
         <FeaturedPosts />
         {/* <Spacer size={128} /> */}
         <Projects />
-        {/* 
-        <Spacer size={128} />
+        {/* <Spacer size={128} /> */}
         <Appearances />
+        {/* 
         <Spacer size={128} />
         <CircleTextButton
           onClick={() => {

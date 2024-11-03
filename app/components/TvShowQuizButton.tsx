@@ -2,7 +2,7 @@ import { Link } from '@remix-run/react'
 import { CSSProperties, useEffect, useState } from 'react'
 import { cn } from '~/other/misc'
 const buttonCls =
-  'group-hover:animate-appearShort absolute w-[25px] bg-black h-[15px] bottom-[22px] opacity-0 z-40'
+  'group-hover:animate-appearShort group-focus:animate-appearShort absolute w-[25px] bg-black h-[15px] bottom-[22px] opacity-0 z-40'
 export const TvShowQuiz = ({ style }: { style?: CSSProperties }) => {
   const [loaded, setLoaded] = useState(false)
   useEffect(() => {
@@ -16,7 +16,7 @@ export const TvShowQuiz = ({ style }: { style?: CSSProperties }) => {
 
   return (
     <Link
-      className="group hover:rounded-t-lg relative h-[110px] w-[150px] bg-gray-950 overflow-hidden z-10"
+      className="group hover:rounded-t-lg focus:rounded-t-lg relative h-[110px] w-[150px] bg-gray-950 overflow-hidden z-10"
       to="https://tv-show-quiz.netlify.app/"
       style={{ ...style, transition: 'border-radius 200ms' }}
       onAnimationEnd={(e) => e.stopPropagation()}
@@ -53,14 +53,14 @@ export const TvShowQuiz = ({ style }: { style?: CSSProperties }) => {
       />
       <div className="absolute inset-0 flex items-center justify-center z-10">
         <div
-          className="bg-white h-[1px] w-[1px] animate-tvOff transform scale-0 group-hover:animate-tvOn"
+          className="bg-white h-[1px] w-[1px] animate-tvOff transform scale-0 group-hover:animate-tvOn group-focus:animate-tvOn"
           style={{
             animationDuration: loaded ? undefined : '0s',
           }}
         />
       </div>
       <div
-        className="text-gray-50 z-10 animate-appearDelayed group-hover:animate-disappearShort h-full w-full flex items-center justify-center text-center font-serif tracking-[1px] whitespace-nowrap text-xl"
+        className="text-gray-50 z-10 animate-appearDelayed group-hover:animate-disappearShort group-focus:animate-disappearShort h-full w-full flex items-center justify-center text-center font-serif tracking-[1px] whitespace-nowrap text-xl"
         style={{
           animationDuration: loaded ? undefined : '0s',
         }}
@@ -84,7 +84,7 @@ const Line = () => {
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        className="group-hover:animate-oneToZeroDashoffset"
+        className="group-hover:animate-oneToZeroDashoffset group-focus:animate-oneToZeroDashoffset"
         style={{ animationDelay: '350ms' }}
         d="M1.5 23L21 10L36 16L53 5.5L70 20L85.5 3L103.5 13L116.5 40.5"
         stroke="#FF0000"
