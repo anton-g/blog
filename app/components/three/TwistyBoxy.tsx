@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react'
 import { useFrame, Vector3 } from '@react-three/fiber'
 import { MeshWobbleMaterial, RoundedBox } from '@react-three/drei'
-import { useReducedMotion } from 'framer-motion'
+import { useReducedMotion } from 'motion/react'
 import { Mesh } from 'three'
 import { useSpring } from '@react-spring/core'
 import { a } from '@react-spring/three'

@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect, ReactNode } from 'react'
-import { motion, useReducedMotion } from 'framer-motion'
+import { motion, useReducedMotion } from 'motion/react'
 import { Link } from '@remix-run/react'
 
 export const BouncyArrowLink = ({ children, href }: { children: ReactNode; href: string }) => {

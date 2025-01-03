@@ -1,6 +1,6 @@
 import { Vector3 } from '@react-three/fiber'
 import { MeshDistortMaterial, Sphere } from '@react-three/drei'
-import { useReducedMotion } from 'framer-motion'
+import { useReducedMotion } from 'motion/react'
 
 export const Sphery = ({ position, size, color }: { size: number; position: Vector3; color: string }) => {
   const prefersReducedMotion = useReducedMotion()

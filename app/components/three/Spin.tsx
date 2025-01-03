@@ -1,6 +1,6 @@
 import { ReactNode, useRef } from 'react'
 import { useFrame, Vector3 } from '@react-three/fiber'
-import { useReducedMotion } from 'framer-motion'
+import { useReducedMotion } from 'motion/react'
 import { Group } from 'three'
 
 export const Spin = ({ position, children }: { position?: Vector3; children: ReactNode }) => {

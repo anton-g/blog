@@ -1,4 +1,4 @@
-import { useReducedMotion } from 'framer-motion'
+import { useReducedMotion } from 'motion/react'
 import { GLTF } from 'three-stdlib'
 import { GroupProps } from '@react-three/fiber'
 import { useState } from 'react'

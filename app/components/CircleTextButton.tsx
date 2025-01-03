@@ -1,7 +1,6 @@
 import { animated, config, useSpring } from '@react-spring/web'
 import { trackGoal } from 'fathom-client'
-import { useRef } from 'react'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import useSound from 'use-sound'
 import { updateEggSeed } from '~/other/eggs'
 import { cn } from '~/other/misc'
@@ -25,7 +24,7 @@ export const CircleTextButton = ({
   const { soundMode } = useSoundMode()
   const [turbulenceScale, setTurbulenceScale] = useState(0)
   const [clicks, setClicks] = useState(0)
-  const timeoutRef = useRef<any>(null)
+  const timeoutRef = useRef<NodeJS.Timeout>(null!)
   const timeRef = useRef<number>(0)
   const seedTimeRef = useRef<number>(0)
 

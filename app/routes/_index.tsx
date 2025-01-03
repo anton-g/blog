@@ -1,5 +1,5 @@
 import type { MetaFunction } from '@remix-run/node'
-import { motion, useReducedMotion } from 'framer-motion'
+import { motion, useReducedMotion } from 'motion/react'
 import { lazy, startTransition, Suspense, useState } from 'react'
 import { trackGoal } from 'fathom-client'
 import useDimensions from '~/hooks/useDimensions'

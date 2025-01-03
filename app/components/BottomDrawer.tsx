@@ -1,4 +1,4 @@
-import { useAnimation, motion } from 'framer-motion'
+import { useAnimation, motion } from 'motion/react'
 import { useState, useEffect } from 'react'
 import useDimensions from '~/hooks/useDimensions'
 import { BlogRoll } from './BlogRoll'

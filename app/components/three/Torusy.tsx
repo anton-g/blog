@@ -1,7 +1,7 @@
 import { useRef } from 'react'
 import { useFrame, Vector3 } from '@react-three/fiber'
 import { MeshWobbleMaterial, Torus } from '@react-three/drei'
-import { useReducedMotion } from 'framer-motion'
+import { useReducedMotion } from 'motion/react'
 import { Mesh } from 'three'
 
 export const Torusy = ({ position, color }: { position: Vector3; color: string }) => {

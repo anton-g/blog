@@ -1,6 +1,6 @@
 import { Vector3, useFrame } from '@react-three/fiber'
 import { Center, Text3D, Float, Instances, Instance, GradientTexture } from '@react-three/drei'
-import { useReducedMotion } from 'framer-motion'
+import { useReducedMotion } from 'motion/react'
 import { useMemo, useRef } from 'react'
 import * as THREE from 'three'
 
