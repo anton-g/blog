@@ -1,8 +1,7 @@
-import { useSpring, animated, config } from '@react-spring/web'
-import { CSSProperties, useEffect, useState } from 'react'
+import { motion, useSpring, useMotionTemplate } from 'motion/react'
+import { CSSProperties, useEffect, useState, useRef } from 'react'
 import useDimensions from '../hooks/useDimensions'
-import useSound from 'use-sound'
-import { useRef } from 'react'
+import { useSound } from 'use-sound'
 import { trackGoal } from 'fathom-client'
 import { useSoundMode } from '~/other/sound-context'
 import { updateAchievements } from '~/other/eggs'
@@ -15,28 +14,24 @@ export const MainHeading = ({ className }: { className?: string }) => {
   const [popped, setPopped] = useState(false)
   const [size, setSize] = useState(1)
   const [ref, dimensions] = useDimensions()
-  const [playPop] = useSound('/sounds/balloon-pop.mp3', { volume: 0.35 })
-  const [playBlow, { stop: stopBlow }] = useSound('/sounds/blow.mp3', {
+  const [playPopSound] = useSound('/sounds/balloon-pop.mp3', { volume: 0.35 })
+  const [playBlowSound, { stop: stopBlowSound }] = useSound('/sounds/blow.mp3', {
     volume: 0.25,
     interrupt: true,
     playbackRate,
   })
-  const [playDeflate] = useSound('/sounds/blow.mp3', {
+  const [playDeflateSound] = useSound('/sounds/blow.mp3', {
     volume: 0.25,
     playbackRate: 2,
   })
-  const timeoutRef = useRef<any>()
   const { soundMode } = useSoundMode()
 
-  const [styles, api] = useSpring(() => ({
-    fontSize: `${size}em`,
-    onRest: () => {
-      api.start({ fontSize: `1em` })
-      setSize(1)
-      setPlaybackRate(1)
-    },
-    config: config.wobbly,
-  }))
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null)
+  const sizeValue = useSpring(size, {
+    stiffness: 180,
+    damping: 12,
+  })
+  const fontSize = useMotionTemplate`${sizeValue}em`
 
   const left = (dimensions?.left || 0) + (dimensions?.width || 0) / 2
   const top = dimensions?.top || 0
@@ -44,13 +39,21 @@ export const MainHeading = ({ className }: { className?: string }) => {
   const x = left / (client ? window.innerWidth : 1)
   const y = top / (client ? window.innerHeight : 1)
 
+  const resetTimeout = () => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current)
+      timeoutRef.current = null
+    }
+  }
+
   const onBalloonClick = () => {
+    resetTimeout()
+
     if (size > 7.6) {
       setPopped(true)
-      fire()
-      stopBlow()
-      soundMode && playPop()
-      clearTimeout(timeoutRef.current)
+      fireConfetti()
+      stopBlowSound()
+      soundMode && playPopSound()
       trackGoal('9LGXBJZP', 0)
       updateAchievements({
         b: true,
@@ -58,33 +61,25 @@ export const MainHeading = ({ className }: { className?: string }) => {
       return
     }
 
-    let change = 0.5
-    if (size > 2.2) change = 0.4
-    if (size > 3.8) change = 0.3
-    if (size > 5) change = 0.15
-    if (size > 6.6) change = 0.1
+    const change = balloonScaleThresholds.find(({ size: tSize }) => size > tSize)?.change ?? 0.5
     setSize((s) => s + change)
-    api.start({ fontSize: `${size + change}em` })
-    soundMode && playBlow()
+    sizeValue.set(size + change)
+    soundMode && playBlowSound()
     setPlaybackRate(playbackRate + 0.05)
 
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current)
-      timeoutRef.current = null
-    }
-
     timeoutRef.current = setTimeout(() => {
-      soundMode && playDeflate()
+      soundMode && playDeflateSound()
+      setSize(1)
+      sizeValue.set(1)
+      setPlaybackRate(1)
     }, 800)
   }
 
   const instance = useRef<confetti.CreateTypes>()
-
-  const onInit: TOnInitComponentFn = ({ confetti }) => {
+  const onConfettiInit: TOnInitComponentFn = ({ confetti }) => {
     instance.current = confetti
   }
-
-  const fire = async () => {
+  const fireConfetti = async () => {
     if (!instance.current) return
 
     const shared: canvasConfetti.Options = {
@@ -132,21 +127,21 @@ export const MainHeading = ({ className }: { className?: string }) => {
           className={cn('relative text-gray-100 cursor-pointer', { 'select-none cursor-auto': popped })}
         >
           o
-          <animated.span
+          <motion.span
             className={cn(
               'text-black select-none absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2',
               { hidden: popped }
             )}
             onClick={onBalloonClick}
-            style={styles}
+            style={{ fontSize }}
           >
             o
-          </animated.span>
+          </motion.span>
         </span>
         n
       </span>
       <ReactCanvasConfetti
-        onInit={onInit}
+        onInit={onConfettiInit}
         className="absolute pointer-events-none w-full h-[150vh] top-0 left-0 overflow-hidden z-50"
         globalOptions={{
           useWorker: true,
@@ -227,3 +222,10 @@ function ReactCanvasConfetti({
     />
   )
 }
+
+const balloonScaleThresholds = [
+  { size: 6.6, change: 0.1 },
+  { size: 5, change: 0.15 },
+  { size: 3.8, change: 0.3 },
+  { size: 2.2, change: 0.4 },
+]
