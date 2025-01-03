@@ -1,14 +1,12 @@
-import { animated, config, useSpring } from '@react-spring/web'
 import { trackGoal } from 'fathom-client'
 import { useRef, useState } from 'react'
-import useSound from 'use-sound'
+import { useSound } from 'use-sound'
 import { updateEggSeed } from '~/other/eggs'
 import { cn } from '~/other/misc'
 import { useSoundMode } from '~/other/sound-context'
+import { motion, useSpring as new_useSpring } from 'motion/react'
 
-const AnimFeDisplacementMap = animated('feDisplacementMap')
-
-const target = 8
+const target = 4
 const clickTimeout = 850
 export const CircleTextButton = ({
   className,
@@ -22,15 +20,14 @@ export const CircleTextButton = ({
   const [playClickDown] = useSound('/sounds/clickDown.mp3')
   const [playClickUp] = useSound('/sounds/clickUp.mp3')
   const { soundMode } = useSoundMode()
-  const [turbulenceScale, setTurbulenceScale] = useState(0)
   const [clicks, setClicks] = useState(0)
   const timeoutRef = useRef<NodeJS.Timeout>(null!)
   const timeRef = useRef<number>(0)
   const seedTimeRef = useRef<number>(0)
 
-  const { scale } = useSpring({
-    scale: turbulenceScale,
-    config: config.wobbly,
+  const turbulenceScale = new_useSpring(0, {
+    stiffness: 180,
+    damping: 12,
   })
 
   const handleMouseDown = () => {
@@ -52,10 +49,11 @@ export const CircleTextButton = ({
     const newClicks = clicks + 1
     if (clickDiff > clickTimeout) {
       setClicks(newClicks)
-      setTurbulenceScale((s) => (s === 0 ? 50 : s * 1.3))
+      const current = turbulenceScale.get()
+      turbulenceScale.set(current === 0 ? 150 : current * 1.8)
 
       if (newClicks >= target) {
-        setTurbulenceScale(0)
+        turbulenceScale.set(0)
         setClicks(0)
         handleSuccess()
         return
@@ -65,7 +63,7 @@ export const CircleTextButton = ({
     timeRef.current = 0
 
     timeoutRef.current = setTimeout(() => {
-      setTurbulenceScale(0)
+      turbulenceScale.set(0)
       setClicks(0)
     }, 10000)
   }
@@ -120,15 +118,15 @@ export const CircleTextButton = ({
                 seed={'4432'}
               ></feTurbulence>
               <feGaussianBlur in="SourceGraphic" result="BLURRED" stdDeviation="0"></feGaussianBlur>
-              <AnimFeDisplacementMap
+              <motion.feDisplacementMap
                 id="displacer"
                 in2="NOISE"
                 in="BLURRED"
-                scale={scale}
+                scale={turbulenceScale}
                 xChannelSelector="R"
                 yChannelSelector="R"
                 result="DISPLACED"
-              ></AnimFeDisplacementMap>
+              ></motion.feDisplacementMap>
             </filter>
           </defs>
           <circle cx="150" cy="150" r="150" fill="none" />
