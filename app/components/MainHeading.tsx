@@ -10,7 +10,7 @@ import { cn } from '~/other/misc'
 import { TOnInitComponentFn } from 'react-canvas-confetti/dist/types'
 import canvasConfetti, { CreateTypes, GlobalOptions } from 'canvas-confetti'
 
-export const MainHeading = () => {
+export const MainHeading = ({ className }: { className?: string }) => {
   const [playbackRate, setPlaybackRate] = useState(1)
   const [popped, setPopped] = useState(false)
   const [size, setSize] = useState(1)
@@ -121,7 +121,7 @@ export const MainHeading = () => {
 
   return (
     <h1
-      className="font-title font-normal leading-[0.75] w-min max-w-full"
+      className={cn('font-title font-normal leading-[0.75] w-min max-w-full', className)}
       style={{ fontSize: 'clamp(56px, 10vw + 1rem, 156px)' }}
     >
       anton{' '}

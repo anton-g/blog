@@ -1,3 +1,4 @@
+import { cn } from '~/other/misc'
 import { AaaaaahhButton } from './AaaaaahhButton'
 import { AreasButton } from './AreasButton'
 import { CharadgeneratornButton } from './CharadgeneratornButton'
@@ -7,9 +8,9 @@ import { KampgeneratorButton } from './KampgeneratornButton'
 import { PodcastButton } from './PodcastButton'
 import { TvShowQuiz } from './TvShowQuizButton'
 
-export const Projects = () => {
+export const Projects = ({ className }: { className?: string }) => {
   return (
-    <div className="w-full flex justify-between py-2 px-1 max-w-[1500px] striped-bg">
+    <div className={cn('w-full flex justify-between py-2 px-1 max-w-[1500px] striped-bg', className)}>
       <div
         style={{ writingMode: 'vertical-lr', textOrientation: 'mixed' }}
         className="font-title text-[4rem] text-end transform rotate-180"

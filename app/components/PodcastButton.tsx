@@ -1,10 +1,9 @@
-import { CSSProperties } from 'react'
 import { ProjectLink } from './ProjectLink'
 
 // TODO add tiny T & A heads talking
-export const PodcastButton = ({ style }: { style?: CSSProperties }) => {
+export const PodcastButton = () => {
   return (
-    <div className="group relative" style={style} onAnimationEnd={(e) => e.stopPropagation()}>
+    <div className="group relative" onAnimationEnd={(e) => e.stopPropagation()}>
       <ProjectLink to="https://asdf.pizza">
         asdf.pizza{' '}
         <div className="inline-flex items-center mx-auto text-2xl relative">

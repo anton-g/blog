@@ -1,17 +1,6 @@
 import type { MetaFunction } from '@remix-run/node'
 import { motion, useReducedMotion } from 'framer-motion'
-import { useState } from 'react'
-// import useDimensions from '../hooks/useDimensions'
-// import { Spacer } from '../components/Spacer'
-// import { Nav } from '../components/Nav'
-// import { MainHeading } from '../components/MainHeading'
-// import { FeaturedPosts } from '../components/FeaturedPosts'
-// import { Projects } from '../components/Projects'
-// import { Appearances } from '../components/Appearances'
-// import { CircleTextButton } from '../components/CircleTextButton'
-// import { Newsletter } from '../components/Newsletter'
-// import { BottomDrawer } from '../components/BottomDrawer'
-// import dynamic from 'next/dynamic'
+import { lazy, startTransition, Suspense, useState } from 'react'
 import { trackGoal } from 'fathom-client'
 import useDimensions from '~/hooks/useDimensions'
 import { cn } from '~/other/misc'
@@ -21,8 +10,10 @@ import { FeaturedPosts } from '~/components/FeaturedPosts'
 import { Projects } from '~/components/Projects'
 import { Appearances } from '~/components/Appearances'
 import { BottomDrawer } from '~/components/BottomDrawer'
-// import { updateAchievements } from '../utils/eggs'
-// const ThreeDeeBackground = dynamic(() => import('../components/three/ThreeDeeBackground'))
+import { CircleTextButton } from '~/components/CircleTextButton'
+const ThreeDeeBackground = lazy(() => import('~/components/ThreeDeeBackground'))
+// import ThreeDeeBackground from '~/components/ThreeDeeBackground'
+import { updateAchievements } from '~/other/eggs'
 
 export const meta: MetaFunction = () => {
   return [
@@ -40,20 +31,20 @@ export default function Index() {
 
   return (
     <div
-      className="flex flex-col items-center justify-center bg-black"
+      className="flex h-full justify-center bg-black relative"
       style={{
+        perspective: '1200px',
         height: dimensions?.height || '100%',
       }}
     >
-      {/* {load3D && <ThreeDeeBackground />} */}
+      {load3D && <ThreeDeeBackground />}
       <motion.div
         animate={zoomOutActive ? 'open' : 'closed'}
         initial={false}
         variants={zoomVariants(prefersReducedMotion ?? false)}
         ref={ref}
         className={cn(
-          'duration-[3s] ease-in-out top-0 w-full max-w-full text-gray-12 bg-gray-100 flex flex-col items-center overflow-x-hidden absolute',
-          'min-h-screen', // TODO remove me
+          'top-0 w-full max-w-full text-gray-950 bg-gray-100 flex flex-col items-center overflow-x-hidden absolute',
           { 'animate-spin': barrelRoll }
         )}
         style={{
@@ -62,16 +53,12 @@ export default function Index() {
         onAnimationEnd={() => setBarrelRoll(false)}
       >
         <Nav />
-        <MainHeading />
-        {/* <Spacer size={48} /> */}
-        <FeaturedPosts />
-        {/* <Spacer size={128} /> */}
-        <Projects />
-        {/* <Spacer size={128} /> */}
-        <Appearances />
-        {/* 
-        <Spacer size={128} />
+        <MainHeading className="mb-12" />
+        <FeaturedPosts className="mb-32" />
+        <Projects className="mb-32" />
+        <Appearances className="mb-32" />
         <CircleTextButton
+          className="mb-32"
           onClick={() => {
             if (zoomOutActive) {
               setZoomOutActive(false)
@@ -80,7 +67,9 @@ export default function Index() {
             }
           }}
           onSuccess={() => {
-            setLoad3D(true)
+            startTransition(() => {
+              setLoad3D(true)
+            })
             setTimeout(() => {
               setZoomOutActive(true)
               updateAchievements({
@@ -89,8 +78,6 @@ export default function Index() {
             }, 1000)
           }}
         />
-        <Spacer size={128} />
-        */}
         {/*
         <Newsletter
           onEasterEgg={() => {
@@ -101,7 +88,7 @@ export default function Index() {
             })
           }}
         />*/}
-        <BottomDrawer liveMeasureDisabled={false} />
+        <BottomDrawer liveMeasureDisabled={zoomOutActive} />
       </motion.div>
     </div>
   )
@@ -128,37 +115,3 @@ const zoomVariants = (prefersReducedMotion: boolean) => ({
     },
   },
 })
-
-// const barrel = keyframes`
-//   0% {
-//     transform: rotateZ(0deg);
-//   }
-//   100% {
-//     transform: rotateZ(360deg);
-//   }
-// `
-
-/*
-
-
-const Wrapper = styled(motion.div)<{ $roll: boolean }>`
-  top: 0;
-  width: 100%;
-  max-width: 100%;
-  color: var(--color-gray12);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  overflow-x: hidden;
-  position: absolute;
-  background-color: var(--color-gray1);
-  transform-origin: 50% 30%;
-
-  ${({ $roll }) =>
-    $roll &&
-    css`
-      animation: ${barrel} 3s ease-in-out;
-      transform-origin: 50% 50%;
-    `}
-`
-*/

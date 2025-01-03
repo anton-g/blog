@@ -1,10 +1,11 @@
 import { Link } from '@remix-run/react'
 import { BouncyArrowLink } from './BouncyArrowLink'
 import { ComponentProps } from 'react'
+import { cn } from '~/other/misc'
 
-export const Appearances = () => {
+export const Appearances = ({ className }: { className?: string }) => {
   return (
-    <div className="flex flex-col gap-4">
+    <div className={cn('flex flex-col gap-4', className)}>
       <h2 className="text-center">Selected talks</h2>
       <div className="grid lg:grid-cols-3 gap-y-9 gap-x-12 grid-cols-1">
         <Post to="https://www.youtube.com/watch?v=uo3px1L3H70">CSS *is* awesome</Post>
@@ -28,27 +29,3 @@ const Post = ({ children, ...props }: ComponentProps<typeof Link>) => {
     </Link>
   )
 }
-
-// const Post = styled.a`
-//   font-family: var(--font-abril);
-//   font-size: 2rem;
-//   max-width: 340px;
-//   text-align: center;
-//   font-kerning: normal;
-//   letter-spacing: 1px;
-//   display: flex;
-//   flex-direction: column;
-
-//   @media (min-width: 930px) {
-//     &:first-child {
-//       text-align: right;
-//     }
-//     &:last-child {
-//       text-align: left;
-//     }
-//   }
-//   &:hover {
-//     text-decoration: underline var(--color-primary11) wavy;
-//     text-decoration-skip-ink: none;
-//   }
-// `

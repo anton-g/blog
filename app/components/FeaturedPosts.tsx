@@ -1,10 +1,11 @@
 import { Link } from '@remix-run/react'
 import { BouncyArrowLink } from './BouncyArrowLink'
 import { ComponentProps } from 'react'
+import { cn } from '~/other/misc'
 
-export const FeaturedPosts = () => {
+export const FeaturedPosts = ({ className }: { className?: string }) => {
   return (
-    <div className="flex flex-col">
+    <div className={cn('flex flex-col', className)}>
       <h2 className="text-center text-gray-950">Selected posts</h2>
       <div className="flex gap-12 flex-col lg:flex-row">
         <Post to="/posts/react-component-code-smells">React Component Code Smells</Post>

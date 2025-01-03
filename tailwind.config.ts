@@ -36,6 +36,7 @@ export default {
         boot: 'followPath 1s cubic-bezier(0, 0, 1, 1) 1 forwards, rotate720 1s linear 1 forwards',
         width: 'width 8s ease infinite',
         marquee: 'marquee 120s linear infinite',
+        circleText: 'rotate360 15s linear infinite',
       },
     },
     keyframes: {
@@ -176,6 +177,14 @@ export default {
         '100%': {
           'motion-offset': '0%',
           'offset-distance': '0%',
+        },
+      },
+      rotate360: {
+        from: {
+          transform: 'rotate(360deg)',
+        },
+        to: {
+          transform: 'rotate(0deg)',
         },
       },
       rotate720: {
