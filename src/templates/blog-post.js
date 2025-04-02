@@ -7,9 +7,7 @@ import SEO from '../components/Seo'
 import Layout from '../components/Layout'
 import ConfettiCanon from '../components/common/ConfettiCanon/ConfettiCanon'
 import Confettis from '../components/common/Confettis/Confettis'
-import WebMentions from '../components/common/WebMentions/WebMentions'
 import { ThemeContext } from '../ThemeContext'
-import twitter from './twitter.png'
 
 const PostState = ({ state }) => {
   let text = ''
@@ -115,28 +113,7 @@ class BlogPostTemplate extends React.Component {
                 Celebrate with <Confettis>confetti</Confettis>!
               </p>
             </ConfettiWrapper>
-            {!isUnlisted && (
-              <TwitterWrapper>
-                <p>Share this post on Twitter!</p>
-                <Arrow>
-                  <svg
-                    fill="none"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                  </svg>
-                </Arrow>
-                <a href={shareLink} target="_blank" rel="noopener noreferrer">
-                  <img src={twitter} alt="twitter logo"></img>
-                </a>
-              </TwitterWrapper>
-            )}
           </Footer>
-          <WebMentions target={url} shareLink={shareLink} />
         </Post>
       </Layout>
     )
