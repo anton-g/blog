@@ -30,7 +30,7 @@ _“Automate your video creation with this amazing AI agent!”_
 
 <div style="height: 1rem;"></div>
 
-That the output is mediocre at best doesn’t seem to matter. Mediocrity that floods our common digital space. It will become harder and harder to distinguish what’s authentic. As we adapt to this new reality both our trust and interest will drop, before we end up with an echo chamber of stupid robots talking to each other.
+That the output is mediocre at best doesn’t seem to matter. Mediocrity that floods our common digital space. Distinguishing what's authentic will become harder and harder. As we adapt to this new reality both our trust and interest will drop, before we end up with an echo chamber of stupid robots talking to each other.
 
 While the drowning of authentic content is a catastrophe in and of itself, it’s not the only problem. In order to satisfy the ever-hungry machines training new models, crawlers are relentlessly scouring the internet for new data to feed them. In our previous Internet we had functioning honour systems such as [robots.txt](https://en.wikipedia.org/wiki/Robots.txt) that prevented unwanted bots from accessing our sites. Now a new tale of overly aggressive bots [disrupting our most beloved sites](https://www.engadget.com/ai/wikipedia-is-struggling-with-voracious-ai-bot-crawlers-121546854.html), [desperate conversations among sysadmins](https://drewdevault.com/2025/03/17/2025-03-17-Stop-externalizing-your-costs-on-me.html) and [massively increased side-project costs](https://bsky.app/profile/gergely.pragmaticengineer.com/post/3llt2p7vgv223) emerge every other day. This isn’t The War Against the Machines that the Terminator movies promised us, but it's the war we got and I am afraid that we are losing.
 
