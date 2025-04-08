@@ -1,7 +1,7 @@
 ---
 title: The Internet we deserve
 date: '2025-04-08T08:43:00.000Z'
-description: "This isn’t The War Against the Machines that the Terminator movies promised us, but it's the war we got and I am afraid that we are losing."
+description: "This isn’t The War Against the Machines that we were promised."
 state: 'bloomed'
 ---
 
