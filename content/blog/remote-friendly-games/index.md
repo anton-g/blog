@@ -1,6 +1,6 @@
 ---
 title: Remote-friendly games
-date: '2022-01-26T18:12:00.000Z'
+date: '2025-04-09T08:49:00.000Z'
 description: 'List of games for the remote team activity.'
 dev: ''
 state: 'growing'
@@ -39,6 +39,10 @@ _(Free with paid options)_
 [Geotastic](https://geotastic.net) is a free alternative to Geoguessr, the game where you are dropped somewhere in the world inside the Google Street View and just by looking at the environment around you have to find out where you are. It's incredibly fun to split the team in two and compete against each other to see who can score the highest.
 
 _(Free)_
+
+## The Wiki Game
+
+[The Wiki Game](https://www.thewikigame.com/) is a game where you start on a random Wikipedia page and have to navigate to another random Wikipedia page by only clicking links in the articles. The goal is to do this in as few clicks as possible.
 
 ## Krunker
 
